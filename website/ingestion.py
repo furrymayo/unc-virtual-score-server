@@ -39,21 +39,125 @@ parsed_data_lock = threading.Lock()
 _STALE_TTL = 3600  # 1 hour
 
 
+# --- Baseball inning state machine ---
+#
+# The OES controller reports blank (not "0") for half-innings where no runs
+# have been scored.  This makes line-score counting unreliable for determining
+# TOP/BOT.  Instead we track outs transitions:
+#   TOP  ──outs==3──▸ MID  ──outs<3──▸ BOT  ──outs==3──▸ END  ──outs<3──▸ TOP(+1)
+
+_baseball_state = {
+    "half": "TOP",
+    "inning": 1,
+    "prev_outs": None,
+    "initialized": False,
+}
+
+
+def _ordinal(n):
+    """Return ordinal string: 1 → '1st', 2 → '2nd', 11 → '11th', etc."""
+    if 11 <= (n % 100) <= 13:
+        return f"{n}th"
+    suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+def _bootstrap_baseball_state(parsed):
+    """Cold-start: best-guess inning state from line scores and outs."""
+    away = parsed.get("away_innings", [])
+    home = parsed.get("home_innings", [])
+    filled = lambda v: v is not None and str(v).strip() != ""
+    away_count = sum(1 for v in away if filled(v))
+    home_count = sum(1 for v in home if filled(v))
+
+    outs_raw = str(parsed.get("outs", "")).strip()
+    outs = int(outs_raw) if outs_raw.isdigit() else 0
+
+    if away_count > home_count:
+        half = "MID" if outs == 3 else "BOT"
+        inning = away_count
+    else:
+        inning = max(away_count + 1, 1)
+        half = "MID" if outs == 3 else "TOP"
+
+    return {"half": half, "inning": inning, "prev_outs": outs, "initialized": True}
+
+
+def _update_baseball_inning(parsed):
+    """Advance the baseball inning state machine.
+
+    Must be called under parsed_data_lock.
+    Returns (half, inning) where half is TOP/MID/BOT/END.
+    """
+    global _baseball_state
+
+    outs_raw = str(parsed.get("outs", "")).strip()
+    outs = int(outs_raw) if outs_raw.isdigit() else None
+
+    if not _baseball_state["initialized"]:
+        _baseball_state = _bootstrap_baseball_state(parsed)
+    elif outs is not None:
+        half = _baseball_state["half"]
+        inning = _baseball_state["inning"]
+
+        if outs == 3:
+            # Half-inning just ended
+            if half == "TOP":
+                half = "MID"
+            elif half == "BOT":
+                half = "END"
+        elif half in ("MID", "END"):
+            # Outs < 3 while in a transition state → new half started
+            if half == "MID":
+                half = "BOT"
+            else:  # END
+                half = "TOP"
+                inning += 1
+
+        _baseball_state["half"] = half
+        _baseball_state["inning"] = inning
+        _baseball_state["prev_outs"] = outs
+
+    return _baseball_state["half"], _baseball_state["inning"]
+
+
+def reset_baseball_state():
+    """Reset the inning state machine (e.g. new game)."""
+    global _baseball_state
+    with parsed_data_lock:
+        _baseball_state = {
+            "half": "TOP",
+            "inning": 1,
+            "prev_outs": None,
+            "initialized": False,
+        }
+
+
 def record_packet(sport, parsed, source_id):
     """Thread-safe: store a parsed packet in the global data stores."""
     received_at = time.time()
     if source_id is None:
         source_id = "unknown"
 
-    parsed_with_meta = {
-        **parsed,
-        "_meta": {
-            "source": source_id,
-            "received_at": received_at,
-        },
-    }
-
     with parsed_data_lock:
+        # Baseball inning enrichment
+        if sport == "Baseball":
+            half, inning = _update_baseball_inning(parsed)
+            parsed = {
+                **parsed,
+                "inning": inning,
+                "half": half,
+                "inning_display": f"{half} {_ordinal(inning)}",
+            }
+
+        parsed_with_meta = {
+            **parsed,
+            "_meta": {
+                "source": source_id,
+                "received_at": received_at,
+            },
+        }
+
         parsed_data[sport] = parsed_with_meta
         parsed_data_by_source.setdefault(source_id, {})[sport] = parsed_with_meta
         last_seen_by_source[source_id] = received_at

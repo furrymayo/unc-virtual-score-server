@@ -184,38 +184,8 @@
             home: { runs: data.home_runs, hits: data.home_hits, errors: data.home_errors }
         });
 
-        const isFilled = (value) => value !== undefined && value !== null && String(value).trim() !== '';
-        const countFilled = (arr) => arr.reduce((count, value) => count + (isFilled(value) ? 1 : 0), 0);
-        const awayCount = countFilled(awayInnings);
-        const homeCount = countFilled(homeInnings);
-
-        const outsText = String(data.outs || '').trim();
-        const outsValue = outsText === '' ? null : parseInt(outsText, 10);
-        const outsKnown = Number.isFinite(outsValue);
-
-        let halfLabel = null;
-        let inningNumber = null;
-        if (awayCount === homeCount) {
-            if (outsKnown && outsValue === 0) {
-                halfLabel = 'TOP';
-                inningNumber = awayCount + 1;
-            } else if (outsKnown && outsValue < 3) {
-                halfLabel = 'BOT';
-                inningNumber = homeCount || 1;
-            } else {
-                halfLabel = 'TOP';
-                inningNumber = awayCount + 1;
-            }
-        } else if (awayCount === homeCount + 1) {
-            halfLabel = 'BOT';
-            inningNumber = awayCount;
-        } else if (homeCount === awayCount + 1) {
-            halfLabel = 'BOT';
-            inningNumber = homeCount;
-        }
-
-        const halfInning = halfLabel && inningNumber ? `${halfLabel} ${inningNumber}` : null;
-        setText('bs-half-inning', halfInning);
+        // Inning half is computed server-side via outs-transition state machine
+        setText('bs-half-inning', data.inning_display);
     }
 
     function renderLinescoreBaseball(awayInnings, homeInnings, totals) {
