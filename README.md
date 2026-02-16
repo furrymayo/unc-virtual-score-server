@@ -92,16 +92,39 @@ sudo -u scoreboard /opt/scoreboard/venv/bin/pip install -r requirements.txt
 
 ```bash
 sudo -u scoreboard cp .env.example .env
-sudo -u scoreboard nano .env
 ```
 
-At minimum, set `FLASK_SECRET_KEY` to a random string:
+Generate a secret key, then edit the `.env` file:
 
 ```bash
+# Generate a random secret key (copy the output)
 python3 -c "import secrets; print(secrets.token_hex(32))"
+
+# Edit the config (use TERM=xterm if you get a terminal error)
+TERM=xterm sudo -u scoreboard nano /opt/scoreboard/.env
 ```
 
-For testing, you may want `FLASK_DEBUG=1`. For anything beyond local network testing, set `FLASK_DEBUG=0`.
+Here's what each variable does and when to change it:
+
+| Variable | Default | What to set |
+|----------|---------|-------------|
+| `FLASK_SECRET_KEY` | *(empty)* | **Required.** Paste the random string you generated above. This signs session cookies — without it the app uses an insecure fallback. |
+| `FLASK_HOST` | `0.0.0.0` | Leave as-is. `0.0.0.0` means the app accepts connections from any machine on the network. Change to `127.0.0.1` to only allow access from the server itself. |
+| `FLASK_PORT` | `5000` | The port the web UI runs on. Change if 5000 is already in use or if you want a different port. |
+| `FLASK_DEBUG` | `1` | Set to `1` for testing (auto-reloads on code changes, detailed error pages). Set to `0` for anything beyond your local network. |
+| `SCOREBOARD_TCP_PORT` | `5001` | Port for the inbound TCP listener. OES controllers or relay software can push scoreboard packets to this port. Only change if 5001 conflicts with another service. |
+| `SCOREBOARD_UDP_PORT` | `5002` | Port for the inbound UDP listener. Same as above but for UDP. Only change if 5002 conflicts. |
+
+A typical testing `.env` looks like:
+
+```
+FLASK_SECRET_KEY=a1b2c3d4e5f6...your_generated_key_here
+FLASK_HOST=0.0.0.0
+FLASK_PORT=5000
+FLASK_DEBUG=1
+SCOREBOARD_TCP_PORT=5001
+SCOREBOARD_UDP_PORT=5002
+```
 
 ### 6. Install the systemd Service
 
