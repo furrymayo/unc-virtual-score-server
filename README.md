@@ -63,12 +63,15 @@ sudo apt update
 sudo apt install -y python3 python3-venv python3-pip git
 ```
 
-### 2. Create a Service User
+### 2. Create a Service User and Project Directory
 
 ```bash
-sudo useradd -r -s /usr/sbin/nologin -m -d /opt/scoreboard scoreboard
+sudo useradd -r -s /usr/sbin/nologin scoreboard
 # Add to dialout group for serial port access
 sudo usermod -aG dialout scoreboard
+# Create the project directory with correct ownership
+sudo mkdir -p /opt/scoreboard
+sudo chown scoreboard:scoreboard /opt/scoreboard
 ```
 
 ### 3. Clone the Repository
