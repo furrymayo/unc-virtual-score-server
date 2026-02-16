@@ -22,7 +22,7 @@
     }
 </style>
 
-<h1>COM Port Debugging Window</h1>
+<h1>Scoreboard Debugging Window</h1>
 
 <div id="sportCode">
     <label for="sport-select">Select Sport:</label>
@@ -36,6 +36,7 @@
         <option value="Soccer">Soccer</option>
         <option value="Softball">Softball</option>
         <option value="Baseball">Baseball</option>
+        <option value="Gymnastics">Gymnastics</option>
         <!-- Add more sports here -->
     </select>
 </div>
@@ -44,26 +45,48 @@
     <!-- Real-time data from selected COM port will be displayed here -->
 </div>
 
+<div id="trackmanSection" style="margin-top: 24px;">
+    <h2 style="color: #77aacd; text-align: center;">TrackMan UDP Debug</h2>
+    <div id="trackmanControls" style="margin-bottom: 12px;">
+        <label for="trackman-sport-select">Select Sport:</label>
+        <select id="trackman-sport-select">
+            <option value="Baseball">Baseball</option>
+            <option value="Softball">Softball</option>
+        </select>
+    </div>
+    <div id="trackmanStatus" style="margin-bottom: 8px; color: #77aacd;"></div>
+    <div id="trackmanWindow" style="border: 4px solid #77aacd; background-color: #1f2d40; color: #cfe8ff; padding: 20px; height: 40vh; overflow-y: auto;"></div>
+</div>
+
 <script>
     // Function to update the debug window
     function updateDebugWindow(data) {
         const debugWindowDiv = document.getElementById('debugWindow');
+        const p = document.createElement('p');
         if (data.error) {
-            debugWindowDiv.innerHTML += `<p style="color: red;">${data.error}</p>`;
+            p.style.color = 'red';
+            p.textContent = data.error;
         } else {
-            debugWindowDiv.innerHTML += `<p>${JSON.stringify(data)}</p>`;
+            p.textContent = JSON.stringify(data);
         }
+        debugWindowDiv.appendChild(p);
+    }
+
+    function updateTrackmanWindow(data) {
+        const trackmanWindowDiv = document.getElementById('trackmanWindow');
+        const p = document.createElement('p');
+        if (data.error) {
+            p.style.color = '#ff8f8f';
+            p.textContent = data.error;
+        } else {
+            p.textContent = JSON.stringify(data);
+        }
+        trackmanWindowDiv.appendChild(p);
     }
 
     // Function to fetch COM port data
     function fetchCOMPortData() {
         const selectedSport = document.getElementById('sport-select').value;
-        const selectedCOMPort = document.getElementById('serial-port').value;
-
-        if (selectedCOMPort === 'none') {
-            updateDebugWindow({ error: 'No COM Port selected.' });
-            return;
-        }
 
         fetch(`/get_raw_data/${selectedSport}`)
             .then(response => response.json())
@@ -77,13 +100,36 @@
             .catch(error => console.error('Error fetching COM port data:', error));
     }
 
+    function fetchTrackmanData() {
+        const selectedSport = document.getElementById('trackman-sport-select').value;
+        Promise.all([
+            fetch(`/trackman_config/${selectedSport}`).then(response => response.json()),
+            fetch(`/get_trackman_debug/${selectedSport}`).then(response => response.json())
+        ]).then(([config, data]) => {
+            const status = config && (config.error ? `error: ${config.error}` : `${config.enabled ? 'enabled' : 'disabled'} · port ${config.port || 'n/a'} · ${config.feed_type || 'n/a'} · ${config.running ? 'listening' : 'idle'}`);
+            document.getElementById('trackmanStatus').textContent = status || 'n/a';
+            if (data && data.raw) {
+                updateTrackmanWindow({ raw: data.raw });
+            }
+            if (data && data.error) {
+                updateTrackmanWindow({ error: data.error });
+            }
+            updateTrackmanWindow(data && data.parsed ? data.parsed : {});
+        }).catch(error => {
+            updateTrackmanWindow({ error: error.message || 'TrackMan fetch error' });
+        });
+    }
+
     // Fetch data when the page loads and set an interval to keep fetching
     fetchCOMPortData();
     setInterval(fetchCOMPortData, 1000);
+    fetchTrackmanData();
+    setInterval(fetchTrackmanData, 1000);
 
     // Update data when the user changes the sport or COM port
     document.getElementById('sport-select').addEventListener('change', fetchCOMPortData);
-    document.getElementById('serial-port').addEventListener('change', fetchCOMPortData);
+    document.getElementById('sport-select').addEventListener('change', fetchCOMPortData);
+    document.getElementById('trackman-sport-select').addEventListener('change', fetchTrackmanData);
 
     // Update the UI when data is fetched
     document.addEventListener('dataFetched', function (event) {

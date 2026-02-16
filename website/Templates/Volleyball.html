@@ -1,122 +1,108 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Volleyball Scoreboard{% endblock %}
 
 {% block content %}
-<style>
-    h1 {
-        text-align: center;
-        color: #77aacd;
-    }
+<section class="scoreboard-shell">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Volleyball</div>
+            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Clock <span id="vb-game-clock">--</span></div>
+            <div class="meta-chip">Set <span id="vb-period-chip">--</span></div>
+        </div>
+    </div>
 
-    body {
-        background-color: #1d2f4a; /* This sets the background color for the entire page */
-    }
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label"><span class="possession-dot" id="vb-poss-home"></span>Home</div>
+            <div class="team-score" id="vb-home-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Timeouts</span><strong id="vb-home-tol">--</strong></div>
+                <div class="stat-line"><span>Sets Won</span><strong id="vb-home-sets">--</strong></div>
+            </div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Set</div>
+            <div class="center-value" id="vb-period">--</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label"><span class="possession-dot" id="vb-poss-visitor"></span>Visitor</div>
+            <div class="team-score" id="vb-visitor-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Timeouts</span><strong id="vb-visitor-tol">--</strong></div>
+                <div class="stat-line"><span>Sets Won</span><strong id="vb-visitor-sets">--</strong></div>
+            </div>
+        </div>
+    </div>
 
-    #volleyballData {
-        border: 4px solid #77aacd;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        background-color: #343a40;
-    }
-
-    #gameClock::before {
-        content: "GAME CLOCK";
-        display: block;
-        font-weight: bold;
-        color: black;
-    }
-
-    #gameClock {
-        border: 2px solid black;
-        text-align: center;
-        grid-row: 4;
-        grid-column: 4;
-        color: yellow;
-    }
-
-    #currentSet::before {
-        content: "PERIOD";
-        display: block;
-        font-weight: bold;
-        color: black;
-    }
-
-    #currentSet {
-        border: 2px solid black;
-        text-align: center;
-        grid-row: 3;
-        grid-column: 4;
-        color: yellow;
-    }
-</style>
-
-<h1>Volleyball Virtual Scoreboard</h1>
-<div id="volleyballData">
-    <div id="gameClock"></div>
-    <div id="currentSet"></div>
-    <div id="homeMatchScore"></div>
-    <div id="guestMatchScore"></div>
-    <div id="homeSetScore"></div>
-    <div id="guestSetScore"></div>
-    <div id="homeSet1Result"></div>
-    <div id="guestSet1Result"></div>
-    <div id="homeSet2Result"></div>
-    <div id="guestSet2Result"></div>
-    <div id="homeSet3Result"></div>
-    <div id="guestSet3Result"></div>
-    <div id="homeSet4Result"></div>
-    <div id="guestSet4Result"></div>
-    <div id="homeSet5Result"></div>
-    <div id="guestSet5Result"></div>
-    <!-- other divs -->
-</div>
+    <div class="section-title">Set Scores</div>
+    <div class="table-card">
+        <table class="table-grid">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Set 1</th>
+                    <th>Set 2</th>
+                    <th>Set 3</th>
+                    <th>Set 4</th>
+                    <th>Set 5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="team-row-label">Home</td>
+                    <td id="vb-home-set-1">--</td>
+                    <td id="vb-home-set-2">--</td>
+                    <td id="vb-home-set-3">--</td>
+                    <td id="vb-home-set-4">--</td>
+                    <td id="vb-home-set-5">--</td>
+                </tr>
+                <tr>
+                    <td class="team-row-label">Visitor</td>
+                    <td id="vb-visitor-set-1">--</td>
+                    <td id="vb-visitor-set-2">--</td>
+                    <td id="vb-visitor-set-3">--</td>
+                    <td id="vb-visitor-set-4">--</td>
+                    <td id="vb-visitor-set-5">--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
 <script>
-    function updateVolleyballUI(data) {
-        // Update the gameClock
-        const gameClockDiv = document.getElementById('gameClock');
-        const minuteTens = data['Game Time Minute Tens'] || '9';
-        const minuteOnes = data['Game Time Minute Ones'] || '9';
-        const secondTens = data['Game Time Second Tens'] || '9';
-        const secondOnes = data['Game Time Second Ones'] || '9';
+    function renderVolleyball(data) {
+        setText('vb-game-clock', data.game_clock);
+        setText('vb-period-chip', data.period);
+        setText('vb-period', data.period);
+        setText('vb-home-score', data.home_score);
+        setText('vb-visitor-score', data.visitor_score);
+        setText('vb-home-tol', data.home_full_tol);
+        setText('vb-visitor-tol', data.visitor_full_tol);
+        setText('vb-home-sets', data.home_sets_won);
+        setText('vb-visitor-sets', data.visitor_sets_won);
 
-        const gameClockData = (minuteTens && minuteOnes && secondTens && secondOnes)
-            ? `${minuteTens}${minuteOnes}:${secondTens}${secondOnes}`
-            : '99:99';
+        const homeSets = Array.isArray(data.home_set_scores) ? data.home_set_scores : [];
+        const visitorSets = Array.isArray(data.visitor_set_scores) ? data.visitor_set_scores : [];
+        for (let i = 0; i < 5; i += 1) {
+            setText(`vb-home-set-${i + 1}`, homeSets[i]);
+            setText(`vb-visitor-set-${i + 1}`, visitorSets[i]);
+        }
 
-        gameClockDiv.innerText = gameClockData;
-
-        // Update currentSet
-        const currentSetDiv = document.getElementById('currentSet');
-        const currentSet = data['Period'] || '9';
-
-        const currentSetData = (currentSet)
-            ? `${currentSet}`
-            : '9';
-
-        currentSetDiv.innerText = currentSetData;
-
-        // Add more code to update other fields
+        setPossession('vb-poss-home', 'vb-poss-visitor', data.possession);
     }
 
-    // Fetch data when the page loads
     function fetchVolleyballData() {
-        fetchData('Volleyball');  // Use the generic fetchData function
+        fetchData('Volleyball');
     }
 
-    // Fetch data when the page loads
     fetchVolleyballData();
-    setInterval(fetchVolleyballData, 1000);
+    setInterval(fetchVolleyballData, 150);
 
-    // Update the UI when data is fetched
     document.addEventListener('dataFetched', function (event) {
-        console.log("Data Fetched: ", event.detail); // Debugging Line
-        updateVolleyballUI(event.detail);
+        renderVolleyball(event.detail || {});
     });
-
-    fetchVolleyballData();
-    setInterval(fetchVolleyballData, 1000);
-
 </script>
 {% endblock %}

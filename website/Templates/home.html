@@ -2,5 +2,238 @@
 {% block title %}UDP OES Data Reader{% endblock %}
 
 {% block content %}
-<h1>This is the home page</h1>
+<style>
+    .hero {
+        background: linear-gradient(145deg, rgba(15, 33, 61, 0.95), rgba(20, 44, 74, 0.95));
+        border-radius: 18px;
+        padding: 28px;
+        border: 1px solid rgba(131, 198, 242, 0.18);
+        box-shadow: 0 18px 40px rgba(3, 9, 18, 0.4);
+        display: grid;
+        gap: 14px;
+    }
+
+    .hero h1 {
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    .hero p {
+        margin: 0;
+        color: var(--ink-soft);
+    }
+
+    .sports-grid {
+        margin-top: 22px;
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .sport-card {
+        background: rgba(15, 33, 61, 0.85);
+        border-radius: 14px;
+        padding: 16px;
+        border: 1px solid rgba(131, 198, 242, 0.16);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        text-decoration: none;
+        color: var(--ink);
+    }
+
+    .sport-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(3, 9, 18, 0.4);
+        text-decoration: none;
+        color: var(--ink);
+    }
+
+    .sport-card span {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--carolina-soft);
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .status-panel {
+        margin-top: 24px;
+        background: rgba(15, 33, 61, 0.9);
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid rgba(131, 198, 242, 0.18);
+        box-shadow: 0 14px 32px rgba(3, 9, 18, 0.35);
+    }
+
+    .status-panel h2 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    .source-item {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px dashed rgba(131, 198, 242, 0.16);
+        padding: 8px 0;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+    }
+
+    .source-item:last-child {
+        border-bottom: none;
+    }
+
+    .pill {
+        background: rgba(75, 156, 211, 0.2);
+        color: var(--carolina-soft);
+        border-radius: 999px;
+        padding: 2px 8px;
+        font-weight: 600;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+</style>
+
+<div class="hero">
+    <h1>Virtual Scoreboard Hub</h1>
+    <p>Pick a sport to view the live scoreboard. Data sources are managed below.</p>
+    <p>Use the Debug page to inspect raw data before a game starts.</p>
+</div>
+
+<div class="sports-grid">
+    <a class="sport-card" href="/Basketball"><span>Indoor</span>Basketball</a>
+    <a class="sport-card" href="/Hockey"><span>Field</span>Hockey</a>
+    <a class="sport-card" href="/Lacrosse"><span>Field</span>Lacrosse</a>
+    <a class="sport-card" href="/Football"><span>Outdoor</span>Football</a>
+    <a class="sport-card" href="/Volleyball"><span>Indoor</span>Volleyball</a>
+    <a class="sport-card" href="/Wrestling"><span>Indoor</span>Wrestling</a>
+    <a class="sport-card" href="/Soccer"><span>Outdoor</span>Soccer</a>
+    <a class="sport-card" href="/Softball"><span>Outdoor</span>Softball</a>
+    <a class="sport-card" href="/Baseball"><span>Outdoor</span>Baseball</a>
+    <a class="sport-card" href="/Gymnastics"><span>Indoor</span>Gymnastics</a>
+    <a class="sport-card" href="/Debug"><span>Tools</span>Debug Console</a>
+</div>
+
+<div class="status-panel">
+    <h2>Data Sources</h2>
+    <p>Enter the IP and port of each OES device (TCP). These persist across reboots.</p>
+    <form id="source-form" class="mt-3">
+        <div class="config-grid">
+            <div>
+                <label for="source-name">Label</label>
+                <input id="source-name" type="text" placeholder="Gym A Controller" />
+            </div>
+            <div>
+                <label for="source-host">Host</label>
+                <input id="source-host" type="text" placeholder="10.0.0.12" />
+            </div>
+            <div>
+                <label for="source-port">Port</label>
+                <input id="source-port" type="number" min="1" max="65535" placeholder="5000" />
+            </div>
+            <div class="d-flex align-items-end">
+                <button type="submit" class="btn-config w-100">Add Source</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="sources-list" class="mt-4">Loading configured sources...</div>
+</div>
+
+<script>
+    function renderSources(sources) {
+        const list = document.getElementById('sources-list');
+        list.textContent = '';
+
+        if (!sources.length) {
+            list.textContent = 'No data sources configured yet.';
+            return;
+        }
+
+        sources.forEach(source => {
+            const sports = (source.sports || []).join(', ') || 'No sport detected';
+            const status = source.enabled ? 'enabled' : 'disabled';
+
+            const row = document.createElement('div');
+            row.className = 'source-item';
+
+            const left = document.createElement('div');
+            left.textContent = source.name + ' (' + source.host + ':' + source.port + ')';
+
+            const right = document.createElement('div');
+
+            const pill = document.createElement('span');
+            pill.className = 'pill';
+            pill.textContent = status;
+            right.appendChild(pill);
+
+            const info = document.createTextNode(
+                ' ' + (source.last_seen ? source.age_seconds + 's \u00b7 ' + sports : 'No live data yet') + ' '
+            );
+            right.appendChild(info);
+
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-sm btn-link text-danger';
+            btn.textContent = 'Remove';
+            btn.addEventListener('click', () => removeSource(source.id));
+            right.appendChild(btn);
+
+            row.appendChild(left);
+            row.appendChild(right);
+            list.appendChild(row);
+        });
+    }
+
+    function mergeLiveData(configured, live) {
+        const liveMap = new Map((live || []).map(item => [item.source, item]));
+        return (configured || []).map(source => {
+            const liveInfo = liveMap.get(source.id);
+            return { ...source, ...liveInfo };
+        });
+    }
+
+    function loadSources() {
+        Promise.all([
+            fetch('/data_sources').then(r => r.json()),
+            fetch('/get_sources').then(r => r.json())
+        ]).then(([configured, live]) => {
+            const merged = mergeLiveData(configured.sources || [], live.sources || []);
+            renderSources(merged);
+        }).catch(() => {
+            document.getElementById('sources-list').textContent = 'Unable to load sources.';
+        });
+    }
+
+    function addSource(event) {
+        event.preventDefault();
+        const name = document.getElementById('source-name').value.trim();
+        const host = document.getElementById('source-host').value.trim();
+        const port = parseInt(document.getElementById('source-port').value, 10);
+
+        if (!host || !port) {
+            return;
+        }
+
+        fetch('/data_sources', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name, host: host, port: port })
+        }).then(() => {
+            document.getElementById('source-form').reset();
+            loadSources();
+        });
+    }
+
+    function removeSource(sourceId) {
+        fetch(`/data_sources/${sourceId}`, { method: 'DELETE' })
+            .then(() => loadSources());
+    }
+
+    document.getElementById('source-form').addEventListener('submit', addSource);
+    loadSources();
+    setInterval(loadSources, 5000);
+</script>
 {% endblock %}

@@ -1,6 +1,120 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Hockey Scoreboard{% endblock %}
 
 {% block content %}
-<h1>Hockey Virtual Scoreboard</h1>
+<section class="scoreboard-shell">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Hockey</div>
+            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Clock <span id="hk-game-clock">--</span></div>
+            <div class="meta-chip">Period <span id="hk-period-chip">--</span></div>
+        </div>
+    </div>
+
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label">Home</div>
+            <div class="team-score" id="hk-home-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Shots</span><strong id="hk-home-shots">--</strong></div>
+                <div class="stat-line"><span>Saves</span><strong id="hk-home-saves">--</strong></div>
+            </div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Period</div>
+            <div class="center-value" id="hk-period">--</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label">Visitor</div>
+            <div class="team-score" id="hk-visitor-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Shots</span><strong id="hk-visitor-shots">--</strong></div>
+                <div class="stat-line"><span>Saves</span><strong id="hk-visitor-saves">--</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-label">Home Corners</div>
+            <div class="stat-value" id="hk-home-corners">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Visitor Corners</div>
+            <div class="stat-value" id="hk-visitor-corners">--</div>
+        </div>
+    </div>
+
+    <div class="section-title">Penalties</div>
+    <div class="table-card">
+        <table class="table-grid">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Player</th>
+                    <th>Time</th>
+                    <th>Player</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="team-row-label">Home</td>
+                    <td id="hk-home-pen1-player">--</td>
+                    <td id="hk-home-pen1-time">--</td>
+                    <td id="hk-home-pen2-player">--</td>
+                    <td id="hk-home-pen2-time">--</td>
+                </tr>
+                <tr>
+                    <td class="team-row-label">Visitor</td>
+                    <td id="hk-visitor-pen1-player">--</td>
+                    <td id="hk-visitor-pen1-time">--</td>
+                    <td id="hk-visitor-pen2-player">--</td>
+                    <td id="hk-visitor-pen2-time">--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    function renderHockey(data) {
+        setText('hk-game-clock', data.game_clock);
+        setText('hk-period-chip', data.period);
+        setText('hk-period', data.period);
+        setText('hk-home-score', data.home_score);
+        setText('hk-visitor-score', data.visitor_score);
+        setText('hk-home-shots', data.home_shots);
+        setText('hk-visitor-shots', data.visitor_shots);
+        setText('hk-home-saves', data.home_saves);
+        setText('hk-visitor-saves', data.visitor_saves);
+        setText('hk-home-corners', data.home_corners);
+        setText('hk-visitor-corners', data.visitor_corners);
+
+        const homePens = Array.isArray(data.home_penalties) ? data.home_penalties : [];
+        const visitorPens = Array.isArray(data.visitor_penalties) ? data.visitor_penalties : [];
+        setText('hk-home-pen1-player', homePens[0] && homePens[0].player);
+        setText('hk-home-pen1-time', homePens[0] && homePens[0].time);
+        setText('hk-home-pen2-player', homePens[1] && homePens[1].player);
+        setText('hk-home-pen2-time', homePens[1] && homePens[1].time);
+        setText('hk-visitor-pen1-player', visitorPens[0] && visitorPens[0].player);
+        setText('hk-visitor-pen1-time', visitorPens[0] && visitorPens[0].time);
+        setText('hk-visitor-pen2-player', visitorPens[1] && visitorPens[1].player);
+        setText('hk-visitor-pen2-time', visitorPens[1] && visitorPens[1].time);
+    }
+
+    function fetchHockeyData() {
+        fetchData('Hockey');
+    }
+
+    fetchHockeyData();
+    setInterval(fetchHockeyData, 150);
+
+    document.addEventListener('dataFetched', function (event) {
+        renderHockey(event.detail || {});
+    });
+</script>
 {% endblock %}

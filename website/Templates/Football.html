@@ -1,6 +1,80 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Football Scoreboard{% endblock %}
 
 {% block content %}
-<h1>Football Virtual Scoreboard</h1>
+<section class="scoreboard-shell">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Football</div>
+            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Clock <span id="fb-game-clock">--</span></div>
+            <div class="meta-chip">Quarter <span id="fb-quarter-chip">--</span></div>
+            <div class="meta-chip">Play <span id="fb-play-clock">--</span></div>
+        </div>
+    </div>
+
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label"><span class="possession-dot" id="fb-poss-home"></span>Home</div>
+            <div class="team-score" id="fb-home-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Timeouts</span><strong id="fb-home-tol">--</strong></div>
+            </div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Down</div>
+            <div class="center-value" id="fb-down">--</div>
+            <div class="center-label" style="margin-top: 8px;">To Go</div>
+            <div class="center-value" id="fb-ytg">--</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label"><span class="possession-dot" id="fb-poss-visitor"></span>Visitor</div>
+            <div class="team-score" id="fb-visitor-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Timeouts</span><strong id="fb-visitor-tol">--</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-label">Ball On</div>
+            <div class="stat-value" id="fb-ball-on">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Play Clock</div>
+            <div class="stat-value" id="fb-play-clock-card">--</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function renderFootball(data) {
+        setText('fb-game-clock', data.game_clock);
+        setText('fb-quarter-chip', data.quarter);
+        setText('fb-play-clock', data.shot_clock);
+        setText('fb-play-clock-card', data.shot_clock);
+        setText('fb-down', data.down);
+        setText('fb-ytg', data.yards_to_go);
+        setText('fb-ball-on', data.ball_on);
+        setText('fb-home-score', data.home_score);
+        setText('fb-visitor-score', data.visitor_score);
+        setText('fb-home-tol', data.home_full_tol);
+        setText('fb-visitor-tol', data.visitor_full_tol);
+        setPossession('fb-poss-home', 'fb-poss-visitor', data.possession);
+    }
+
+    function fetchFootballData() {
+        fetchData('Football');
+    }
+
+    fetchFootballData();
+    setInterval(fetchFootballData, 150);
+
+    document.addEventListener('dataFetched', function (event) {
+        renderFootball(event.detail || {});
+    });
+</script>
 {% endblock %}

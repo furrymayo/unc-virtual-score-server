@@ -1,99 +1,91 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Gymnastics Scoreboard{% endblock %}
 
 {% block content %}
-<style>
-    h1 {
-        text-align: center;
-        }
-    #volleyballData {
-        display: grid;
-        grid-template-columns: 4fr 4fr;
-    }
-    #gameClock {
-        grid-row: 2;
-        grid-column: 2;
-    }
-</style>
+<section class="scoreboard-shell">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Gymnastics</div>
+            <div class="scoreboard-subtitle">Placeholder feed</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Rotation <span id="gym-rotation">n/a</span></div>
+            <div class="meta-chip">Event <span id="gym-event">n/a</span></div>
+            <div class="meta-chip">Session <span id="gym-session">n/a</span></div>
+        </div>
+    </div>
 
-<h1>Volleyball Virtual Scoreboard</h1>
-<div id="volleyballData">
-    <div id="gameClock"></div>
-    <div id="currentSet"></div>
-    <div id="homeMatchScore"></div>
-    <div id="guestMatchScore"></div>
-    <div id="homeSetScore"></div>
-    <div id="guestSetScore"></div>
-    <div id="homeSet1Result"></div>
-    <div id="guestSet1Result"></div>
-    <div id="homeSet2Result"></div>
-    <div id="guestSet2Result"></div>
-    <div id="homeSet3Result"></div>
-    <div id="guestSet3Result"></div>
-    <div id="homeSet4Result"></div>
-    <div id="guestSet4Result"></div>
-    <div id="homeSet5Result"></div>
-    <div id="guestSet5Result"></div>
-    <!-- Volleyball data will be displayed here -->
-</div>
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label">Home</div>
+            <div class="team-score" id="gym-home-score">n/a</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Vault</span><strong id="gym-home-vault">n/a</strong></div>
+                <div class="stat-line"><span>Bars</span><strong id="gym-home-bars">n/a</strong></div>
+            </div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Current Event</div>
+            <div class="center-value" id="gym-current-event">n/a</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label">Visitor</div>
+            <div class="team-score" id="gym-visitor-score">n/a</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Beam</span><strong id="gym-visitor-beam">n/a</strong></div>
+                <div class="stat-line"><span>Floor</span><strong id="gym-visitor-floor">n/a</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Rotation Detail</div>
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-label">Home Lineup</div>
+            <div class="stat-value" id="gym-home-lineup">n/a</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Visitor Lineup</div>
+            <div class="stat-value" id="gym-visitor-lineup">n/a</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Lead Gymnast</div>
+            <div class="stat-value" id="gym-lead">n/a</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Last Score</div>
+            <div class="stat-value" id="gym-last-score">n/a</div>
+        </div>
+    </div>
+</section>
 
 <script>
-    function fetchVolleyballData() {
-        fetch(`/get_udp_data/Volleyball`)
-            .then(response => response.json())
-            .then(data => {
-                // Parse and display the data
-                const volleyballDataDiv = document.getElementById('volleyballData');
-
-                // Update the game clock
-                const gameClockDiv = document.getElementById('gameClock');
-                const minuteTens = data['Game Time Minute Tens'] || '9';
-                const minuteOnes = data['Game Time Minute Ones'] || '9';
-                const secondTens = data['Game Time Second Tens'] || '9';
-                const secondOnes = data['Game Time Second Ones'] || '9';
-
-                const gameClockData = (minuteTens && minuteOnes && secondTens && secondOnes)
-                    ? `Game Clock: ${minuteTens}:${minuteOnes}:${secondTens}:${secondOnes}`
-                   : 'Game Clock: 99:99';
-
-                gameClockDiv.innerText = gameClockData;
-
-                // Create an array of keys to loop through
-                const keys = [
-                    'Game Time Minute Tens', 'Game Time Minute Ones',
-                    'Game Time Second Tens', 'Game Time Second Ones',
-                    'Period',
-                    'Home Score Tens', 'Home Score Ones',
-                    'Guest Score Tens', 'Guest Score Ones',
-                    'Home TOL', 'Guest TOL',
-                    'Home Games Won', 'Guest Games Won',
-                    'Home Game 1 Score Tens', 'Home Game 1 Score Ones',
-                    'Home Game 2 Score Tens', 'Home Game 2 Score Ones',
-                    'Home Game 3 Score Tens', 'Home Game 3 Score Ones',
-                    'Home Game 4 Score Tens', 'Home Game 4 Score Ones',
-                    'Home Game 5 Score Tens', 'Home Game 5 Score Ones',
-                    'Guest Game 1 Score Tens', 'Guest Game 1 Score Ones',
-                    'Guest Game 2 Score Tens', 'Guest Game 2 Score Ones',
-                    'Guest Game 3 Score Tens', 'Guest Game 3 Score Ones',
-                    'Guest Game 4 Score Tens', 'Guest Game 4 Score Ones',
-                    'Guest Game 5 Score Tens', 'Guest Game 5 Score Ones'
-                ];
-
-                let htmlContent = '';
-
-                keys.forEach(key => {
-                    const value = data[key] || 'N/A';
-                    htmlContent += `<p>${key}: ${value}</p>`;
-                });
-
-                volleyballDataDiv.innerHTML = htmlContent;
-            });
+    function renderGymnastics(data) {
+        setText('gym-rotation', data.rotation);
+        setText('gym-event', data.event);
+        setText('gym-session', data.session);
+        setText('gym-home-score', data.home_score);
+        setText('gym-visitor-score', data.visitor_score);
+        setText('gym-current-event', data.current_event);
+        setText('gym-home-vault', data.home_vault);
+        setText('gym-home-bars', data.home_bars);
+        setText('gym-visitor-beam', data.visitor_beam);
+        setText('gym-visitor-floor', data.visitor_floor);
+        setText('gym-home-lineup', data.home_lineup);
+        setText('gym-visitor-lineup', data.visitor_lineup);
+        setText('gym-lead', data.lead_gymnast);
+        setText('gym-last-score', data.last_score);
     }
 
-    // Fetch data when the page loads
-    fetchVolleyballData();
-    setInterval(fetchVolleyballData, 1000);
+    function fetchGymnasticsData() {
+        fetchData('Gymnastics');
+    }
 
+    fetchGymnasticsData();
+    setInterval(fetchGymnasticsData, 1000);
 
+    document.addEventListener('dataFetched', function (event) {
+        renderGymnastics(event.detail || {});
+    });
 </script>
 {% endblock %}

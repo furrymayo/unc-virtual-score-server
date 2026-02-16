@@ -1,0 +1,465 @@
+import json
+import os
+import socket
+import threading
+import time
+
+import serial
+import serial.tools.list_ports
+
+from .protocol import PacketStreamParser, identify_and_parse
+
+# --- Environment config ---
+
+DEFAULT_TCP_PORT = int(os.environ.get("SCOREBOARD_TCP_PORT", "5001"))
+DEFAULT_UDP_PORT = int(os.environ.get("SCOREBOARD_UDP_PORT", "5002"))
+DATA_SOURCES_FILE = os.environ.get("SCOREBOARD_SOURCES_FILE", "data_sources.json")
+
+# --- Shared state ---
+
+parsed_data = {
+    "Basketball": {},
+    "Hockey": {},
+    "Lacrosse": {},
+    "Football": {},
+    "Volleyball": {},
+    "Wrestling": {},
+    "Track": {},
+    "Soccer": {},
+    "Softball": {},
+    "Baseball": {},
+}
+
+parsed_data_by_source = {}
+last_seen_by_source = {}
+parsed_data_lock = threading.Lock()
+
+# --- Accessor functions ---
+
+_STALE_TTL = 3600  # 1 hour
+
+
+def record_packet(sport, parsed, source_id):
+    """Thread-safe: store a parsed packet in the global data stores."""
+    received_at = time.time()
+    if source_id is None:
+        source_id = "unknown"
+
+    parsed_with_meta = {
+        **parsed,
+        "_meta": {
+            "source": source_id,
+            "received_at": received_at,
+        },
+    }
+
+    with parsed_data_lock:
+        parsed_data[sport] = parsed_with_meta
+        parsed_data_by_source.setdefault(source_id, {})[sport] = parsed_with_meta
+        last_seen_by_source[source_id] = received_at
+
+
+def get_sport_data(sport, source_id=None):
+    """Thread-safe: retrieve latest data for a sport."""
+    with parsed_data_lock:
+        if source_id:
+            return dict(parsed_data_by_source.get(source_id, {}).get(sport, {}))
+        return dict(parsed_data.get(sport, {}))
+
+
+def get_sources_snapshot():
+    """Thread-safe: return list of source info dicts."""
+    now = time.time()
+    with parsed_data_lock:
+        return [
+            {
+                "source": source_id,
+                "last_seen": last_seen,
+                "age_seconds": round(now - last_seen, 3),
+                "sports": list(parsed_data_by_source.get(source_id, {}).keys()),
+            }
+            for source_id, last_seen in last_seen_by_source.items()
+        ]
+
+
+def purge_stale_sources():
+    """Remove sources not seen within _STALE_TTL seconds."""
+    cutoff = time.time() - _STALE_TTL
+    with parsed_data_lock:
+        stale = [sid for sid, ts in last_seen_by_source.items() if ts < cutoff]
+        for sid in stale:
+            last_seen_by_source.pop(sid, None)
+            parsed_data_by_source.pop(sid, None)
+
+
+# --- handle_serial_packet ---
+
+def handle_serial_packet(packet, source_id=None):
+    sport, parsed = identify_and_parse(packet)
+    if sport and parsed is not None:
+        record_packet(sport, parsed, source_id)
+
+
+# --- Serial reader ---
+
+_serial_stop_event = threading.Event()
+_serial_thread = None
+
+
+def serial_port_reader(port, stop_event):
+    try:
+        ser = serial.Serial(port, 9600, timeout=1)
+    except Exception as exc:
+        print(f"Failed to open serial port {port}: {exc}")
+        return
+
+    parser = PacketStreamParser()
+
+    try:
+        while not stop_event.is_set():
+            try:
+                raw = ser.read(256)
+            except Exception as exc:
+                print(f"Serial read error: {exc}")
+                break
+
+            if not raw:
+                continue
+
+            for packet in parser.feed_bytes(raw):
+                handle_serial_packet(packet, source_id=f"serial:{port}")
+    finally:
+        try:
+            ser.close()
+        except Exception:
+            pass
+
+
+def start_serial_reader(port):
+    global _serial_thread
+    stop_serial_reader()
+    _serial_stop_event.clear()
+    _serial_thread = threading.Thread(
+        target=serial_port_reader, args=(port, _serial_stop_event), daemon=True
+    )
+    _serial_thread.start()
+
+
+def stop_serial_reader():
+    global _serial_thread
+    if _serial_thread is not None:
+        _serial_stop_event.set()
+        _serial_thread.join(timeout=2)
+        _serial_thread = None
+
+
+# --- TCP client (outbound connections to OES controllers) ---
+
+tcp_client_threads = {}
+tcp_client_events = {}
+
+
+def tcp_client_worker(source):
+    source_id = source["id"]
+    host = source["host"]
+    port = source["port"]
+
+    stop_event = tcp_client_events[source_id]
+    parser = PacketStreamParser()
+    backoff = 1.0
+
+    while not stop_event.is_set():
+        conn = None
+        try:
+            conn = socket.create_connection((host, port), timeout=5)
+            conn.settimeout(1.0)
+            print(f"Connected to TCP source {source_id}")
+            backoff = 1.0
+
+            while not stop_event.is_set():
+                try:
+                    data = conn.recv(4096)
+                except socket.timeout:
+                    continue
+                except Exception as exc:
+                    print(f"TCP read error from {source_id}: {exc}")
+                    break
+
+                if not data:
+                    break
+
+                for packet in parser.feed_bytes(data):
+                    handle_serial_packet(packet, source_id=source_id)
+        except Exception as exc:
+            print(f"TCP connect error for {source_id}: {exc}")
+        finally:
+            if conn is not None:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
+
+        if stop_event.is_set():
+            break
+
+        time.sleep(backoff)
+        backoff = min(backoff * 2, 10.0)
+
+
+def start_tcp_client(source):
+    source_id = source["id"]
+    if source_id in tcp_client_threads:
+        return
+
+    stop_event = threading.Event()
+    tcp_client_events[source_id] = stop_event
+    thread = threading.Thread(target=tcp_client_worker, args=(source,), daemon=True)
+    tcp_client_threads[source_id] = thread
+    thread.start()
+
+
+def stop_tcp_client(source_id):
+    event = tcp_client_events.get(source_id)
+    if event:
+        event.set()
+    thread = tcp_client_threads.get(source_id)
+    if thread:
+        thread.join(timeout=2)
+    tcp_client_events.pop(source_id, None)
+    tcp_client_threads.pop(source_id, None)
+
+
+# --- Network listeners (inbound TCP server + UDP) ---
+
+_network_stop_event = threading.Event()
+_tcp_thread = None
+_udp_thread = None
+_tcp_server_socket = None
+_udp_socket = None
+
+
+def udp_listener(port, stop_event):
+    global _udp_socket
+    parser = PacketStreamParser()
+
+    try:
+        _udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        _udp_socket.bind(("0.0.0.0", port))
+        _udp_socket.settimeout(1.0)
+        print(f"UDP listener bound to 0.0.0.0:{port}")
+    except Exception as exc:
+        print(f"Failed to start UDP listener on {port}: {exc}")
+        return
+
+    try:
+        while not stop_event.is_set():
+            try:
+                data, _addr = _udp_socket.recvfrom(4096)
+            except socket.timeout:
+                continue
+            except Exception as exc:
+                print(f"UDP receive error: {exc}")
+                break
+
+            for packet in parser.feed_bytes(data):
+                handle_serial_packet(packet, source_id=f"udp:{_addr[0]}:{_addr[1]}")
+    finally:
+        try:
+            _udp_socket.close()
+        except Exception:
+            pass
+
+
+def tcp_connection_reader(conn, addr, stop_event):
+    parser = PacketStreamParser()
+    conn.settimeout(1.0)
+    try:
+        while not stop_event.is_set():
+            try:
+                data = conn.recv(4096)
+            except socket.timeout:
+                continue
+            except Exception as exc:
+                print(f"TCP read error from {addr}: {exc}")
+                break
+
+            if not data:
+                break
+
+            for packet in parser.feed_bytes(data):
+                handle_serial_packet(packet, source_id=f"tcp:{addr[0]}:{addr[1]}")
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+
+
+def tcp_listener(port, stop_event):
+    global _tcp_server_socket
+
+    try:
+        _tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        _tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        _tcp_server_socket.bind(("0.0.0.0", port))
+        _tcp_server_socket.listen(5)
+        _tcp_server_socket.settimeout(1.0)
+        print(f"TCP listener bound to 0.0.0.0:{port}")
+    except Exception as exc:
+        print(f"Failed to start TCP listener on {port}: {exc}")
+        return
+
+    try:
+        while not stop_event.is_set():
+            try:
+                conn, addr = _tcp_server_socket.accept()
+            except socket.timeout:
+                continue
+            except Exception as exc:
+                print(f"TCP accept error: {exc}")
+                break
+
+            thread = threading.Thread(
+                target=tcp_connection_reader, args=(conn, addr, stop_event), daemon=True
+            )
+            thread.start()
+    finally:
+        try:
+            _tcp_server_socket.close()
+        except Exception:
+            pass
+
+
+def start_network_listeners(tcp_port, udp_port, mode):
+    global _tcp_thread, _udp_thread
+    _network_stop_event.clear()
+
+    if mode in {"udp", "auto"}:
+        _udp_thread = threading.Thread(
+            target=udp_listener, args=(udp_port, _network_stop_event), daemon=True
+        )
+        _udp_thread.start()
+
+
+def stop_network_listeners():
+    global _tcp_thread, _udp_thread, _tcp_server_socket, _udp_socket
+    _network_stop_event.set()
+
+    if _tcp_server_socket is not None:
+        try:
+            _tcp_server_socket.close()
+        except Exception:
+            pass
+        _tcp_server_socket = None
+
+    if _udp_socket is not None:
+        try:
+            _udp_socket.close()
+        except Exception:
+            pass
+        _udp_socket = None
+
+    if _tcp_thread is not None:
+        _tcp_thread.join(timeout=2)
+        _tcp_thread = None
+
+    if _udp_thread is not None:
+        _udp_thread.join(timeout=2)
+        _udp_thread = None
+
+
+# --- Data source management ---
+
+data_sources_lock = threading.Lock()
+data_sources = []
+
+
+def _normalize_source_entry(entry):
+    if not isinstance(entry, dict):
+        return None
+    source_id = entry.get("id")
+    host = entry.get("host")
+    port = entry.get("port")
+
+    if not source_id or not host or not port:
+        return None
+
+    try:
+        port = int(port)
+    except (TypeError, ValueError):
+        return None
+
+    name = entry.get("name") or source_id
+    enabled = bool(entry.get("enabled", True))
+
+    return {
+        "id": str(source_id),
+        "name": str(name),
+        "host": str(host),
+        "port": port,
+        "enabled": enabled,
+    }
+
+
+def _load_data_sources():
+    if not os.path.exists(DATA_SOURCES_FILE):
+        return []
+    try:
+        with open(DATA_SOURCES_FILE, "r", encoding="utf-8") as handle:
+            raw = json.load(handle)
+    except Exception as exc:
+        print(f"Failed to read {DATA_SOURCES_FILE}: {exc}")
+        return []
+
+    if not isinstance(raw, list):
+        return []
+
+    normalized = []
+    for entry in raw:
+        normalized_entry = _normalize_source_entry(entry)
+        if normalized_entry:
+            normalized.append(normalized_entry)
+    return normalized
+
+
+def _save_data_sources():
+    with data_sources_lock:
+        payload = list(data_sources)
+    try:
+        with open(DATA_SOURCES_FILE, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2)
+    except Exception as exc:
+        print(f"Failed to write {DATA_SOURCES_FILE}: {exc}")
+
+
+def _make_source_id(host, port):
+    return f"tcp:{host}:{port}"
+
+
+def start_configured_sources():
+    global data_sources
+    loaded = _load_data_sources()
+    with data_sources_lock:
+        data_sources = loaded
+
+    for source in loaded:
+        if source.get("enabled", True):
+            start_tcp_client(source)
+
+
+def get_available_com_ports():
+    return [port.device for port in serial.tools.list_ports.comports()]
+
+
+# --- Stale source cleanup ---
+
+def start_cleanup_thread(interval=300):
+    """Daemon thread that purges stale sources every *interval* seconds."""
+    def _loop():
+        while True:
+            time.sleep(interval)
+            purge_stale_sources()
+
+    thread = threading.Thread(target=_loop, daemon=True)
+    thread.start()
+    return thread

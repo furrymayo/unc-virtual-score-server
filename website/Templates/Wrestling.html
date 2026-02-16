@@ -1,6 +1,88 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Wrestling Scoreboard{% endblock %}
 
 {% block content %}
-<h1>Wrestling Virtual Scoreboard</h1>
+<section class="scoreboard-shell">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Wrestling</div>
+            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Clock <span id="wr-game-clock">--</span></div>
+            <div class="meta-chip">Period <span id="wr-period-chip">--</span></div>
+            <div class="meta-chip">Weight <span id="wr-weight-class">--</span></div>
+        </div>
+    </div>
+
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label">Home</div>
+            <div class="team-score" id="wr-home-score">--</div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Period</div>
+            <div class="center-value" id="wr-period">--</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label">Visitor</div>
+            <div class="team-score" id="wr-visitor-score">--</div>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-label">Home Team Pts</div>
+            <div class="stat-value" id="wr-home-team-points">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Visitor Team Pts</div>
+            <div class="stat-value" id="wr-visitor-team-points">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Home Adv Time</div>
+            <div class="stat-value" id="wr-home-adv-time">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Visitor Adv Time</div>
+            <div class="stat-value" id="wr-visitor-adv-time">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Home Inj Time</div>
+            <div class="stat-value" id="wr-home-inj-time">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Visitor Inj Time</div>
+            <div class="stat-value" id="wr-visitor-inj-time">--</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function renderWrestling(data) {
+        setText('wr-game-clock', data.game_clock);
+        setText('wr-period-chip', data.period);
+        setText('wr-period', data.period);
+        setText('wr-weight-class', data.match_weight_class);
+        setText('wr-home-score', data.home_score);
+        setText('wr-visitor-score', data.visitor_score);
+        setText('wr-home-team-points', data.home_team_points);
+        setText('wr-visitor-team-points', data.visitor_team_points);
+        setText('wr-home-adv-time', data.home_adv_time);
+        setText('wr-visitor-adv-time', data.visitor_adv_time);
+        setText('wr-home-inj-time', data.home_inj_time);
+        setText('wr-visitor-inj-time', data.visitor_inj_time);
+    }
+
+    function fetchWrestlingData() {
+        fetchData('Wrestling');
+    }
+
+    fetchWrestlingData();
+    setInterval(fetchWrestlingData, 150);
+
+    document.addEventListener('dataFetched', function (event) {
+        renderWrestling(event.detail || {});
+    });
+</script>
 {% endblock %}

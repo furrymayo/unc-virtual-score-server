@@ -1,6 +1,114 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Basketball Scoreboard{% endblock %}
 
 {% block content %}
-<h1>Basketball Virtual Scoreboard</h1>
+<section class="scoreboard-shell basketball-scoreboard">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Basketball</div>
+            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+        </div>
+    </div>
+
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label is-home"><span class="possession-dot" id="bb-poss-home"></span>Home</div>
+            <div class="team-score" id="bb-home-score">--</div>
+            <div class="team-divider"></div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Fouls</span><strong id="bb-home-fouls">--</strong></div>
+                <div class="stat-line"><span>TOL</span><strong id="bb-home-tol">--</strong></div>
+                <div class="stat-line"><span>Bonus</span><strong id="bb-home-bonus">--</strong></div>
+            </div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Game Clock</div>
+            <div class="center-value emphasis" id="bb-game-clock">--</div>
+            <div class="center-divider"></div>
+            <div class="center-label" style="margin-top: 8px;">Period</div>
+            <div class="center-value period-small" id="bb-period">--</div>
+            <div class="center-divider"></div>
+            <div class="center-label shot-label" style="margin-top: 12px;">Shot Clock</div>
+            <div class="center-value shot-value" id="bb-shot-clock-center">--</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label is-visitor"><span class="possession-dot" id="bb-poss-visitor"></span>Visitor</div>
+            <div class="team-score" id="bb-visitor-score">--</div>
+            <div class="team-divider"></div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Fouls</span><strong id="bb-visitor-fouls">--</strong></div>
+                <div class="stat-line"><span>TOL</span><strong id="bb-visitor-tol">--</strong></div>
+                <div class="stat-line"><span>Bonus</span><strong id="bb-visitor-bonus">--</strong></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function normalizeClock(value) {
+        if (value === undefined || value === null) {
+            return value;
+        }
+        const text = String(value).trim();
+        if (!text) {
+            return value;
+        }
+
+        if (text.includes('.')) {
+            const parts = text.split('.');
+            const left = parts[0].replace(/^0+(?=\d)/, '');
+            const normalizedLeft = left === '' ? '0' : left;
+            return `${normalizedLeft}.${parts[1]}`;
+        }
+
+        return text.replace(/^0+(?=\d)/, '');
+    }
+
+    function parseClockSeconds(value) {
+        if (value === undefined || value === null) {
+            return null;
+        }
+        const text = String(value);
+        const match = text.match(/\d+(?:\.\d+)?/);
+        if (!match) {
+            return null;
+        }
+        const parsed = parseFloat(match[0]);
+        return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function renderBasketball(data) {
+        const gameClock = normalizeClock(data.game_clock);
+        const shotClock = normalizeClock(data.shot_clock);
+        setText('bb-game-clock', gameClock);
+        setText('bb-period', data.period);
+        setText('bb-shot-clock-center', shotClock);
+        setText('bb-home-score', data.home_score);
+        setText('bb-visitor-score', data.visitor_score);
+        setText('bb-home-fouls', data.home_fouls);
+        setText('bb-visitor-fouls', data.visitor_fouls);
+        setText('bb-home-tol', data.home_full_tol);
+        setText('bb-visitor-tol', data.visitor_full_tol);
+        const homeBonus = data.home_bonus === undefined ? null : (data.home_bonus ? 'Yes' : 'No');
+        const visitorBonus = data.visitor_bonus === undefined ? null : (data.visitor_bonus ? 'Yes' : 'No');
+        setText('bb-home-bonus', homeBonus);
+        setText('bb-visitor-bonus', visitorBonus);
+        setPossession('bb-poss-home', 'bb-poss-visitor', data.possession);
+
+        const shotClockValue = parseClockSeconds(shotClock);
+        const isCritical = Number.isFinite(shotClockValue) && shotClockValue <= 5;
+        document.getElementById('bb-shot-clock-center').classList.toggle('clock-critical', isCritical);
+    }
+
+    function fetchBasketballData() {
+        fetchData('Basketball');
+    }
+
+    fetchBasketballData();
+    setInterval(fetchBasketballData, 150);
+
+    document.addEventListener('dataFetched', function (event) {
+        renderBasketball(event.detail || {});
+    });
+</script>
 {% endblock %}

@@ -1,6 +1,112 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Lacrosse Scoreboard{% endblock %}
 
 {% block content %}
-<h1>Lacrosse Virtual Scoreboard</h1>
+<section class="scoreboard-shell">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Lacrosse</div>
+            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Clock <span id="lax-game-clock">--</span></div>
+            <div class="meta-chip">Period <span id="lax-period-chip">--</span></div>
+            <div class="meta-chip">Shot <span id="lax-shot-clock">--</span></div>
+        </div>
+    </div>
+
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label">Home</div>
+            <div class="team-score" id="lax-home-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Timeouts</span><strong id="lax-home-tol">--</strong></div>
+                <div class="stat-line"><span>Shots</span><strong id="lax-home-shots">--</strong></div>
+            </div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Period</div>
+            <div class="center-value" id="lax-period">--</div>
+            <div class="center-label" style="margin-top: 8px;">Shot Clock</div>
+            <div class="center-value" id="lax-shot-clock-center">--</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label">Visitor</div>
+            <div class="team-score" id="lax-visitor-score">--</div>
+            <div class="team-meta">
+                <div class="stat-line"><span>Timeouts</span><strong id="lax-visitor-tol">--</strong></div>
+                <div class="stat-line"><span>Shots</span><strong id="lax-visitor-shots">--</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Penalties</div>
+    <div class="table-card">
+        <table class="table-grid">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Player</th>
+                    <th>Time</th>
+                    <th>Player</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="team-row-label">Home</td>
+                    <td id="lax-home-pen1-player">--</td>
+                    <td id="lax-home-pen1-time">--</td>
+                    <td id="lax-home-pen2-player">--</td>
+                    <td id="lax-home-pen2-time">--</td>
+                </tr>
+                <tr>
+                    <td class="team-row-label">Visitor</td>
+                    <td id="lax-visitor-pen1-player">--</td>
+                    <td id="lax-visitor-pen1-time">--</td>
+                    <td id="lax-visitor-pen2-player">--</td>
+                    <td id="lax-visitor-pen2-time">--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    function renderLacrosse(data) {
+        setText('lax-game-clock', data.game_clock);
+        setText('lax-period-chip', data.period);
+        setText('lax-period', data.period);
+        setText('lax-shot-clock', data.shot_clock);
+        setText('lax-shot-clock-center', data.shot_clock);
+        setText('lax-home-score', data.home_score);
+        setText('lax-visitor-score', data.visitor_score);
+        setText('lax-home-tol', data.home_full_tol);
+        setText('lax-visitor-tol', data.visitor_full_tol);
+        setText('lax-home-shots', data.home_shots);
+        setText('lax-visitor-shots', data.visitor_shots);
+
+        const homePens = Array.isArray(data.home_penalties) ? data.home_penalties : [];
+        const visitorPens = Array.isArray(data.visitor_penalties) ? data.visitor_penalties : [];
+        setText('lax-home-pen1-player', homePens[0] && homePens[0].player);
+        setText('lax-home-pen1-time', homePens[0] && homePens[0].time);
+        setText('lax-home-pen2-player', homePens[1] && homePens[1].player);
+        setText('lax-home-pen2-time', homePens[1] && homePens[1].time);
+        setText('lax-visitor-pen1-player', visitorPens[0] && visitorPens[0].player);
+        setText('lax-visitor-pen1-time', visitorPens[0] && visitorPens[0].time);
+        setText('lax-visitor-pen2-player', visitorPens[1] && visitorPens[1].player);
+        setText('lax-visitor-pen2-time', visitorPens[1] && visitorPens[1].time);
+    }
+
+    function fetchLacrosseData() {
+        fetchData('Lacrosse');
+    }
+
+    fetchLacrosseData();
+    setInterval(fetchLacrosseData, 150);
+
+    document.addEventListener('dataFetched', function (event) {
+        renderLacrosse(event.detail || {});
+    });
+</script>
 {% endblock %}

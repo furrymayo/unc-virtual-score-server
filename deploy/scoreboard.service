@@ -1,0 +1,26 @@
+[Unit]
+Description=Flask Virtual Scoreboard
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/scoreboard
+ExecStart=/opt/scoreboard/venv/bin/python main.py
+Restart=on-failure
+RestartSec=3
+User=scoreboard
+Group=scoreboard
+
+# Load environment from .env file if it exists
+EnvironmentFile=-/opt/scoreboard/.env
+
+# Fallback defaults (overridden by .env)
+Environment=FLASK_HOST=0.0.0.0
+Environment=FLASK_PORT=5000
+Environment=FLASK_DEBUG=0
+
+# Allow access to serial ports
+SupplementaryGroups=dialout
+
+[Install]
+WantedBy=multi-user.target

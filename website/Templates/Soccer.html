@@ -1,6 +1,96 @@
 {% extends "base.html" %}
-{% block title %}UDP OES Data Reader{% endblock %}
+{% block title %}Soccer Scoreboard{% endblock %}
 
 {% block content %}
-<h1>Soccer Virtual Scoreboard</h1>
+<section class="scoreboard-shell">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Soccer</div>
+            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Clock <span id="sc-game-clock">--</span></div>
+            <div class="meta-chip">Period <span id="sc-period-chip">--</span></div>
+        </div>
+    </div>
+
+    <div class="score-grid">
+        <div class="team-card">
+            <div class="team-label">Home</div>
+            <div class="team-score" id="sc-home-score">--</div>
+        </div>
+        <div class="center-card">
+            <div class="center-label">Period</div>
+            <div class="center-value" id="sc-period">--</div>
+        </div>
+        <div class="team-card">
+            <div class="team-label">Visitor</div>
+            <div class="team-score" id="sc-visitor-score">--</div>
+        </div>
+    </div>
+
+    <div class="section-title">Team Stats</div>
+    <div class="table-card">
+        <table class="table-grid">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Home</th>
+                    <th>Visitor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="team-row-label">Shots</td>
+                    <td id="sc-home-shots">--</td>
+                    <td id="sc-visitor-shots">--</td>
+                </tr>
+                <tr>
+                    <td class="team-row-label">Saves</td>
+                    <td id="sc-home-saves">--</td>
+                    <td id="sc-visitor-saves">--</td>
+                </tr>
+                <tr>
+                    <td class="team-row-label">Corners</td>
+                    <td id="sc-home-corners">--</td>
+                    <td id="sc-visitor-corners">--</td>
+                </tr>
+                <tr>
+                    <td class="team-row-label">Penalties</td>
+                    <td id="sc-home-penalties">--</td>
+                    <td id="sc-visitor-penalties">--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    function renderSoccer(data) {
+        setText('sc-game-clock', data.game_clock);
+        setText('sc-period-chip', data.period);
+        setText('sc-period', data.period);
+        setText('sc-home-score', data.home_score);
+        setText('sc-visitor-score', data.visitor_score);
+        setText('sc-home-shots', data.home_shots);
+        setText('sc-visitor-shots', data.visitor_shots);
+        setText('sc-home-saves', data.home_saves);
+        setText('sc-visitor-saves', data.visitor_saves);
+        setText('sc-home-corners', data.home_corners);
+        setText('sc-visitor-corners', data.visitor_corners);
+        setText('sc-home-penalties', data.home_penalties);
+        setText('sc-visitor-penalties', data.visitor_penalties);
+    }
+
+    function fetchSoccerData() {
+        fetchData('Soccer');
+    }
+
+    fetchSoccerData();
+    setInterval(fetchSoccerData, 150);
+
+    document.addEventListener('dataFetched', function (event) {
+        renderSoccer(event.detail || {});
+    });
+</script>
 {% endblock %}
