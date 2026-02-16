@@ -1,10 +1,19 @@
 # Infrastructure
 
-**Last Updated**: 2026-02-13
+**Last Updated**: 2026-02-16
 
-## Hosts & Connections
+## Deployment
 
-TODO: Document hosts and connections
+| Parameter | Value |
+|-----------|-------|
+| Target OS | Ubuntu Server (testing) |
+| Install path | `/opt/scoreboard` |
+| Service user | `scoreboard` (dialout group for serial) |
+| Process manager | systemd (`scoreboard.service`) |
+| Service file | `deploy/scoreboard.service` |
+| Config file | `/opt/scoreboard/.env` |
+| Re-deploy | `git pull && sudo systemctl restart scoreboard` |
+| Logs | `sudo journalctl -u scoreboard -f` |
 
 ## Serial Communication
 
@@ -18,30 +27,33 @@ TODO: Document hosts and connections
 
 | Code (byte) | Sport |
 |-------------|-------|
-| `0x74` (`t`) | Basketball, Baseball, Softball (distinguished by length) |
-| `0x6C` (`l`) | Lacrosse, Field Hockey (distinguished by length) |
+| `0x74` (`t`) | Basketball (23 bytes), Baseball (52 bytes), Softball (75 bytes) |
+| `0x6C` (`l`) | Lacrosse (47 bytes), Field Hockey (51 bytes) |
 | `0x66` (`f`) | Football |
 | `0x76` (`v`) | Volleyball |
 | `0x77` (`w`) | Wrestling |
 | `0x73` (`s`) | Soccer |
 
-## Network
+## Network Ports
 
 | Service | Port | Protocol |
 |---------|------|----------|
-| Flask Dev Server | 5000 | HTTP |
+| Flask Web Server | 5000 (default) | HTTP |
 | Scoreboard TCP Listener | 5001 (default) | TCP |
 | Scoreboard UDP Listener | 5002 (default) | UDP |
 | TrackMan Broadcast Feed | 20998 (default) | UDP |
-| TrackMan Scoreboard Feed | 20999 (default) | UDP |
 
 ## Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `FLASK_SECRET_KEY` | Flask session signing key | Yes |
-| `SCOREBOARD_TCP_PORT` | TCP listener port | No |
-| `SCOREBOARD_UDP_PORT` | UDP listener port | No |
+| Variable | Default | Required | Description |
+|----------|---------|----------|-------------|
+| `FLASK_SECRET_KEY` | `dev-fallback-key` | Yes | Flask session signing key |
+| `FLASK_HOST` | `0.0.0.0` | No | Bind address |
+| `FLASK_PORT` | `5000` | No | Web server port |
+| `FLASK_DEBUG` | `1` | No | Debug mode (`1` or `0`) |
+| `SCOREBOARD_TCP_PORT` | `5001` | No | TCP listener port |
+| `SCOREBOARD_UDP_PORT` | `5002` | No | UDP listener port |
+| `SCOREBOARD_SOURCES_FILE` | `data_sources.json` | No | Path to saved data sources |
 
 ## Server Configuration API
 
@@ -51,14 +63,6 @@ Example payloads:
 
 ```json
 {"source":"auto","tcp_port":5001,"udp_port":5002,"port":"COM1"}
-```
-
-```json
-{"source":"tcp","tcp_port":5000}
-```
-
-```json
-{"source":"udp","udp_port":5000}
 ```
 
 ```json

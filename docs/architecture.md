@@ -1,6 +1,6 @@
 # Architecture
 
-**Last Updated**: 2026-02-13
+**Last Updated**: 2026-02-16
 
 ## Overview
 
@@ -9,20 +9,45 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 ## Data Flow
 
 ```
-[Scoreboard Devices] --> [TCP/UDP or COM] --> [Flask Backend] --> [Templates] --> [Browser]
+[Scoreboard Devices] --> [TCP/UDP or COM] --> [ingestion.py] --> [protocol.py] --> [parsed_data store]
+                                                                                          |
+[TrackMan System] -----> [UDP] ---------> [trackman.py] --> [trackman_data store]          |
+                                                                    |                      |
+[Browser] <-- [Templates] <-- [views.py / sports.py] <-- [api.py] <-- accessor functions --+
 ```
 
-## Components
+## Module Breakdown
 
-### Backend (Flask)
-- `main.py` - Entry point, serial/TCP/UDP readers, parsers, REST API
-- `website/__init__.py` - App factory
-- `website/views.py` - Main view routes
-- `website/auth.py` - Sport-specific routes
+### `website/protocol.py` — Pure parsing (no state, no Flask)
+- Protocol constants (STX, CR, type bytes, length constants)
+- `PacketStreamParser` — stateful byte stream to packet reassembler
+- 6 decoder helpers (`_decode_score`, `_decode_clock`, etc.)
+- 9 sport parser functions
+- `identify_and_parse(packet)` — dispatch by type+length, returns `(sport, dict)`
 
-### Frontend (Jinja2 Templates)
-- `website/Templates/` - Sport-specific scoreboard displays
-- `website/static/` - CSS, JS, images
+### `website/ingestion.py` — Data store + all readers
+- Thread-safe shared state: `parsed_data`, `parsed_data_by_source`, `last_seen_by_source`
+- Accessor functions: `record_packet()`, `get_sport_data()`, `get_sources_snapshot()`, `purge_stale_sources()`
+- Serial reader (uses `threading.Event` for stop signaling)
+- TCP client workers (outbound connections to OES controllers, with backoff)
+- UDP/TCP inbound listeners
+- Data source CRUD helpers (`_load_data_sources`, `_save_data_sources`, etc.)
+- Stale source cleanup daemon thread (5min interval, 1hr TTL)
+
+### `website/trackman.py` — TrackMan subsystem
+- Separate shared state: `trackman_data`, `trackman_debug`, `trackman_config`
+- JSON parser with broadcast + scoreboard format support, NDJSON fallback
+- UDP listener per sport (Baseball/Softball)
+- Accessor functions: `get_data()`, `get_debug()`, `get_config()`, `update_config()`
+
+### `website/api.py` — API routes blueprint
+- 9 REST endpoints, calls accessor functions from ingestion/trackman
+- No direct state access — all through module functions
+
+### `website/sports.py` — Sport page routes
+- Renders Jinja2 templates for each sport + Debug page
+
+### `website/views.py` — Home page
 
 ## API Endpoints
 
@@ -35,17 +60,19 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 | `/get_raw_data/<sport>?source=...` | GET | Get parsed data for sport by source |
 | `/get_sources` | GET | List active sources and last seen times |
 | `/update_server_config` | POST | Update data source config |
+| `/data_sources` | GET/POST | List or add TCP data sources |
+| `/data_sources/<id>` | DELETE/PATCH | Remove or update a data source |
 | `/trackman_config/<sport>` | GET/POST | Configure TrackMan UDP input |
 | `/get_trackman_data/<sport>` | GET | Latest parsed TrackMan payload |
 | `/get_trackman_debug/<sport>` | GET | Raw TrackMan payload + parse status |
+| `/get_available_com_ports` | GET | List serial ports on the machine |
 
 ## Threading Model
 
 - Main thread: Flask web server
-- Background threads: serial reader, TCP listener, UDP listener, TCP connection readers
-
-## Session Summary
-
-- Added TrackMan UDP ingestion + debug feed for baseball/softball.
-- Built sport-specific scoreboard layouts with a dark UNC theme and high-frequency polling.
-- Added Gymnastics placeholder route for future expansion.
+- Background threads (all daemon):
+  - Serial port reader (1 per active serial source)
+  - TCP client workers (1 per configured TCP data source, with reconnect backoff)
+  - UDP listener (1 for scoreboard data)
+  - TrackMan UDP listeners (1 per enabled sport)
+  - Stale source cleanup (1, runs every 5 minutes)
