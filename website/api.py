@@ -114,22 +114,71 @@ def data_source_item(source_id):
     payload = request.json or {}
     enabled = payload.get("enabled")
     name = payload.get("name")
+    new_host = payload.get("host")
+    new_port = payload.get("port")
+
+    # Validate new port if provided
+    if new_port is not None:
+        try:
+            new_port = int(new_port)
+        except (TypeError, ValueError):
+            return jsonify({"error": "invalid port"}), 400
+
+    if new_host is not None:
+        new_host = str(new_host).strip()
+        if not new_host:
+            return jsonify({"error": "host cannot be empty"}), 400
+
+    # Determine whether host or port is changing
+    host_port_changed = False
+    new_source_id = None
+    if new_host is not None or new_port is not None:
+        # Need the current source to compute the effective host/port
+        with ingestion.data_sources_lock:
+            current = None
+            for source in ingestion.data_sources:
+                if source["id"] == source_id:
+                    current = source
+                    break
+        if not current:
+            return jsonify({"error": "source not found"}), 404
+
+        effective_host = new_host if new_host is not None else current["host"]
+        effective_port = new_port if new_port is not None else current["port"]
+        new_source_id = ingestion._make_source_id(effective_host, effective_port)
+
+        if new_source_id != source_id:
+            host_port_changed = True
+            # Check for conflicts
+            with ingestion.data_sources_lock:
+                for source in ingestion.data_sources:
+                    if source["id"] == new_source_id:
+                        return jsonify({"error": "source already exists"}), 409
 
     updated = None
+    old_source_id = source_id
     with ingestion.data_sources_lock:
         for source in ingestion.data_sources:
             if source["id"] == source_id:
-                if enabled is not None:
-                    source["enabled"] = bool(enabled)
                 if name:
                     source["name"] = str(name)
+                if enabled is not None:
+                    source["enabled"] = bool(enabled)
+                if host_port_changed:
+                    source["host"] = effective_host
+                    source["port"] = effective_port
+                    source["id"] = new_source_id
                 updated = dict(source)
                 break
 
     if not updated:
         return jsonify({"error": "source not found"}), 404
 
-    if enabled is not None:
+    if host_port_changed:
+        ingestion.stop_tcp_client(old_source_id)
+        if updated.get("enabled", True):
+            ingestion.start_tcp_client(updated)
+    elif enabled is not None:
         if bool(enabled):
             ingestion.start_tcp_client(updated)
         else:

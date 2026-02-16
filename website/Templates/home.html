@@ -134,8 +134,9 @@
                 <label for="source-port">Port</label>
                 <input id="source-port" type="number" min="1" max="65535" placeholder="5000" />
             </div>
-            <div class="d-flex align-items-end">
-                <button type="submit" class="btn-config w-100">Add Source</button>
+            <div class="d-flex align-items-end gap-2">
+                <button type="submit" id="source-submit-btn" class="btn-config w-100">Add Source</button>
+                <button type="button" id="source-cancel-btn" class="btn-config w-100" style="display:none; background:rgba(131,198,242,0.12);" onclick="cancelEdit()">Cancel</button>
             </div>
         </div>
     </form>
@@ -144,6 +145,8 @@
 </div>
 
 <script>
+    let editingSourceId = null;
+
     function renderSources(sources) {
         const list = document.getElementById('sources-list');
         list.textContent = '';
@@ -175,6 +178,12 @@
             );
             right.appendChild(info);
 
+            const editBtn = document.createElement('button');
+            editBtn.className = 'btn btn-sm btn-link';
+            editBtn.textContent = 'Edit';
+            editBtn.addEventListener('click', () => startEdit(source));
+            right.appendChild(editBtn);
+
             const btn = document.createElement('button');
             btn.className = 'btn btn-sm btn-link text-danger';
             btn.textContent = 'Remove';
@@ -185,6 +194,22 @@
             row.appendChild(right);
             list.appendChild(row);
         });
+    }
+
+    function startEdit(source) {
+        editingSourceId = source.id;
+        document.getElementById('source-name').value = source.name || '';
+        document.getElementById('source-host').value = source.host || '';
+        document.getElementById('source-port').value = source.port || '';
+        document.getElementById('source-submit-btn').textContent = 'Save';
+        document.getElementById('source-cancel-btn').style.display = '';
+    }
+
+    function cancelEdit() {
+        editingSourceId = null;
+        document.getElementById('source-form').reset();
+        document.getElementById('source-submit-btn').textContent = 'Add Source';
+        document.getElementById('source-cancel-btn').style.display = 'none';
     }
 
     function mergeLiveData(configured, live) {
@@ -207,7 +232,7 @@
         });
     }
 
-    function addSource(event) {
+    function handleSubmit(event) {
         event.preventDefault();
         const name = document.getElementById('source-name').value.trim();
         const host = document.getElementById('source-host').value.trim();
@@ -217,22 +242,34 @@
             return;
         }
 
-        fetch('/data_sources', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name, host: host, port: port })
-        }).then(() => {
-            document.getElementById('source-form').reset();
-            loadSources();
-        });
+        if (editingSourceId) {
+            fetch('/data_sources/' + editingSourceId, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, host: host, port: port })
+            }).then(r => {
+                if (!r.ok) return r.json().then(d => { alert(d.error || 'Update failed'); });
+                cancelEdit();
+                loadSources();
+            });
+        } else {
+            fetch('/data_sources', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, host: host, port: port })
+            }).then(() => {
+                document.getElementById('source-form').reset();
+                loadSources();
+            });
+        }
     }
 
     function removeSource(sourceId) {
-        fetch(`/data_sources/${sourceId}`, { method: 'DELETE' })
+        fetch('/data_sources/' + sourceId, { method: 'DELETE' })
             .then(() => loadSources());
     }
 
-    document.getElementById('source-form').addEventListener('submit', addSource);
+    document.getElementById('source-form').addEventListener('submit', handleSubmit);
     loadSources();
     setInterval(loadSources, 5000);
 </script>
