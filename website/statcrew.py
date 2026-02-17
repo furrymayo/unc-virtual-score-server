@@ -358,28 +358,18 @@ def _parse_statcrew_xml(xml_text):
             parsed[f"{prefix}_pitcher_pitches"] = p_stats.get("pitches", "")
             parsed[f"{prefix}_pitcher_strikes"] = p_stats.get("strikes", "")
 
-        # Store current batter name from the last play for JS to use
-        all_plays = root.findall(".//play")
-        last_batter_name = ""
-        for play in all_plays:
-            bname = play.get("batter", "")
-            if bname:
-                last_batter_name = bname
-        if last_batter_name:
-            parsed["current_batter_name"] = last_batter_name
-
-        # Determine which team is currently batting from inning structure.
-        # The last <inning>'s last <batting vh="V/H"> tells us definitively.
-        innings = root.findall(".//inning")
-        if innings:
-            last_inning = innings[-1]
-            batting_elems = last_inning.findall("batting")
-            if batting_elems:
-                last_batting_vh = batting_elems[-1].get("vh", "").upper()
-                if last_batting_vh in ("V", "H"):
-                    parsed["batting_team"] = (
-                        "away" if last_batting_vh == "V" else "home"
-                    )
+        # Use <status> element for real-time game state (current batter,
+        # pitcher, inning, batting team, count). This is the authoritative
+        # source — updated live by the StatCrew operator.
+        status = root.find(".//status")
+        if status is not None:
+            parsed["current_batter_name"] = status.get("batter", "")
+            parsed["current_pitcher_name"] = status.get("pitcher", "")
+            batting_vh = status.get("vh", "").upper()
+            if batting_vh in ("V", "H"):
+                parsed["batting_team"] = (
+                    "away" if batting_vh == "V" else "home"
+                )
 
         # Build batter lists from batord (full lineup) + overlay hitting stats
         for team in teams:

@@ -425,9 +425,6 @@
         if (halfMatch) currentHalf = halfMatch[1].toUpperCase();
 
         updateCurrentPitcher();
-        // OES batter_num is real-time; StatCrew last-play is one at-bat behind.
-        // Always use OES to identify current batter, look up stats in StatCrew roster.
-        updateCurrentBatter(data.batter_num);
     }
 
     function renderStatcrewBaseball(data) {
@@ -448,8 +445,9 @@
         setText('bs-away-name', data.away_name || 'Away');
         setText('bs-home-name', data.home_name || 'Home');
 
-        // Re-render pitcher with updated statcrew data (roster refresh)
+        // Re-render pitcher and batter from StatCrew status element
         updateCurrentPitcher();
+        updateCurrentBatter();
     }
 
     function updateCurrentPitcher() {
@@ -480,15 +478,27 @@
         return name;
     }
 
-    function updateCurrentBatter(batterNum) {
-        const battingTeam = getBattingTeam() || 'home';
-        const batters = statcrewData[battingTeam + '_batters'] || [];
-
-        const trimmed = batterNum ? String(batterNum).trim() : null;
-        let batter = null;
-        if (trimmed) {
-            batter = batters.find(b => b.uni === trimmed || b.spot === trimmed);
+    function updateCurrentBatter() {
+        const name = statcrewData.current_batter_name || '';
+        if (!name) {
+            setText('bs-current-batter', '--');
+            setText('bs-batter-line', '--');
+            return;
         }
+
+        // Normalize for matching: "Johnson Jr., RJ" → "JohnsonJr,RJ"
+        const normalize = function(s) {
+            return s.replace(/\./g, '').replace(/,\s+/g, ',').replace(/\s+/g, '');
+        };
+        const target = normalize(name);
+
+        // Search batting team's roster for stats
+        const batting = getBattingTeam();
+        const batters = batting ? (statcrewData[batting + '_batters'] || []) : [];
+        const batter = batters.find(function(b) {
+            if (!b.name) return false;
+            return normalize(b.name) === target || b.name === name;
+        });
 
         if (batter) {
             setText('bs-current-batter', formatPlayerName(batter.name) + (batter.uni ? ' #' + batter.uni : ''));
@@ -497,11 +507,8 @@
             const rbi = batter.rbi || '--';
             const avg = batter.avg || '--';
             setText('bs-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
-        } else if (trimmed) {
-            setText('bs-current-batter', '#' + trimmed);
-            setText('bs-batter-line', '--');
         } else {
-            setText('bs-current-batter', '--');
+            setText('bs-current-batter', formatPlayerName(name));
             setText('bs-batter-line', '--');
         }
     }
