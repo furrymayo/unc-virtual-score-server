@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2026-02-17
+
+### StatCrew XML Integration
+- Added `website/statcrew.py` module for parsing StatCrew XML files (venue, teams, players, stats).
+- Added file watcher thread with mtime polling (configurable interval, default 5s).
+- Added API endpoints: `GET/POST /statcrew_config/<sport>`, `GET /get_statcrew_data/<sport>`.
+- Added `GET /browse_files` endpoint for server-side file browser (XML file selection).
+- Config persistence via `statcrew_sources.json`.
+- Updated `main.py` to start StatCrew watchers on boot.
+
+### Baseball Page Redesign
+- Redesigned Baseball scoreboard with StatCrew data integration:
+  - Team names, records, and LOB from StatCrew XML.
+  - Stadium/location and weather display in header.
+  - Current pitcher card with IP, K, pitch count.
+  - Current batter card with H-AB, RBI, AVG.
+  - Center-stacked Inning/Pitching/At Bat cards layout.
+- Narrower TrackMan dashboard with rounded values (tenths).
+- Larger strike zone canvas with smaller grid for better ball tracking.
+- Added "Additional Data Sources" collapsible panel for config UI.
+
+### Strike Zone Coordinate Fixes
+- Fixed vertical coordinate mapping: now uses Z (height) instead of Y (depth).
+  - TrackMan coordinates: X=horizontal, Y=depth toward pitcher, Z=height.
+- Removed incorrect xOffset (1.42) and xScale (0.85) calibration values.
+  - TrackMan X is already centered at 0 (center of plate).
+- **Note**: Awaiting verification with live TrackMan data.
+
+### Other
+- Added `tests/test_statcrew.py` with unit tests for StatCrew parsing.
+- Added `examples/baseballDataStats.xml` sample StatCrew file.
+- Added CSS/JS helpers in `base.html` for data sources panel and file browser modal.
+
 ## 2026-02-16
 
 - **Major refactor**: Split 1527-line `main.py` monolith into 5 focused modules (`protocol.py`, `ingestion.py`, `trackman.py`, `api.py`, `sports.py`).

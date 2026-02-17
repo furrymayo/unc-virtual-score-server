@@ -1,6 +1,6 @@
 # Infrastructure
 
-**Last Updated**: 2026-02-16
+**Last Updated**: 2026-02-17
 
 ## Deployment
 
@@ -77,3 +77,26 @@ Example payloads:
 | `/trackman_config/<sport>` | POST | Update TrackMan config (port, feed type, enabled) |
 | `/get_trackman_data/<sport>` | GET | Latest parsed TrackMan payload |
 | `/get_trackman_debug/<sport>` | GET | Raw TrackMan payload + parse status |
+
+### TrackMan Coordinate System
+
+| Axis | Direction | Typical Range |
+|------|-----------|---------------|
+| X | Horizontal (left/right from catcher view) | -1.5 to +1.5 ft |
+| Y | Depth (toward pitcher) | ~1.8 ft at plate |
+| Z | Vertical height | 1.0 to 4.5 ft |
+
+Origin is at center of home plate, ground level.
+
+## StatCrew API
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/statcrew_config/<sport>` | GET | Get StatCrew config for any sport |
+| `/statcrew_config/<sport>` | POST | Update StatCrew config (file_path, poll_interval, enabled) |
+| `/get_statcrew_data/<sport>` | GET | Latest parsed StatCrew XML data |
+| `/browse_files?path=...` | GET | Browse server filesystem for XML files |
+
+### StatCrew Config Persistence
+
+Config is saved to `statcrew_sources.json` in the working directory. File watcher threads poll the XML file mtime (default 5s interval) and re-parse on change.

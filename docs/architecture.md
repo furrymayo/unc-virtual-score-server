@@ -1,10 +1,10 @@
 # Architecture
 
-**Last Updated**: 2026-02-16
+**Last Updated**: 2026-02-17
 
 ## Overview
 
-Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport pages in a browser. Parsing logic is based on the legacy desktop app and uses packet-length guards to distinguish sports that share the same packet type.
+Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport pages in a browser. Parsing logic is based on the legacy desktop app and uses packet-length guards to distinguish sports that share the same packet type. Supports TrackMan UDP for pitch/hit tracking and StatCrew XML for enhanced game stats.
 
 ## Data Flow
 
@@ -12,6 +12,8 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 [Scoreboard Devices] --> [TCP/UDP or COM] --> [ingestion.py] --> [protocol.py] --> [parsed_data store]
                                                                                           |
 [TrackMan System] -----> [UDP] ---------> [trackman.py] --> [trackman_data store]          |
+                                                                    |                      |
+[StatCrew XML Files] --> [file watcher] --> [statcrew.py] --> [statcrew_data store]        |
                                                                     |                      |
 [Browser] <-- [Templates] <-- [views.py / sports.py] <-- [api.py] <-- accessor functions --+
 ```
@@ -39,9 +41,17 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 - JSON parser with broadcast + scoreboard format support, NDJSON fallback
 - UDP listener per sport (Baseball/Softball)
 - Accessor functions: `get_data()`, `get_debug()`, `get_config()`, `update_config()`
+- Coordinate system: X=horizontal, Y=depth (toward pitcher), Z=height
+
+### `website/statcrew.py` — StatCrew XML subsystem
+- Separate shared state: `statcrew_data`, `statcrew_config`
+- XML parser for StatCrew format (venue, teams, players, stats)
+- File watcher thread with mtime polling (configurable interval)
+- Config persistence via `statcrew_sources.json`
+- Accessor functions: `get_data()`, `get_config()`, `update_config()`
 
 ### `website/api.py` — API routes blueprint
-- 9 REST endpoints, calls accessor functions from ingestion/trackman
+- 12 REST endpoints, calls accessor functions from ingestion/trackman/statcrew
 - No direct state access — all through module functions
 
 ### `website/sports.py` — Sport page routes
@@ -65,6 +75,9 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 | `/trackman_config/<sport>` | GET/POST | Configure TrackMan UDP input |
 | `/get_trackman_data/<sport>` | GET | Latest parsed TrackMan payload |
 | `/get_trackman_debug/<sport>` | GET | Raw TrackMan payload + parse status |
+| `/statcrew_config/<sport>` | GET/POST | Configure StatCrew XML file watcher |
+| `/get_statcrew_data/<sport>` | GET | Latest parsed StatCrew data |
+| `/browse_files?path=...` | GET | Browse server filesystem for XML files |
 | `/get_available_com_ports` | GET | List serial ports on the machine |
 
 ## Threading Model
@@ -75,4 +88,5 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
   - TCP client workers (1 per configured TCP data source, with reconnect backoff)
   - UDP listener (1 for scoreboard data)
   - TrackMan UDP listeners (1 per enabled sport)
+  - StatCrew file watchers (1 per enabled sport, polls mtime every 5s)
   - Stale source cleanup (1, runs every 5 minutes)
