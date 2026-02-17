@@ -676,10 +676,19 @@
             margin-top: 16px;
         }
 
+        .score-trackman-layout.has-strike-zone {
+            grid-template-columns: minmax(220px, 280px) minmax(0, 1fr) minmax(220px, 280px);
+        }
+
         /* Constrained TrackMan column */
         .trackman-column {
             max-width: 280px;
             flex-shrink: 0;
+        }
+
+        .strikezone-column {
+            max-width: 280px;
+            width: 100%;
         }
 
         .trackman-column .trackman-grid {

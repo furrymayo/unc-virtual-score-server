@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="score-trackman-layout">
+    <div class="score-trackman-layout has-strike-zone">
         <div class="trackman-column">
             <div class="section-title">TrackMan</div>
             <div class="trackman-shell">
@@ -29,19 +29,6 @@
                         <div class="trackman-value" id="bs-tm-spin-rate">n/a</div>
                         <div class="trackman-unit">RPM</div>
                     </div>
-                </div>
-                <div class="trackman-card trackman-zone" style="margin-top: 8px;">
-                    <div class="trackman-label">Strike Zone</div>
-                    <div class="zone-canvas">
-                        <div class="zone-grid">
-                            <div class="zone-line v v1"></div>
-                            <div class="zone-line v v2"></div>
-                            <div class="zone-line h h1"></div>
-                            <div class="zone-line h h2"></div>
-                        </div>
-                        <div class="zone-dot" id="bs-zone-dot"></div>
-                    </div>
-                    <div class="trackman-unit" id="bs-zone-readout">n/a</div>
                 </div>
                 <div class="trackman-section-label" style="margin-top: 8px;">Batting</div>
                 <div class="trackman-grid">
@@ -121,6 +108,24 @@
             <div class="section-title">Innings</div>
             <div class="table-card">
                 <div id="bs-linescore-table"></div>
+            </div>
+        </div>
+        <div class="strikezone-column">
+            <div class="section-title">Strike Zone</div>
+            <div class="trackman-shell">
+                <div class="trackman-card trackman-zone">
+                    <div class="trackman-label">Strike Zone</div>
+                    <div class="zone-canvas">
+                        <div class="zone-grid">
+                            <div class="zone-line v v1"></div>
+                            <div class="zone-line v v2"></div>
+                            <div class="zone-line h h1"></div>
+                            <div class="zone-line h h2"></div>
+                        </div>
+                        <div class="zone-dot" id="bs-zone-dot"></div>
+                    </div>
+                    <div class="trackman-unit" id="bs-zone-readout">n/a</div>
+                </div>
             </div>
         </div>
     </div>
