@@ -32,20 +32,38 @@
         }
 
         #navbar {
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: nowrap;
             background: var(--navy);
-            box-shadow: 0 12px 30px var(--shadow);
+            box-shadow: 0 4px 12px var(--shadow);
+            padding: 2px 12px;
+            min-height: auto;
+            align-items: center;
+            gap: 12px;
         }
 
         .navbar-brand {
             font-weight: 700;
+            font-size: 0.85rem;
             letter-spacing: 0.02em;
             color: var(--ink);
+            white-space: nowrap;
+            margin: 0;
+            padding: 4px 0;
+        }
+
+        .navbar-dark .navbar-nav {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 2px 4px;
         }
 
         .navbar-dark .navbar-nav .nav-link {
             color: var(--ink-soft);
             font-weight: 500;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            white-space: nowrap;
         }
 
         .navbar-dark .navbar-nav .nav-link:hover,
@@ -103,8 +121,8 @@
         }
 
         .content-shell {
-            padding-top: 10px;
-            padding-bottom: 8px;
+            padding-top: 6px;
+            padding-bottom: 4px;
         }
 
         .scoreboard-shell {
@@ -120,7 +138,7 @@
             transform: none;
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 140px);
+            height: calc(100vh - 52px);
         }
 
         .scoreboard-shell::before {
@@ -137,13 +155,13 @@
         }
 
         .scoreboard-title {
-            font-size: clamp(1.4rem, 1.8vw, 2.2rem);
+            font-size: clamp(1.4rem, 2.2vw, 3rem);
             font-weight: 700;
             letter-spacing: 0.02em;
         }
 
         .scoreboard-subtitle {
-            font-size: clamp(0.8rem, 0.9vw, 1.1rem);
+            font-size: clamp(0.8rem, 1.2vw, 1.6rem);
             color: var(--ink-soft);
             letter-spacing: 0.06em;
             text-transform: uppercase;
@@ -160,7 +178,7 @@
             color: var(--ink);
             border-radius: 999px;
             padding: 4px 12px;
-            font-size: clamp(0.7rem, 0.8vw, 1rem);
+            font-size: clamp(0.7rem, 1vw, 1.4rem);
             letter-spacing: 0.12em;
             text-transform: uppercase;
             display: inline-flex;
@@ -195,7 +213,7 @@
         }
 
         .team-label {
-            font-size: clamp(1.1rem, 1.3vw, 1.6rem);
+            font-size: clamp(1.1rem, 1.8vw, 2.8rem);
             text-transform: uppercase;
             letter-spacing: 0.22em;
             color: var(--ink-soft);
@@ -207,7 +225,7 @@
         .team-label.is-home,
         .team-label.is-visitor {
             justify-content: center;
-            font-size: clamp(1.1rem, 1.3vw, 1.6rem);
+            font-size: clamp(1.1rem, 1.8vw, 2.8rem);
             font-weight: 700;
         }
 
@@ -220,7 +238,7 @@
         }
 
         .team-score {
-            font-size: clamp(3rem, 4.5vw, 5.5rem);
+            font-size: clamp(3rem, 5.5vw, 8rem);
             font-weight: 700;
             font-family: "JetBrains Mono", monospace;
             letter-spacing: 0.02em;
@@ -241,14 +259,14 @@
         }
 
         .stat-line span {
-            font-size: clamp(0.9rem, 1vw, 1.3rem);
+            font-size: clamp(0.9rem, 1.3vw, 2rem);
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--ink-soft);
         }
 
         .stat-line strong {
-            font-size: clamp(1.1rem, 1.3vw, 1.6rem);
+            font-size: clamp(1.1rem, 1.6vw, 2.4rem);
             font-weight: 600;
             font-family: "JetBrains Mono", monospace;
         }
@@ -275,20 +293,20 @@
         }
 
         .center-label {
-            font-size: clamp(0.8rem, 0.9vw, 1.1rem);
+            font-size: clamp(0.8rem, 1.2vw, 1.8rem);
             text-transform: uppercase;
             letter-spacing: 0.22em;
             color: rgba(231, 240, 255, 0.6);
         }
 
         .center-value {
-            font-size: clamp(1.5rem, 2vw, 2.5rem);
+            font-size: clamp(1.5rem, 2.5vw, 4rem);
             font-weight: 700;
             font-family: "JetBrains Mono", monospace;
         }
 
         .center-value.emphasis {
-            font-size: clamp(2.8rem, 4vw, 4.5rem);
+            font-size: clamp(2.8rem, 5vw, 7rem);
         }
 
         .clock-critical {
@@ -308,20 +326,20 @@
         }
 
         .basketball-scoreboard .team-score {
-            font-size: clamp(3.5rem, 5vw, 6rem);
+            font-size: clamp(3.5rem, 6vw, 9rem);
             font-weight: 800;
         }
 
         .basketball-scoreboard .center-value.emphasis {
-            font-size: clamp(3.5rem, 5vw, 5.5rem);
+            font-size: clamp(3.5rem, 6vw, 8rem);
         }
 
         .basketball-scoreboard .center-value.period-small {
-            font-size: clamp(1.4rem, 1.8vw, 2.2rem);
+            font-size: clamp(1.4rem, 2.2vw, 3.2rem);
         }
 
         .basketball-scoreboard .center-value.shot-value {
-            font-size: clamp(2.2rem, 3vw, 3.5rem);
+            font-size: clamp(2.2rem, 3.5vw, 5rem);
             font-weight: 800;
         }
 
@@ -352,11 +370,11 @@
         }
 
         .center-value.compact {
-            font-size: clamp(1.1rem, 1.3vw, 1.6rem);
+            font-size: clamp(1.1rem, 1.6vw, 2.4rem);
         }
 
         .center-label.compact {
-            font-size: clamp(0.8rem, 0.9vw, 1.1rem);
+            font-size: clamp(0.8rem, 1.2vw, 1.8rem);
             letter-spacing: 0.18em;
         }
 
@@ -380,14 +398,14 @@
         }
 
         .count-label {
-            font-size: clamp(0.85rem, 1vw, 1.2rem);
+            font-size: clamp(0.85rem, 1.3vw, 2rem);
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--ink-soft);
         }
 
         .count-value {
-            font-size: clamp(2rem, 2.8vw, 3.5rem);
+            font-size: clamp(2rem, 3.5vw, 5.5rem);
             font-weight: 700;
             font-family: "JetBrains Mono", monospace;
             color: var(--carolina-soft);
@@ -431,7 +449,7 @@
         }
 
         .trackman-label {
-            font-size: clamp(0.75rem, 0.85vw, 1rem);
+            font-size: clamp(0.75rem, 1.1vw, 1.6rem);
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--carolina-soft);
@@ -439,21 +457,21 @@
         }
 
         .trackman-value {
-            font-size: clamp(1.2rem, 1.5vw, 1.8rem);
+            font-size: clamp(1.2rem, 2vw, 2.8rem);
             font-weight: 700;
             font-family: "JetBrains Mono", monospace;
             margin-top: 8px;
         }
 
         .trackman-unit {
-            font-size: clamp(0.7rem, 0.8vw, 1rem);
+            font-size: clamp(0.7rem, 1vw, 1.4rem);
             color: var(--ink-soft);
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
         .trackman-section-label {
-            font-size: clamp(0.75rem, 0.85vw, 1rem);
+            font-size: clamp(0.75rem, 1.1vw, 1.6rem);
             letter-spacing: 0.24em;
             text-transform: uppercase;
             color: var(--ink-soft);
@@ -672,7 +690,7 @@
         }
 
         .trackman-column .trackman-value {
-            font-size: clamp(1.2rem, 1.5vw, 1.8rem);
+            font-size: clamp(1.2rem, 2vw, 2.8rem);
             margin-top: 4px;
         }
 
@@ -689,15 +707,15 @@
         }
 
         .center-card.compact .center-label {
-            font-size: clamp(0.8rem, 0.9vw, 1.1rem);
+            font-size: clamp(0.8rem, 1.2vw, 1.8rem);
         }
 
         .center-card.compact .center-value {
-            font-size: clamp(1.5rem, 2vw, 2.5rem);
+            font-size: clamp(1.5rem, 2.5vw, 4rem);
         }
 
         .center-card.compact .center-value.compact {
-            font-size: clamp(1.1rem, 1.3vw, 1.6rem);
+            font-size: clamp(1.1rem, 1.6vw, 2.4rem);
         }
 
         .trackman-zone {
@@ -802,26 +820,26 @@
         }
 
         .stat-label {
-            font-size: clamp(0.85rem, 0.9vw, 1.1rem);
+            font-size: clamp(0.85rem, 1.2vw, 1.8rem);
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--ink-soft);
         }
 
         .stat-value {
-            font-size: clamp(1.2rem, 1.5vw, 1.8rem);
+            font-size: clamp(1.2rem, 2vw, 2.8rem);
             font-weight: 600;
             font-family: "JetBrains Mono", monospace;
         }
 
         .stat-value.compact {
-            font-size: clamp(0.9rem, 1.1vw, 1.3rem);
+            font-size: clamp(0.9rem, 1.4vw, 2rem);
             font-weight: 500;
             letter-spacing: 0.02em;
         }
 
         .team-record {
-            font-size: clamp(0.75rem, 0.85vw, 1rem);
+            font-size: clamp(0.75rem, 1.1vw, 1.5rem);
             font-weight: 400;
             color: var(--ink-soft);
             margin-left: 4px;
@@ -847,7 +865,7 @@
         }
 
         .section-title {
-            font-size: clamp(0.85rem, 0.9vw, 1.1rem);
+            font-size: clamp(0.85rem, 1.2vw, 1.8rem);
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--ink-soft);
@@ -874,14 +892,14 @@
         }
 
         .table-grid th {
-            font-size: clamp(0.75rem, 0.9vw, 1.1rem);
+            font-size: clamp(0.75rem, 1.2vw, 1.8rem);
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--ink-soft);
         }
 
         .table-grid td {
-            font-size: clamp(1rem, 1.2vw, 1.4rem);
+            font-size: clamp(1rem, 1.6vw, 2.2rem);
             font-weight: 600;
         }
 
@@ -908,7 +926,7 @@
             text-align: left;
             font-family: "Space Grotesk", sans-serif;
             font-weight: 700;
-            font-size: clamp(1rem, 1.2vw, 1.4rem);
+            font-size: clamp(1rem, 1.6vw, 2.2rem);
         }
 
         @media (max-width: 768px) {
@@ -1276,31 +1294,20 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between w-100">
-                <a class="navbar-brand mb-3 mb-lg-0" href="/">Virtual Scoreboard Hub</a>
-            </div>
-
-            <div class="links">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" id="Basketball" href="/Basketball">Basketball</a>
-                    <a class="nav-item nav-link" id="Hockey" href="/Hockey">Hockey</a>
-                    <a class="nav-item nav-link" id="Lacrosse" href="/Lacrosse">Lacrosse</a>
-                    <a class="nav-item nav-link" id="Football" href="/Football">Football</a>
-                    <a class="nav-item nav-link" id="Volleyball" href="/Volleyball">Volleyball</a>
-                    <a class="nav-item nav-link" id="Wrestling" href="/Wrestling">Wrestling</a>
-                    <a class="nav-item nav-link" id="Soccer" href="/Soccer">Soccer</a>
-                    <a class="nav-item nav-link" id="Softball" href="/Softball">Softball</a>
-                    <a class="nav-item nav-link" id="Baseball" href="/Baseball">Baseball</a>
-                    <a class="nav-item nav-link" id="Gymnastics" href="/Gymnastics">Gymnastics</a>
-                    <a class="nav-item nav-link" id="Debug" href="/Debug">DEBUG</a>
-                    <!-- Add more buttons for other sports -->
-                </div>
-            </div>
+    <nav class="navbar navbar-dark" id="navbar">
+        <a class="navbar-brand" href="/">Scoreboard</a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/Basketball">Basketball</a>
+            <a class="nav-item nav-link" href="/Hockey">Hockey</a>
+            <a class="nav-item nav-link" href="/Lacrosse">Lacrosse</a>
+            <a class="nav-item nav-link" href="/Football">Football</a>
+            <a class="nav-item nav-link" href="/Volleyball">Volleyball</a>
+            <a class="nav-item nav-link" href="/Wrestling">Wrestling</a>
+            <a class="nav-item nav-link" href="/Soccer">Soccer</a>
+            <a class="nav-item nav-link" href="/Softball">Softball</a>
+            <a class="nav-item nav-link" href="/Baseball">Baseball</a>
+            <a class="nav-item nav-link" href="/Gymnastics">Gymnastics</a>
+            <a class="nav-item nav-link" href="/Debug">DEBUG</a>
         </div>
     </nav>
     <div class="{% block container_class %}container{% endblock %} content-shell">

@@ -6,9 +6,9 @@
 <style>
     /* === Baseball-specific layout overrides (font sizing now in base.html) === */
 
-    /* Score-trackman 3-column layout with wider sidebars */
+    /* Score-trackman 3-column layout — center gets more share */
     .baseball-scoreboard .score-trackman-layout.has-strike-zone {
-        grid-template-columns: minmax(200px, 18vw) 1fr minmax(200px, 18vw);
+        grid-template-columns: minmax(180px, 15vw) 1fr minmax(180px, 15vw);
         gap: clamp(10px, 1vw, 18px);
         align-items: stretch;
     }
@@ -99,11 +99,11 @@
         justify-content: center;
     }
     .baseball-scoreboard .score-count-row .team-label {
-        font-size: clamp(0.75rem, 0.9vw, 1.05rem);
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
         justify-content: center;
     }
     .baseball-scoreboard .score-count-row .team-score {
-        font-size: clamp(2rem, 2.8vw, 3.2rem);
+        font-size: clamp(2.5rem, 4vw, 6rem);
     }
 
     /* Compact center cards in top row */
@@ -111,9 +111,9 @@
         padding: clamp(6px, 0.8vh, 12px);
     }
 
-    /* TrackMan data values: +10px, centered */
+    /* TrackMan data values: centered */
     .baseball-scoreboard .trackman-value {
-        font-size: clamp(1.8rem, 2.1vw, 2.4rem);
+        font-size: clamp(1.8rem, 2.8vw, 3.8rem);
         text-align: center;
     }
 
@@ -135,14 +135,14 @@
             0 8px 24px rgba(3, 9, 18, 0.4);
     }
     .baseball-scoreboard .count-value {
-        font-size: clamp(2.8rem, 3.6vw, 4.2rem);
+        font-size: clamp(2.8rem, 4.5vw, 6.5rem);
         color: #ffffff;
         text-shadow:
             0 0 12px rgba(75, 156, 211, 0.5),
             0 0 24px rgba(75, 156, 211, 0.2);
     }
     .baseball-scoreboard .count-label {
-        font-size: clamp(1rem, 1.2vw, 1.4rem);
+        font-size: clamp(1rem, 1.6vw, 2.2rem);
         font-weight: 700;
         color: rgba(131, 198, 242, 0.85);
         text-shadow: 0 0 8px rgba(75, 156, 211, 0.15);
@@ -150,35 +150,35 @@
 
     /* Pitching/At Bat cards: +15px */
     .baseball-scoreboard .info-top-row .center-label {
-        font-size: clamp(0.8rem, 0.9vw, 1.1rem);
+        font-size: clamp(0.8rem, 1.2vw, 1.8rem);
     }
     .baseball-scoreboard .center-value.compact {
-        font-size: clamp(1.4rem, 1.6vw, 1.9rem);
+        font-size: clamp(1.4rem, 2.2vw, 3rem);
     }
     .baseball-scoreboard .stat-value.compact {
-        font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+        font-size: clamp(1.1rem, 1.8vw, 2.4rem);
     }
 
     /* Linescore team name: left align, +10px */
     .baseball-scoreboard .team-row-label {
-        font-size: clamp(1.6rem, 1.8vw, 2rem);
+        font-size: clamp(1.6rem, 2.2vw, 3rem);
         text-align: left;
     }
 
-    /* Inning headers: +10px */
+    /* Inning headers */
     .baseball-scoreboard .table-grid th {
-        font-size: clamp(1.35rem, 1.5vw, 1.7rem);
+        font-size: clamp(1.35rem, 1.8vw, 2.4rem);
     }
 
-    /* Inning data: +10px */
+    /* Inning data */
     .baseball-scoreboard .table-grid td {
-        font-size: clamp(1.6rem, 1.8vw, 2rem);
+        font-size: clamp(1.6rem, 2.2vw, 3rem);
     }
 
-    /* R/H/E card: visual separation, +15px font */
+    /* R/H/E card: visual separation */
     .baseball-scoreboard .linescore-total,
     .baseball-scoreboard .linescore-label {
-        font-size: clamp(1.9rem, 2.2vw, 2.35rem) !important;
+        font-size: clamp(1.9rem, 2.8vw, 3.5rem) !important;
         font-weight: 700;
         background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9)) !important;
     }
@@ -429,8 +429,35 @@
         setText('bs-away-name', data.away_name || 'Away');
         setText('bs-home-name', data.home_name || 'Home');
 
-        // Re-render pitcher with updated statcrew data
+        // Re-render pitcher and batter with updated statcrew data
         updateCurrentPitcher();
+        updateCurrentBatterFromStatcrew();
+    }
+
+    function updateCurrentBatterFromStatcrew() {
+        const name = statcrewData.current_batter_name || '';
+        if (!name) return;
+
+        // Search both teams for matching batter by compact name
+        const allBatters = (statcrewData.away_batters || []).concat(statcrewData.home_batters || []);
+        const batter = allBatters.find(function(b) {
+            if (!b.name) return false;
+            // Match compact form: "JohnsonJr,RJ" vs "Johnson Jr., RJ"
+            const compact = b.name.replace(/,\s+/g, ',').replace(/\./g, '');
+            return compact === name || b.name === name;
+        });
+
+        if (batter) {
+            setText('bs-current-batter', formatPlayerName(batter.name) + (batter.uni ? ' #' + batter.uni : ''));
+            const ab = batter.ab || '--';
+            const h = batter.h || '--';
+            const rbi = batter.rbi || '--';
+            const avg = batter.avg || '--';
+            setText('bs-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
+        } else {
+            setText('bs-current-batter', formatPlayerName(name));
+            setText('bs-batter-line', '--');
+        }
     }
 
     function updateCurrentPitcher() {

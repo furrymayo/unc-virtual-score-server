@@ -530,7 +530,7 @@ def parse_baseball_data(packet):
             chr(packet[30]),
         ]
 
-        batter_num = f"{(' ' if packet[8] == 0x3A else chr(packet[8]))}{chr(packet[9])}"
+        batter_num = f"{(' ' if packet[8] == 0x3A else chr(packet[8]))}{(' ' if packet[9] == 0x3A else chr(packet[9]))}"
         balls = chr(packet[10])
         strikes = chr(packet[31])
         outs = chr(packet[43])
