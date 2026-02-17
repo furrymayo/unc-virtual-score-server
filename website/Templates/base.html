@@ -497,6 +497,11 @@
         }
 
         /* Dropdown indicator for collapsible panels */
+        details.data-sources-panel {
+            position: relative;
+            z-index: 2;
+        }
+
         details.data-sources-panel > summary .dropdown-indicator {
             display: inline-block;
             width: 0;
@@ -996,6 +1001,37 @@
             el.textContent = formatValue(value, fallback);
         }
 
+        let scoreboardSpacingRaf = null;
+
+        function adjustScoreboardSpacing() {
+            const shells = document.querySelectorAll('.scoreboard-shell');
+            shells.forEach((shell) => {
+                const rect = shell.getBoundingClientRect();
+                const layoutHeight = shell.offsetHeight || 0;
+                const delta = rect.height - layoutHeight;
+                const baseGap = 16;
+                const extra = Math.max(baseGap, delta + baseGap);
+                shell.style.marginBottom = `${extra}px`;
+            });
+        }
+
+        function scheduleScoreboardSpacing() {
+            if (scoreboardSpacingRaf) {
+                cancelAnimationFrame(scoreboardSpacingRaf);
+            }
+            scoreboardSpacingRaf = requestAnimationFrame(() => {
+                adjustScoreboardSpacing();
+                scoreboardSpacingRaf = null;
+            });
+        }
+
+        window.addEventListener('load', () => {
+            scheduleScoreboardSpacing();
+            window.setTimeout(scheduleScoreboardSpacing, 700);
+        });
+        window.addEventListener('resize', scheduleScoreboardSpacing);
+        document.addEventListener('DOMContentLoaded', scheduleScoreboardSpacing);
+
         function setPossession(homeId, visitorId, possession) {
             const homeDot = document.getElementById(homeId);
             const visitorDot = document.getElementById(visitorId);
@@ -1071,6 +1107,51 @@
             const yText = Number.isFinite(rawY) ? `Y ${rawY.toFixed(2)} ft` : '';
             const zText = Number.isFinite(rawZ) ? `Z ${rawZ.toFixed(2)} ft` : '';
             readout.textContent = `X ${rawX.toFixed(2)} ft${yText ? ` · ${yText}` : ''}${zText ? ` · ${zText}` : ''}`;
+        }
+
+        function getStatcrewTeamInfo(data) {
+            const info = {
+                homeName: "",
+                visitorName: "",
+                homeRecord: "",
+                visitorRecord: "",
+                venueText: "",
+                weather: "",
+                temp: "",
+            };
+
+            if (!data || typeof data !== "object") {
+                return info;
+            }
+
+            const teams = Array.isArray(data.teams) ? data.teams : [];
+            const findTeam = (tag) => teams.find(
+                (team) => String(team.vh || "").toUpperCase() === tag
+            ) || teams.find(
+                (team) => String(team.id || "").toUpperCase() === tag
+            );
+
+            let homeTeam = findTeam("H");
+            let visitorTeam = findTeam("V");
+
+            if (!homeTeam && teams.length) {
+                homeTeam = teams[0];
+            }
+            if (!visitorTeam && teams.length > 1) {
+                visitorTeam = teams[1];
+            }
+
+            info.homeName = (homeTeam && (homeTeam.name || homeTeam.code || homeTeam.id)) || "";
+            info.visitorName = (visitorTeam && (visitorTeam.name || visitorTeam.code || visitorTeam.id)) || "";
+            info.homeRecord = (homeTeam && homeTeam.record) || "";
+            info.visitorRecord = (visitorTeam && visitorTeam.record) || "";
+
+            const venue = data.venue || {};
+            const venueParts = [venue.stadium, venue.location].filter(Boolean);
+            info.venueText = venueParts.join(" - ");
+            info.weather = venue.weather || "";
+            info.temp = venue.temp || "";
+            return info;
         }
 
         // StatCrew config helpers

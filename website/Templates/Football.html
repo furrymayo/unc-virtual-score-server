@@ -6,7 +6,7 @@
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Football</div>
-            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+            <div class="scoreboard-subtitle" id="fb-venue-info">Live scoreboard feed</div>
         </div>
         <div class="meta-row">
             <div class="meta-chip">Clock <span id="fb-game-clock">--</span></div>
@@ -17,7 +17,7 @@
 
     <div class="score-grid">
         <div class="team-card">
-            <div class="team-label"><span class="possession-dot" id="fb-poss-home"></span>Home</div>
+            <div class="team-label"><span class="possession-dot" id="fb-poss-home"></span><span id="fb-home-name">Home</span> <span id="fb-home-record" class="team-record"></span></div>
             <div class="team-score" id="fb-home-score">--</div>
             <div class="team-meta">
                 <div class="stat-line"><span>Timeouts</span><strong id="fb-home-tol">--</strong></div>
@@ -30,7 +30,7 @@
             <div class="center-value" id="fb-ytg">--</div>
         </div>
         <div class="team-card">
-            <div class="team-label"><span class="possession-dot" id="fb-poss-visitor"></span>Visitor</div>
+            <div class="team-label"><span class="possession-dot" id="fb-poss-visitor"></span><span id="fb-visitor-name">Visitor</span> <span id="fb-visitor-record" class="team-record"></span></div>
             <div class="team-score" id="fb-visitor-score">--</div>
             <div class="team-meta">
                 <div class="stat-line"><span>Timeouts</span><strong id="fb-visitor-tol">--</strong></div>
@@ -50,7 +50,42 @@
     </div>
 </section>
 
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
+    <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
+        <div style="display: flex; align-items: center;">
+            <span class="dropdown-indicator"></span>
+            <div class="scoreboard-subtitle">Additional Data Sources</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">StatCrew <span id="fb-sc-status">n/a</span></div>
+        </div>
+    </summary>
+
+    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">StatCrew XML</div>
+    <form id="fb-statcrew-form" class="config-grid">
+        <div style="grid-column: span 2;">
+            <label for="fb-statcrew-path">StatCrew XML File Path</label>
+            <div class="path-input-group">
+                <input id="fb-statcrew-path" type="text" placeholder="/path/to/statcrew.xml" />
+                <button type="button" class="btn-browse" onclick="openFileBrowser('fb-statcrew-path')">Browse</button>
+            </div>
+        </div>
+        <div>
+            <label for="fb-statcrew-enabled">Enabled</label>
+            <select id="fb-statcrew-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn-config w-100">Save StatCrew</button>
+        </div>
+    </form>
+</details>
+
 <script>
+    let statcrewData = {};
+
     function renderFootball(data) {
         setText('fb-game-clock', data.game_clock);
         setText('fb-quarter-chip', data.quarter);
@@ -66,12 +101,37 @@
         setPossession('fb-poss-home', 'fb-poss-visitor', data.possession);
     }
 
+    function renderStatcrewFootball(data) {
+        statcrewData = data || {};
+        const info = getStatcrewTeamInfo(statcrewData);
+        setText('fb-venue-info', info.venueText || 'Live scoreboard feed');
+        setText('fb-home-name', info.homeName || 'Home');
+        setText('fb-visitor-name', info.visitorName || 'Visitor');
+        setText('fb-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
+        setText('fb-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+    }
+
+    function fetchStatcrewFootballData() {
+        fetch('/get_statcrew_data/Football')
+            .then(response => response.json())
+            .then(data => renderStatcrewFootball(data || {}))
+            .catch(() => renderStatcrewFootball({}));
+    }
+
     function fetchFootballData() {
         fetchData('Football');
     }
 
     fetchFootballData();
     setInterval(fetchFootballData, 150);
+
+    loadStatcrewConfig('Football', 'fb');
+    fetchStatcrewFootballData();
+    setInterval(fetchStatcrewFootballData, 5000);
+
+    document.getElementById('fb-statcrew-form').addEventListener('submit', function(e) {
+        submitStatcrewConfig(e, 'Football', 'fb');
+    });
 
     document.addEventListener('dataFetched', function (event) {
         renderFootball(event.detail || {});

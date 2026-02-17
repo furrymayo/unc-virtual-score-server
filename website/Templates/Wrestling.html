@@ -6,7 +6,7 @@
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Wrestling</div>
-            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+            <div class="scoreboard-subtitle" id="wr-venue-info">Live scoreboard feed</div>
         </div>
         <div class="meta-row">
             <div class="meta-chip">Clock <span id="wr-game-clock">--</span></div>
@@ -17,7 +17,7 @@
 
     <div class="score-grid">
         <div class="team-card">
-            <div class="team-label">Home</div>
+            <div class="team-label"><span id="wr-home-name">Home</span> <span id="wr-home-record" class="team-record"></span></div>
             <div class="team-score" id="wr-home-score">--</div>
         </div>
         <div class="center-card">
@@ -25,7 +25,7 @@
             <div class="center-value" id="wr-period">--</div>
         </div>
         <div class="team-card">
-            <div class="team-label">Visitor</div>
+            <div class="team-label"><span id="wr-visitor-name">Visitor</span> <span id="wr-visitor-record" class="team-record"></span></div>
             <div class="team-score" id="wr-visitor-score">--</div>
         </div>
     </div>
@@ -58,7 +58,42 @@
     </div>
 </section>
 
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
+    <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
+        <div style="display: flex; align-items: center;">
+            <span class="dropdown-indicator"></span>
+            <div class="scoreboard-subtitle">Additional Data Sources</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">StatCrew <span id="wr-sc-status">n/a</span></div>
+        </div>
+    </summary>
+
+    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">StatCrew XML</div>
+    <form id="wr-statcrew-form" class="config-grid">
+        <div style="grid-column: span 2;">
+            <label for="wr-statcrew-path">StatCrew XML File Path</label>
+            <div class="path-input-group">
+                <input id="wr-statcrew-path" type="text" placeholder="/path/to/statcrew.xml" />
+                <button type="button" class="btn-browse" onclick="openFileBrowser('wr-statcrew-path')">Browse</button>
+            </div>
+        </div>
+        <div>
+            <label for="wr-statcrew-enabled">Enabled</label>
+            <select id="wr-statcrew-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn-config w-100">Save StatCrew</button>
+        </div>
+    </form>
+</details>
+
 <script>
+    let statcrewData = {};
+
     function renderWrestling(data) {
         setText('wr-game-clock', data.game_clock);
         setText('wr-period-chip', data.period);
@@ -74,12 +109,37 @@
         setText('wr-visitor-inj-time', data.visitor_inj_time);
     }
 
+    function renderStatcrewWrestling(data) {
+        statcrewData = data || {};
+        const info = getStatcrewTeamInfo(statcrewData);
+        setText('wr-venue-info', info.venueText || 'Live scoreboard feed');
+        setText('wr-home-name', info.homeName || 'Home');
+        setText('wr-visitor-name', info.visitorName || 'Visitor');
+        setText('wr-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
+        setText('wr-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+    }
+
+    function fetchStatcrewWrestlingData() {
+        fetch('/get_statcrew_data/Wrestling')
+            .then(response => response.json())
+            .then(data => renderStatcrewWrestling(data || {}))
+            .catch(() => renderStatcrewWrestling({}));
+    }
+
     function fetchWrestlingData() {
         fetchData('Wrestling');
     }
 
     fetchWrestlingData();
     setInterval(fetchWrestlingData, 150);
+
+    loadStatcrewConfig('Wrestling', 'wr');
+    fetchStatcrewWrestlingData();
+    setInterval(fetchStatcrewWrestlingData, 5000);
+
+    document.getElementById('wr-statcrew-form').addEventListener('submit', function(e) {
+        submitStatcrewConfig(e, 'Wrestling', 'wr');
+    });
 
     document.addEventListener('dataFetched', function (event) {
         renderWrestling(event.detail || {});

@@ -6,7 +6,7 @@
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Softball</div>
-            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+            <div class="scoreboard-subtitle" id="sb-venue-info">Live scoreboard feed</div>
         </div>
         <div class="meta-row">
             <div class="meta-chip">Inning <span id="sb-inning">--</span></div>
@@ -31,7 +31,7 @@
 
     <div class="score-grid">
         <div class="team-card">
-            <div class="team-label">Away</div>
+            <div class="team-label"><span id="sb-away-name">Away</span> <span id="sb-away-record" class="team-record"></span></div>
             <div class="team-score" id="sb-away-runs">--</div>
             <div class="team-meta">
                 <div class="stat-line"><span>Hits</span><strong id="sb-away-hits">--</strong></div>
@@ -43,7 +43,7 @@
             <div class="center-value" id="sb-half-inning">--</div>
         </div>
         <div class="team-card">
-            <div class="team-label">Home</div>
+            <div class="team-label"><span id="sb-home-name">Home</span> <span id="sb-home-record" class="team-record"></span></div>
             <div class="team-score" id="sb-home-runs">--</div>
             <div class="team-meta">
                 <div class="stat-line"><span>Hits</span><strong id="sb-home-hits">--</strong></div>
@@ -79,42 +79,6 @@
     <div class="table-card">
         <div id="sb-linescore-table"></div>
     </div>
-
-    <details class="trackman-shell trackman-config-compact" style="margin-top: 16px;">
-        <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
-            <div>
-                <div class="scoreboard-subtitle">TrackMan UDP Config</div>
-            </div>
-            <div class="meta-row">
-                <div class="meta-chip">Status <span id="sb-tm-status">n/a</span></div>
-                <div class="meta-chip">Port <span id="sb-tm-port">n/a</span></div>
-                <div class="meta-chip">Feed <span id="sb-tm-feed">n/a</span></div>
-            </div>
-        </summary>
-        <form id="sb-trackman-form" class="config-grid">
-            <div>
-                <label for="sb-trackman-port">UDP Port</label>
-                <input id="sb-trackman-port" type="number" min="1" max="65535" placeholder="20998" />
-            </div>
-            <div>
-                <label for="sb-trackman-feed-type">Feed Type</label>
-                <select id="sb-trackman-feed-type">
-                    <option value="broadcast">Broadcast (Pitch + Hit, UDP 20998)</option>
-                    <option value="scoreboard">Scoreboard (Pitch OR Hit, UDP 20999)</option>
-                </select>
-            </div>
-            <div>
-                <label for="sb-trackman-enabled">Enabled</label>
-                <select id="sb-trackman-enabled">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="d-flex align-items-end">
-                <button type="submit" class="btn-config w-100">Save TrackMan</button>
-            </div>
-        </form>
-    </details>
 
     <div class="score-trackman-layout">
         <div>
@@ -226,9 +190,71 @@
             <div class="stat-value" id="sb-tm-time">n/a</div>
         </div>
     </div>
+
 </section>
 
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
+    <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
+        <div style="display: flex; align-items: center;">
+            <span class="dropdown-indicator"></span>
+            <div class="scoreboard-subtitle">Additional Data Sources</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">TrackMan <span id="sb-tm-status">n/a</span></div>
+            <div class="meta-chip">StatCrew <span id="sb-sc-status">n/a</span></div>
+        </div>
+    </summary>
+
+    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">TrackMan UDP</div>
+    <form id="sb-trackman-form" class="config-grid">
+        <div>
+            <label for="sb-trackman-port">UDP Port</label>
+            <input id="sb-trackman-port" type="number" min="1" max="65535" placeholder="20998" />
+        </div>
+        <div>
+            <label for="sb-trackman-feed-type">Feed Type</label>
+            <select id="sb-trackman-feed-type">
+                <option value="broadcast">Broadcast (Pitch + Hit, UDP 20998)</option>
+                <option value="scoreboard">Scoreboard (Pitch OR Hit, UDP 20999)</option>
+            </select>
+        </div>
+        <div>
+            <label for="sb-trackman-enabled">Enabled</label>
+            <select id="sb-trackman-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn-config w-100">Save TrackMan</button>
+        </div>
+    </form>
+
+    <div class="section-title" style="margin-top: 12px; margin-bottom: 8px;">StatCrew XML</div>
+    <form id="sb-statcrew-form" class="config-grid">
+        <div style="grid-column: span 2;">
+            <label for="sb-statcrew-path">StatCrew XML File Path</label>
+            <div class="path-input-group">
+                <input id="sb-statcrew-path" type="text" placeholder="/path/to/statcrew.xml" />
+                <button type="button" class="btn-browse" onclick="openFileBrowser('sb-statcrew-path')">Browse</button>
+            </div>
+        </div>
+        <div>
+            <label for="sb-statcrew-enabled">Enabled</label>
+            <select id="sb-statcrew-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn-config w-100">Save StatCrew</button>
+        </div>
+    </form>
+</details>
+
 <script>
+    let statcrewData = {};
+
     function renderSoftball(data) {
         setText('sb-inning', data.inning);
         setText('sb-balls', data.balls);
@@ -257,6 +283,16 @@
             away: { runs: data.away_runs, hits: data.away_hits, errors: data.away_errors },
             home: { runs: data.home_runs, hits: data.home_hits, errors: data.home_errors }
         });
+    }
+
+    function renderStatcrewSoftball(data) {
+        statcrewData = data || {};
+        const info = getStatcrewTeamInfo(statcrewData);
+        setText('sb-venue-info', info.venueText || 'Live scoreboard feed');
+        setText('sb-away-name', info.visitorName || 'Away');
+        setText('sb-home-name', info.homeName || 'Home');
+        setText('sb-away-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+        setText('sb-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
     }
 
     function renderLinescoreSoftball(awayInnings, homeInnings, totals) {
@@ -340,8 +376,6 @@
             ? 'error'
             : (config.enabled ? (config.running ? 'live' : 'idle') : 'disabled');
         setText('sb-tm-status', status);
-        setText('sb-tm-port', config.port);
-        setText('sb-tm-feed', config.feed_type);
         document.getElementById('sb-trackman-port').value = config.port || '';
         document.getElementById('sb-trackman-feed-type').value = config.feed_type || 'broadcast';
         document.getElementById('sb-trackman-enabled').value = config.enabled ? 'true' : 'false';
@@ -393,6 +427,13 @@
             .catch(() => renderTrackmanSoftball({}));
     }
 
+    function fetchStatcrewSoftballData() {
+        fetch('/get_statcrew_data/Softball')
+            .then(response => response.json())
+            .then(data => renderStatcrewSoftball(data || {}))
+            .catch(() => renderStatcrewSoftball({}));
+    }
+
     function fetchSoftballData() {
         fetchData('Softball');
     }
@@ -404,7 +445,14 @@
     setInterval(fetchTrackmanSoftballData, 1000);
     bindTrackmanSoftballDefaults();
 
+    loadStatcrewConfig('Softball', 'sb');
+    fetchStatcrewSoftballData();
+    setInterval(fetchStatcrewSoftballData, 5000);
+
     document.getElementById('sb-trackman-form').addEventListener('submit', submitTrackmanSoftballConfig);
+    document.getElementById('sb-statcrew-form').addEventListener('submit', function(e) {
+        submitStatcrewConfig(e, 'Softball', 'sb');
+    });
 
     document.addEventListener('dataFetched', function (event) {
         renderSoftball(event.detail || {});
