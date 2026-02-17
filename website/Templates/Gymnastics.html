@@ -1,0 +1,647 @@
+{% extends "base.html" %}
+{% block title %}Gymnastics Scoreboard{% endblock %}
+
+{% block content %}
+<section class="scoreboard-shell gym-shell">
+    <div class="scoreboard-header gym-header">
+        <div class="gym-header-left">
+            <div class="scoreboard-title" id="gym-meet-name">Gymnastics</div>
+            <div class="scoreboard-subtitle" id="gym-meet-location">Live scoring feed</div>
+        </div>
+        <div class="gym-rotation-stack">
+            <div class="gym-rotation-card gym-rotation-number">
+                <div class="gym-rotation-title">Current Rotation</div>
+                <div class="gym-rotation-value" id="gym-rotation-label">--</div>
+            </div>
+            <div class="gym-rotation-card gym-rotation-events-card">
+                <div class="gym-rotation-title">Current Events</div>
+                <div class="gym-rotation-events">
+                    <div class="gym-rotation-row">
+                        <span id="gym-rotation-home-label">Home</span>
+                        <strong id="gym-rotation-home-event">--</strong>
+                    </div>
+                    <div class="gym-rotation-row">
+                        <span id="gym-rotation-away-label">Away</span>
+                        <strong id="gym-rotation-away-event">--</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="meta-row gym-header-right">
+            <div class="meta-chip">Updated <span id="gym-updated">--</span></div>
+        </div>
+    </div>
+
+    <div class="score-grid gym-score-grid">
+        <div class="team-card gym-team-card">
+            <div class="team-label"><span id="gym-home-name">Home</span> <span class="team-code" id="gym-home-code"></span></div>
+            <div class="team-score" id="gym-home-score">--</div>
+            <div class="gym-event-grid">
+                <div class="stat-line"><span>Vault</span><strong id="gym-home-vault">--</strong></div>
+                <div class="stat-line"><span>Bars</span><strong id="gym-home-bars">--</strong></div>
+                <div class="stat-line"><span>Beam</span><strong id="gym-home-beam">--</strong></div>
+                <div class="stat-line"><span>Floor</span><strong id="gym-home-floor">--</strong></div>
+            </div>
+        </div>
+        <div class="center-card gym-center-card">
+            <div class="gym-clock-label">Clock</div>
+            <div class="gym-clock-value" id="gym-center-clock">--</div>
+        </div>
+        <div class="team-card gym-team-card">
+            <div class="team-label"><span id="gym-away-name">Away</span> <span class="team-code" id="gym-away-code"></span></div>
+            <div class="team-score" id="gym-away-score">--</div>
+            <div class="gym-event-grid">
+                <div class="stat-line"><span>Vault</span><strong id="gym-away-vault">--</strong></div>
+                <div class="stat-line"><span>Bars</span><strong id="gym-away-bars">--</strong></div>
+                <div class="stat-line"><span>Beam</span><strong id="gym-away-beam">--</strong></div>
+                <div class="stat-line"><span>Floor</span><strong id="gym-away-floor">--</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Current Event Lineups</div>
+    <div class="gym-lineup-grid">
+        <div class="gym-lineup-card">
+            <div class="gym-lineup-header">
+                <span class="gym-lineup-team" id="gym-home-lineup-team">Home</span>
+                <span class="gym-lineup-event" id="gym-home-lineup-event">--</span>
+            </div>
+            <div class="gym-lineup-list" id="gym-home-lineup-list"></div>
+        </div>
+        <div class="gym-lineup-card">
+            <div class="gym-lineup-header">
+                <span class="gym-lineup-team" id="gym-away-lineup-team">Away</span>
+                <span class="gym-lineup-event" id="gym-away-lineup-event">--</span>
+            </div>
+            <div class="gym-lineup-list" id="gym-away-lineup-list"></div>
+        </div>
+    </div>
+
+    <div class="gym-allaround" id="gym-allaround">
+        <div class="section-title" style="margin-top: 14px;">All-Around Leaders</div>
+        <div class="gym-allaround-list" id="gym-leaders-aa"></div>
+    </div>
+
+</section>
+
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
+    <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
+        <div style="display: flex; align-items: center;">
+            <span class="dropdown-indicator"></span>
+            <div class="scoreboard-subtitle">Additional Data Sources</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">Virtius <span id="gym-virtius-status">n/a</span></div>
+        </div>
+    </summary>
+
+    <p style="margin: 0 0 8px; color: var(--ink-soft); font-size: 0.8rem;">
+        OES clock source is configured on the <a href="/" style="color: var(--carolina-soft);">Home page</a> under Data Sources (Sport Override: Lacrosse -&gt; Gymnastics).
+    </p>
+    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">Virtius Live Scoring</div>
+    <form id="gym-virtius-form" class="config-grid">
+        <div style="grid-column: span 2;">
+            <label for="gym-virtius-url">Session URL</label>
+            <input id="gym-virtius-url" type="text" placeholder="https://virti.us/session?s=..." />
+        </div>
+        <div>
+            <label for="gym-virtius-interval">Poll Interval (sec)</label>
+            <input id="gym-virtius-interval" type="number" min="1" max="60" placeholder="2" />
+        </div>
+        <div>
+            <label for="gym-virtius-enabled">Enabled</label>
+            <select id="gym-virtius-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn-config w-100">Save Virtius</button>
+        </div>
+    </form>
+</details>
+
+<style>
+    html {
+        font-size: calc(16px + 25px);
+    }
+
+    .gym-shell {
+        transform: none;
+        padding: clamp(12px, 1.4vw, 18px);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .gym-header {
+        display: grid;
+        grid-template-columns: minmax(260px, 1fr) auto minmax(160px, 220px);
+        align-items: center;
+        gap: 14px;
+    }
+
+    .gym-header-left {
+        min-width: 0;
+        justify-self: start;
+    }
+
+    .gym-header-right {
+        justify-self: end;
+    }
+
+    .gym-rotation-stack {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+        align-items: stretch;
+        justify-self: center;
+    }
+
+    .gym-rotation-card {
+        background: rgba(7, 18, 38, 0.72);
+        border: 1px solid rgba(131, 198, 242, 0.18);
+        border-radius: 16px;
+        padding: 8px 12px;
+        text-align: center;
+        min-width: 160px;
+    }
+
+    .gym-rotation-title {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--ink-soft);
+    }
+
+    .gym-rotation-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        margin-top: 2px;
+    }
+
+    .gym-score-grid {
+        grid-template-columns: 1fr minmax(100px, 150px) 1fr;
+        gap: 10px;
+        align-items: stretch;
+        margin-bottom: 12px;
+    }
+
+    .gym-team-card {
+        padding: 12px;
+    }
+
+    .gym-team-card .team-score {
+        font-size: clamp(1.3rem, 2.1vw, 1.8rem);
+    }
+
+    .team-code {
+        font-size: 0.75rem;
+        color: var(--ink-soft);
+        margin-left: 6px;
+        letter-spacing: 0.08em;
+    }
+
+    .gym-event-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px 8px;
+        margin-top: 10px;
+        font-size: 0.78rem;
+    }
+
+    .gym-event-grid .stat-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .gym-center-card {
+        text-align: center;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .gym-clock-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-soft);
+    }
+
+    .gym-clock-value {
+        font-size: clamp(2.0rem, 3.4vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        margin-bottom: 2px;
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    .gym-rotation-events-card .gym-rotation-events {
+        font-size: 0.7rem;
+    }
+
+    .gym-rotation-events {
+        margin-top: 4px;
+        display: grid;
+        gap: 4px;
+        font-size: 0.72rem;
+    }
+
+    .gym-rotation-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .gym-lineup-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .gym-lineup-card {
+        background: rgba(7, 18, 38, 0.7);
+        border: 1px solid rgba(131, 198, 242, 0.18);
+        border-radius: 16px;
+        padding: 10px;
+        min-height: 160px;
+    }
+
+    .gym-lineup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+    .gym-lineup-team {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-soft);
+    }
+
+    .gym-lineup-event {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--carolina-soft);
+    }
+
+    .gym-lineup-list {
+        display: grid;
+        gap: 4px;
+        font-size: 0.9rem;
+    }
+
+    .gym-lineup-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: start;
+    }
+
+    .gym-lineup-name {
+        font-weight: 600;
+        line-height: 1.15;
+    }
+
+    .gym-lineup-score {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink-soft);
+    }
+
+    .gym-leader-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-soft);
+    }
+
+    .gym-leader-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4px;
+        margin-top: 8px;
+        font-size: 0.86rem;
+    }
+
+    .gym-leader-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: start;
+        gap: 8px;
+    }
+
+    .gym-leader-name {
+        font-weight: 600;
+        min-width: 0;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        line-height: 1.15;
+    }
+
+    .gym-leader-score {
+        font-family: "JetBrains Mono", monospace;
+        flex-shrink: 0;
+    }
+
+    .gym-leader-placeholder .gym-leader-name,
+    .gym-leader-placeholder .gym-leader-score {
+        color: var(--ink-soft);
+        font-weight: 500;
+    }
+
+    .gym-allaround-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px 14px;
+        margin-top: 8px;
+        font-size: 0.86rem;
+    }
+
+    @media (max-width: 1200px) {
+        body:not(.scoreboard-fixed) .gym-header {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        body:not(.scoreboard-fixed) .gym-header-right {
+            justify-self: center;
+        }
+
+        body:not(.scoreboard-fixed) .gym-rotation-stack {
+            margin: 0 auto;
+            width: min(360px, 100%);
+            grid-template-columns: 1fr 1fr;
+        }
+
+        body:not(.scoreboard-fixed) .gym-score-grid {
+            grid-template-columns: 1fr;
+        }
+
+        body:not(.scoreboard-fixed) .gym-lineup-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        body:not(.scoreboard-fixed) .gym-allaround-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 768px) {
+        body:not(.scoreboard-fixed) .gym-rotation-stack {
+            grid-template-columns: 1fr;
+        }
+
+        body:not(.scoreboard-fixed) .gym-lineup-grid {
+            grid-template-columns: 1fr;
+        }
+
+        body:not(.scoreboard-fixed) .gym-allaround-list {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    const GYM_EVENT_KEYS = ['VAULT', 'BARS', 'BEAM', 'FLOOR'];
+    const GYM_LEADER_COUNT = 6;
+    const GYM_EVENT_LABELS = {
+        VAULT: 'Vault',
+        BARS: 'Bars',
+        BEAM: 'Beam',
+        FLOOR: 'Floor',
+        ALL_AROUND: 'All-Around'
+    };
+
+    function formatGymEventLabel(code) {
+        return GYM_EVENT_LABELS[code] || code || '--';
+    }
+
+    function formatUpdatedTime(timestamp) {
+        if (!timestamp) return '--';
+        const date = new Date(timestamp * 1000);
+        if (Number.isNaN(date.getTime())) return '--';
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function renderLeaderList(containerId, leaders, limit = GYM_LEADER_COUNT, fillPlaceholders = false) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.textContent = '';
+
+        const safeLeaders = Array.isArray(leaders) ? leaders.slice(0, limit) : [];
+        if (!safeLeaders.length && !fillPlaceholders) {
+            container.textContent = 'n/a';
+            return;
+        }
+
+        safeLeaders.forEach((leader, index) => {
+            const row = document.createElement('div');
+            row.className = 'gym-leader-row';
+
+            const name = document.createElement('span');
+            name.className = 'gym-leader-name';
+            const teamTag = leader.team ? ` (${leader.team})` : '';
+            name.textContent = `${index + 1}. ${leader.name || 'Gymnast'}${teamTag}`;
+
+            const score = document.createElement('span');
+            score.className = 'gym-leader-score';
+            score.textContent = leader.score || '--';
+
+            row.appendChild(name);
+            row.appendChild(score);
+            container.appendChild(row);
+        });
+
+        if (fillPlaceholders) {
+            for (let i = safeLeaders.length; i < limit; i += 1) {
+                const row = document.createElement('div');
+                row.className = 'gym-leader-row gym-leader-placeholder';
+
+                const name = document.createElement('span');
+                name.className = 'gym-leader-name';
+                name.textContent = `${i + 1}. --`;
+
+                const score = document.createElement('span');
+                score.className = 'gym-leader-score';
+                score.textContent = '--';
+
+                row.appendChild(name);
+                row.appendChild(score);
+                container.appendChild(row);
+            }
+        }
+    }
+
+    function renderLineup(containerId, lineup, limit = GYM_LEADER_COUNT) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.textContent = '';
+
+        const safeLineup = Array.isArray(lineup) ? lineup.slice(0, limit) : [];
+        safeLineup.forEach((gymnast, index) => {
+            const row = document.createElement('div');
+            row.className = 'gym-lineup-row';
+
+            const name = document.createElement('span');
+            name.className = 'gym-lineup-name';
+            name.textContent = `${index + 1}. ${gymnast.name || 'Gymnast'}`;
+
+            const score = document.createElement('span');
+            score.className = 'gym-lineup-score';
+            score.textContent = gymnast.score || '0.000';
+
+            row.appendChild(name);
+            row.appendChild(score);
+            container.appendChild(row);
+        });
+
+        for (let i = safeLineup.length; i < limit; i += 1) {
+            const row = document.createElement('div');
+            row.className = 'gym-lineup-row gym-leader-placeholder';
+
+            const name = document.createElement('span');
+            name.className = 'gym-lineup-name';
+            name.textContent = `${i + 1}. --`;
+
+            const score = document.createElement('span');
+            score.className = 'gym-lineup-score';
+            score.textContent = '0.000';
+
+            row.appendChild(name);
+            row.appendChild(score);
+            container.appendChild(row);
+        }
+    }
+
+    function renderTeam(prefix, team) {
+        const fallbackName = prefix === 'home' ? 'Home' : 'Away';
+        setText(`gym-${prefix}-name`, team.name || fallbackName);
+        setText(`gym-${prefix}-code`, team.tricode ? `(${team.tricode})` : '');
+        setText(`gym-${prefix}-score`, team.score || '--');
+
+        const events = team.event_scores || {};
+        setText(`gym-${prefix}-vault`, events.VAULT || '--');
+        setText(`gym-${prefix}-bars`, events.BARS || '--');
+        setText(`gym-${prefix}-beam`, events.BEAM || '--');
+        setText(`gym-${prefix}-floor`, events.FLOOR || '--');
+    }
+
+    function renderRotationEvents(rotationEvents, rotation, home, away) {
+        const map = rotationEvents[String(rotation || '')] || {};
+        const homeKey = home.tricode || home.name;
+        const awayKey = away.tricode || away.name;
+
+        setText('gym-rotation-home-label', home.name || 'Home');
+        setText('gym-rotation-away-label', away.name || 'Away');
+        setText('gym-rotation-home-event', formatGymEventLabel(map[homeKey]));
+        setText('gym-rotation-away-event', formatGymEventLabel(map[awayKey]));
+    }
+
+    function renderVirtiusGymnastics(data) {
+        const meet = data.meet || {};
+        setText('gym-meet-name', meet.name || 'Gymnastics');
+        setText('gym-meet-location', meet.location || 'Live scoring feed');
+
+        const updated = data.updated_at || (data._meta && data._meta.fetched_at);
+        setText('gym-updated', updated ? formatUpdatedTime(updated) : '--');
+
+        const teams = Array.isArray(data.teams) ? data.teams : [];
+        const home = teams.find(team => team.home) || teams[0] || {};
+        const away = teams.find(team => !team.home) || teams[1] || {};
+
+        const rotation = data.current_rotation;
+        setText('gym-rotation-label', rotation ? `Rotation ${rotation}` : '--');
+
+        renderTeam('home', home);
+        renderTeam('away', away);
+
+        renderRotationEvents(data.rotation_events || {}, rotation, home, away);
+
+        const homeEvent = formatGymEventLabel(home.current_event);
+        const awayEvent = formatGymEventLabel(away.current_event);
+        setText('gym-home-lineup-team', home.name || 'Home');
+        setText('gym-away-lineup-team', away.name || 'Away');
+        setText('gym-home-lineup-event', homeEvent);
+        setText('gym-away-lineup-event', awayEvent);
+
+        renderLineup('gym-home-lineup-list', home.current_lineup || []);
+        renderLineup('gym-away-lineup-list', away.current_lineup || []);
+
+        const allAround = (data.leaders || {}).ALL_AROUND || [];
+        renderLeaderList('gym-leaders-aa', allAround, GYM_LEADER_COUNT, true);
+    }
+
+    function renderGymnastics(payload) {
+        const clock = payload.clock || (payload.oes && payload.oes.game_clock);
+        setText('gym-center-clock', clock || '--');
+        renderVirtiusGymnastics(payload.virtius || {});
+    }
+
+    function fetchGymnasticsData() {
+        fetch('/get_gymnastics_data', { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => renderGymnastics(data || {}))
+            .catch(() => renderGymnastics({}));
+    }
+
+    function renderVirtiusConfig(config) {
+        const status = config.error
+            ? 'error'
+            : (config.enabled ? (config.running ? 'live' : 'idle') : 'disabled');
+        setText('gym-virtius-status', status);
+
+        const urlInput = document.getElementById('gym-virtius-url');
+        const intervalInput = document.getElementById('gym-virtius-interval');
+        const enabledSelect = document.getElementById('gym-virtius-enabled');
+
+        if (urlInput) urlInput.value = config.session_url || '';
+        if (intervalInput) intervalInput.value = config.poll_interval || '';
+        if (enabledSelect) enabledSelect.value = config.enabled ? 'true' : 'false';
+    }
+
+    function loadVirtiusConfig() {
+        fetch('/virtius_config/Gymnastics')
+            .then(response => response.json())
+            .then(data => renderVirtiusConfig(data || {}))
+            .catch(() => renderVirtiusConfig({ enabled: false }));
+    }
+
+    function submitVirtiusConfig(event) {
+        event.preventDefault();
+        const sessionUrl = document.getElementById('gym-virtius-url').value;
+        const intervalValue = parseFloat(document.getElementById('gym-virtius-interval').value);
+        const enabled = document.getElementById('gym-virtius-enabled').value === 'true';
+
+        const payload = {
+            session_url: sessionUrl,
+            enabled: enabled,
+        };
+        if (!Number.isNaN(intervalValue)) {
+            payload.poll_interval = intervalValue;
+        }
+
+        fetch('/virtius_config/Gymnastics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+            .then(response => {
+                if (!response.ok) return response.json().then(data => { throw data; });
+                return response.json();
+            })
+            .then(data => renderVirtiusConfig(data || {}))
+            .catch(error => renderVirtiusConfig({ enabled: false, error: error.error || 'error' }));
+    }
+
+    fetchGymnasticsData();
+    setInterval(fetchGymnasticsData, 1000);
+
+    loadVirtiusConfig();
+    document.getElementById('gym-virtius-form').addEventListener('submit', submitVirtiusConfig);
+</script>
+{% endblock %}
