@@ -1,0 +1,52 @@
+{
+  "Wrestling": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Softball": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Soccer": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Football": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Lacrosse": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Hockey": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Basketball": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Baseball": {
+    "enabled": true,
+    "file_path": "/mnt/stats/bs/unc.xml",
+    "poll_interval": 2.0
+  },
+  "Volleyball": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  },
+  "Gymnastics": {
+    "enabled": false,
+    "file_path": "",
+    "poll_interval": 5.0
+  }
+}

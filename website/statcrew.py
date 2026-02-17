@@ -20,7 +20,7 @@ _ALL_SPORTS = {
 }
 
 _CONFIG_FILE = "statcrew_sources.json"
-_DEFAULT_POLL_INTERVAL = 5.0
+_DEFAULT_POLL_INTERVAL = 2.0
 
 statcrew_config = {}
 statcrew_data = {}
