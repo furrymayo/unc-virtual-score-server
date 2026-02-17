@@ -371,6 +371,20 @@ def _parse_statcrew_xml(xml_text):
                     "away" if batting_vh == "V" else "home"
                 )
 
+            # Live pitch count: cumulative pitches + current at-bat pitches.
+            # <pitching pitches="X"> only updates after completed at-bats.
+            # <status np="Y"> tracks pitches in the current at-bat.
+            # Add np to the active pitcher's cumulative count.
+            status_np = int(status.get("np", "0") or "0")
+            status_pitcher = status.get("pitcher", "")
+            if status_np and status_pitcher:
+                fielding_vh = "V" if batting_vh == "H" else "H"
+                prefix = "away" if fielding_vh == "V" else "home"
+                cum_pitches = parsed.get(f"{prefix}_pitcher_pitches", "")
+                if cum_pitches:
+                    live_pitches = int(cum_pitches) + status_np
+                    parsed[f"{prefix}_pitcher_pitches"] = str(live_pitches)
+
         # Build batter lists from batord (full lineup) + overlay hitting stats
         for team in teams:
             vh = team.get("vh", "").upper()
