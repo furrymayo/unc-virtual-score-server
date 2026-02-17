@@ -3,12 +3,21 @@
 Tags: #project #status/active #todo
 
 ## Overview
-Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport-specific scoreboards in a browser. Modular architecture with 6 backend modules, 50+ tests, and systemd deployment for Ubuntu. Supports TrackMan UDP for pitch/hit tracking and StatCrew XML for enhanced game stats.
+Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport-specific scoreboards in a browser. Modular architecture with 6 backend modules, 95 tests, and systemd deployment for Ubuntu. Supports TrackMan UDP for pitch/hit tracking and StatCrew XML for real-time game state (current pitcher/batter, live pitch count, batting team).
 
 **Gymnastics special case**: The OES controller has no Gymnastics sport code, so the gymnastics venue transmits using the Lacrosse packet type. We use per-source `sport_overrides` to remap Lacrosse packets to Gymnastics for that venue, and only the running clock is consumed for Gymnastics.
 
 Repo: https://github.com/furrymayo/unc-virtual-score-server
 Secure config lives in `.env` (see `.env.example` for required variables).
+
+## Session Summary (2026-02-18)
+- **`<status>` Element Discovery**: StatCrew XML has a `<status>` element with real-time game state — current batter, pitcher, batting team (vh), pitches in current at-bat (np), ball/strike count, outs, inning. This is the same data source that powers the team's live stats website.
+- **Pitcher Detection Rewrite**: Uses `<pitching appear="N">` attribute to find the most recently entered pitcher per team. Handles mid-game substitutions correctly (relievers show instead of starters).
+- **Live Pitch Count**: `<pitching pitches>` (cumulative, updates after completed at-bats) + `<status np>` (current at-bat pitches). Self-correcting — when at-bat ends, cumulative increases by np and np resets to 0.
+- **Batter from `<status>`**: Current batter comes from `<status batter>` (real-time), looked up in `batord` roster for name/stats. `batord` updates live with substitutions.
+- **Baseball TV Layout Restructure**: Compact [Pitching|Inning|AtBat] top row, [Away|B/S/O pills|Home] score row, linescore moved into center column between TrackMan and Strike Zone.
+- **Reduced Polling**: StatCrew poll and browser fetch intervals reduced from 5s → 2s (file mtime check 0.3ms, parse 10ms — negligible load). Worst-case lag reduced from 10s to 4s.
+- **Protocol Fix**: Fixed baseball `batter_num` 0x3A handling for ones digit in `protocol.py`.
 
 ## Session Summary (2026-02-17)
 - **StatCrew XML Integration**: Added `statcrew.py` module with XML parser and file watcher thread. Parses venue, teams, players, and stats from StatCrew files.
@@ -38,10 +47,12 @@ Secure config lives in `.env` (see `.env.example` for required variables).
 - [ ] Add StatCrew data sources panel to remaining sport pages (Basketball, Hockey, etc.)
 - [ ] Validate TrackMan feed values against live stadium output
 - [ ] Add admin protection for API endpoints if exposed beyond trusted networks
+- [x] ~~Confirm inning/top-bot derivation for baseball against real game flow~~ — Resolved via `<status vh>` element
+- [x] ~~Real-time pitch count for current pitcher~~ — Resolved via `pitches` + `status np`
 
 ## Roadmap / Next Steps
 - ~~Validate TrackMan feed values against live stadium output and map additional metrics.~~ *Partially done: coordinate system documented, needs live verification*
-- Confirm inning/top-bot derivation for baseball/softball against real game flow.
+- ~~Confirm inning/top-bot derivation for baseball/softball against real game flow.~~ *Done: `<status vh>` provides authoritative batting team.*
 - Add admin protection for API endpoints if exposed beyond trusted networks.
 - Confirm Football/Volleyball/Soccer/Wrestling packet lengths from the legacy app.
 
@@ -58,7 +69,7 @@ website/
   trackman.py            — TrackMan state, parser, UDP listener
   statcrew.py            — StatCrew XML parser, file watcher thread
   Templates/             — Jinja2 HTML templates
-tests/                   — 50+ pytest tests
+tests/                   — 95 pytest tests
 deploy/                  — systemd unit file
 docs/                    — Architecture, infrastructure, decisions, issues
 examples/                — Sample StatCrew XML file
