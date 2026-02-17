@@ -106,3 +106,16 @@ Origin is at center of home plate, ground level.
 ### StatCrew Config Persistence
 
 Config is saved to `statcrew_sources.json` in the working directory. File watcher threads poll the XML file mtime (default 5s interval) and re-parse on change.
+
+### StatCrew Network Share
+
+StatCrew XML files live on a Windows network share mounted via CIFS on the Ubuntu server.
+
+| Parameter | Value |
+|-----------|-------|
+| Mount point | `/mnt/stats` |
+| Credentials file | `/etc/credentials-statcrew` (mode 600) |
+| fstab options | `vers=3.0,_netdev,nofail` |
+| Persistence | `/etc/fstab` entry, survives reboots |
+
+Credentials are stored securely on the server — see `README.md` "Mounting the StatCrew Network Share" for setup steps. The app's StatCrew config UI browses this mount via `/browse_files`.

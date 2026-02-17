@@ -1,6 +1,6 @@
 # Decision Log
 
-**Last Updated**: 2026-02-16
+**Last Updated**: 2026-02-17
 
 ## Decisions
 
@@ -16,3 +16,5 @@
 | 2026-02-16 | Rename auth.py → sports.py | File had nothing to do with auth; blueprint name was misleading | Keep name (rejected) |
 | 2026-02-16 | Deploy with git + venv + systemd (not Docker) | Testing phase — serial port passthrough in Docker is painful, faster iteration with git pull | Docker, gunicorn/nginx |
 | 2026-02-16 | New repo (unc-virtual-score-server) | Clean start without IDE files and stale backups in history | Push to existing flaskVirtualScoreboard repo |
+| 2026-02-17 | Per-source sport_overrides for Gymnastics | OES has no Gymnastics sport code; gym venue sends Lacrosse packets. Remap at the source level to avoid affecting real Lacrosse venues | Global sport code remap (would break Lacrosse), separate listener |
+| 2026-02-17 | CIFS mount at /mnt/stats for StatCrew XML | Persistent network share avoids manual file transfers; app file browser can directly access StatCrew XMLs | SCP/rsync cron job, NFS (Windows share = CIFS) |

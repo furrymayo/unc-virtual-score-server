@@ -49,13 +49,16 @@ website/
   __init__.py            # Flask app factory, registers blueprints
   views.py               # Home page route
   sports.py              # Sport page routes (renders templates)
-  api.py                 # API routes (9 endpoints)
+  api.py                 # 12 API routes (Blueprint)
   protocol.py            # Serial protocol parser and sport decoders
   ingestion.py           # Data store, serial/TCP/UDP readers, source management
   trackman.py            # TrackMan state, parser, UDP listener
+  statcrew.py            # StatCrew XML parser, file watcher thread
   Templates/             # Jinja2 HTML templates
 tests/                   # pytest test suite
 deploy/                  # Deployment files (systemd unit)
+docs/                    # Architecture, infrastructure, decisions, issues
+examples/                # Sample StatCrew XML file
 ```
 
 ## Local Development
@@ -271,6 +274,9 @@ sudo ufw allow 20998/udp   # TrackMan (default)
 | GET/POST | `/trackman_config/<sport>` | Get or update TrackMan config |
 | GET | `/get_trackman_data/<sport>` | Latest TrackMan data |
 | GET | `/get_trackman_debug/<sport>` | TrackMan debug info (raw + parsed) |
+| GET/POST | `/statcrew_config/<sport>` | Get or update StatCrew config |
+| GET | `/get_statcrew_data/<sport>` | Latest parsed StatCrew data |
+| GET | `/browse_files?path=...` | Browse server filesystem for XML files |
 
 ## Environment Variables
 

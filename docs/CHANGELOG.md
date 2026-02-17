@@ -30,6 +30,17 @@ All notable changes to this project will be documented in this file.
   - TrackMan X is already centered at 0 (center of plate).
 - **Note**: Awaiting verification with live TrackMan data.
 
+### Gymnastics Special Case
+- Added per-source `sport_overrides` so a gymnastics venue can remap Lacrosse-coded packets to Gymnastics.
+- Gymnastics parsing now consumes only the running clock from Lacrosse packets.
+- Data source API supports `sport_overrides` on create/update.
+
+### StatCrew Network Share (Server)
+- Added CIFS mount instructions to `README.md` for persistent network share at `/mnt/stats`.
+- Credentials stored in `/etc/credentials-statcrew` (mode 600) on the Ubuntu server.
+- Persistent via `/etc/fstab` with `_netdev,nofail` options.
+- StatCrew XML files browsable from the app's config UI via `/browse_files`.
+
 ### Other
 - Added `tests/test_statcrew.py` with unit tests for StatCrew parsing.
 - Added `examples/baseballDataStats.xml` sample StatCrew file.

@@ -15,6 +15,7 @@ Secure config lives in `.env` (see `.env.example` for required variables).
 - **Baseball Page Redesign**: Team names/records from StatCrew, stadium/weather display, current pitcher/batter cards with stats, center-stacked layout.
 - **Strike Zone Fix**: Corrected coordinate mapping — now uses Z (height) instead of Y (depth). Removed incorrect xOffset/xScale values.
 - **New APIs**: `/statcrew_config/<sport>`, `/get_statcrew_data/<sport>`, `/browse_files` for server-side file selection.
+- **Gymnastics Override**: Added per-source `sport_overrides` to remap Lacrosse-coded packets to Gymnastics (clock-only) without affecting real Lacrosse venues.
 - **StatCrew Network Share**: Added CIFS mount instructions to README for persistent network share at `/mnt/stats` on the Ubuntu server. Credentials stored securely in `/etc/credentials-statcrew` (see README for setup). StatCrew XML files are browsable from the app's config UI.
 - **Pending**: Strike zone calibration needs verification with live TrackMan data (check `/get_trackman_debug/Baseball`).
 

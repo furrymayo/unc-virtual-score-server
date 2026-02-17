@@ -12,8 +12,10 @@ Flask web application that displays real-time sports scoreboards by reading data
 - Modular architecture: monolith refactored into 6 focused modules
 - All 10 sport parsers fully implemented
 - TCP data source management with persistence (data_sources.json)
+- Per-source `sport_overrides` for Gymnastics (Lacrosse → Gymnastics remap)
 - TrackMan UDP integration for Baseball/Softball (strike zone visualization)
 - StatCrew XML file watcher for enhanced stats (team names, pitcher/batter stats)
+- StatCrew network share mounted at `/mnt/stats` on Ubuntu server (CIFS, persistent)
 - 50+ pytest tests covering protocol, ingestion, trackman, statcrew, and API
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
@@ -64,7 +66,7 @@ main.py          → website (create_app), ingestion, statcrew
 | Sport-specific parsing | `docs/reference/` |
 
 ## Recent Activity
-- 2026-02-17: Added StatCrew XML integration, redesigned Baseball page, fixed strike zone coordinate mapping (needs live verification)
+- 2026-02-17: Added Gymnastics sport_overrides, CIFS network share mount for StatCrew (`/mnt/stats`), StatCrew XML integration, redesigned Baseball page, fixed strike zone coordinate mapping (needs live verification)
 - 2026-02-16: Major refactor — split main.py monolith into 5 modules, added tests, systemd deploy, XSS fixes, pushed to new repo (unc-virtual-score-server)
 - 2026-02-14: Rebuilt sport UIs with dark UNC theme, added TrackMan dashboard
 - 2026-02-13: Added TCP/UDP ingestion, full sport parsers, source tracking
