@@ -1005,7 +1005,9 @@
             const rawX = parseFloat(data.plate_x);
             const rawY = parseFloat(data.plate_y);
             const rawZ = parseFloat(data.plate_z);
-            const vertical = Number.isFinite(rawY) ? rawY : rawZ;
+            // TrackMan coordinates: X=horizontal, Y=depth (toward pitcher), Z=height
+            // Use Z for vertical positioning (height above ground)
+            const vertical = rawZ;
 
             if (!Number.isFinite(rawX) || !Number.isFinite(vertical)) {
                 dot.style.display = 'none';

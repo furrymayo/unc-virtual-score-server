@@ -364,9 +364,9 @@
 
         updateStrikeZone('bs-zone-dot', 'bs-zone-readout', data, {
             zone: { minX: -0.83, maxX: 0.83, minV: 1.5, maxV: 3.3775 },
-            margin: 1.0,
-            xOffset: 1.42,
-            xScale: 0.85
+            margin: 1.0
+            // TrackMan X is already centered at 0 (center of plate)
+            // No offset or scale adjustment needed
         });
     }
 
