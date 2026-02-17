@@ -69,13 +69,15 @@
         min-height: 0;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .baseball-scoreboard .strikezone-column .zone-canvas {
-        flex: 1;
-        min-height: 0;
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 100%;
         aspect-ratio: 1 / 1;
-        max-height: 100%;
     }
 
     /* Linescore in center column */
@@ -86,24 +88,24 @@
     /* Score-count row: team | B/S/O pills | team */
     .baseball-scoreboard .score-count-row {
         display: grid;
-        grid-template-columns: minmax(80px, 0.25fr) 1fr minmax(80px, 0.25fr);
+        grid-template-columns: minmax(60px, 0.18fr) 1fr minmax(60px, 0.18fr);
         gap: clamp(6px, 0.8vw, 12px);
         align-items: stretch;
     }
 
-    /* Compact team cards in score row — equal height, vertically centered content */
+    /* Compact team cards in score row */
     .baseball-scoreboard .score-count-row .team-card {
-        padding: clamp(4px, 0.6vh, 10px);
+        padding: clamp(2px, 0.4vh, 8px);
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
     .baseball-scoreboard .score-count-row .team-label {
-        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-size: clamp(0.8rem, 1vw, 1.4rem);
         justify-content: center;
     }
     .baseball-scoreboard .score-count-row .team-score {
-        font-size: clamp(2.5rem, 4vw, 6rem);
+        font-size: clamp(2rem, 3vw, 4.5rem);
     }
 
     /* Compact center cards in top row */
@@ -111,10 +113,17 @@
         padding: clamp(6px, 0.8vh, 12px);
     }
 
-    /* TrackMan data values: centered */
+    /* TrackMan: shrink labels, let values scale within card */
+    .baseball-scoreboard .trackman-label {
+        font-size: clamp(0.55rem, 0.7vw, 0.9rem);
+    }
+    .baseball-scoreboard .trackman-unit {
+        font-size: clamp(0.55rem, 0.7vw, 0.9rem);
+    }
     .baseball-scoreboard .trackman-value {
-        font-size: clamp(1.8rem, 2.8vw, 3.8rem);
+        font-size: clamp(1.4rem, 2vw, 2.8rem);
         text-align: center;
+        margin-top: 2px;
     }
 
     /* Balls/Strikes/Outs: pronounced cards with glow */
@@ -159,10 +168,14 @@
         font-size: clamp(1.1rem, 1.8vw, 2.4rem);
     }
 
-    /* Linescore team name: left align, +10px */
+    /* Linescore team name: short code, constrained width */
     .baseball-scoreboard .team-row-label {
-        font-size: clamp(1.6rem, 2.2vw, 3rem);
+        font-size: clamp(1.4rem, 1.8vw, 2.4rem);
         text-align: left;
+        max-width: 6ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     /* Inning headers */
@@ -392,8 +405,8 @@
         const awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
         const homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
 
-        const awayLabel = statcrewData.away_name || 'Away';
-        const homeLabel = statcrewData.home_name || 'Home';
+        const awayLabel = statcrewData.away_code || statcrewData.away_name || 'Away';
+        const homeLabel = statcrewData.home_code || statcrewData.home_name || 'Home';
 
         renderLinescoreBaseball(awayInnings, homeInnings, {
             away: { runs: data.away_runs, hits: data.away_hits, errors: data.away_errors, label: awayLabel },
@@ -408,7 +421,10 @@
         if (halfMatch) currentHalf = halfMatch[1].toUpperCase();
 
         updateCurrentPitcher();
-        updateCurrentBatter(data.batter_num);
+        // Only use OES batter if StatCrew isn't providing one
+        if (!statcrewData.current_batter_name) {
+            updateCurrentBatter(data.batter_num);
+        }
     }
 
     function renderStatcrewBaseball(data) {
@@ -438,13 +454,17 @@
         const name = statcrewData.current_batter_name || '';
         if (!name) return;
 
-        // Search both teams for matching batter by compact name
+        // Normalize: strip spaces, periods, collapse comma-space → comma
+        // "Johnson Jr., RJ" → "JohnsonJr,RJ" to match XML compact form
+        const normalize = function(s) {
+            return s.replace(/\./g, '').replace(/,\s+/g, ',').replace(/\s+/g, '');
+        };
+        const target = normalize(name);
+
         const allBatters = (statcrewData.away_batters || []).concat(statcrewData.home_batters || []);
         const batter = allBatters.find(function(b) {
             if (!b.name) return false;
-            // Match compact form: "JohnsonJr,RJ" vs "Johnson Jr., RJ"
-            const compact = b.name.replace(/,\s+/g, ',').replace(/\./g, '');
-            return compact === name || b.name === name;
+            return normalize(b.name) === target || b.name === name;
         });
 
         if (batter) {
