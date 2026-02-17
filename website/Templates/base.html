@@ -574,11 +574,28 @@
             align-items: center;
         }
 
+        .file-browser-path-bar {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+        }
+
         .file-browser-path {
             font-family: "JetBrains Mono", monospace;
             font-size: 0.8rem;
+            color: var(--ink);
+            background: rgba(8, 18, 34, 0.7);
+            border: 1px solid rgba(131, 198, 242, 0.25);
+            border-radius: 6px;
+            padding: 4px 8px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .file-browser-path::placeholder {
             color: var(--ink-soft);
-            word-break: break-all;
         }
 
         .file-browser-close {
@@ -1093,6 +1110,13 @@
         let fileBrowserCallback = null;
         let fileBrowserCurrentPath = '';
 
+        function navigateToTypedPath() {
+            const pathInput = document.getElementById('file-browser-path');
+            if (pathInput && pathInput.value.trim()) {
+                loadDirectory(pathInput.value.trim());
+            }
+        }
+
         function openFileBrowser(inputId) {
             fileBrowserCallback = inputId;
             const input = document.getElementById(inputId);
@@ -1103,6 +1127,16 @@
             if (modal) {
                 modal.classList.add('active');
                 loadDirectory(startPath || '');
+            }
+
+            const pathInput = document.getElementById('file-browser-path');
+            if (pathInput) {
+                pathInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        navigateToTypedPath();
+                    }
+                });
             }
         }
 
@@ -1132,7 +1166,7 @@
             const listEl = document.getElementById('file-browser-list');
 
             if (pathEl) {
-                pathEl.textContent = data.current_path || '/';
+                pathEl.value = data.current_path || '/';
             }
 
             if (listEl) {
@@ -1219,7 +1253,11 @@
     <div id="file-browser-modal" class="file-browser-modal">
         <div class="file-browser-content">
             <div class="file-browser-header">
-                <span class="file-browser-path" id="file-browser-path">/</span>
+                <div class="file-browser-path-bar">
+                    <input type="text" class="file-browser-path" id="file-browser-path"
+                           value="/" placeholder="Type a path and press Enter..." />
+                    <button class="btn-browse" onclick="navigateToTypedPath()">Go</button>
+                </div>
                 <button class="file-browser-close" onclick="closeFileBrowser()">&times;</button>
             </div>
             <div class="file-browser-list" id="file-browser-list"></div>

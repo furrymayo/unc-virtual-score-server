@@ -1,8 +1,10 @@
 import os
+import platform
+import string
 
 from flask import Blueprint, jsonify, request
 
-from . import ingestion, statcrew, trackman
+from . import ingestion, statcrew, trackman, virtius
 
 api = Blueprint("api", __name__)
 
@@ -227,6 +229,28 @@ def get_trackman_debug(sport):
     return jsonify(trackman.get_debug(sport_name))
 
 
+@api.route("/virtius_config/<sport>", methods=["GET", "POST"])
+def virtius_config_endpoint(sport):
+    sport_name = virtius.normalize_sport(sport)
+    if not sport_name:
+        return jsonify({"error": "unsupported sport"}), 404
+
+    if request.method == "GET":
+        return jsonify(virtius.get_config(sport_name))
+
+    payload = request.json or {}
+    result, status_code = virtius.update_config(sport_name, payload)
+    return jsonify(result), status_code
+
+
+@api.route("/get_virtius_data/<sport>", methods=["GET"])
+def get_virtius_data(sport):
+    sport_name = virtius.normalize_sport(sport)
+    if not sport_name:
+        return jsonify({}), 404
+    return jsonify(virtius.get_data(sport_name))
+
+
 @api.route("/get_sources", methods=["GET"])
 def get_sources():
     return jsonify({"sources": ingestion.get_sources_snapshot()})
@@ -254,10 +278,42 @@ def get_statcrew_data(sport):
     return jsonify(statcrew.get_data(sport_name))
 
 
+@api.route("/get_gymnastics_data", methods=["GET"])
+def get_gymnastics_data():
+    source_id = request.args.get("source")
+    oes = ingestion.get_sport_data("Gymnastics", source_id)
+    return jsonify(
+        {
+            "clock": oes.get("game_clock"),
+            "oes": oes,
+            "virtius": virtius.get_data("Gymnastics"),
+        }
+    )
+
+
+def _list_windows_drives():
+    """Return a list of available Windows drive root paths."""
+    drives = []
+    for letter in string.ascii_uppercase:
+        drive = f"{letter}:\\"
+        if os.path.exists(drive):
+            drives.append(drive)
+    return drives
+
+
 @api.route("/browse_files", methods=["GET"])
 def browse_files():
     """Browse server filesystem for XML files."""
     path = request.args.get("path", "")
+
+    # Windows drive listing sentinel
+    if path == "__drives__" and platform.system() == "Windows":
+        entries = [
+            {"name": d, "path": d, "is_dir": True} for d in _list_windows_drives()
+        ]
+        return jsonify(
+            {"current_path": "My Computer", "parent_path": None, "entries": entries}
+        )
 
     if not path:
         path = os.getcwd()
@@ -279,7 +335,11 @@ def browse_files():
 
     parent_path = os.path.dirname(path)
     if parent_path == path:
-        parent_path = None
+        # At filesystem root — on Windows, go to drive list; on Linux/Mac, stay at root
+        if platform.system() == "Windows":
+            parent_path = "__drives__"
+        else:
+            parent_path = None
 
     entries = []
     try:

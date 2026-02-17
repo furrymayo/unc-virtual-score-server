@@ -1,4 +1,5 @@
 import json
+import os
 
 import pytest
 
@@ -168,3 +169,74 @@ class TestDataSourcesCRUD:
             content_type="application/json",
         )
         assert resp.status_code == 400
+
+
+class TestBrowseFiles:
+    def test_browse_default_cwd(self, client):
+        """Default (no path) returns cwd with entries."""
+        resp = client.get("/browse_files")
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert data["current_path"] == os.getcwd()
+        assert isinstance(data["entries"], list)
+        assert data["parent_path"] is not None or data["current_path"] == "/"
+
+    def test_browse_explicit_path(self, client, tmp_path):
+        """Browse a known tmp_path directory with an XML file and a subdir."""
+        sub = tmp_path / "subdir"
+        sub.mkdir()
+        xml_file = tmp_path / "game.xml"
+        xml_file.write_text("<game/>")
+        txt_file = tmp_path / "notes.txt"
+        txt_file.write_text("ignored")
+
+        resp = client.get(f"/browse_files?path={tmp_path}")
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert data["current_path"] == str(tmp_path)
+        names = [e["name"] for e in data["entries"]]
+        assert "subdir" in names
+        assert "game.xml" in names
+        assert "notes.txt" not in names
+
+    def test_browse_nonexistent_falls_back(self, client, tmp_path):
+        """Nonexistent path falls back to parent or cwd."""
+        fake = tmp_path / "does_not_exist"
+        resp = client.get(f"/browse_files?path={fake}")
+        assert resp.status_code == 200
+        data = resp.get_json()
+        # Should fall back to parent (tmp_path) since it exists
+        assert data["current_path"] == str(tmp_path)
+
+    def test_browse_file_redirects_to_parent(self, client, tmp_path):
+        """Passing a file path browses its parent directory."""
+        xml_file = tmp_path / "stats.xml"
+        xml_file.write_text("<stats/>")
+
+        resp = client.get(f"/browse_files?path={xml_file}")
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert data["current_path"] == str(tmp_path)
+
+    def test_browse_filters_xml_only(self, client, tmp_path):
+        """Only .xml files and directories appear in entries."""
+        (tmp_path / "a.xml").write_text("<a/>")
+        (tmp_path / "b.json").write_text("{}")
+        (tmp_path / "c.txt").write_text("hi")
+        (tmp_path / "d").mkdir()
+
+        resp = client.get(f"/browse_files?path={tmp_path}")
+        data = resp.get_json()
+        names = [e["name"] for e in data["entries"]]
+        assert "a.xml" in names
+        assert "d" in names
+        assert "b.json" not in names
+        assert "c.txt" not in names
+
+    def test_browse_drives_not_on_linux(self, client):
+        """__drives__ is treated as nonexistent path on Linux (not Windows)."""
+        resp = client.get("/browse_files?path=__drives__")
+        assert resp.status_code == 200
+        data = resp.get_json()
+        # On Linux, __drives__ is not a real path, so it falls back to cwd
+        assert data["current_path"] == os.getcwd()
