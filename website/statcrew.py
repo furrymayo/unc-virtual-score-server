@@ -335,68 +335,36 @@ def _parse_statcrew_xml(xml_text):
             parsed["home_record"] = home_team.get("record", "")
             parsed["home_lob"] = home_team.get("linescore", {}).get("lob", "")
 
-        # Build pitcher name → player data lookup across both teams
-        pitcher_lookup = {}
+        # Find current pitcher per team using the 'appear' attribute
+        # from <pitching>. The highest appear value = most recent entry.
         for vh in ["V", "H"]:
-            for p in parsed.get("pitchers", {}).get(vh, []):
-                pitcher_lookup[p.get("name", "")] = (vh, p)
-                compact = p.get("name", "").replace(", ", ",").replace(".", "")
-                pitcher_lookup[compact] = (vh, p)
+            prefix = "away" if vh == "V" else "home"
+            pitchers = parsed.get("pitchers", {}).get(vh, [])
+            if not pitchers:
+                continue
+            current_p = max(
+                pitchers,
+                key=lambda p: int(p.get("pitching", {}).get("appear", "0") or "0"),
+            )
+            p_stats = current_p.get("pitching", {})
+            parsed[f"{prefix}_pitcher_name"] = current_p.get("name", "")
+            parsed[f"{prefix}_pitcher_uni"] = current_p.get("uni", "")
+            parsed[f"{prefix}_pitcher_ip"] = p_stats.get("ip", "")
+            parsed[f"{prefix}_pitcher_h"] = p_stats.get("h", "")
+            parsed[f"{prefix}_pitcher_r"] = p_stats.get("r", "")
+            parsed[f"{prefix}_pitcher_er"] = p_stats.get("er", "")
+            parsed[f"{prefix}_pitcher_bb"] = p_stats.get("bb", "")
+            parsed[f"{prefix}_pitcher_so"] = p_stats.get("so", "")
+            parsed[f"{prefix}_pitcher_pitches"] = p_stats.get("pitches", "")
+            parsed[f"{prefix}_pitcher_strikes"] = p_stats.get("strikes", "")
 
-        # Scan ALL plays to find the most recent pitcher per team.
-        # The last play only has the pitcher for the currently-fielding team;
-        # the other team's pitcher requires scanning earlier plays.
+        # Store current batter name from the last play for JS to use
         all_plays = root.findall(".//play")
-        latest_pitcher_per_team = {}  # vh -> compact_name
         last_batter_name = ""
         for play in all_plays:
-            pname = play.get("pitcher", "")
-            if pname:
-                match = pitcher_lookup.get(pname)
-                if match:
-                    latest_pitcher_per_team[match[0]] = pname
             bname = play.get("batter", "")
             if bname:
                 last_batter_name = bname
-
-        # Set pitcher data for each team from play-by-play
-        for vh, pname in latest_pitcher_per_team.items():
-            match = pitcher_lookup.get(pname)
-            if match:
-                _, current_p = match
-                prefix = "away" if vh == "V" else "home"
-                p_stats = current_p.get("pitching", {})
-                parsed[f"{prefix}_pitcher_name"] = current_p.get("name", "")
-                parsed[f"{prefix}_pitcher_uni"] = current_p.get("uni", "")
-                parsed[f"{prefix}_pitcher_ip"] = p_stats.get("ip", "")
-                parsed[f"{prefix}_pitcher_h"] = p_stats.get("h", "")
-                parsed[f"{prefix}_pitcher_r"] = p_stats.get("r", "")
-                parsed[f"{prefix}_pitcher_er"] = p_stats.get("er", "")
-                parsed[f"{prefix}_pitcher_bb"] = p_stats.get("bb", "")
-                parsed[f"{prefix}_pitcher_so"] = p_stats.get("so", "")
-                parsed[f"{prefix}_pitcher_pitches"] = p_stats.get("pitches", "")
-                parsed[f"{prefix}_pitcher_strikes"] = p_stats.get("strikes", "")
-
-        # Fallback: if play-by-play didn't match, use last pitcher per team
-        for vh in ["V", "H"]:
-            prefix = "away" if vh == "V" else "home"
-            if f"{prefix}_pitcher_name" not in parsed:
-                pitchers = parsed.get("pitchers", {}).get(vh, [])
-                if pitchers:
-                    current_p = pitchers[-1]
-                    p_stats = current_p.get("pitching", {})
-                    parsed[f"{prefix}_pitcher_name"] = current_p.get("name", "")
-                    parsed[f"{prefix}_pitcher_uni"] = current_p.get("uni", "")
-                    parsed[f"{prefix}_pitcher_ip"] = p_stats.get("ip", "")
-                    parsed[f"{prefix}_pitcher_h"] = p_stats.get("h", "")
-                    parsed[f"{prefix}_pitcher_r"] = p_stats.get("r", "")
-                    parsed[f"{prefix}_pitcher_er"] = p_stats.get("er", "")
-                    parsed[f"{prefix}_pitcher_bb"] = p_stats.get("bb", "")
-                    parsed[f"{prefix}_pitcher_so"] = p_stats.get("so", "")
-                    parsed[f"{prefix}_pitcher_pitches"] = p_stats.get("pitches", "")
-                    parsed[f"{prefix}_pitcher_strikes"] = p_stats.get("strikes", "")
-
-        # Store current batter name from play-by-play for JS to use
         if last_batter_name:
             parsed["current_batter_name"] = last_batter_name
 
