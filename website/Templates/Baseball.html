@@ -425,10 +425,9 @@
         if (halfMatch) currentHalf = halfMatch[1].toUpperCase();
 
         updateCurrentPitcher();
-        // Only use OES batter if StatCrew isn't providing one
-        if (!statcrewData.current_batter_name) {
-            updateCurrentBatter(data.batter_num);
-        }
+        // OES batter_num is real-time; StatCrew last-play is one at-bat behind.
+        // Always use OES to identify current batter, look up stats in StatCrew roster.
+        updateCurrentBatter(data.batter_num);
     }
 
     function renderStatcrewBaseball(data) {
@@ -449,42 +448,8 @@
         setText('bs-away-name', data.away_name || 'Away');
         setText('bs-home-name', data.home_name || 'Home');
 
-        // Re-render pitcher and batter with updated statcrew data
+        // Re-render pitcher with updated statcrew data (roster refresh)
         updateCurrentPitcher();
-        updateCurrentBatterFromStatcrew();
-    }
-
-    function updateCurrentBatterFromStatcrew() {
-        const name = statcrewData.current_batter_name || '';
-        const batting = getBattingTeam();
-        if (!name || !batting) return;
-
-        // Normalize: strip spaces, periods, collapse comma-space → comma
-        // "Johnson Jr., RJ" → "JohnsonJr,RJ" to match XML compact form
-        const normalize = function(s) {
-            return s.replace(/\./g, '').replace(/,\s+/g, ',').replace(/\s+/g, '');
-        };
-        const target = normalize(name);
-
-        // Only search the team that's currently batting
-        const batters = statcrewData[batting + '_batters'] || [];
-        const batter = batters.find(function(b) {
-            if (!b.name) return false;
-            return normalize(b.name) === target || b.name === name;
-        });
-
-        if (batter) {
-            setText('bs-current-batter', formatPlayerName(batter.name) + (batter.uni ? ' #' + batter.uni : ''));
-            const ab = batter.ab || '--';
-            const h = batter.h || '--';
-            const rbi = batter.rbi || '--';
-            const avg = batter.avg || '--';
-            setText('bs-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
-        } else {
-            // Batter not on batting team — might be stale from previous half
-            setText('bs-current-batter', '--');
-            setText('bs-batter-line', '--');
-        }
     }
 
     function updateCurrentPitcher() {
