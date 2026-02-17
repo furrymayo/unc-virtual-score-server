@@ -67,6 +67,69 @@
         margin-top: clamp(4px, 0.5vh, 10px);
     }
 
+    /* Narrow team cards, wider center column */
+    .baseball-scoreboard .score-grid {
+        grid-template-columns: minmax(100px, 0.4fr) 1fr minmax(100px, 0.4fr);
+    }
+
+    /* TrackMan data values: +10px, centered */
+    .baseball-scoreboard .trackman-value {
+        font-size: clamp(1.8rem, 2.1vw, 2.4rem);
+        text-align: center;
+    }
+
+    /* Balls/Strikes/Outs: bigger cards, +20px text */
+    .baseball-scoreboard .count-pill {
+        padding: clamp(10px, 1.5vh, 22px) clamp(16px, 2vw, 36px);
+        min-width: clamp(140px, 12vw, 220px);
+    }
+    .baseball-scoreboard .count-value {
+        font-size: clamp(3.25rem, 4.1vw, 4.75rem);
+    }
+    .baseball-scoreboard .count-label {
+        font-size: clamp(2.1rem, 2.3vw, 2.45rem);
+    }
+
+    /* Pitching/At Bat cards: +15px */
+    .baseball-scoreboard .center-stack .center-label {
+        font-size: clamp(1.3rem, 1.4vw, 1.6rem);
+    }
+    .baseball-scoreboard .center-value.compact {
+        font-size: clamp(2rem, 2.2vw, 2.5rem);
+    }
+    .baseball-scoreboard .stat-value.compact {
+        font-size: clamp(1.8rem, 2vw, 2.2rem);
+    }
+
+    /* Linescore team name: left align, +10px */
+    .baseball-scoreboard .team-row-label {
+        font-size: clamp(1.6rem, 1.8vw, 2rem);
+        text-align: left;
+    }
+
+    /* Inning headers: +10px */
+    .baseball-scoreboard .table-grid th {
+        font-size: clamp(1.35rem, 1.5vw, 1.7rem);
+    }
+
+    /* Inning data: +10px */
+    .baseball-scoreboard .table-grid td {
+        font-size: clamp(1.6rem, 1.8vw, 2rem);
+    }
+
+    /* R/H/E card: visual separation, +15px font */
+    .baseball-scoreboard .linescore-total,
+    .baseball-scoreboard .linescore-label {
+        font-size: clamp(1.9rem, 2.2vw, 2.35rem) !important;
+        font-weight: 700;
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9)) !important;
+    }
+    .baseball-scoreboard .table-grid th:nth-last-child(3),
+    .baseball-scoreboard .table-grid td:nth-last-child(3) {
+        border-left: 3px solid var(--carolina);
+        padding-left: 12px;
+    }
+
     /* Config panel reduced margin */
     .baseball-scoreboard ~ details.data-sources-panel {
         margin-top: 8px;
@@ -344,9 +407,10 @@
         const homeBatters = statcrewData.home_batters || [];
         const allBatters = awayBatters.concat(homeBatters);
 
+        const trimmed = batterNum ? String(batterNum).trim() : null;
         let batter = null;
-        if (batterNum) {
-            batter = allBatters.find(b => b.uni === String(batterNum) || b.spot === String(batterNum));
+        if (trimmed) {
+            batter = allBatters.find(b => b.uni === trimmed || b.spot === trimmed);
         }
 
         if (batter) {
@@ -356,8 +420,8 @@
             const rbi = batter.rbi || '--';
             const avg = batter.avg || '--';
             setText('bs-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
-        } else if (batterNum) {
-            setText('bs-current-batter', '#' + batterNum);
+        } else if (trimmed) {
+            setText('bs-current-batter', '#' + trimmed);
             setText('bs-batter-line', '--');
         } else {
             setText('bs-current-batter', '--');
