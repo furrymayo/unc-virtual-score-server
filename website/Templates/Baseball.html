@@ -8,22 +8,30 @@
 
     /* Score-trackman 3-column layout with wider sidebars */
     .baseball-scoreboard .score-trackman-layout.has-strike-zone {
-        flex: 1;
-        min-height: 0;
         grid-template-columns: minmax(200px, 18vw) 1fr minmax(200px, 18vw);
-        grid-template-rows: auto 1fr auto;
         gap: clamp(10px, 1vw, 18px);
         align-items: stretch;
     }
 
-    /* Count bar spacing */
+    /* Count bar: single row, no wrap */
     .baseball-scoreboard .count-bar {
-        margin: clamp(6px, 1vh, 14px) 0;
+        margin: 0;
+        flex-wrap: nowrap;
     }
 
-    /* Center stack tighter gaps */
-    .baseball-scoreboard .center-stack {
-        gap: clamp(4px, 0.5vh, 8px);
+    /* Center column: flex column so linescore gets remaining space */
+    .baseball-scoreboard .center-col {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    /* Top row: Pitching | Inning | At Bat */
+    .baseball-scoreboard .info-top-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
     }
 
     /* Section title tighter margins */
@@ -31,9 +39,17 @@
         margin: clamp(4px, 0.6vh, 10px) 0;
     }
 
-    /* TrackMan + Strike Zone columns: remove max-width cap */
+    /* TrackMan + Strike Zone columns: stretch to match center column height */
     .baseball-scoreboard .trackman-column {
         max-width: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .baseball-scoreboard .trackman-column .trackman-shell {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 
     .baseball-scoreboard .strikezone-column {
@@ -62,14 +78,37 @@
         max-height: 100%;
     }
 
-    /* Linescore flush spacing */
+    /* Linescore in center column */
     .baseball-scoreboard .linescore-full {
-        margin-top: clamp(4px, 0.5vh, 10px);
+        margin-top: clamp(4px, 0.5vh, 8px);
     }
 
-    /* Narrow team cards, wider center column */
-    .baseball-scoreboard .score-grid {
-        grid-template-columns: minmax(100px, 0.4fr) 1fr minmax(100px, 0.4fr);
+    /* Score-count row: team | B/S/O pills | team */
+    .baseball-scoreboard .score-count-row {
+        display: grid;
+        grid-template-columns: minmax(80px, 0.25fr) 1fr minmax(80px, 0.25fr);
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
+    }
+
+    /* Compact team cards in score row — equal height, vertically centered content */
+    .baseball-scoreboard .score-count-row .team-card {
+        padding: clamp(4px, 0.6vh, 10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .baseball-scoreboard .score-count-row .team-label {
+        font-size: clamp(0.75rem, 0.9vw, 1.05rem);
+        justify-content: center;
+    }
+    .baseball-scoreboard .score-count-row .team-score {
+        font-size: clamp(2rem, 2.8vw, 3.2rem);
+    }
+
+    /* Compact center cards in top row */
+    .baseball-scoreboard .info-top-row .center-card {
+        padding: clamp(6px, 0.8vh, 12px);
     }
 
     /* TrackMan data values: +10px, centered */
@@ -78,27 +117,27 @@
         text-align: center;
     }
 
-    /* Balls/Strikes/Outs: bigger cards, +20px text */
+    /* Balls/Strikes/Outs: larger than team score cards */
     .baseball-scoreboard .count-pill {
-        padding: clamp(10px, 1.5vh, 22px) clamp(16px, 2vw, 36px);
-        min-width: clamp(140px, 12vw, 220px);
+        padding: clamp(8px, 1vh, 16px) clamp(12px, 1.5vw, 28px);
+        min-width: clamp(100px, 10vw, 180px);
     }
     .baseball-scoreboard .count-value {
-        font-size: clamp(3.25rem, 4.1vw, 4.75rem);
+        font-size: clamp(2.8rem, 3.6vw, 4.2rem);
     }
     .baseball-scoreboard .count-label {
-        font-size: clamp(2.1rem, 2.3vw, 2.45rem);
+        font-size: clamp(1rem, 1.2vw, 1.4rem);
     }
 
     /* Pitching/At Bat cards: +15px */
-    .baseball-scoreboard .center-stack .center-label {
-        font-size: clamp(1.3rem, 1.4vw, 1.6rem);
+    .baseball-scoreboard .info-top-row .center-label {
+        font-size: clamp(0.8rem, 0.9vw, 1.1rem);
     }
     .baseball-scoreboard .center-value.compact {
-        font-size: clamp(2rem, 2.2vw, 2.5rem);
+        font-size: clamp(1.4rem, 1.6vw, 1.9rem);
     }
     .baseball-scoreboard .stat-value.compact {
-        font-size: clamp(1.8rem, 2vw, 2.2rem);
+        font-size: clamp(1.1rem, 1.3vw, 1.5rem);
     }
 
     /* Linescore team name: left align, +10px */
@@ -184,61 +223,55 @@
                 </div>
             </div>
         </div>
-        <div>
-            <div class="count-bar">
-                <div class="count-pill">
-                    <div class="count-label">Balls</div>
-                    <div class="count-value" id="bs-balls">--</div>
+        <div class="center-col">
+            <div class="info-top-row">
+                <div class="center-card compact">
+                    <div class="center-label">Pitching</div>
+                    <div class="center-value compact" id="bs-current-pitcher">--</div>
+                    <div class="stat-value compact" id="bs-pitcher-line" style="color: var(--ink-soft);">--</div>
                 </div>
-                <div class="count-pill">
-                    <div class="count-label">Strikes</div>
-                    <div class="count-value" id="bs-strikes">--</div>
+                <div class="center-card compact" style="text-align: center;">
+                    <div class="center-label">Inning</div>
+                    <div class="center-value" id="bs-half-inning">n/a</div>
                 </div>
-                <div class="count-pill">
-                    <div class="count-label">Outs</div>
-                    <div class="count-value" id="bs-outs">--</div>
+                <div class="center-card compact">
+                    <div class="center-label">At Bat</div>
+                    <div class="center-value compact" id="bs-current-batter">--</div>
+                    <div class="stat-value compact" id="bs-batter-line" style="color: var(--ink-soft);">--</div>
                 </div>
             </div>
 
-            <div class="score-grid">
+            <div class="score-count-row" style="margin-top: clamp(4px, 0.5vh, 8px);">
                 <div class="team-card">
-                    <div class="team-label"><span id="bs-away-name">Away</span> <span id="bs-away-record" class="team-record"></span></div>
+                    <div class="team-label"><span id="bs-away-name">Away</span></div>
                     <div class="team-score" id="bs-away-runs">--</div>
-                    <div class="diamond-divider"></div>
-                    <div class="team-meta">
-                        <div class="stat-line"><span>H</span><strong id="bs-away-hits">--</strong></div>
-                        <div class="stat-line"><span>E</span><strong id="bs-away-errors">--</strong></div>
-                        <div class="stat-line"><span>LOB</span><strong id="bs-away-lob">--</strong></div>
-                    </div>
                 </div>
-                <div class="center-stack">
-                    <div class="center-card compact">
-                        <div class="center-label">Inning</div>
-                        <div class="center-value" id="bs-half-inning">n/a</div>
+                <div class="count-bar">
+                    <div class="count-pill">
+                        <div class="count-label">Balls</div>
+                        <div class="count-value" id="bs-balls">--</div>
                     </div>
-                    <div class="center-card compact">
-                        <div class="center-label">Pitching</div>
-                        <div class="center-value compact" id="bs-current-pitcher">--</div>
-                        <div class="stat-value compact" id="bs-pitcher-line" style="color: var(--ink-soft);">--</div>
+                    <div class="count-pill">
+                        <div class="count-label">Strikes</div>
+                        <div class="count-value" id="bs-strikes">--</div>
                     </div>
-                    <div class="center-card compact">
-                        <div class="center-label">At Bat</div>
-                        <div class="center-value compact" id="bs-current-batter">--</div>
-                        <div class="stat-value compact" id="bs-batter-line" style="color: var(--ink-soft);">--</div>
+                    <div class="count-pill">
+                        <div class="count-label">Outs</div>
+                        <div class="count-value" id="bs-outs">--</div>
                     </div>
                 </div>
                 <div class="team-card">
-                    <div class="team-label"><span id="bs-home-name">Home</span> <span id="bs-home-record" class="team-record"></span></div>
+                    <div class="team-label"><span id="bs-home-name">Home</span></div>
                     <div class="team-score" id="bs-home-runs">--</div>
-                    <div class="diamond-divider"></div>
-                    <div class="team-meta">
-                        <div class="stat-line"><span>H</span><strong id="bs-home-hits">--</strong></div>
-                        <div class="stat-line"><span>E</span><strong id="bs-home-errors">--</strong></div>
-                        <div class="stat-line"><span>LOB</span><strong id="bs-home-lob">--</strong></div>
-                    </div>
                 </div>
             </div>
 
+            <div class="linescore-full">
+                <div class="section-title">Innings</div>
+                <div class="table-card">
+                    <div id="bs-linescore-table"></div>
+                </div>
+            </div>
         </div>
         <div class="strikezone-column">
             <div class="section-title">Strike Zone</div>
@@ -256,12 +289,6 @@
                     </div>
                     <div class="trackman-unit" id="bs-zone-readout">n/a</div>
                 </div>
-            </div>
-        </div>
-        <div class="linescore-full" style="grid-column: 1 / -1;">
-            <div class="section-title">Innings</div>
-            <div class="table-card">
-                <div id="bs-linescore-table"></div>
             </div>
         </div>
     </div>
@@ -329,17 +356,19 @@
 
 <script>
     let statcrewData = {};
+    let currentHalf = '';  // TOP, MID, BOT, END from OES inning state
+
+    // Returns true when away team is batting (TOP or MID)
+    function isAwayBatting() {
+        return currentHalf === 'TOP' || currentHalf === 'MID';
+    }
 
     function renderBaseball(data) {
         setText('bs-balls', data.balls);
         setText('bs-strikes', data.strikes);
         setText('bs-outs', data.outs);
         setText('bs-away-runs', data.away_runs);
-        setText('bs-away-hits', data.away_hits);
-        setText('bs-away-errors', data.away_errors);
         setText('bs-home-runs', data.home_runs);
-        setText('bs-home-hits', data.home_hits);
-        setText('bs-home-errors', data.home_errors);
 
         const awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
         const homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
@@ -353,6 +382,13 @@
         });
 
         setText('bs-half-inning', data.inning_display);
+
+        // Extract half from inning_display (e.g. "TOP 3rd" → "TOP")
+        const display = data.inning_display || '';
+        const halfMatch = display.match(/^(TOP|MID|BOT|END)/i);
+        if (halfMatch) currentHalf = halfMatch[1].toUpperCase();
+
+        updateCurrentPitcher();
         updateCurrentBatter(data.batter_num);
     }
 
@@ -373,19 +409,22 @@
 
         setText('bs-away-name', data.away_name || 'Away');
         setText('bs-home-name', data.home_name || 'Home');
-        setText('bs-away-record', data.away_record ? '(' + data.away_record + ')' : '');
-        setText('bs-home-record', data.home_record ? '(' + data.home_record + ')' : '');
 
-        setText('bs-away-lob', data.away_lob || '--');
-        setText('bs-home-lob', data.home_lob || '--');
+        // Re-render pitcher with updated statcrew data
+        updateCurrentPitcher();
+    }
 
-        const pName = data.home_pitcher_name || data.away_pitcher_name || '--';
-        const pUni = data.home_pitcher_uni || data.away_pitcher_uni || '';
+    function updateCurrentPitcher() {
+        // TOP/MID = away batting → home team pitches
+        // BOT/END = home batting → away team pitches
+        const prefix = isAwayBatting() ? 'home' : 'away';
+        const pName = statcrewData[prefix + '_pitcher_name'] || '--';
+        const pUni = statcrewData[prefix + '_pitcher_uni'] || '';
         setText('bs-current-pitcher', formatPlayerName(pName) + (pUni ? ' #' + pUni : ''));
 
-        const ip = data.home_pitcher_ip || data.away_pitcher_ip || '--';
-        const so = data.home_pitcher_so || data.away_pitcher_so || '--';
-        const pitches = data.home_pitcher_pitches || data.away_pitcher_pitches || '';
+        const ip = statcrewData[prefix + '_pitcher_ip'] || '--';
+        const so = statcrewData[prefix + '_pitcher_so'] || '--';
+        const pitches = statcrewData[prefix + '_pitcher_pitches'] || '';
         let line = ip + ' IP | ' + so + ' K';
         if (pitches) line += ' | ' + pitches + ' P';
         setText('bs-pitcher-line', line);
@@ -403,14 +442,14 @@
     }
 
     function updateCurrentBatter(batterNum) {
-        const awayBatters = statcrewData.away_batters || [];
-        const homeBatters = statcrewData.home_batters || [];
-        const allBatters = awayBatters.concat(homeBatters);
+        // TOP/MID = away batting, BOT/END = home batting
+        const battingTeam = isAwayBatting() ? 'away' : 'home';
+        const batters = statcrewData[battingTeam + '_batters'] || [];
 
         const trimmed = batterNum ? String(batterNum).trim() : null;
         let batter = null;
         if (trimmed) {
-            batter = allBatters.find(b => b.uni === trimmed || b.spot === trimmed);
+            batter = batters.find(b => b.uni === trimmed || b.spot === trimmed);
         }
 
         if (batter) {
