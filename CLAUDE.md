@@ -20,6 +20,8 @@ Flask web application that displays real-time sports scoreboards by reading data
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
 - innerHTML XSS vulnerabilities fixed in Debug and home templates
+- TV-optimized UI: thin navbar, raised clamp() ceilings for large-screen readability
+- Baseball strike zone uses correct 3:4 portrait aspect ratio (17"×24" real proportions)
 
 ## Quick Reference
 | Item | Value |
@@ -66,6 +68,7 @@ main.py          → website (create_app), ingestion, statcrew
 | Sport-specific parsing | `docs/reference/` |
 
 ## Recent Activity
+- 2026-02-17: TV readability overhaul — collapsed navbar to thin bar, raised all clamp() ceilings (~2x primary, ~1.5x secondary), fixed baseball TrackMan card overflow, strike zone 3:4 portrait ratio, linescore static Away/Home labels, reduced team score cards, added `away_code`/`home_code` to statcrew parser
 - 2026-02-17: Added Gymnastics sport_overrides, CIFS network share mount for StatCrew (`/mnt/stats`), StatCrew XML integration, redesigned Baseball page, fixed strike zone coordinate mapping (needs live verification)
 - 2026-02-16: Major refactor — split main.py monolith into 5 modules, added tests, systemd deploy, XSS fixes, pushed to new repo (unc-virtual-score-server)
 - 2026-02-14: Rebuilt sport UIs with dark UNC theme, added TrackMan dashboard
