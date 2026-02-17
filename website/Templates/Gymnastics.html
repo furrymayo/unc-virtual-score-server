@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Gymnastics Scoreboard{% endblock %}
+{% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
 <section class="scoreboard-shell gym-shell">
@@ -122,12 +123,7 @@
 </details>
 
 <style>
-    html {
-        font-size: calc(16px + 25px);
-    }
-
     .gym-shell {
-        transform: none;
         padding: clamp(12px, 1.4vw, 18px);
         width: 100%;
         box-sizing: border-box;

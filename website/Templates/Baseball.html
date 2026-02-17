@@ -1,8 +1,79 @@
 {% extends "base.html" %}
 {% block title %}Baseball Scoreboard{% endblock %}
+{% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell diamond-sport">
+<style>
+    /* === Baseball-specific layout overrides (font sizing now in base.html) === */
+
+    /* Score-trackman 3-column layout with wider sidebars */
+    .baseball-scoreboard .score-trackman-layout.has-strike-zone {
+        flex: 1;
+        min-height: 0;
+        grid-template-columns: minmax(200px, 18vw) 1fr minmax(200px, 18vw);
+        grid-template-rows: auto 1fr auto;
+        gap: clamp(10px, 1vw, 18px);
+        align-items: stretch;
+    }
+
+    /* Count bar spacing */
+    .baseball-scoreboard .count-bar {
+        margin: clamp(6px, 1vh, 14px) 0;
+    }
+
+    /* Center stack tighter gaps */
+    .baseball-scoreboard .center-stack {
+        gap: clamp(4px, 0.5vh, 8px);
+    }
+
+    /* Section title tighter margins */
+    .baseball-scoreboard .section-title {
+        margin: clamp(4px, 0.6vh, 10px) 0;
+    }
+
+    /* TrackMan + Strike Zone columns: remove max-width cap */
+    .baseball-scoreboard .trackman-column {
+        max-width: none;
+    }
+
+    .baseball-scoreboard .strikezone-column {
+        max-width: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .baseball-scoreboard .strikezone-column .trackman-shell {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .baseball-scoreboard .strikezone-column .trackman-card.trackman-zone {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .baseball-scoreboard .strikezone-column .zone-canvas {
+        flex: 1;
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+        max-height: 100%;
+    }
+
+    /* Linescore flush spacing */
+    .baseball-scoreboard .linescore-full {
+        margin-top: clamp(4px, 0.5vh, 10px);
+    }
+
+    /* Config panel reduced margin */
+    .baseball-scoreboard ~ details.data-sources-panel {
+        margin-top: 8px;
+    }
+</style>
+
+<section class="scoreboard-shell diamond-sport baseball-scoreboard">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Baseball</div>
@@ -124,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <div class="linescore-full" style="grid-column: 1 / -1; margin-top: 10px;">
+        <div class="linescore-full" style="grid-column: 1 / -1;">
             <div class="section-title">Innings</div>
             <div class="table-card">
                 <div id="bs-linescore-table"></div>
@@ -134,7 +205,7 @@
 
 </section>
 
-<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 8px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
         <div style="display: flex; align-items: center;">
             <span class="dropdown-indicator"></span>
