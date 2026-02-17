@@ -390,9 +390,13 @@
     let statcrewData = {};
     let currentHalf = '';  // TOP, MID, BOT, END from OES inning state
 
-    // Returns true when away team is batting (TOP or MID)
-    function isAwayBatting() {
-        return currentHalf === 'TOP' || currentHalf === 'MID';
+    // Returns which team is batting: 'away' or 'home'.
+    // Prefers StatCrew XML (batting_team) over OES half-inning state.
+    function getBattingTeam() {
+        if (statcrewData.batting_team) return statcrewData.batting_team;
+        if (currentHalf === 'TOP' || currentHalf === 'MID') return 'away';
+        if (currentHalf === 'BOT' || currentHalf === 'END') return 'home';
+        return '';
     }
 
     function renderBaseball(data) {
@@ -405,8 +409,8 @@
         const awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
         const homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
 
-        const awayLabel = statcrewData.away_code || statcrewData.away_name || 'Away';
-        const homeLabel = statcrewData.home_code || statcrewData.home_name || 'Home';
+        const awayLabel = 'Away';
+        const homeLabel = 'Home';
 
         renderLinescoreBaseball(awayInnings, homeInnings, {
             away: { runs: data.away_runs, hits: data.away_hits, errors: data.away_errors, label: awayLabel },
@@ -452,7 +456,8 @@
 
     function updateCurrentBatterFromStatcrew() {
         const name = statcrewData.current_batter_name || '';
-        if (!name) return;
+        const batting = getBattingTeam();
+        if (!name || !batting) return;
 
         // Normalize: strip spaces, periods, collapse comma-space → comma
         // "Johnson Jr., RJ" → "JohnsonJr,RJ" to match XML compact form
@@ -461,8 +466,9 @@
         };
         const target = normalize(name);
 
-        const allBatters = (statcrewData.away_batters || []).concat(statcrewData.home_batters || []);
-        const batter = allBatters.find(function(b) {
+        // Only search the team that's currently batting
+        const batters = statcrewData[batting + '_batters'] || [];
+        const batter = batters.find(function(b) {
             if (!b.name) return false;
             return normalize(b.name) === target || b.name === name;
         });
@@ -475,15 +481,17 @@
             const avg = batter.avg || '--';
             setText('bs-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
         } else {
-            setText('bs-current-batter', formatPlayerName(name));
+            // Batter not on batting team — might be stale from previous half
+            setText('bs-current-batter', '--');
             setText('bs-batter-line', '--');
         }
     }
 
     function updateCurrentPitcher() {
-        // TOP/MID = away batting → home team pitches
-        // BOT/END = home batting → away team pitches
-        const prefix = isAwayBatting() ? 'home' : 'away';
+        // Batting team's opponent is pitching
+        const batting = getBattingTeam();
+        if (!batting) return;
+        const prefix = batting === 'away' ? 'home' : 'away';
         const pName = statcrewData[prefix + '_pitcher_name'] || '--';
         const pUni = statcrewData[prefix + '_pitcher_uni'] || '';
         setText('bs-current-pitcher', formatPlayerName(pName) + (pUni ? ' #' + pUni : ''));
@@ -508,8 +516,7 @@
     }
 
     function updateCurrentBatter(batterNum) {
-        // TOP/MID = away batting, BOT/END = home batting
-        const battingTeam = isAwayBatting() ? 'away' : 'home';
+        const battingTeam = getBattingTeam() || 'home';
         const batters = statcrewData[battingTeam + '_batters'] || [];
 
         const trimmed = batterNum ? String(batterNum).trim() : null;

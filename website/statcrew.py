@@ -324,11 +324,13 @@ def _parse_statcrew_xml(xml_text):
     if is_baseball or visitor_team or home_team:
         if visitor_team:
             parsed["away_name"] = visitor_team.get("name", "Away")
+            parsed["away_code"] = visitor_team.get("code", "") or visitor_team.get("id", "")
             parsed["away_id"] = visitor_team.get("id", "")
             parsed["away_record"] = visitor_team.get("record", "")
             parsed["away_lob"] = visitor_team.get("linescore", {}).get("lob", "")
         if home_team:
             parsed["home_name"] = home_team.get("name", "Home")
+            parsed["home_code"] = home_team.get("code", "") or home_team.get("id", "")
             parsed["home_id"] = home_team.get("id", "")
             parsed["home_record"] = home_team.get("record", "")
             parsed["home_lob"] = home_team.get("linescore", {}).get("lob", "")
@@ -397,6 +399,19 @@ def _parse_statcrew_xml(xml_text):
         # Store current batter name from play-by-play for JS to use
         if last_batter_name:
             parsed["current_batter_name"] = last_batter_name
+
+        # Determine which team is currently batting from inning structure.
+        # The last <inning>'s last <batting vh="V/H"> tells us definitively.
+        innings = root.findall(".//inning")
+        if innings:
+            last_inning = innings[-1]
+            batting_elems = last_inning.findall("batting")
+            if batting_elems:
+                last_batting_vh = batting_elems[-1].get("vh", "").upper()
+                if last_batting_vh in ("V", "H"):
+                    parsed["batting_team"] = (
+                        "away" if last_batting_vh == "V" else "home"
+                    )
 
         # Build batter lists from batord (full lineup) + overlay hitting stats
         for team in teams:
