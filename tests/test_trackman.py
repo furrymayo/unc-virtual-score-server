@@ -54,6 +54,53 @@ class TestParseTrackmanPayload:
     def test_non_dict(self):
         assert _parse_trackman_payload("not a dict") == {}
 
+    def test_broadcast_location_side_height(self):
+        """Side/Height fields should map to plate_x/plate_z."""
+        payload = {
+            "Pitch": {
+                "Speed": 91.0,
+                "Location": {
+                    "X": 1.42,
+                    "Y": 2.93,
+                    "Z": 0.29,
+                    "Height": 2.93,
+                    "Side": -0.29,
+                },
+            },
+            "PlayId": "loc1",
+        }
+        result = _parse_trackman_payload(payload)
+        assert result["plate_x"] == -0.29
+        assert result["plate_y"] == 2.93
+        assert result["plate_z"] == 2.93
+
+    def test_broadcast_location_raw_fallback(self):
+        """Without Side/Height, fall back to raw X/Z."""
+        payload = {
+            "Pitch": {
+                "Speed": 85.0,
+                "Location": {"X": 0.5, "Y": 1.0, "Z": 3.0},
+            },
+            "PlayId": "loc2",
+        }
+        result = _parse_trackman_payload(payload)
+        assert result["plate_x"] == 0.5
+        assert result["plate_y"] == 1.0
+        assert result["plate_z"] == 3.0
+
+    def test_broadcast_location_partial_fields(self):
+        """Height present but no Side → plate_z=Height, plate_x=X."""
+        payload = {
+            "Pitch": {
+                "Speed": 78.0,
+                "Location": {"X": 0.1, "Y": 2.0, "Z": 0.5, "Height": 2.8},
+            },
+            "PlayId": "loc3",
+        }
+        result = _parse_trackman_payload(payload)
+        assert result["plate_x"] == 0.1
+        assert result["plate_z"] == 2.8
+
 
 class TestParseTrackmanJson:
     def test_single_object(self):

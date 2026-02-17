@@ -127,9 +127,15 @@ def _parse_trackman_payload(payload):
             parsed["spin_rate"] = pitch.get("SpinRate")
             location = pitch.get("Location")
             if isinstance(location, dict):
-                parsed["plate_x"] = location.get("X")
+                # Broadcast format provides named fields:
+                #   Side = horizontal offset from plate center (feet)
+                #   Height = vertical height above ground (feet)
+                # Fall back to raw X/Z when named fields unavailable
+                side = location.get("Side")
+                height = location.get("Height")
+                parsed["plate_x"] = side if side is not None else location.get("X")
                 parsed["plate_y"] = location.get("Y")
-                parsed["plate_z"] = location.get("Z")
+                parsed["plate_z"] = height if height is not None else location.get("Z")
 
             parsed["time"] = parsed.get("time") or pitch.get("TrackStartTime")
 

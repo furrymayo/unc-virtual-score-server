@@ -1037,8 +1037,7 @@
             const rawX = parseFloat(data.plate_x);
             const rawY = parseFloat(data.plate_y);
             const rawZ = parseFloat(data.plate_z);
-            // TrackMan coordinates: X=horizontal, Y=depth (toward pitcher), Z=height
-            // Use Z for vertical positioning (height above ground)
+            // TrackMan: plate_x = Side (horizontal offset), plate_z = Height (vertical)
             const vertical = rawZ;
 
             if (!Number.isFinite(rawX) || !Number.isFinite(vertical)) {
@@ -1071,7 +1070,8 @@
             const centerY = gridTop + gridHeight / 2;
             const zoneCenterV = (minV + maxV) / 2;
 
-            const px = centerX + (rawX - xOffset) * scaleX * xScale;
+            // Negate horizontal: Side is catcher's view, we render pitcher's view
+            const px = centerX - (rawX - xOffset) * scaleX * xScale;
             const pz = centerY - (vertical - zoneCenterV) * scaleZ;
 
             const width = canvas.clientWidth || 1;
@@ -1083,9 +1083,7 @@
             dot.style.left = `${clampedX}px`;
             dot.style.top = `${clampedZ}px`;
 
-            const yText = Number.isFinite(rawY) ? `Y ${rawY.toFixed(2)} ft` : '';
-            const zText = Number.isFinite(rawZ) ? `Z ${rawZ.toFixed(2)} ft` : '';
-            readout.textContent = `X ${rawX.toFixed(2)} ft${yText ? ` · ${yText}` : ''}${zText ? ` · ${zText}` : ''}`;
+            readout.textContent = `Side ${rawX.toFixed(2)} ft · Height ${vertical.toFixed(2)} ft`;
         }
 
         function getStatcrewTeamInfo(data) {
