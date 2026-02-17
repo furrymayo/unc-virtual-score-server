@@ -1,6 +1,6 @@
 # Flask Virtual Scoreboard
 
-**Last Updated**: 2026-02-17
+**Last Updated**: 2026-02-18
 **Status**: Active
 **Primary OS**: Both (Windows + Linux)
 **Repo**: https://github.com/furrymayo/unc-virtual-score-server
@@ -14,14 +14,20 @@ Flask web application that displays real-time sports scoreboards by reading data
 - TCP data source management with persistence (data_sources.json)
 - Per-source `sport_overrides` for Gymnastics (Lacrosse → Gymnastics remap)
 - TrackMan UDP integration for Baseball/Softball (strike zone visualization)
-- StatCrew XML file watcher for enhanced stats (team names, pitcher/batter stats)
+- StatCrew XML integration with `<status>` element for real-time game state (current pitcher, batter, batting team, pitch count)
+- StatCrew `<pitching appear>` attribute for accurate pitcher detection after substitutions
+- Live pitch count: `<pitching pitches>` (cumulative) + `<status np>` (current at-bat) — self-correcting
+- StatCrew `batord` elements reflect live lineup changes (substitutions, pinch hitters)
 - StatCrew network share mounted at `/mnt/stats` on Ubuntu server (CIFS, persistent)
-- 50+ pytest tests covering protocol, ingestion, trackman, statcrew, and API
+- StatCrew poll interval: 2s (file mtime check 0.3ms, full parse 10ms)
+- 95 pytest tests covering protocol, ingestion, trackman, statcrew, and API
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
 - innerHTML XSS vulnerabilities fixed in Debug and home templates
-- TV-optimized UI: thin navbar, raised clamp() ceilings for large-screen readability
+- TV-optimized UI: thin single-row navbar, raised clamp() ceilings for large-screen readability
+- Baseball layout: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, linescore in center column
 - Baseball strike zone uses correct 3:4 portrait aspect ratio (17"×24" real proportions)
+- OES baseball batter_num 0x3A blank handling fixed in protocol.py
 
 ## Quick Reference
 | Item | Value |
@@ -67,7 +73,18 @@ main.py          → website (create_app), ingestion, statcrew
 | Deployment instructions | `README.md` |
 | Sport-specific parsing | `docs/reference/` |
 
+## StatCrew XML Key Elements
+| Element | Purpose |
+|---------|---------|
+| `<status>` | Real-time game state: `batter`, `pitcher`, `vh` (batting team), `np` (pitches in current at-bat), `b`/`s` (count), `outs`, `inning` |
+| `<pitching appear="N">` | Order of pitcher appearance — highest value = most recently entered pitcher per team |
+| `<pitching pitches="X">` | Cumulative pitch count — only updates after completed at-bats |
+| `<batord>` | Live batting order — updates with substitutions (pinch hitters get `in`/`seq` attrs) |
+| `<pitches text="BKSFP">` | Per-at-bat pitch sequence within `<play>` elements |
+| `<innsummary>` | Present when a half-inning is complete |
+
 ## Recent Activity
+- 2026-02-18: Baseball real-time: `<status>` element for live batter/pitcher/batting team, `appear` attr for pitcher detection after subs, live pitch count (`pitches` + `np`), reduced poll/fetch to 2s, TV layout restructure (compact cards, center linescore)
 - 2026-02-17: TV readability overhaul — collapsed navbar to thin bar, raised all clamp() ceilings (~2x primary, ~1.5x secondary), fixed baseball TrackMan card overflow, strike zone 3:4 portrait ratio, linescore static Away/Home labels, reduced team score cards, added `away_code`/`home_code` to statcrew parser
 - 2026-02-17: Added Gymnastics sport_overrides, CIFS network share mount for StatCrew (`/mnt/stats`), StatCrew XML integration, redesigned Baseball page, fixed strike zone coordinate mapping (needs live verification)
 - 2026-02-16: Major refactor — split main.py monolith into 5 modules, added tests, systemd deploy, XSS fixes, pushed to new repo (unc-virtual-score-server)
