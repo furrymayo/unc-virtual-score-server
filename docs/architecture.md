@@ -35,6 +35,7 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 - UDP/TCP inbound listeners
 - Data source CRUD helpers (`_load_data_sources`, `_save_data_sources`, etc.)
 - Stale source cleanup daemon thread (5min interval, 1hr TTL)
+- Per-source `sport_overrides` to remap packets (e.g., Lacrosse → Gymnastics for the gymnastics venue)
 
 ### `website/trackman.py` — TrackMan subsystem
 - Separate shared state: `trackman_data`, `trackman_debug`, `trackman_config`

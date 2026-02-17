@@ -8,6 +8,39 @@ Basketball, Hockey, Lacrosse, Football, Volleyball, Wrestling, Soccer, Softball,
 
 Also includes TrackMan UDP integration for Baseball and Softball pitch/hit tracking.
 
+## Gymnastics Special Case (Lacrosse Sport Code)
+
+Gymnastics is a one-off exception. The OES controller has no Gymnastics sport code, so the venue transmits Gymnastics using the Lacrosse packet type. Only the running clock is used for Gymnastics, and we must avoid confusing this data with real Lacrosse from other venues.
+
+To handle this safely, we support **per-source sport overrides** on configured TCP data sources. Assign the Gymnastics venue's TCP data source a `sport_overrides` mapping that remaps Lacrosse packets to Gymnastics. Other venues that actually play Lacrosse remain unaffected.
+
+Example `data_sources.json` entry:
+
+```json
+{
+  "id": "tcp:10.0.0.9:9999",
+  "name": "Gym Venue",
+  "host": "10.0.0.9",
+  "port": 9999,
+  "enabled": true,
+  "sport_overrides": {
+    "Lacrosse": "Gymnastics"
+  }
+}
+```
+
+Or via API:
+
+```json
+POST /data_sources
+{
+  "host": "10.0.0.9",
+  "port": 9999,
+  "name": "Gym Venue",
+  "sport_overrides": {"Lacrosse": "Gymnastics"}
+}
+```
+
 ## Project Structure
 
 ```
@@ -176,6 +209,39 @@ sudo systemctl restart scoreboard
 | `sudo systemctl status scoreboard` | Check if running |
 | `sudo journalctl -u scoreboard -f` | Tail logs |
 | `sudo journalctl -u scoreboard --since "5 min ago"` | Recent logs |
+
+### Mounting the StatCrew Network Share
+
+StatCrew XML files live on a Windows network share. Mount it so the app's file browser can access them.
+
+```bash
+# Install CIFS utilities
+sudo apt install cifs-utils -y
+
+# Create mount point
+sudo mkdir -p /mnt/stats
+
+# Create credentials file (edit with your username/password/domain)
+sudo nano /etc/credentials-statcrew
+# username=YOUR_USERNAME
+# password=YOUR_PASSWORD
+# domain=AD.UNC.EDU
+sudo chmod 600 /etc/credentials-statcrew
+
+# Test the mount
+sudo mount -t cifs //152.2.228.104/www /mnt/stats -o credentials=/etc/credentials-statcrew,vers=3.0,uid=$(id -u),gid=$(id -g)
+
+# Verify
+ls /mnt/stats
+```
+
+Make it persistent by adding this line to `/etc/fstab`:
+
+```
+//152.2.228.104/www  /mnt/stats  cifs  credentials=/etc/credentials-statcrew,vers=3.0,uid=1000,gid=1000,iocharset=utf8,_netdev,nofail  0  0
+```
+
+Then test with `sudo mount -a`. Once mounted, use the app's StatCrew config page to browse and select XML files under `/mnt/stats`.
 
 ### Firewall
 

@@ -62,6 +62,9 @@ def data_sources_endpoint():
     host = str(payload.get("host", "")).strip()
     name = str(payload.get("name", "")).strip() or host
     port = payload.get("port")
+    sport_overrides = ingestion.normalize_sport_overrides(
+        payload.get("sport_overrides")
+    )
 
     if not host or port is None:
         return jsonify({"error": "host and port required"}), 400
@@ -78,6 +81,7 @@ def data_sources_endpoint():
         "host": host,
         "port": port,
         "enabled": True,
+        "sport_overrides": sport_overrides,
     }
 
     with ingestion.data_sources_lock:
@@ -118,6 +122,7 @@ def data_source_item(source_id):
     name = payload.get("name")
     new_host = payload.get("host")
     new_port = payload.get("port")
+    new_sport_overrides = payload.get("sport_overrides", "__missing__")
 
     # Validate new port if provided
     if new_port is not None:
@@ -166,6 +171,10 @@ def data_source_item(source_id):
                     source["name"] = str(name)
                 if enabled is not None:
                     source["enabled"] = bool(enabled)
+                if new_sport_overrides != "__missing__":
+                    source["sport_overrides"] = ingestion.normalize_sport_overrides(
+                        new_sport_overrides
+                    )
                 if host_port_changed:
                     source["host"] = effective_host
                     source["port"] = effective_port
@@ -278,28 +287,36 @@ def browse_files():
             entry_path = os.path.join(path, name)
             is_dir = os.path.isdir(entry_path)
             if is_dir or name.lower().endswith(".xml"):
-                entries.append({
-                    "name": name,
-                    "path": entry_path,
-                    "is_dir": is_dir,
-                })
+                entries.append(
+                    {
+                        "name": name,
+                        "path": entry_path,
+                        "is_dir": is_dir,
+                    }
+                )
     except PermissionError:
-        return jsonify({
-            "current_path": path,
-            "parent_path": parent_path,
-            "entries": [],
-            "error": "permission denied",
-        })
+        return jsonify(
+            {
+                "current_path": path,
+                "parent_path": parent_path,
+                "entries": [],
+                "error": "permission denied",
+            }
+        )
     except Exception as exc:
-        return jsonify({
+        return jsonify(
+            {
+                "current_path": path,
+                "parent_path": parent_path,
+                "entries": [],
+                "error": str(exc),
+            }
+        )
+
+    return jsonify(
+        {
             "current_path": path,
             "parent_path": parent_path,
-            "entries": [],
-            "error": str(exc),
-        })
-
-    return jsonify({
-        "current_path": path,
-        "parent_path": parent_path,
-        "entries": entries,
-    })
+            "entries": entries,
+        }
+    )

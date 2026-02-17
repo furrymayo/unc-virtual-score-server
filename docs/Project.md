@@ -5,6 +5,8 @@ Tags: #project #status/active #todo
 ## Overview
 Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport-specific scoreboards in a browser. Modular architecture with 6 backend modules, 50+ tests, and systemd deployment for Ubuntu. Supports TrackMan UDP for pitch/hit tracking and StatCrew XML for enhanced game stats.
 
+**Gymnastics special case**: The OES controller has no Gymnastics sport code, so the gymnastics venue transmits using the Lacrosse packet type. We use per-source `sport_overrides` to remap Lacrosse packets to Gymnastics for that venue, and only the running clock is consumed for Gymnastics.
+
 Repo: https://github.com/furrymayo/unc-virtual-score-server
 Secure config lives in `.env` (see `.env.example` for required variables).
 
@@ -13,6 +15,7 @@ Secure config lives in `.env` (see `.env.example` for required variables).
 - **Baseball Page Redesign**: Team names/records from StatCrew, stadium/weather display, current pitcher/batter cards with stats, center-stacked layout.
 - **Strike Zone Fix**: Corrected coordinate mapping — now uses Z (height) instead of Y (depth). Removed incorrect xOffset/xScale values.
 - **New APIs**: `/statcrew_config/<sport>`, `/get_statcrew_data/<sport>`, `/browse_files` for server-side file selection.
+- **StatCrew Network Share**: Added CIFS mount instructions to README for persistent network share at `/mnt/stats` on the Ubuntu server. Credentials stored securely in `/etc/credentials-statcrew` (see README for setup). StatCrew XML files are browsable from the app's config UI.
 - **Pending**: Strike zone calibration needs verification with live TrackMan data (check `/get_trackman_debug/Baseball`).
 
 ## Session Summary (2026-02-16)
@@ -30,6 +33,7 @@ Secure config lives in `.env` (see `.env.example` for required variables).
 
 ## TODOs
 - [ ] **Verify strike zone calibration** with live TrackMan data (X/Z coordinates)
+- [ ] **Verify CIFS mount** on Ubuntu server — confirm StatCrew XMLs visible via app file browser
 - [ ] Add StatCrew data sources panel to remaining sport pages (Basketball, Hockey, etc.)
 - [ ] Validate TrackMan feed values against live stadium output
 - [ ] Add admin protection for API endpoints if exposed beyond trusted networks

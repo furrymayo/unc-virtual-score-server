@@ -49,28 +49,41 @@ class TestDataSourcesCRUD:
     def test_add_and_list(self, client):
         resp = client.post(
             "/data_sources",
-            data=json.dumps({"host": "127.0.0.1", "port": 9999, "name": "Test"}),
+            data=json.dumps(
+                {
+                    "host": "127.0.0.1",
+                    "port": 9999,
+                    "name": "Test",
+                    "sport_overrides": {"lacrosse": "gymnastics"},
+                }
+            ),
             content_type="application/json",
         )
         assert resp.status_code == 200
         body = resp.get_json()
         assert body["status"] == "added"
         source_id = body["source"]["id"]
+        assert body["source"]["sport_overrides"] == {"Lacrosse": "Gymnastics"}
 
         resp = client.get("/data_sources")
         sources = resp.get_json()["sources"]
         assert len(sources) == 1
         assert sources[0]["id"] == source_id
+        assert sources[0]["sport_overrides"] == {"Lacrosse": "Gymnastics"}
 
     def test_add_duplicate(self, client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999})
         client.post("/data_sources", data=payload, content_type="application/json")
-        resp = client.post("/data_sources", data=payload, content_type="application/json")
+        resp = client.post(
+            "/data_sources", data=payload, content_type="application/json"
+        )
         assert resp.status_code == 409
 
     def test_delete(self, client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999})
-        resp = client.post("/data_sources", data=payload, content_type="application/json")
+        resp = client.post(
+            "/data_sources", data=payload, content_type="application/json"
+        )
         source_id = resp.get_json()["source"]["id"]
 
         resp = client.delete(f"/data_sources/{source_id}")
@@ -82,16 +95,26 @@ class TestDataSourcesCRUD:
 
     def test_patch(self, client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999, "name": "Old"})
-        resp = client.post("/data_sources", data=payload, content_type="application/json")
+        resp = client.post(
+            "/data_sources", data=payload, content_type="application/json"
+        )
         source_id = resp.get_json()["source"]["id"]
 
         resp = client.patch(
             f"/data_sources/{source_id}",
-            data=json.dumps({"name": "New"}),
+            data=json.dumps(
+                {
+                    "name": "New",
+                    "sport_overrides": {"Lacrosse": "Gymnastics"},
+                }
+            ),
             content_type="application/json",
         )
         assert resp.status_code == 200
         assert resp.get_json()["source"]["name"] == "New"
+        assert resp.get_json()["source"]["sport_overrides"] == {
+            "Lacrosse": "Gymnastics"
+        }
 
     def test_delete_not_found(self, client):
         resp = client.delete("/data_sources/nonexistent")
@@ -99,7 +122,9 @@ class TestDataSourcesCRUD:
 
     def test_patch_host_port(self, client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999, "name": "Original"})
-        resp = client.post("/data_sources", data=payload, content_type="application/json")
+        resp = client.post(
+            "/data_sources", data=payload, content_type="application/json"
+        )
         old_id = resp.get_json()["source"]["id"]
 
         resp = client.patch(

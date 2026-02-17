@@ -34,6 +34,12 @@
 | `0x77` (`w`) | Wrestling |
 | `0x73` (`s`) | Soccer |
 
+### Gymnastics Override
+
+Gymnastics does **not** have a native OES sport code. The gymnastics venue transmits its data using the Lacrosse packet type. Only the running clock is needed for Gymnastics, and this Lacrosse-coded feed must not be confused with real Lacrosse venues.
+
+Use per-source `sport_overrides` on the Gymnastics venue's TCP data source to remap `Lacrosse → Gymnastics`. This isolates the exception to a single source and preserves normal Lacrosse handling elsewhere.
+
 ## Network Ports
 
 | Service | Port | Protocol |

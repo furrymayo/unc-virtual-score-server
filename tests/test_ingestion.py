@@ -1,7 +1,15 @@
 import time
 
 from website import ingestion
-from website.protocol import STX, CR, TP_VOLLEYBALL, TP_BBALL_BASE_SOFT, BBALL_LEN
+from website.protocol import (
+    STX,
+    CR,
+    TP_VOLLEYBALL,
+    TP_BBALL_BASE_SOFT,
+    TP_LACROSSE_FH,
+    BBALL_LEN,
+    LAX_LEN,
+)
 
 
 def _reset_ingestion_state():
@@ -12,6 +20,8 @@ def _reset_ingestion_state():
         ingestion.parsed_data_by_source.clear()
         ingestion.last_seen_by_source.clear()
     ingestion.reset_baseball_state()
+    with ingestion.data_sources_lock:
+        ingestion.data_sources.clear()
 
 
 class TestRecordAndRetrieve:
@@ -78,18 +88,49 @@ class TestHandleSerialPacket:
         result = ingestion.get_sport_data("Basketball")
         assert result == {}
 
+    def test_lacrosse_override_to_gymnastics(self):
+        with ingestion.data_sources_lock:
+            ingestion.data_sources.append(
+                {
+                    "id": "tcp:10.0.0.9:9999",
+                    "name": "Gym Venue",
+                    "host": "10.0.0.9",
+                    "port": 9999,
+                    "enabled": True,
+                    "sport_overrides": {"Lacrosse": "Gymnastics"},
+                }
+            )
+
+        pkt = [0x30] * LAX_LEN
+        pkt[0] = STX
+        pkt[1] = TP_LACROSSE_FH
+        pkt[-1] = CR
+
+        ingestion.handle_serial_packet(pkt, source_id="tcp:10.0.0.9:9999")
+        gym = ingestion.get_sport_data("Gymnastics")
+        assert gym.get("game_clock") is not None
+        assert ingestion.get_sport_data("Lacrosse") == {}
+
 
 # --- Baseball inning state machine tests ---
+
 
 def _base_baseball(outs="0", away_innings=None, home_innings=None):
     """Helper: minimal baseball parsed dict."""
     return {
         "away_innings": away_innings or [" "] * 10,
         "home_innings": home_innings or [" "] * 10,
-        "balls": "0", "strikes": "0", "outs": outs,
-        "batter_num": " 1", "pitch_speed": "000",
-        "away_runs": " 0", "away_hits": " 0", "away_errors": " 0",
-        "home_runs": " 0", "home_hits": " 0", "home_errors": " 0",
+        "balls": "0",
+        "strikes": "0",
+        "outs": outs,
+        "batter_num": " 1",
+        "pitch_speed": "000",
+        "away_runs": " 0",
+        "away_hits": " 0",
+        "away_errors": " 0",
+        "home_runs": " 0",
+        "home_hits": " 0",
+        "home_errors": " 0",
     }
 
 
@@ -201,7 +242,11 @@ class TestBaseballInningStateMachine:
         """Cold start mid-game: away has more filled innings → BOT."""
         away = ["2", "0", " ", " ", " ", " ", " ", " ", " ", " "]
         home = ["1", " ", " ", " ", " ", " ", " ", " ", " ", " "]
-        ingestion.record_packet("Baseball", _base_baseball(outs="1", away_innings=away, home_innings=home), "t")
+        ingestion.record_packet(
+            "Baseball",
+            _base_baseball(outs="1", away_innings=away, home_innings=home),
+            "t",
+        )
         result = ingestion.get_sport_data("Baseball")
         assert result["half"] == "BOT"
         assert result["inning"] == 2
@@ -210,7 +255,11 @@ class TestBaseballInningStateMachine:
         """Cold start mid-game with outs=3 and away ahead → MID."""
         away = ["3", " ", " ", " ", " ", " ", " ", " ", " ", " "]
         home = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
-        ingestion.record_packet("Baseball", _base_baseball(outs="3", away_innings=away, home_innings=home), "t")
+        ingestion.record_packet(
+            "Baseball",
+            _base_baseball(outs="3", away_innings=away, home_innings=home),
+            "t",
+        )
         result = ingestion.get_sport_data("Baseball")
         assert result["half"] == "MID"
         assert result["inning"] == 1

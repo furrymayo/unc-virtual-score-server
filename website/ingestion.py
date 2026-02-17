@@ -28,11 +28,14 @@ parsed_data = {
     "Soccer": {},
     "Softball": {},
     "Baseball": {},
+    "Gymnastics": {},
 }
 
 parsed_data_by_source = {}
 last_seen_by_source = {}
 parsed_data_lock = threading.Lock()
+
+SUPPORTED_SPORTS = set(parsed_data.keys())
 
 # --- Accessor functions ---
 
@@ -140,6 +143,8 @@ def record_packet(sport, parsed, source_id):
         source_id = "unknown"
 
     with parsed_data_lock:
+        if sport not in parsed_data:
+            parsed_data[sport] = {}
         # Baseball inning enrichment
         if sport == "Baseball":
             half, inning = _update_baseball_inning(parsed)
@@ -198,9 +203,11 @@ def purge_stale_sources():
 
 # --- handle_serial_packet ---
 
+
 def handle_serial_packet(packet, source_id=None):
     sport, parsed = identify_and_parse(packet)
     if sport and parsed is not None:
+        sport, parsed = _apply_sport_overrides(sport, parsed, source_id)
         record_packet(sport, parsed, source_id)
 
 
@@ -478,12 +485,62 @@ data_sources_lock = threading.Lock()
 data_sources = []
 
 
+def _normalize_sport_name(value):
+    if value is None:
+        return None
+    name = str(value).strip()
+    if not name:
+        return None
+    normalized = name.title()
+    if normalized in SUPPORTED_SPORTS:
+        return normalized
+    return None
+
+
+def normalize_sport_overrides(overrides):
+    if not overrides:
+        return {}
+    if not isinstance(overrides, dict):
+        return {}
+
+    normalized = {}
+    for raw_from, raw_to in overrides.items():
+        from_sport = _normalize_sport_name(raw_from)
+        to_sport = _normalize_sport_name(raw_to)
+        if from_sport and to_sport:
+            normalized[from_sport] = to_sport
+    return normalized
+
+
+def _get_source_override(source_id, sport):
+    if not source_id or not sport:
+        return None
+    with data_sources_lock:
+        for source in data_sources:
+            if source.get("id") == source_id:
+                overrides = source.get("sport_overrides", {})
+                return overrides.get(sport)
+    return None
+
+
+def _apply_sport_overrides(sport, parsed, source_id):
+    override = _get_source_override(source_id, sport)
+    if not override:
+        return sport, parsed
+
+    if override == "Gymnastics" and sport == "Lacrosse":
+        parsed = {"game_clock": parsed.get("game_clock")}
+
+    return override, parsed
+
+
 def _normalize_source_entry(entry):
     if not isinstance(entry, dict):
         return None
     source_id = entry.get("id")
     host = entry.get("host")
     port = entry.get("port")
+    sport_overrides = normalize_sport_overrides(entry.get("sport_overrides"))
 
     if not source_id or not host or not port:
         return None
@@ -502,6 +559,7 @@ def _normalize_source_entry(entry):
         "host": str(host),
         "port": port,
         "enabled": enabled,
+        "sport_overrides": sport_overrides,
     }
 
 
@@ -557,8 +615,10 @@ def get_available_com_ports():
 
 # --- Stale source cleanup ---
 
+
 def start_cleanup_thread(interval=300):
     """Daemon thread that purges stale sources every *interval* seconds."""
+
     def _loop():
         while True:
             time.sleep(interval)
