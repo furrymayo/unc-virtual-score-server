@@ -354,26 +354,67 @@ def _parse_statcrew_xml(xml_text):
                     parsed[f"{prefix}_pitcher_pitches"] = p_stats.get("pitches", "")
                     parsed[f"{prefix}_pitcher_strikes"] = p_stats.get("strikes", "")
 
-        # Find batters with season stats for display
-        for vh in ["V", "H"]:
-            if vh in parsed.get("batters", {}):
-                batters = parsed["batters"][vh]
-                prefix = "away" if vh == "V" else "home"
-                # Store all batters with their stats
-                batter_list = []
-                for b in batters:
-                    h_stats = b.get("hitting", {})
-                    season = b.get("hitseason", {})
+        # Build batter lists from batord (full lineup) + overlay hitting stats
+        for team in teams:
+            vh = team.get("vh", "").upper()
+            if vh not in ("V", "H"):
+                continue
+            prefix = "away" if vh == "V" else "home"
+
+            # Start with batting order — available from first pitch
+            batord_by_uni = {}
+            for bo in team.findall(".//batord"):
+                uni = bo.get("uni", "")
+                if uni:
+                    batord_by_uni[uni] = {
+                        "name": bo.get("name", ""),
+                        "uni": uni,
+                        "spot": bo.get("spot", ""),
+                    }
+
+            # Build lookup of hitting/season stats by uni from player elements
+            stats_by_uni = {}
+            for b in parsed.get("batters", {}).get(vh, []):
+                uni = b.get("uni", "")
+                if uni:
+                    stats_by_uni[uni] = b
+
+            # Merge: batord roster + player stats overlay
+            batter_list = []
+            seen = set()
+            for uni, bo in batord_by_uni.items():
+                p = stats_by_uni.get(uni, {})
+                h_stats = p.get("hitting", {})
+                season = p.get("hitseason", {})
+                # Prefer player name (has proper formatting) over batord name
+                name = p.get("name", "") or bo["name"]
+                batter_list.append({
+                    "name": name,
+                    "uni": uni,
+                    "spot": bo["spot"],
+                    "ab": h_stats.get("ab", ""),
+                    "h": h_stats.get("h", ""),
+                    "rbi": h_stats.get("rbi", ""),
+                    "avg": season.get("avg", ""),
+                })
+                seen.add(uni)
+
+            # Add any players with hitting stats not in batord (pinch hitters)
+            for uni, p in stats_by_uni.items():
+                if uni not in seen:
+                    h_stats = p.get("hitting", {})
+                    season = p.get("hitseason", {})
                     batter_list.append({
-                        "name": b.get("name", ""),
-                        "uni": b.get("uni", ""),
-                        "spot": b.get("spot", ""),
+                        "name": p.get("name", ""),
+                        "uni": uni,
+                        "spot": p.get("spot", ""),
                         "ab": h_stats.get("ab", ""),
                         "h": h_stats.get("h", ""),
                         "rbi": h_stats.get("rbi", ""),
                         "avg": season.get("avg", ""),
                     })
-                parsed[f"{prefix}_batters"] = batter_list
+
+            parsed[f"{prefix}_batters"] = batter_list
 
     # Generic fallback: try to extract all elements with text content
     if not parsed:
