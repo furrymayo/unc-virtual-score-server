@@ -1,0 +1,1605 @@
+<?xml version="1.0"?>
+<bsgame source="StatInput" version="1" generated="02/15/2026" lastmodified="1771114876">
+  <venue gameid="6988d76ca4c73d31020b6015" visid="IND" homeid="UNC" visname="Indiana" homename="North Carolina" date="02/14/2026" location="Chapel Hill, NC" stadium="Boshamer Stadium" duration="3:35" attend="2928" leaguegame="N" neutralgame="N" postseason="N" exhibition="N" naturalgrass="N" indoors="N" dhgame="2" doubleheader="Y" start="3:42 PM" schedtime="3:42 PM" end="7:17 PM" schedinn="9" weather="Temp: 59F" conditions="" wind="" temp="59" gender="M" season="2025" homerank="11">
+    <umpires hp="Thomas Newsom" first="Alan Gorewitz" second="Joseph Blumenaurer" third="Tim Rosso" if="" lf="" rf=""/>
+    <notes>
+			      
+			</notes>
+    <rules batters="9,9" usedh="Y" allowreentry="N"/>
+  </venue>
+  <team vh="V" id="IND" name="Indiana" code="" record="0-3" conf="" confrecord="" rank="" seed="">
+    <linescore line="1,0,0,0,0,0,2,0,0,0,0" runs="3" hits="5" errs="2" lob="8">
+      <lineinn inn="1" score="1" hits="2" errors="0" lob="2"/>
+      <lineinn inn="2" score="0" hits="0" errors="0" lob="2"/>
+      <lineinn inn="3" score="0" hits="0" errors="0" lob="1"/>
+      <lineinn inn="4" score="0" hits="0" errors="0" lob="0"/>
+      <lineinn inn="5" score="0" hits="1" errors="0" lob="0"/>
+      <lineinn inn="6" score="0" hits="0" errors="0" lob="0"/>
+      <lineinn inn="7" score="2" hits="1" errors="1" lob="2"/>
+      <lineinn inn="8" score="0" hits="0" errors="0" lob="0"/>
+      <lineinn inn="9" score="0" hits="0" errors="0" lob="0"/>
+      <lineinn inn="10" score="0" hits="0" errors="0" lob="0"/>
+      <lineinn inn="11" score="0" hits="1" errors="0" lob="1"/>
+    </linescore>
+    <starters>
+      <starter spot="1" name="Moore,Will" uni="4" pos="3b"/>
+      <starter spot="2" name="Denny,Hogan" uni="2" pos="rf"/>
+      <starter spot="3" name="Malamazian,Cooper" uni="15" pos="ss"/>
+      <starter spot="4" name="Hanley,Jake" uni="34" pos="1b"/>
+      <starter spot="5" name="Decker,Cole" uni="19" pos="cf"/>
+      <starter spot="6" name="Ricketts,Brayden" uni="42" pos="dh"/>
+      <starter spot="7" name="Stewart,Aiden" uni="8" pos="2b"/>
+      <starter spot="8" name="Gates,Cal" uni="3" pos="lf"/>
+      <starter spot="9" name="Schuyler,TJ" uni="6" pos="c"/>
+      <starter spot="10" name="Thomas,Brayton" uni="14" pos="p"/>
+    </starters>
+    <batords>
+      <batord spot="1" name="Moore,Will" uni="4" pos="3b"/>
+      <batord spot="2" name="Denny,Hogan" uni="2" pos="c" in="7" seq="67"/>
+      <batord spot="3" name="Malamazian,Cooper" uni="15" pos="ss"/>
+      <batord spot="4" name="Hanley,Jake" uni="34" pos="1b"/>
+      <batord spot="5" name="Decker,Cole" uni="19" pos="cf"/>
+      <batord spot="6" name="Ricketts,Brayden" uni="42" pos="dh"/>
+      <batord spot="7" name="Fry,Landen" uni="25" pos="2b" in="11" seq="115"/>
+      <batord spot="8" name="Gates,Cal" uni="3" pos="lf"/>
+      <batord spot="9" name="Crouse,Ayden" uni="5" pos="rf" in="7" seq="68"/>
+      <batord spot="10" name="Vogel,Jacob" uni="21" pos="p" in="10" seq="103"/>
+    </batords>
+    <totals gp="2">
+      <hitting ab="37" pa="44" r="3" h="5" rbi="3" bb="5" so="12" kl="0" double="0" triple="0" hr="0" tb="5" xb="0" ibb="0" sh="0" sf="0" hbp="2" ground="9" fly="8" hitdp="1" gdp="1" hittp="0" sb="0" cs="1" sba="1" rchci="0" picked="0"/>
+      <hsitsummary rcherr="1" rchfc="2" rchci="0" ground="9" fly="8" w2outs="1,11" wrunners="2,17" wrbiops="2,10" wloaded="1,1" vsleft="1,5" vsright="4,32" nohand="0,0" leadoff="1,9" rbi3rd="0,5" pinchhit="0,1" advops="4,17" adv="8" lob="8" rbi-2out="2"/>
+      <fielding po="30" a="6" e="2" sba="0" csb="0" pb="1" ci="0" indp="0" intp="0"/>
+      <pitching ip="10.0" h="8" r="4" er="2" dtr="0" bb="8" so="7" k="7" sha="1" sfa="0" cia="0" bf="49" ab="38" double="0" triple="0" hr="1" kl="0" fly="15" ground="6" hbp="2" ibb="1" gdp="0" wp="0" bk="0" pitches="185" strikes="106" fps="28" sb="0" sba="0" inheritr="1" inherits="0"/>
+      <psitsummary fly="15" ground="6" leadoff="4,9" wrunners="4,21" vsleft="3,17" vsright="5,21" nohand="0,0" w2outs="0,12" relief="2,2" picked="0" pitches="185" strikes="106" fps="28"/>
+      <hitseason ab="91" r="9" h="14" rbi="8" so="32" bb="17" ibb="0" hbp="3" double="2" triple="0" hr="0" sb="0" cs="1" sh="2" sf="0" picked="0" avg=".154" rcherr="2" rchci="0" rchfc="2" ground="23" fly="20" adv="8" lob="23" rbi-2out="6" vsleft=".150" vsleft-ab="3,20" vsright=".155" vsright-ab="11,71" nohand="-" nohand-ab="," advops=".234" advops-ab="11,47" w2outs=".103" w2outs-ab="3,29" wrunners=".128" wrunners-ab="6,47" wrbiops=".167" wrbiops-ab="5,30" leadoff=".100" leadoff-ab="2,20" rbi3rd=".000" rbi3rd-ab=",12" loaded=".667" loaded-ab="2,3" pinchhit=".000" pinchhit-ab=",3"/>
+      <pchseason era="8.25" ip="24.0" avg=".265" save="0" cg="0" sho="0" cbo="0" bf="127" ab="98" h="26" r="25" er="22" bb="19" ibb="1" so="7" double="4" triple="4" hr="2" wp="3" hbp="8" bk="1" inheritr="1" inherits="0" cia="0" rcherr="2" rchfc="1" ground="21" fly="30" picked="0" pitches="185" strikes="106" vsleft=".229" vsleft-ab="11,48" vsright=".300" vsright-ab="15,50" nohand="-" nohand-ab="," w2outs=".107" w2outs-ab="3,28" wrunners=".273" wrunners-ab="15,55" wrbiops="-" wrbiops-ab="," leadoff=".381" leadoff-ab="8,21" rbi3rd="-" rbi3rd-ab="," loaded=".000" loaded-ab=",3" relief="1.000" relief-ab="2,2"/>
+    </totals>
+    <player name="Thomas, Brayton" shortname="Thomas,Brayton" id="1771011293" code="" uni="14" gp="1" gs="1" spot="10" pos="p" rosterpos="LHP" bats="L" throws="L" class="SO">
+      <fielding po="0" a="0" e="1" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="1" gs="1" gf="0" ip="3.0" h="3" r="1" er="1" bb="3" so="1" k="1" sha="0" sfa="0" cia="0" bf="16" ab="13" double="0" triple="0" hr="0" kl="0" fly="6" ground="2" picked="0" hbp="0" ibb="0" gdp="0" wp="0" bk="0" pitches="57" strikes="32" fps="10" sb="0" sba="0" inheritr="0" inherits="0" cbo="0" sho="0"/>
+      <psitsummary fly="6" ground="2" picked="0" leadoff="0,2" wrunners="3,8" vsleft="2,6" vsright="1,7" nohand="0,0" pitches="57" strikes="32" fps="10" w2outs="0,4" relief="0,0"/>
+      <psituation context="empty" ip="3.0" h="3" r="1" er="1" bb="3" so="1" bf="16" ab="13" fly="6" ground="2" rcherr="1"/>
+      <psituation context="scorepos" ip="3.0" h="3" r="1" er="1" bb="3" so="1" bf="16" ab="13" fly="6" ground="2" rcherr="1"/>
+      <psituation context="scorepos2" ip="3.0" h="3" r="1" er="1" bb="3" so="1" bf="16" ab="13" fly="6" ground="2" rcherr="1"/>
+      <psituation context="leadoff" ip="0.2" bf="2" ab="2" fly="1" ground="1"/>
+      <psituation context="vsleft" ip="1.1" h="2" bb="1" bf="7" ab="6" fly="2" ground="2"/>
+      <psituation context="vsright" ip="1.2" h="1" r="1" er="1" bb="2" so="1" bf="9" ab="7" fly="4" rcherr="1"/>
+      <psituation context="byinn" inn="1" ip="1.0" bb="2" bf="5" ab="3" fly="2" ground="1"/>
+      <psituation context="byinn" inn="2" ip="1.0" h="3" r="1" er="1" bb="1" so="1" bf="7" ab="6" fly="1" ground="1"/>
+      <psituation context="byinn" inn="3" ip="1.0" bf="4" ab="4" fly="3" rcherr="1"/>
+    </player>
+    <player name="Malamazian, Cooper" shortname="Malamazian,Cooper" id="1771011294" code="" uni="15" gp="1" gs="1" spot="3" atpos="ss" pos="ss" rosterpos="inf" bats="R" throws="R" class="SO">
+      <hitting ab="4" pa="5" r="0" h="1" rbi="2" bb="1" so="2" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="1" rchci="0" ground="0" fly="0" w2outs="1,1" wrunners="1,3" wrbiops="1,2" wloaded="1,1" vsleft="0,0" vsright="1,4" nohand="0,0" leadoff="0,0" rbi3rd="0,2" pinchhit="0,0" advops="2,3" adv="4" lob="0" rbi-2out="2"/>
+      <hsituation context="loaded" pa="1" ab="1" adv="1" rchfc="1"/>
+      <hsituation context="empty" pa="1" ab="1" so="1"/>
+      <hsituation context="runners" pa="4" ab="3" h="1" rbi="2" bb="1" so="1" adv="4" rbi-2out="2" rchfc="1"/>
+      <hsituation context="runners2" pa="2" ab="2" h="1" rbi="2" adv="4" rbi-2out="2" rchfc="1"/>
+      <hsituation context="scorepos" pa="5" ab="4" h="1" rbi="2" bb="1" so="2" adv="4" rbi-2out="2" rchfc="1"/>
+      <hsituation context="scorepos2" pa="5" ab="4" h="1" rbi="2" bb="1" so="2" adv="4" rbi-2out="2" rchfc="1"/>
+      <hsituation context="vsright" pa="5" ab="4" h="1" rbi="2" bb="1" so="2" adv="4" rbi-2out="2" rchfc="1"/>
+      <hsituation context="byspot" spot="3" pa="5" ab="4" h="1" rbi="2" bb="1" so="2" adv="4" rbi-2out="2" rchfc="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="3" ab="2" bb="1" so="1" adv="1" rchfc="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" h="1" rbi="2" adv="3" rbi-2out="2"/>
+      <hsituation context="vspitcher" pitcher="Holiday,Talan" pa="1" ab="1" so="1"/>
+      <fielding po="4" a="2" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="10" r="1" h="2" rbi="2" so="4" bb="3" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".200" rcherr="0" rchci="0" rchfc="1" ground="2" fly="1" adv="4" lob="1" rbi-2out="2" vsleft=".500" vsleft-ab="1,2" vsright=".125" vsright-ab="1,8" nohand="-" nohand-ab="," advops=".400" advops-ab="2,5" w2outs=".500" w2outs-ab="1,2" wrunners=".200" wrunners-ab="1,5" wrbiops=".250" wrbiops-ab="1,4" leadoff=".000" leadoff-ab=",2" rbi3rd=".000" rbi3rd-ab=",2" loaded="1.000" loaded-ab="1,1" pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Decker, Cole" shortname="Decker,Cole" id="1771011298" code="" uni="19" gp="1" gs="1" spot="5" atpos="cf" pos="cf" rosterpos="OF" bats="L" throws="R" class="SO">
+      <hitting ab="4" pa="5" r="0" h="0" rbi="0" bb="1" so="1" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="1" rchci="0" ground="0" fly="2" w2outs="0,0" wrunners="0,2" wrbiops="0,1" wloaded="0,0" vsleft="0,1" vsright="0,3" nohand="0,0" leadoff="0,2" rbi3rd="0,0" pinchhit="0,0" advops="0,2" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="empty" pa="2" ab="2" so="1" fly="1"/>
+      <hsituation context="runners" pa="3" ab="2" bb="1" fly="1" rchfc="1"/>
+      <hsituation context="runners2" pa="2" ab="2" fly="1" rchfc="1"/>
+      <hsituation context="scorepos" pa="5" ab="4" bb="1" so="1" fly="2" rchfc="1"/>
+      <hsituation context="scorepos2" pa="5" ab="4" bb="1" so="1" fly="2" rchfc="1"/>
+      <hsituation context="leadoff" pa="2" ab="2" so="1" fly="1"/>
+      <hsituation context="vsleft" pa="1" ab="1" fly="1"/>
+      <hsituation context="vsright" pa="4" ab="3" bb="1" so="1" fly="1" rchfc="1"/>
+      <hsituation context="byspot" spot="5" pa="5" ab="4" bb="1" so="1" fly="2" rchfc="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="2" ab="2" fly="1" rchfc="1"/>
+      <hsituation context="vspitcher" pitcher="Glauber,Caden" pa="1" bb="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" so="1"/>
+      <hsituation context="vspitcher" pitcher="Chmielewski,Tom" pa="1" ab="1" fly="1"/>
+      <fielding po="7" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="10" r="0" h="1" rbi="2" so="2" bb="2" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".100" rcherr="0" rchci="0" rchfc="1" ground="0" fly="6" adv="0" lob="0" rbi-2out="2" vsleft=".000" vsleft-ab=",3" vsright=".143" vsright-ab="1,7" nohand="-" nohand-ab="," advops=".200" advops-ab="1,5" w2outs="1.000" w2outs-ab="1,1" wrunners=".200" wrunners-ab="1,5" wrbiops=".333" wrbiops-ab="1,3" leadoff=".000" leadoff-ab=",4" rbi3rd=".000" rbi3rd-ab=",3" loaded=".500" loaded-ab="1,2" pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Denny, Hogan" shortname="Denny,Hogan" id="1771011283" code="" uni="2" gp="1" gs="1" spot="2" atpos="c" pos="rf/c" rosterpos="OF" bats="R" throws="R" class="SO">
+      <hitting ab="4" pa="5" r="0" h="1" rbi="0" bb="0" so="0" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="0" sh="0" sf="0" hbp="1" ground="0" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="1" sba="1" rchci="0" picked="0"/>
+      <hsitsummary rcherr="1" rchfc="0" rchci="0" ground="0" fly="2" w2outs="0,2" wrunners="0,2" wrbiops="0,2" wloaded="0,0" vsleft="0,0" vsright="1,4" nohand="0,0" leadoff="0,1" rbi3rd="0,1" pinchhit="0,0" advops="1,2" adv="2" lob="2" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" ab="1" adv="2" rcherr="1"/>
+      <hsituation context="empty" pa="1" ab="1" fly="1"/>
+      <hsituation context="runners" pa="4" ab="3" h="1" hbp="1" lob="2" fly="1" adv="2" rcherr="1"/>
+      <hsituation context="runners2" pa="3" ab="2" hbp="1" lob="2" fly="1" adv="2" rcherr="1"/>
+      <hsituation context="scorepos" pa="5" ab="4" h="1" hbp="1" lob="2" fly="2" adv="2" rcherr="1"/>
+      <hsituation context="scorepos2" pa="5" ab="4" h="1" hbp="1" lob="2" fly="2" adv="2" rcherr="1"/>
+      <hsituation context="leadoff" pa="1" ab="1" fly="1"/>
+      <hsituation context="vsright" pa="5" ab="4" h="1" hbp="1" lob="2" fly="2" adv="2" rcherr="1"/>
+      <hsituation context="byspot" spot="2" pa="5" ab="4" h="1" hbp="1" lob="2" fly="2" adv="2" rcherr="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="3" ab="2" h="1" hbp="1" lob="2" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" adv="2" rcherr="1"/>
+      <hsituation context="vspitcher" pitcher="Holiday,Talan" pa="1" ab="1" fly="1"/>
+      <fielding po="5" a="0" e="0" sba="0" csb="0" pb="1" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="8" r="2" h="2" rbi="0" so="0" bb="4" ibb="0" hbp="1" double="0" triple="0" hr="0" sb="0" cs="1" sh="0" sf="0" picked="0" avg=".250" rcherr="1" rchci="0" rchfc="0" ground="1" fly="4" adv="2" lob="3" rbi-2out="0" vsleft=".000" vsleft-ab=",1" vsright=".286" vsright-ab="2,7" nohand="-" nohand-ab="," advops=".400" advops-ab="2,5" w2outs=".000" w2outs-ab=",3" wrunners=".000" wrunners-ab=",5" wrbiops=".000" wrbiops-ab=",4" leadoff=".500" leadoff-ab="1,2" rbi3rd=".000" rbi3rd-ab=",1" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Vogel, Jacob" shortname="Vogel,Jacob" id="1771011300" code="" uni="21" gp="1" gs="0" spot="10" atpos="p" sub="3" innentered="10" playentered="" pos="p" rosterpos="RHP" bats="R" throws="R" class="JR">
+      <fielding po="0" a="1" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="4" gs="0" gf="1" ip="1.0" h="2" r="1" er="1" bb="1" so="1" k="1" sha="1" sfa="0" cia="0" bf="6" ab="4" double="0" triple="0" hr="1" kl="0" fly="1" ground="0" picked="0" hbp="0" ibb="1" gdp="0" wp="0" bk="0" pitches="16" strikes="10" fps="2" sb="0" sba="0" inheritr="0" inherits="0" cbo="0" sho="0" loss="0-1"/>
+      <psitsummary fly="1" ground="0" picked="0" leadoff="2,2" wrunners="0,2" vsleft="0,2" vsright="2,2" nohand="0,0" pitches="16" strikes="10" fps="2" w2outs="0,1" relief="1,1"/>
+      <psituation context="empty" ip="1.0" h="2" r="1" er="1" bb="1" so="1" sha="1" bf="6" ab="4" hr="1" ibb="1" fly="1"/>
+      <psituation context="scorepos" ip="1.0" h="2" r="1" er="1" bb="1" so="1" sha="1" bf="6" ab="4" hr="1" ibb="1" fly="1"/>
+      <psituation context="scorepos2" ip="1.0" h="2" r="1" er="1" bb="1" so="1" sha="1" bf="6" ab="4" hr="1" ibb="1" fly="1"/>
+      <psituation context="leadoff" ip="0.0" h="2" r="1" er="1" bf="2" ab="2" hr="1"/>
+      <psituation context="vsleft" ip="1.0" so="1" sha="1" bf="3" ab="2" fly="1"/>
+      <psituation context="vsright" ip="0.0" h="2" r="1" er="1" bb="1" bf="3" ab="2" hr="1" ibb="1"/>
+      <psituation context="byinn" inn="10" ip="1.0" h="1" bb="1" so="1" sha="1" bf="5" ab="3" ibb="1" fly="1"/>
+      <psituation context="byinn" inn="11" ip="0.0" h="1" r="1" er="1" bf="1" ab="1" hr="1"/>
+    </player>
+    <player name="Fry, Landen" shortname="Fry,Landen" id="1771011303" code="" uni="25" gp="1" gs="0" spot="7" atpos="2b" sub="2" innentered="11" playentered="" pos="2b" rosterpos="inf" bats="R" throws="R" class="FR">
+      <hitting ab="0" pa="0" r="0" h="0" rbi="0" bb="0" so="0" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="0" w2outs="0,0" wrunners="0,0" wrbiops="0,0" wloaded="0,0" vsleft="0,0" vsright="0,0" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,0" advops="0,0" adv="0" lob="0" rbi-2out="0"/>
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+    </player>
+    <player name="Oever, Owen ten" shortname="Oever,Owenten" id="1771011304" code="" uni="26" gp="1" gs="0" spot="7" sub="1" innentered="11" playentered="" pos="PH" rosterpos="c" bats="R" throws="R" class="FR">
+      <hitting ab="1" pa="1" r="0" h="0" rbi="0" bb="0" so="1" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="0" w2outs="0,0" wrunners="0,1" wrbiops="0,0" wloaded="0,0" vsleft="0,1" vsright="0,0" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,1" advops="0,1" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="runners" pa="1" ab="1" so="1"/>
+      <hsituation context="scorepos" pa="1" ab="1" so="1"/>
+      <hsituation context="scorepos2" pa="1" ab="1" so="1"/>
+      <hsituation context="vsleft" pa="1" ab="1" so="1"/>
+      <hsituation context="byspot" spot="7" pa="1" ab="1" so="1"/>
+      <hsituation context="vspitcher" pitcher="Chmielewski,Tom" pa="1" ab="1" so="1"/>
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+    </player>
+    <player name="Gates, Cal" shortname="Gates,Cal" id="1771011284" code="" uni="3" gp="1" gs="1" spot="8" atpos="lf" pos="lf" rosterpos="OF" bats="L" throws="L" class="FR">
+      <hitting ab="5" pa="5" r="0" h="0" rbi="0" bb="0" so="3" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="1" fly="1" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="1" fly="1" w2outs="0,1" wrunners="0,2" wrbiops="0,1" wloaded="0,0" vsleft="0,1" vsright="0,4" nohand="0,0" leadoff="0,1" rbi3rd="0,0" pinchhit="0,0" advops="0,2" adv="0" lob="1" rbi-2out="0"/>
+      <hsituation context="empty" pa="3" ab="3" so="2" ground="1"/>
+      <hsituation context="runners" pa="2" ab="2" so="1" lob="1" fly="1"/>
+      <hsituation context="scorepos" pa="5" ab="5" so="3" lob="1" ground="1" fly="1"/>
+      <hsituation context="scorepos2" pa="5" ab="5" so="3" lob="1" ground="1" fly="1"/>
+      <hsituation context="leadoff" pa="1" ab="1" ground="1"/>
+      <hsituation context="vsleft" pa="1" ab="1" lob="1" fly="1"/>
+      <hsituation context="vsright" pa="4" ab="4" so="3" ground="1"/>
+      <hsituation context="byspot" spot="8" pa="5" ab="5" so="3" lob="1" ground="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="2" ab="2" so="2"/>
+      <hsituation context="vspitcher" pitcher="Glauber,Caden" pa="1" ab="1" so="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Chmielewski,Tom" pa="1" ab="1" lob="1" fly="1"/>
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="0" ab="6" r="1" h="0" rbi="0" so="4" bb="1" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".000" rcherr="0" rchci="0" rchfc="0" ground="1" fly="1" adv="0" lob="1" rbi-2out="0" vsleft=".000" vsleft-ab=",1" vsright=".000" vsright-ab=",5" nohand="-" nohand-ab="," advops=".000" advops-ab=",2" w2outs=".000" w2outs-ab=",1" wrunners=".000" wrunners-ab=",2" wrbiops=".000" wrbiops-ab=",1" leadoff=".000" leadoff-ab=",1" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit=".000" pinchhit-ab=",1"/>
+    </player>
+    <player name="Hanley, Jake" shortname="Hanley,Jake" id="1771011311" code="" uni="34" gp="1" gs="1" spot="4" atpos="1b" pos="1b" rosterpos="inf" bats="L" throws="R" class="SO">
+      <hitting ab="5" pa="5" r="0" h="1" rbi="1" bb="0" so="0" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="2" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="2" fly="2" w2outs="0,2" wrunners="1,3" wrbiops="1,2" wloaded="0,0" vsleft="0,1" vsright="1,4" nohand="0,0" leadoff="0,1" rbi3rd="0,2" pinchhit="0,0" advops="1,3" adv="2" lob="2" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" ab="1" h="1" rbi="1" adv="2"/>
+      <hsituation context="empty" pa="2" ab="2" ground="1" fly="1"/>
+      <hsituation context="runners" pa="3" ab="3" h="1" rbi="1" lob="2" ground="1" fly="1" adv="2"/>
+      <hsituation context="runners2" pa="2" ab="2" h="1" rbi="1" lob="2" ground="1" adv="2"/>
+      <hsituation context="scorepos" pa="5" ab="5" h="1" rbi="1" lob="2" ground="2" fly="2" adv="2"/>
+      <hsituation context="scorepos2" pa="5" ab="5" h="1" rbi="1" lob="2" ground="2" fly="2" adv="2"/>
+      <hsituation context="leadoff" pa="1" ab="1" fly="1"/>
+      <hsituation context="vsleft" pa="1" ab="1" ground="1"/>
+      <hsituation context="vsright" pa="4" ab="4" h="1" rbi="1" lob="2" ground="1" fly="2" adv="2"/>
+      <hsituation context="byspot" spot="4" pa="5" ab="5" h="1" rbi="1" lob="2" ground="2" fly="2" adv="2"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="2" ab="2" h="1" rbi="1" fly="1" adv="2"/>
+      <hsituation context="vspitcher" pitcher="Glauber,Caden" pa="1" ab="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" lob="2" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Chmielewski,Tom" pa="1" ab="1" ground="1"/>
+      <fielding po="6" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="13" r="0" h="3" rbi="3" so="1" bb="0" ibb="0" hbp="0" double="1" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".231" rcherr="0" rchci="0" rchfc="0" ground="4" fly="5" adv="2" lob="5" rbi-2out="2" vsleft=".000" vsleft-ab=",3" vsright=".300" vsright-ab="3,10" nohand="-" nohand-ab="," advops=".333" advops-ab="3,9" w2outs=".200" w2outs-ab="1,5" wrunners=".333" wrunners-ab="3,9" wrbiops=".333" wrbiops-ab="2,6" leadoff=".000" leadoff-ab=",3" rbi3rd=".000" rbi3rd-ab=",4" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Yarberry, Jackson" shortname="Yarberry,Jackson" id="1771011314" code="" uni="38" gp="1" gs="0" spot="10" sub="2" innentered="7.2" playentered="" pos="p" rosterpos="RHP" bats="R" throws="R" class="JR">
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="3" gs="0" gf="0" ip="2.1" h="2" r="2" er="0" bb="2" so="1" k="1" sha="0" sfa="0" cia="0" bf="12" ab="10" double="0" triple="0" hr="0" kl="0" fly="4" ground="2" picked="0" hbp="0" ibb="0" gdp="0" wp="0" bk="0" pitches="42" strikes="26" fps="9" sb="0" sba="0" inheritr="1" inherits="0" cbo="0" sho="0"/>
+      <psitsummary fly="4" ground="2" picked="0" leadoff="1,2" wrunners="1,6" vsleft="1,4" vsright="1,6" nohand="0,0" pitches="42" strikes="26" fps="9" w2outs="0,4" relief="0,0"/>
+      <psituation context="empty" ip="2.0" h="2" r="2" bb="2" so="1" bf="12" ab="10" fly="4" ground="2" rcherr="1" rchfc="1"/>
+      <psituation context="scorepos" ip="2.0" h="2" r="2" bb="2" so="1" bf="12" ab="10" fly="4" ground="2" rcherr="1" rchfc="1"/>
+      <psituation context="scorepos2" ip="2.0" h="2" r="2" bb="2" so="1" bf="12" ab="10" fly="4" ground="2" rcherr="1" rchfc="1"/>
+      <psituation context="leadoff" ip="0.1" h="1" r="1" so="1" bf="2" ab="2"/>
+      <psituation context="vsleft" ip="0.2" h="1" r="1" bb="2" bf="6" ab="4" fly="1" ground="1" rcherr="1"/>
+      <psituation context="vsright" ip="1.1" h="1" r="1" so="1" bf="6" ab="6" fly="3" ground="1" rchfc="1"/>
+      <psituation context="byinn" inn="7" ip="0.0" bb="1" bf="2" ab="1" ground="1" rchfc="1"/>
+      <psituation context="byinn" inn="8" ip="1.0" so="1" bf="3" ab="3" fly="1" ground="1"/>
+      <psituation context="byinn" inn="9" ip="1.0" h="2" r="2" bb="1" bf="7" ab="6" fly="3" rcherr="1"/>
+    </player>
+    <player name="Moore, Will" shortname="Moore,Will" id="1771011285" code="" uni="4" gp="1" gs="1" spot="1" atpos="3b" pos="3b" rosterpos="inf" bats="L" throws="R" class="SO">
+      <hitting ab="4" pa="5" r="2" h="1" rbi="0" bb="1" so="2" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="1" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="1" fly="0" w2outs="0,1" wrunners="0,1" wrbiops="0,1" wloaded="0,0" vsleft="0,0" vsright="1,4" nohand="0,0" leadoff="1,2" rbi3rd="0,0" pinchhit="0,0" advops="0,1" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="empty" pa="2" ab="2" so="1" ground="1"/>
+      <hsituation context="runners" pa="3" ab="2" h="1" bb="1" so="1"/>
+      <hsituation context="runners2" pa="2" ab="1" bb="1" so="1"/>
+      <hsituation context="scorepos" pa="5" ab="4" h="1" bb="1" so="2" ground="1"/>
+      <hsituation context="scorepos2" pa="5" ab="4" h="1" bb="1" so="2" ground="1"/>
+      <hsituation context="leadoff" pa="2" ab="2" h="1" ground="1"/>
+      <hsituation context="vsright" pa="5" ab="4" h="1" bb="1" so="2" ground="1"/>
+      <hsituation context="byspot" spot="1" pa="5" ab="4" h="1" bb="1" so="2" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="3" ab="3" h="1" so="1" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Glauber,Caden" pa="1" bb="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" so="1"/>
+      <fielding po="1" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="13" r="3" h="3" rbi="1" so="5" bb="1" ibb="0" hbp="0" double="1" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".231" rcherr="1" rchci="0" rchfc="0" ground="3" fly="1" adv="0" lob="2" rbi-2out="0" vsleft=".333" vsleft-ab="1,3" vsright=".200" vsright-ab="2,10" nohand="-" nohand-ab="," advops=".333" advops-ab="2,6" w2outs=".000" w2outs-ab=",4" wrunners=".167" wrunners-ab="1,6" wrbiops=".250" wrbiops-ab="1,4" leadoff=".250" leadoff-ab="1,4" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Seebold, Gavin" shortname="Seebold,Gavin" id="1771011316" code="" uni="40" gp="1" gs="0" spot="10" sub="1" innentered="4" playentered="" pos="p" rosterpos="RHP" bats="R" throws="R" class="SR">
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="2" gs="0" gf="0" ip="3.2" h="1" r="0" er="0" bb="2" so="4" k="4" sha="0" sfa="0" cia="0" bf="15" ab="11" double="0" triple="0" hr="0" kl="0" fly="4" ground="2" picked="0" hbp="2" ibb="0" gdp="0" wp="0" bk="0" pitches="70" strikes="38" fps="7" sb="0" sba="0" inheritr="0" inherits="0" cbo="0" sho="0"/>
+      <psitsummary fly="4" ground="2" picked="0" leadoff="1,3" wrunners="0,5" vsleft="0,5" vsright="1,6" nohand="0,0" pitches="70" strikes="38" fps="7" w2outs="0,3" relief="1,1"/>
+      <psituation context="empty" ip="3.1" h="1" bb="2" so="4" bf="15" ab="11" hbp="2" fly="4" ground="2"/>
+      <psituation context="scorepos" ip="3.1" h="1" bb="2" so="4" bf="15" ab="11" hbp="2" fly="4" ground="2"/>
+      <psituation context="scorepos2" ip="3.1" h="1" bb="2" so="4" bf="15" ab="11" hbp="2" fly="4" ground="2"/>
+      <psituation context="leadoff" ip="0.2" h="1" so="1" bf="3" ab="3" fly="1"/>
+      <psituation context="vsleft" ip="1.2" so="1" bf="7" ab="5" hbp="2" fly="2" ground="2"/>
+      <psituation context="vsright" ip="1.2" h="1" bb="2" so="3" bf="8" ab="6" fly="2"/>
+      <psituation context="byinn" inn="4" ip="0.2" h="1" so="1" bf="5" ab="3" hbp="2" ground="1"/>
+      <psituation context="byinn" inn="5" ip="1.0" so="2" bf="3" ab="3" fly="1"/>
+      <psituation context="byinn" inn="6" ip="1.0" bb="1" bf="4" ab="3" fly="2" ground="1"/>
+      <psituation context="byinn" inn="7" ip="0.2" bb="1" so="1" bf="3" ab="2" fly="1"/>
+    </player>
+    <player name="Ricketts, Brayden" shortname="Ricketts,Brayden" id="1771011318" code="" uni="42" gp="1" gs="1" spot="6" atpos="dh" pos="dh" rosterpos="c" bats="L" throws="R" class="FR">
+      <hitting ab="5" pa="5" r="0" h="1" rbi="0" bb="0" so="1" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="3" fly="0" hitdp="1" gdp="1" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="3" fly="0" w2outs="0,2" wrunners="0,3" wrbiops="0,1" wloaded="0,0" vsleft="1,1" vsright="0,4" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,0" advops="0,3" adv="0" lob="3" rbi-2out="0"/>
+      <hsituation context="empty" pa="1" ab="1" ground="1"/>
+      <hsituation context="runners" pa="4" ab="4" h="1" so="1" lob="3" ground="2" hitdp="1"/>
+      <hsituation context="runners2" pa="1" ab="1" lob="2" ground="1"/>
+      <hsituation context="scorepos" pa="5" ab="5" h="1" so="1" lob="3" ground="3" hitdp="1"/>
+      <hsituation context="scorepos2" pa="5" ab="5" h="1" so="1" lob="3" ground="3" hitdp="1"/>
+      <hsituation context="vsleft" pa="1" ab="1" h="1"/>
+      <hsituation context="vsright" pa="4" ab="4" so="1" lob="3" ground="3" hitdp="1"/>
+      <hsituation context="byspot" spot="6" pa="5" ab="5" h="1" so="1" lob="3" ground="3" hitdp="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="2" ab="2" so="1" lob="3" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Glauber,Caden" pa="1" ab="1" ground="1" hitdp="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Chmielewski,Tom" pa="1" ab="1" h="1"/>
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="0" ab="7" r="0" h="1" rbi="0" so="3" bb="1" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".143" rcherr="0" rchci="0" rchfc="0" ground="3" fly="0" adv="0" lob="4" rbi-2out="0" vsleft="1.000" vsleft-ab="1,1" vsright=".000" vsright-ab=",6" nohand="-" nohand-ab="," advops=".000" advops-ab=",4" w2outs=".000" w2outs-ab=",3" wrunners=".000" wrunners-ab=",4" wrbiops=".000" wrbiops-ab=",2" leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit=".000" pinchhit-ab=",1"/>
+    </player>
+    <player name="Crouse, Ayden" shortname="Crouse,Ayden" id="1771011286" code="" uni="5" gp="1" gs="0" spot="9" atpos="rf" sub="1" innentered="7" playentered="" pos="PR/rf" rosterpos="OF" bats="R" throws="R" class="JR">
+      <hitting ab="1" pa="1" r="1" h="0" rbi="0" bb="0" so="1" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="0" w2outs="0,0" wrunners="0,0" wrbiops="0,0" wloaded="0,0" vsleft="0,0" vsright="0,1" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,0" advops="0,0" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="empty" pa="1" ab="1" so="1"/>
+      <hsituation context="scorepos" pa="1" ab="1" so="1"/>
+      <hsituation context="scorepos2" pa="1" ab="1" so="1"/>
+      <hsituation context="vsright" pa="1" ab="1" so="1"/>
+      <hsituation context="byspot" spot="9" pa="1" ab="1" so="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" so="1"/>
+      <fielding po="2" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="8" r="1" h="2" rbi="0" so="5" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".250" rcherr="0" rchci="0" rchfc="0" ground="1" fly="0" adv="0" lob="4" rbi-2out="0" vsleft=".000" vsleft-ab=",3" vsright=".400" vsright-ab="2,5" nohand="-" nohand-ab="," advops=".000" advops-ab=",4" w2outs=".000" w2outs-ab=",3" wrunners=".000" wrunners-ab=",4" wrbiops=".000" wrbiops-ab=",3" leadoff="-" leadoff-ab="," rbi3rd=".000" rbi3rd-ab=",1" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Schuyler, T.J." shortname="Schuyler,TJ" id="1771011287" code="" uni="6" gp="1" gs="1" spot="9" pos="c" rosterpos="c" bats="R" throws="R" class="JR">
+      <hitting ab="1" pa="3" r="0" h="0" rbi="0" bb="1" so="1" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="1" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="0" w2outs="0,1" wrunners="0,0" wrbiops="0,0" wloaded="0,0" vsleft="0,0" vsright="0,1" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,0" advops="0,0" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="empty" pa="1" ab="1" so="1"/>
+      <hsituation context="runners" pa="2" bb="1" hbp="1"/>
+      <hsituation context="runners2" pa="1" hbp="1"/>
+      <hsituation context="scorepos" pa="3" ab="1" bb="1" so="1" hbp="1"/>
+      <hsituation context="scorepos2" pa="3" ab="1" bb="1" so="1" hbp="1"/>
+      <hsituation context="vsright" pa="3" ab="1" bb="1" so="1" hbp="1"/>
+      <hsituation context="byspot" spot="9" pa="3" ab="1" bb="1" so="1" hbp="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="2" ab="1" so="1" hbp="1"/>
+      <hsituation context="vspitcher" pitcher="Glauber,Caden" pa="1" bb="1"/>
+      <fielding po="4" a="1" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="4" r="0" h="0" rbi="0" so="2" bb="1" ibb="0" hbp="1" double="0" triple="0" hr="0" sb="0" cs="0" sh="2" sf="0" picked="0" avg=".000" rcherr="0" rchci="0" rchfc="0" ground="4" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright=".000" vsright-ab=",4" nohand="-" nohand-ab="," advops=".500" advops-ab="1,2" w2outs=".000" w2outs-ab=",1" wrunners=".000" wrunners-ab=",2" wrbiops="-" wrbiops-ab="," leadoff=".000" leadoff-ab=",1" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Stewart, Aiden" shortname="Stewart,Aiden" id="1771011289" code="" uni="8" gp="1" gs="1" spot="7" pos="2b" rosterpos="inf" bats="L" throws="R" class="SR">
+      <hitting ab="3" pa="4" r="0" h="0" rbi="0" bb="1" so="0" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="2" fly="1" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="2" fly="1" w2outs="0,1" wrunners="0,0" wrbiops="0,0" wloaded="0,0" vsleft="0,0" vsright="0,3" nohand="0,0" leadoff="0,2" rbi3rd="0,0" pinchhit="0,0" advops="0,0" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="empty" pa="3" ab="3" ground="2" fly="1"/>
+      <hsituation context="runners" pa="1" bb="1"/>
+      <hsituation context="scorepos" pa="4" ab="3" bb="1" ground="2" fly="1"/>
+      <hsituation context="scorepos2" pa="4" ab="3" bb="1" ground="2" fly="1"/>
+      <hsituation context="leadoff" pa="2" ab="2" ground="1" fly="1"/>
+      <hsituation context="vsright" pa="4" ab="3" bb="1" ground="2" fly="1"/>
+      <hsituation context="byspot" spot="7" pa="4" ab="3" bb="1" ground="2" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Lynch,Ryan" pa="2" ab="1" bb="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Glauber,Caden" pa="1" ab="1" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Matthijs,Matthew" pa="1" ab="1" ground="1"/>
+      <fielding po="1" a="2" e="1" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="2" gs="2" ab="7" r="1" h="0" rbi="0" so="3" bb="4" ibb="0" hbp="1" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".000" rcherr="0" rchci="0" rchfc="0" ground="2" fly="2" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright=".000" vsright-ab=",7" nohand="-" nohand-ab="," advops=".000" advops-ab=",2" w2outs=".000" w2outs-ab=",2" wrunners=".000" wrunners-ab=",2" wrbiops=".000" wrbiops-ab=",2" leadoff=".000" leadoff-ab=",3" rbi3rd=".000" rbi3rd-ab=",1" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Bitove, Brodey" shortname="Bitove,Brodey" id="1771011291" code="" uni="10" gp="0" rosterpos="OF" bats="L" throws="R" class="SO"/>
+    <player name="Carrera, Xavier" shortname="Carrera,Xavier" id="1771011292" code="" uni="13" gp="0" rosterpos="RHP" bats="R" throws="R" class="FR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="-" ip="0.0" avg="1.000" save="0" cg="0" sho="0" cbo="0" bf="3" ab="1" h="1" r="3" er="3" bb="1" ibb="0" so="0" double="0" triple="0" hr="0" wp="0" hbp="1" bk="0" inheritr="0" inherits="0" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="0" fly="0" picked="0" pitches="0" strikes="0" vsleft="-" vsleft-ab="," vsright="1.000" vsright-ab="1,1" nohand="-" nohand-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="1.000" leadoff-ab="1,1" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Gubitosi, Anthony" shortname="Gubitosi,Anthony" id="1771011295" code="" uni="16" gp="0" rosterpos="LHP" bats="L" throws="L" class="SR"/>
+    <player name="Koskie, Caleb" shortname="Koskie,Caleb" id="1771011296" code="" uni="17" gp="0" rosterpos="LHP" bats="R" throws="L" class="SO">
+      <hitseason gp="2" gs="2" ab="4" r="0" h="0" rbi="0" so="2" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".000" rcherr="0" rchci="0" rchfc="0" ground="2" fly="0" adv="0" lob="3" rbi-2out="0" vsleft=".000" vsleft-ab=",2" vsright=".000" vsright-ab=",2" nohand="-" nohand-ab="," advops=".000" advops-ab=",2" w2outs=".000" w2outs-ab=",4" wrunners=".000" wrunners-ab=",2" wrbiops=".000" wrbiops-ab=",1" leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Mastalski, Ivan" shortname="Mastalski,Ivan" id="1771011297" code="" uni="18" gp="0" rosterpos="RHP" bats="R" throws="R" class="FR"/>
+    <player name="Cotton, Logan" shortname="Cotton,Logan" id="1771011299" code="" uni="20" gp="0" rosterpos="RHP" bats="R" throws="R" class="FR"/>
+    <player name="Meyers, Trey" shortname="Meyers,Trey" id="1771011301" code="" uni="23" gp="0" rosterpos="OF" bats="R" throws="R" class="FR"/>
+    <player name="Rivera, Reagan" shortname="Rivera,Reagan" id="1771011302" code="" uni="24" gp="0" rosterpos="RHP" bats="R" throws="R" class="SR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="72.00" ip="1.0" avg=".636" save="0" cg="0" sho="0" cbo="0" bf="14" ab="11" h="7" r="9" er="8" bb="1" ibb="0" so="3" double="2" triple="2" hr="0" wp="1" hbp="1" bk="1" inheritr="0" inherits="0" win="0" loss="1" cia="0" rcherr="0" rchfc="0" ground="0" fly="1" picked="0" pitches="0" strikes="0" vsleft=".600" vsleft-ab="3,5" vsright=".667" vsright-ab="4,6" nohand="-" nohand-ab="," w2outs=".500" w2outs-ab="1,2" wrunners=".700" wrunners-ab="7,10" wrbiops="-" wrbiops-ab="," leadoff=".000" leadoff-ab=",1" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Weisheit, Clayton" shortname="Weisheit,Clayton" id="1771011305" code="" uni="27" gp="0" rosterpos="RHP" bats="R" throws="R" class="SO"/>
+    <player name="Linn, Conner" shortname="Linn,Conner" id="1771011306" code="" uni="28" gp="0" rosterpos="LHP" bats="L" throws="L" class="SR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="9.00" ip="1.0" avg=".250" save="0" cg="0" sho="0" cbo="0" bf="6" ab="4" h="1" r="1" er="1" bb="2" ibb="0" so="1" double="0" triple="0" hr="1" wp="0" hbp="0" bk="0" inheritr="2" inherits="2" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="0" fly="2" picked="0" pitches="0" strikes="0" vsleft=".333" vsleft-ab="1,3" vsright=".000" vsright-ab=",1" nohand="-" nohand-ab="," w2outs=".000" w2outs-ab=",1" wrunners=".500" wrunners-ab="1,2" wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Neubeck, Tony" shortname="Neubeck,Tony" id="1771011307" code="" uni="29" gp="0" rosterpos="LHP" bats="L" throws="L" class="SR">
+      <hitseason gp="1" gs="1" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="0.00" ip="4.0" avg=".091" save="0" cg="0" sho="0" cbo="0" bf="14" ab="11" h="1" r="0" er="0" bb="3" ibb="0" so="2" double="0" triple="0" hr="0" wp="0" hbp="0" bk="0" inheritr="0" inherits="0" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="6" fly="2" picked="0" pitches="0" strikes="0" vsleft=".000" vsleft-ab=",6" vsright=".200" vsright-ab="1,5" nohand="-" nohand-ab="," w2outs=".000" w2outs-ab=",3" wrunners=".000" wrunners-ab=",4" wrbiops="-" wrbiops-ab="," leadoff=".000" leadoff-ab=",3" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Metz, Blane" shortname="Metz,Blane" id="1771011308" code="" uni="30" gp="0" rosterpos="RHP" bats="R" throws="R" class="FR"/>
+    <player name="Walker, Eli" shortname="Walker,Eli" id="1771011309" code="" uni="31" gp="0" rosterpos="RHP" bats="R" throws="R" class="SR"/>
+    <player name="White, Ian" shortname="White,Ian" id="1771011310" code="" uni="32" gp="0" rosterpos="RHP" bats="R" throws="R" class="SO"/>
+    <player name="Mador, Miles" shortname="Mador,Miles" id="1771011312" code="" uni="36" gp="0" rosterpos="c" bats="R" throws="R" class="FR"/>
+    <player name="Sarhatt, Michael" shortname="Sarhatt,Michael" id="1771011313" code="" uni="37" gp="0" rosterpos="RHP" bats="R" throws="R" class="SR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="0.00" ip="2.0" avg=".125" save="0" cg="0" sho="0" cbo="0" bf="8" ab="8" h="1" r="0" er="0" bb="0" ibb="0" so="1" double="0" triple="0" hr="0" wp="1" hbp="0" bk="0" inheritr="0" inherits="1" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="3" fly="3" picked="0" pitches="0" strikes="0" vsleft=".000" vsleft-ab=",4" vsright=".250" vsright-ab="1,4" nohand="-" nohand-ab="," w2outs=".000" w2outs-ab=",3" wrunners=".000" wrunners-ab=",1" wrbiops="-" wrbiops-ab="," leadoff=".500" leadoff-ab="1,2" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Wagner, Nash" shortname="Wagner,Nash" id="1771011315" code="" uni="39" gp="0" rosterpos="RHP" bats="R" throws="R" class="FR"/>
+    <player name="Jacobi, Kaden" shortname="Jacobi,Kaden" id="1771011317" code="" uni="41" gp="0" rosterpos="RHP" bats="R" throws="R" class="SR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="-" ip="0.0" avg=".500" save="0" cg="0" sho="0" cbo="0" bf="4" ab="2" h="1" r="3" er="3" bb="1" ibb="0" so="1" double="0" triple="1" hr="0" wp="1" hbp="1" bk="0" inheritr="3" inherits="3" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="0" fly="0" picked="0" pitches="0" strikes="0" vsleft=".000" vsleft-ab=",1" vsright="1.000" vsright-ab="1,1" nohand="-" nohand-ab="," w2outs="-" w2outs-ab="," wrunners=".500" wrunners-ab="1,2" wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Bergman, Jackson" shortname="Bergman,Jackson" id="1771011319" code="" uni="43" gp="0" rosterpos="RHP" bats="L" throws="R" class="SR">
+      <hitseason gp="1" gs="1" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="6.75" ip="4.0" avg=".294" save="0" cg="0" sho="0" cbo="0" bf="22" ab="17" h="5" r="3" er="3" bb="2" ibb="0" so="2" double="1" triple="1" hr="0" wp="0" hbp="3" bk="0" inheritr="0" inherits="0" win="0" loss="1" cia="0" rcherr="0" rchfc="0" ground="6" fly="4" picked="0" pitches="0" strikes="0" vsleft=".400" vsleft-ab="4,10" vsright=".143" vsright-ab="1,7" nohand="-" nohand-ab="," w2outs=".333" w2outs-ab="2,6" wrunners=".111" wrunners-ab="1,9" wrbiops="-" wrbiops-ab="," leadoff=".400" leadoff-ab="2,5" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Shinada, Owen" shortname="Shinada,Owen" id="1771011320" code="" uni="44" gp="0" rosterpos="RHP" bats="R" throws="R" class="FR"/>
+    <player name="Haas, Pete" shortname="Haas,Pete" id="1771011321" code="" uni="51" gp="0" rosterpos="RHP" bats="R" throws="R" class="SR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="18.00" ip="1.0" avg=".167" save="0" cg="0" sho="0" cbo="0" bf="7" ab="6" h="1" r="2" er="2" bb="1" ibb="0" so="0" double="1" triple="0" hr="0" wp="0" hbp="0" bk="0" inheritr="1" inherits="1" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="0" fly="3" picked="0" pitches="0" strikes="0" vsleft=".000" vsleft-ab=",2" vsright=".250" vsright-ab="1,4" nohand="-" nohand-ab="," w2outs=".000" w2outs-ab=",1" wrunners=".167" wrunners-ab="1,6" wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="English, Kellen" shortname="English,Kellen" id="1771011322" code="" uni="55" gp="0" rosterpos="RHP" bats="R" throws="R" class="FR"/>
+    <player name="Noto, Mateo" shortname="Noto,Mateo" id="1771011288" code="" uni="7" gp="0" rosterpos="inf" bats="L" throws="R" class="FR"/>
+    <player name="Carrera, Davian" shortname="Carrera,Davian" id="1771011290" code="" uni="9" gp="0" rosterpos="inf" bats="L" throws="L" class="FR"/>
+  </team>
+  <team vh="H" id="UNC" name="North Carolina" code="457" record="3-0" conf="" confrecord="" rank="11" seed="">
+    <linescore line="0,1,0,0,0,0,0,0,2,0,1" runs="4" hits="8" errs="1" lob="15">
+      <lineinn inn="1" score="0" hits="0" errors="0" lob="2"/>
+      <lineinn inn="2" score="1" hits="3" errors="0" lob="3"/>
+      <lineinn inn="3" score="0" hits="0" errors="1" lob="1"/>
+      <lineinn inn="4" score="0" hits="1" errors="0" lob="2"/>
+      <lineinn inn="5" score="0" hits="0" errors="0" lob="0"/>
+      <lineinn inn="6" score="0" hits="0" errors="0" lob="1"/>
+      <lineinn inn="7" score="0" hits="0" errors="0" lob="2"/>
+      <lineinn inn="8" score="0" hits="0" errors="0" lob="0"/>
+      <lineinn inn="9" score="2" hits="2" errors="1" lob="2"/>
+      <lineinn inn="10" score="0" hits="1" errors="0" lob="2"/>
+      <lineinn inn="11" score="1" hits="1" errors="0" lob="0"/>
+    </linescore>
+    <starters>
+      <starter spot="1" name="Schaffner,Jake" uni="2" pos="ss"/>
+      <starter spot="2" name="Gallaher,Gavin" uni="5" pos="2b"/>
+      <starter spot="3" name="Hull,Owen" uni="8" pos="cf"/>
+      <starter spot="4" name="Winslow,Macon" uni="6" pos="c"/>
+      <starter spot="5" name="Paulsen,Erik" uni="44" pos="1b"/>
+      <starter spot="6" name="Nicholson,Cooper" uni="1" pos="3b"/>
+      <starter spot="7" name="Hynek,Colin" uni="23" pos="dh"/>
+      <starter spot="8" name="Maginnis,Michael" uni="14" pos="lf"/>
+      <starter spot="9" name="Howe,Tyler" uni="12" pos="rf"/>
+      <starter spot="10" name="Lynch,Ryan" uni="53" pos="p"/>
+    </starters>
+    <batords>
+      <batord spot="1" name="Schaffner,Jake" uni="2" pos="ss"/>
+      <batord spot="2" name="Gallaher,Gavin" uni="5" pos="3b" in="10" seq="94"/>
+      <batord spot="3" name="Hull,Owen" uni="8" pos="cf"/>
+      <batord spot="4" name="Winslow,Macon" uni="6" pos="c"/>
+      <batord spot="5" name="French,Carter" uni="18" pos="rf" in="10" seq="95"/>
+      <batord spot="6" name="Sowers,Lee" uni="3" pos="2b" in="10" seq="96"/>
+      <batord spot="7" name="Hynek,Colin" uni="23" pos="dh"/>
+      <batord spot="8" name="Maginnis,Michael" uni="14" pos="lf"/>
+      <batord spot="9" name="Howe,Tyler" uni="12" pos="1b" in="10" seq="97"/>
+      <batord spot="10" name="Chmielewski,Tom" uni="10" pos="p" in="10.2" seq="101"/>
+    </batords>
+    <totals gp="1">
+      <hitting ab="38" pa="49" r="4" h="8" rbi="2" bb="8" so="7" kl="0" double="0" triple="0" hr="1" tb="11" xb="1" ibb="1" sh="1" sf="0" hbp="2" ground="6" fly="15" hitdp="0" gdp="0" hittp="0" sb="0" cs="1" sba="1" rchci="0" picked="0"/>
+      <hsitsummary rcherr="2" rchfc="1" rchci="0" ground="6" fly="15" w2outs="0,12" wrunners="4,21" wrbiops="2,17" wloaded="0,3" vsleft="3,13" vsright="5,25" nohand="0,0" leadoff="4,9" rbi3rd="0,9" pinchhit="0,1" advops="8,21" adv="12" lob="15" rbi-2out="0"/>
+      <fielding po="33" a="11" e="1" sba="0" csb="0" pb="0" ci="0" indp="1" intp="0"/>
+      <pitching ip="11.0" h="5" r="3" er="1" dtr="0" bb="5" so="12" k="12" sha="0" sfa="0" cia="0" bf="44" ab="37" double="0" triple="0" hr="0" kl="0" fly="8" ground="11" hbp="2" ibb="0" gdp="1" wp="2" bk="0" pitches="185" strikes="114" fps="26" sb="0" sba="0" inheritr="2" inherits="2"/>
+      <psitsummary fly="8" ground="11" leadoff="1,9" wrunners="2,17" vsleft="3,26" vsright="2,11" nohand="0,0" w2outs="1,11" relief="0,4" picked="0" pitches="185" strikes="114" fps="26"/>
+      <hitseason ab="68" r="13" h="17" rbi="10" so="13" bb="12" ibb="1" hbp="3" double="2" triple="2" hr="1" sb="0" cs="2" sh="1" sf="1" picked="0" avg=".250" rcherr="3" rchci="0" rchfc="1" ground="15" fly="21" adv="12" lob="18" rbi-2out="2" vsleft=".167" vsleft-ab="4,24" vsright=".295" vsright-ab="13,44" nohand="-" nohand-ab="," advops=".444" advops-ab="16,36" w2outs=".050" w2outs-ab="1,20" wrunners=".306" wrunners-ab="11,36" wrbiops=".259" wrbiops-ab="7,27" leadoff=".333" leadoff-ab="5,15" rbi3rd=".000" rbi3rd-ab=",18" loaded=".000" loaded-ab=",3" pinchhit=".000" pinchhit-ab=",1"/>
+      <pchseason era="2.25" ip="20.0" avg=".145" save="0" cg="0" sho="0" cbo="0" bf="85" ab="69" h="10" r="7" er="5" bb="14" ibb="0" so="12" double="1" triple="0" hr="0" wp="2" hbp="2" bk="0" inheritr="2" inherits="2" cia="0" rcherr="1" rchfc="2" ground="19" fly="14" picked="0" pitches="185" strikes="114" vsleft=".140" vsleft-ab="6,43" vsright=".154" vsright-ab="4,26" nohand="-" nohand-ab="," w2outs=".136" w2outs-ab="3,22" wrunners=".111" wrunners-ab="4,36" wrbiops="-" wrbiops-ab="," leadoff=".067" leadoff-ab="1,15" rbi3rd="-" rbi3rd-ab="," loaded="1.000" loaded-ab="1,1" relief=".000" relief-ab=",4"/>
+    </totals>
+    <player name="Nicholson, Cooper" shortname="Nicholson,Cooper" id="1768335247" code="" uni="1" gp="1" gs="1" spot="6" pos="3b" rosterpos="inf" bats="R" throws="R" class="JR">
+      <hitting ab="3" pa="4" r="1" h="0" rbi="0" bb="1" so="1" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="1" rchfc="1" rchci="0" ground="0" fly="0" w2outs="0,3" wrunners="0,1" wrbiops="0,1" wloaded="0,0" vsleft="0,1" vsright="0,2" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,0" advops="0,1" adv="0" lob="2" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" ab="1" lob="2" rchfc="1"/>
+      <hsituation context="empty" pa="1" ab="1" so="1"/>
+      <hsituation context="runners" pa="3" ab="2" bb="1" lob="2" rcherr="1" rchfc="1"/>
+      <hsituation context="runners2" pa="1" ab="1" lob="2" rchfc="1"/>
+      <hsituation context="scorepos" pa="4" ab="3" bb="1" so="1" lob="2" rcherr="1" rchfc="1"/>
+      <hsituation context="scorepos2" pa="4" ab="3" bb="1" so="1" lob="2" rcherr="1" rchfc="1"/>
+      <hsituation context="vsleft" pa="2" ab="1" bb="1" rcherr="1"/>
+      <hsituation context="vsright" pa="2" ab="2" so="1" lob="2" rchfc="1"/>
+      <hsituation context="byspot" spot="6" pa="4" ab="3" bb="1" so="1" lob="2" rcherr="1" rchfc="1"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="2" ab="1" bb="1" rcherr="1"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="1" ab="1" so="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" lob="2" rchfc="1"/>
+      <fielding po="0" a="1" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="1" gs="1" ab="5" r="3" h="0" rbi="0" so="2" bb="2" ibb="0" hbp="1" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".000" rcherr="1" rchci="0" rchfc="1" ground="1" fly="0" adv="0" lob="2" rbi-2out="0" vsleft=".000" vsleft-ab=",2" vsright=".000" vsright-ab=",3" nohand="-" nohand-ab="," advops=".000" advops-ab=",1" w2outs=".000" w2outs-ab=",4" wrunners=".000" wrunners-ab=",1" wrbiops=".000" wrbiops-ab=",1" leadoff=".000" leadoff-ab=",1" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Chmielewski, Tom" shortname="Chmielewski,Tom" id="1768335255" code="" uni="10" gp="1" gs="0" spot="10" atpos="p" sub="4" innentered="10.2" playentered="" pos="p" rosterpos="LHP     " bats="L" throws="L" class="SR">
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="5" gs="0" gf="1" ip="1.1" h="1" r="0" er="0" bb="0" so="1" k="1" sha="0" sfa="0" cia="0" bf="5" ab="5" double="0" triple="0" hr="0" kl="0" fly="2" ground="1" picked="0" hbp="0" ibb="0" gdp="0" wp="0" bk="0" pitches="21" strikes="14" fps="2" sb="0" sba="0" inheritr="0" inherits="0" cbo="0" sho="0" win="1-0"/>
+      <psitsummary fly="2" ground="1" picked="0" leadoff="0,1" wrunners="0,2" vsleft="1,4" vsright="0,1" nohand="0,0" pitches="21" strikes="14" fps="2" w2outs="0,2" relief="0,1"/>
+      <psituation context="empty" ip="1.1" h="1" so="1" bf="5" ab="5" fly="2" ground="1"/>
+      <psituation context="scorepos" ip="1.1" h="1" so="1" bf="5" ab="5" fly="2" ground="1"/>
+      <psituation context="scorepos2" ip="1.1" h="1" so="1" bf="5" ab="5" fly="2" ground="1"/>
+      <psituation context="leadoff" ip="0.1" bf="1" ab="1" fly="1"/>
+      <psituation context="vsleft" ip="1.0" h="1" bf="4" ab="4" fly="2" ground="1"/>
+      <psituation context="vsright" ip="0.1" so="1" bf="1" ab="1"/>
+      <psituation context="byinn" inn="10" ip="0.1" bf="1" ab="1" ground="1"/>
+      <psituation context="byinn" inn="11" ip="1.0" h="1" so="1" bf="4" ab="4" fly="2"/>
+    </player>
+    <player name="Howe, Tyler" shortname="Howe,Tyler" id="1768335257" code="" uni="12" gp="1" gs="1" spot="9" atpos="1b" pos="rf/1b" rosterpos="OF/1B   " bats="L" throws="L" class="FR">
+      <hitting ab="3" pa="5" r="0" h="1" rbi="1" bb="0" so="0" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="0" sh="1" sf="0" hbp="1" ground="3" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="3" fly="0" w2outs="0,1" wrunners="1,2" wrbiops="1,1" wloaded="0,0" vsleft="1,1" vsright="0,2" nohand="0,0" leadoff="0,0" rbi3rd="0,2" pinchhit="0,0" advops="2,2" adv="3" lob="0" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" ab="1" h="1" rbi="1" adv="2"/>
+      <hsituation context="empty" pa="1" ab="1" ground="1"/>
+      <hsituation context="runners" pa="4" ab="2" h="1" rbi="1" sh="1" hbp="1" ground="2" adv="3"/>
+      <hsituation context="runners2" pa="1" ab="1" h="1" rbi="1" adv="2"/>
+      <hsituation context="scorepos" pa="5" ab="3" h="1" rbi="1" sh="1" hbp="1" ground="3" adv="3"/>
+      <hsituation context="scorepos2" pa="5" ab="3" h="1" rbi="1" sh="1" hbp="1" ground="3" adv="3"/>
+      <hsituation context="vsleft" pa="1" ab="1" h="1" rbi="1" adv="2"/>
+      <hsituation context="vsright" pa="4" ab="2" sh="1" hbp="1" ground="3" adv="1"/>
+      <hsituation context="byspot" spot="9" pa="5" ab="3" h="1" rbi="1" sh="1" hbp="1" ground="3" adv="3"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="1" ab="1" h="1" rbi="1" adv="2"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="2" ab="1" hbp="1" ground="1" adv="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Vogel,Jacob" pa="1" sh="1" ground="1"/>
+      <fielding po="1" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="1" gs="1" ab="7" r="1" h="2" rbi="3" so="1" bb="0" ibb="0" hbp="1" double="1" triple="0" hr="0" sb="0" cs="0" sh="1" sf="0" picked="0" avg=".286" rcherr="0" rchci="0" rchfc="0" ground="5" fly="0" adv="3" lob="0" rbi-2out="0" vsleft=".500" vsleft-ab="1,2" vsright=".200" vsright-ab="1,5" nohand="-" nohand-ab="," advops=".750" advops-ab="3,4" w2outs=".000" w2outs-ab=",2" wrunners=".500" wrunners-ab="2,4" wrbiops=".667" wrbiops-ab="2,3" leadoff="-" leadoff-ab="," rbi3rd=".000" rbi3rd-ab=",4" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Maginnis, Michael" shortname="Maginnis,Michael" id="1768335258" code="" uni="14" gp="1" gs="1" spot="8" atpos="lf" pos="lf" rosterpos="OF      " bats="R" throws="R" class="SR">
+      <hitting ab="5" pa="5" r="0" h="2" rbi="0" bb="0" so="1" kl="0" double="0" triple="0" hr="0" tb="2" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="1" sba="1" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="2" w2outs="0,0" wrunners="0,2" wrbiops="0,1" wloaded="0,0" vsleft="0,1" vsright="2,4" nohand="0,0" leadoff="2,2" rbi3rd="0,1" pinchhit="0,0" advops="0,2" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="empty" pa="1" ab="1" fly="1"/>
+      <hsituation context="runners" pa="4" ab="4" h="2" so="1" fly="1"/>
+      <hsituation context="runners2" pa="1" ab="1" so="1"/>
+      <hsituation context="scorepos" pa="5" ab="5" h="2" so="1" fly="2"/>
+      <hsituation context="scorepos2" pa="5" ab="5" h="2" so="1" fly="2"/>
+      <hsituation context="leadoff" pa="2" ab="2" h="2"/>
+      <hsituation context="vsleft" pa="1" ab="1" so="1"/>
+      <hsituation context="vsright" pa="4" ab="4" h="2" fly="2"/>
+      <hsituation context="byspot" spot="8" pa="5" ab="5" h="2" so="1" fly="2"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="1" ab="1" so="1"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="2" ab="2" h="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Vogel,Jacob" pa="1" ab="1" h="1"/>
+      <fielding po="4" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="1" gs="1" ab="8" r="1" h="3" rbi="0" so="2" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="1" sh="0" sf="0" picked="0" avg=".375" rcherr="0" rchci="0" rchfc="0" ground="0" fly="3" adv="0" lob="0" rbi-2out="0" vsleft=".000" vsleft-ab=",2" vsright=".500" vsright-ab="3,6" nohand="-" nohand-ab="," advops=".250" advops-ab="1,4" w2outs="-" w2outs-ab="," wrunners=".250" wrunners-ab="1,4" wrbiops=".000" wrbiops-ab=",2" leadoff="1.000" leadoff-ab="2,2" rbi3rd=".000" rbi3rd-ab=",2" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Holiday, Talan" shortname="Holiday,Talan" id="1768335260" code="" uni="17" gp="1" gs="0" spot="10" sub="3" innentered="10" playentered="" pos="p" rosterpos="RHP     " bats="L" throws="R" class="FR">
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="4" gs="0" gf="0" ip="0.2" h="0" r="0" er="0" bb="0" so="1" k="1" sha="0" sfa="0" cia="0" bf="2" ab="2" double="0" triple="0" hr="0" kl="0" fly="1" ground="0" picked="0" hbp="0" ibb="0" gdp="0" wp="0" bk="0" pitches="9" strikes="4" fps="1" sb="0" sba="0" inheritr="0" inherits="0" cbo="0" sho="0"/>
+      <psitsummary fly="1" ground="0" picked="0" leadoff="0,1" wrunners="0,0" vsleft="0,0" vsright="0,2" nohand="0,0" pitches="9" strikes="4" fps="1" w2outs="0,0" relief="0,1"/>
+      <psituation context="empty" ip="0.2" so="1" bf="2" ab="2" fly="1"/>
+      <psituation context="scorepos" ip="0.2" so="1" bf="2" ab="2" fly="1"/>
+      <psituation context="scorepos2" ip="0.2" so="1" bf="2" ab="2" fly="1"/>
+      <psituation context="leadoff" ip="0.1" bf="1" ab="1" fly="1"/>
+      <psituation context="vsright" ip="0.2" so="1" bf="2" ab="2" fly="1"/>
+      <psituation context="byinn" inn="10" ip="0.2" so="1" bf="2" ab="2" fly="1"/>
+    </player>
+    <player name="French, Carter" shortname="French,Carter" id="1768335261" code="" uni="18" gp="1" gs="0" spot="5" atpos="rf" sub="1" innentered="10" playentered="" pos="PR/rf" rosterpos="OF      " bats="L" throws="L" class="SR">
+      <hitting ab="0" pa="0" r="0" h="0" rbi="0" bb="0" so="0" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="0" w2outs="0,0" wrunners="0,0" wrbiops="0,0" wloaded="0,0" vsleft="0,0" vsright="0,0" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,0" advops="0,0" adv="0" lob="0" rbi-2out="0"/>
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="1" gs="0" ab="1" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".000" rcherr="0" rchci="0" rchfc="0" ground="0" fly="1" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright=".000" vsright-ab=",1" nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff=".000" leadoff-ab=",1" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Schaffner, Jake" shortname="Schaffner,Jake" id="1768335248" code="" uni="2" gp="1" gs="1" spot="1" atpos="ss" pos="ss" rosterpos="inf" bats="L" throws="R" class="JR">
+      <hitting ab="5" pa="6" r="1" h="2" rbi="0" bb="0" so="0" kl="0" double="0" triple="0" hr="0" tb="2" xb="0" ibb="0" sh="0" sf="0" hbp="1" ground="1" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="1" fly="2" w2outs="0,1" wrunners="1,3" wrbiops="1,3" wloaded="0,0" vsleft="1,2" vsright="1,3" nohand="0,0" leadoff="1,2" rbi3rd="0,0" pinchhit="0,0" advops="2,3" adv="3" lob="1" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" ab="1" h="1" adv="2"/>
+      <hsituation context="empty" pa="1" ab="1" ground="1"/>
+      <hsituation context="runners" pa="5" ab="4" h="2" hbp="1" lob="1" fly="2" adv="3"/>
+      <hsituation context="runners2" pa="2" ab="1" h="1" hbp="1" adv="2"/>
+      <hsituation context="scorepos" pa="6" ab="5" h="2" hbp="1" lob="1" ground="1" fly="2" adv="3"/>
+      <hsituation context="scorepos2" pa="6" ab="5" h="2" hbp="1" lob="1" ground="1" fly="2" adv="3"/>
+      <hsituation context="leadoff" pa="2" ab="2" h="1" ground="1"/>
+      <hsituation context="vsleft" pa="2" ab="2" h="1" ground="1" adv="2"/>
+      <hsituation context="vsright" pa="4" ab="3" h="1" hbp="1" lob="1" fly="2" adv="1"/>
+      <hsituation context="byspot" spot="1" pa="6" ab="5" h="2" hbp="1" lob="1" ground="1" fly="2" adv="3"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="2" ab="2" h="1" ground="1" adv="2"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="2" ab="1" hbp="1" lob="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" h="1"/>
+      <hsituation context="vspitcher" pitcher="Vogel,Jacob" pa="1" ab="1" fly="1" adv="1"/>
+      <fielding po="2" a="1" e="1" sba="0" csb="0" pb="0" ci="0" indp="1" intp="0"/>
+      <hitseason gp="1" gs="1" ab="8" r="2" h="3" rbi="2" so="0" bb="0" ibb="0" hbp="1" double="0" triple="1" hr="0" sb="0" cs="0" sh="0" sf="1" picked="0" avg=".375" rcherr="0" rchci="0" rchfc="0" ground="3" fly="3" adv="3" lob="1" rbi-2out="0" vsleft=".250" vsleft-ab="1,4" vsright=".500" vsright-ab="2,4" nohand="-" nohand-ab="," advops=".600" advops-ab="3,5" w2outs=".000" w2outs-ab=",1" wrunners=".400" wrunners-ab="2,5" wrbiops=".500" wrbiops-ab="2,4" leadoff=".333" leadoff-ab="1,3" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Hynek, Colin" shortname="Hynek,Colin" id="1768335264" code="" uni="23" gp="1" gs="1" spot="7" atpos="dh" pos="dh" rosterpos="c" bats="R" throws="R" class="SR">
+      <hitting ab="4" pa="5" r="0" h="1" rbi="0" bb="1" so="1" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="2" w2outs="0,2" wrunners="1,3" wrbiops="0,2" wloaded="0,0" vsleft="1,2" vsright="0,2" nohand="0,0" leadoff="0,1" rbi3rd="0,1" pinchhit="0,0" advops="1,3" adv="1" lob="3" rbi-2out="0"/>
+      <hsituation context="empty" pa="1" ab="1" so="1"/>
+      <hsituation context="runners" pa="4" ab="3" h="1" bb="1" lob="3" fly="2" adv="1"/>
+      <hsituation context="runners2" pa="2" ab="2" h="1" lob="2" fly="1" adv="1"/>
+      <hsituation context="scorepos" pa="5" ab="4" h="1" bb="1" so="1" lob="3" fly="2" adv="1"/>
+      <hsituation context="scorepos2" pa="5" ab="4" h="1" bb="1" so="1" lob="3" fly="2" adv="1"/>
+      <hsituation context="leadoff" pa="1" ab="1" so="1"/>
+      <hsituation context="vsleft" pa="2" ab="2" h="1" lob="1" fly="1" adv="1"/>
+      <hsituation context="vsright" pa="3" ab="2" bb="1" so="1" lob="2" fly="1"/>
+      <hsituation context="byspot" spot="7" pa="5" ab="4" h="1" bb="1" so="1" lob="3" fly="2" adv="1"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="2" ab="2" h="1" lob="1" fly="1" adv="1"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="1" bb="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="2" ab="2" so="1" lob="2" fly="1"/>
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="1" gs="1" ab="7" r="2" h="3" rbi="2" so="1" bb="2" ibb="0" hbp="0" double="1" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".429" rcherr="0" rchci="0" rchfc="0" ground="0" fly="3" adv="1" lob="3" rbi-2out="0" vsleft=".500" vsleft-ab="1,2" vsright=".400" vsright-ab="2,5" nohand="-" nohand-ab="," advops=".600" advops-ab="3,5" w2outs=".000" w2outs-ab=",3" wrunners=".600" wrunners-ab="3,5" wrbiops=".500" wrbiops-ab="2,4" leadoff=".000" leadoff-ab=",1" rbi3rd=".000" rbi3rd-ab=",3" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Matthijs, Matthew" shortname="Matthijs,Matthew" id="1768335265" code="" uni="24" gp="1" gs="0" spot="10" sub="2" innentered="7.2" playentered="" pos="p" rosterpos="RHP     " bats="R" throws="R" class="SR">
+      <fielding po="2" a="1" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="3" gs="0" gf="0" ip="2.1" h="1" r="0" er="0" bb="0" so="3" k="3" sha="0" sfa="0" cia="0" bf="9" ab="9" double="0" triple="0" hr="0" kl="0" fly="0" ground="4" picked="0" hbp="0" ibb="0" gdp="0" wp="0" bk="0" pitches="32" strikes="25" fps="6" sb="0" sba="0" inheritr="2" inherits="2" cbo="0" sho="0"/>
+      <psitsummary fly="0" ground="4" picked="0" leadoff="0,2" wrunners="1,3" vsleft="0,6" vsright="1,3" nohand="0,0" pitches="32" strikes="25" fps="6" w2outs="1,5" relief="0,1"/>
+      <psituation context="empty" ip="2.1" h="1" so="3" bf="9" ab="9" ground="4" rcherr="1" rbi-2out="2"/>
+      <psituation context="scorepos" ip="2.1" h="1" so="3" bf="9" ab="9" ground="4" rcherr="1" rbi-2out="2"/>
+      <psituation context="scorepos2" ip="2.1" h="1" so="3" bf="9" ab="9" ground="4" rcherr="1" rbi-2out="2"/>
+      <psituation context="leadoff" ip="0.2" so="1" bf="2" ab="2" ground="1"/>
+      <psituation context="vsleft" ip="2.0" so="2" bf="6" ab="6" ground="4"/>
+      <psituation context="vsright" ip="0.1" h="1" so="1" bf="3" ab="3" rcherr="1" rbi-2out="2"/>
+      <psituation context="byinn" inn="7" ip="0.1" h="1" bf="3" ab="3" ground="1" rcherr="1" rbi-2out="2"/>
+      <psituation context="byinn" inn="8" ip="1.0" so="1" bf="3" ab="3" ground="2"/>
+      <psituation context="byinn" inn="9" ip="1.0" so="2" bf="3" ab="3" ground="1"/>
+    </player>
+    <player name="Glauber, Caden" shortname="Glauber,Caden" id="1768335268" code="" uni="27" gp="1" gs="0" spot="10" sub="1" innentered="6" playentered="" pos="p" rosterpos="RHP     " bats="R" throws="R" class="FR">
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="2" gs="0" gf="0" ip="1.2" h="0" r="2" er="0" bb="3" so="1" k="1" sha="0" sfa="0" cia="0" bf="7" ab="4" double="0" triple="0" hr="0" kl="0" fly="1" ground="2" picked="0" hbp="0" ibb="0" gdp="1" wp="0" bk="0" pitches="31" strikes="13" fps="3" sb="0" sba="0" inheritr="0" inherits="0" cbo="0" sho="0"/>
+      <psitsummary fly="1" ground="2" picked="0" leadoff="0,2" wrunners="0,1" vsleft="0,4" vsright="0,0" nohand="0,0" pitches="31" strikes="13" fps="3" w2outs="0,0" relief="0,1"/>
+      <psituation context="empty" ip="1.1" r="2" bb="3" so="1" bf="7" ab="4" gdp="1" fly="1" ground="2"/>
+      <psituation context="scorepos" ip="1.1" r="2" bb="3" so="1" bf="7" ab="4" gdp="1" fly="1" ground="2"/>
+      <psituation context="scorepos2" ip="1.1" r="2" bb="3" so="1" bf="7" ab="4" gdp="1" fly="1" ground="2"/>
+      <psituation context="leadoff" ip="0.2" bf="2" ab="2" fly="1" ground="1"/>
+      <psituation context="vsleft" ip="1.1" r="1" bb="2" so="1" bf="6" ab="4" gdp="1" fly="1" ground="2"/>
+      <psituation context="vsright" ip="0.0" r="1" bb="1" bf="1"/>
+      <psituation context="byinn" inn="6" ip="0.2" bb="1" bf="3" ab="2" gdp="1" fly="1" ground="1"/>
+      <psituation context="byinn" inn="7" ip="0.2" r="2" bb="2" so="1" bf="4" ab="2" ground="1"/>
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="15.00" ip="1.0" avg=".143" save="0" cg="0" sho="0" cbo="0" bf="13" ab="7" h="1" r="4" er="2" bb="6" ibb="0" so="1" double="0" triple="0" hr="0" wp="0" hbp="0" bk="0" inheritr="0" inherits="0" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="2" fly="2" picked="0" pitches="31" strikes="13" vsleft=".143" vsleft-ab="1,7" vsright="-" vsright-ab="," nohand="-" nohand-ab="," w2outs="1.000" w2outs-ab="1,1" wrunners=".250" wrunners-ab="1,4" wrbiops="-" wrbiops-ab="," leadoff=".000" leadoff-ab=",2" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief=".000" relief-ab=",1"/>
+    </player>
+    <player name="Sowers, Lee" shortname="Sowers,Lee" id="1768335249" code="" uni="3" gp="1" gs="0" spot="6" atpos="2b" sub="1" innentered="10" playentered="" pos="PH/2b" rosterpos="inf" bats="L" throws="R" class="SO">
+      <hitting ab="1" pa="1" r="0" h="0" rbi="0" bb="0" so="0" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="0" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="1" rchfc="0" rchci="0" ground="0" fly="0" w2outs="0,1" wrunners="0,1" wrbiops="0,1" wloaded="0,1" vsleft="0,0" vsright="0,1" nohand="0,0" leadoff="0,0" rbi3rd="0,1" pinchhit="0,1" advops="1,1" adv="3" lob="0" rbi-2out="0"/>
+      <hsituation context="runners" pa="1" ab="1" adv="3" rcherr="1"/>
+      <hsituation context="runners2" pa="1" ab="1" adv="3" rcherr="1"/>
+      <hsituation context="scorepos" pa="1" ab="1" adv="3" rcherr="1"/>
+      <hsituation context="scorepos2" pa="1" ab="1" adv="3" rcherr="1"/>
+      <hsituation context="vsright" pa="1" ab="1" adv="3" rcherr="1"/>
+      <hsituation context="byspot" spot="6" pa="1" ab="1" adv="3" rcherr="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" adv="3" rcherr="1"/>
+      <fielding po="0" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+    </player>
+    <player name="Paulsen, Erik" shortname="Paulsen,Erik" id="1768335279" code="" uni="44" gp="1" gs="1" spot="5" pos="1b" rosterpos="inf" bats="L" throws="L" class="JR">
+      <hitting ab="3" pa="5" r="0" h="0" rbi="0" bb="2" so="1" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="2" w2outs="0,1" wrunners="0,1" wrbiops="0,1" wloaded="0,0" vsleft="0,2" vsright="0,1" nohand="0,0" leadoff="0,0" rbi3rd="0,0" pinchhit="0,0" advops="0,1" adv="0" lob="2" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" bb="1"/>
+      <hsituation context="empty" pa="2" ab="2" so="1" fly="1"/>
+      <hsituation context="runners" pa="3" ab="1" bb="2" lob="2" fly="1"/>
+      <hsituation context="runners2" pa="3" ab="1" bb="2" lob="2" fly="1"/>
+      <hsituation context="scorepos" pa="5" ab="3" bb="2" so="1" lob="2" fly="2"/>
+      <hsituation context="scorepos2" pa="5" ab="3" bb="2" so="1" lob="2" fly="2"/>
+      <hsituation context="vsleft" pa="2" ab="2" lob="2" fly="2"/>
+      <hsituation context="vsright" pa="3" ab="1" bb="2" so="1"/>
+      <hsituation context="byspot" spot="5" pa="5" ab="3" bb="2" so="1" lob="2" fly="2"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="2" ab="2" lob="2" fly="2"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="1" ab="1" so="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="2" bb="2"/>
+      <fielding po="5" a="2" e="0" sba="0" csb="0" pb="0" ci="0" indp="1" intp="0"/>
+      <hitseason gp="1" gs="1" ab="7" r="1" h="1" rbi="0" so="2" bb="2" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".143" rcherr="0" rchci="0" rchfc="0" ground="1" fly="3" adv="0" lob="4" rbi-2out="0" vsleft=".000" vsleft-ab=",4" vsright=".333" vsright-ab="1,3" nohand="-" nohand-ab="," advops=".200" advops-ab="1,5" w2outs=".000" w2outs-ab=",2" wrunners=".200" wrunners-ab="1,5" wrbiops=".000" wrbiops-ab=",2" leadoff="-" leadoff-ab="," rbi3rd=".000" rbi3rd-ab=",1" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Gallaher, Gavin" shortname="Gallaher,Gavin" id="1768335251" code="" uni="5" gp="1" gs="1" spot="2" atpos="3b" pos="2b/3b" rosterpos="inf" bats="R" throws="R" class="JR">
+      <hitting ab="5" pa="6" r="1" h="1" rbi="0" bb="1" so="2" kl="0" double="0" triple="0" hr="0" tb="1" xb="0" ibb="1" sh="0" sf="0" hbp="0" ground="0" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="2" w2outs="0,0" wrunners="1,3" wrbiops="0,2" wloaded="0,1" vsleft="0,2" vsright="1,3" nohand="0,0" leadoff="0,1" rbi3rd="0,1" pinchhit="0,0" advops="1,3" adv="1" lob="0" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" ab="1" fly="1"/>
+      <hsituation context="empty" pa="2" ab="2" so="1" fly="1"/>
+      <hsituation context="runners" pa="4" ab="3" h="1" bb="1" so="1" ibb="1" fly="1" adv="1"/>
+      <hsituation context="runners2" pa="4" ab="3" h="1" bb="1" so="1" ibb="1" fly="1" adv="1"/>
+      <hsituation context="scorepos" pa="6" ab="5" h="1" bb="1" so="2" ibb="1" fly="2" adv="1"/>
+      <hsituation context="scorepos2" pa="6" ab="5" h="1" bb="1" so="2" ibb="1" fly="2" adv="1"/>
+      <hsituation context="leadoff" pa="1" ab="1" so="1"/>
+      <hsituation context="vsleft" pa="2" ab="2" fly="2"/>
+      <hsituation context="vsright" pa="4" ab="3" h="1" bb="1" so="2" ibb="1" adv="1"/>
+      <hsituation context="byspot" spot="2" pa="6" ab="5" h="1" bb="1" so="2" ibb="1" fly="2" adv="1"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="2" ab="2" fly="2"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="2" ab="2" so="2"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" h="1" adv="1"/>
+      <hsituation context="vspitcher" pitcher="Vogel,Jacob" pa="1" bb="1" ibb="1"/>
+      <fielding po="3" a="4" e="0" sba="0" csb="0" pb="0" ci="0" indp="1" intp="0"/>
+      <hitseason gp="1" gs="1" ab="9" r="1" h="3" rbi="2" so="3" bb="1" ibb="1" hbp="0" double="0" triple="1" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".333" rcherr="0" rchci="0" rchfc="0" ground="0" fly="3" adv="1" lob="0" rbi-2out="2" vsleft=".250" vsleft-ab="1,4" vsright=".400" vsright-ab="2,5" nohand="-" nohand-ab="," advops=".500" advops-ab="2,4" w2outs=".500" w2outs-ab="1,2" wrunners=".500" wrunners-ab="2,4" wrbiops=".333" wrbiops-ab="1,3" leadoff=".000" leadoff-ab=",1" rbi3rd=".000" rbi3rd-ab=",3" loaded=".000" loaded-ab=",1" pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Lynch, Ryan" shortname="Lynch,Ryan" id="1768335284" code="" uni="53" gp="1" gs="1" spot="10" pos="p" rosterpos="RHP     " bats="R" throws="R" class="SO">
+      <fielding po="1" a="1" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <pitching appear="1" gs="1" gf="0" ip="5.0" h="3" r="1" er="1" bb="2" so="6" k="6" sha="0" sfa="0" cia="0" bf="21" ab="17" double="0" triple="0" hr="0" kl="0" fly="4" ground="4" picked="0" hbp="2" ibb="0" gdp="0" wp="2" bk="0" pitches="92" strikes="58" fps="14" sb="0" sba="0" inheritr="0" inherits="0" cbo="0" sho="0"/>
+      <psitsummary fly="4" ground="4" picked="0" leadoff="1,3" wrunners="1,11" vsleft="2,12" vsright="1,5" nohand="0,0" pitches="92" strikes="58" fps="14" w2outs="0,4" relief="0,0"/>
+      <psituation context="empty" ip="4.0" h="3" r="1" er="1" bb="2" so="6" bf="21" ab="17" hbp="2" fly="4" ground="4" rchfc="2"/>
+      <psituation context="scorepos" ip="4.0" h="3" r="1" er="1" bb="2" so="6" bf="21" ab="17" hbp="2" fly="4" ground="4" rchfc="2"/>
+      <psituation context="scorepos2" ip="4.0" h="3" r="1" er="1" bb="2" so="6" bf="21" ab="17" hbp="2" fly="4" ground="4" rchfc="2"/>
+      <psituation context="leadoff" ip="0.2" h="1" r="1" er="1" bf="3" ab="3" fly="1" ground="1"/>
+      <psituation context="vsleft" ip="3.0" h="2" r="1" er="1" bb="1" so="4" bf="13" ab="12" fly="3" ground="3" rchfc="1"/>
+      <psituation context="vsright" ip="1.0" h="1" bb="1" so="2" bf="8" ab="5" hbp="2" fly="1" ground="1" rchfc="1"/>
+      <psituation context="byinn" inn="1" ip="0.2" h="2" r="1" er="1" bf="6" ab="5" hbp="1" fly="1" ground="2" rchfc="1"/>
+      <psituation context="byinn" inn="2" ip="1.0" bb="1" so="2" bf="5" ab="3" hbp="1" fly="1"/>
+      <psituation context="byinn" inn="3" ip="0.2" bb="1" so="1" bf="4" ab="3" fly="1" ground="1" rchfc="1"/>
+      <psituation context="byinn" inn="4" ip="1.0" so="2" bf="3" ab="3" fly="1"/>
+      <psituation context="byinn" inn="5" ip="0.2" h="1" so="1" bf="3" ab="3" ground="1"/>
+    </player>
+    <player name="Winslow, Macon" shortname="Winslow,Macon" id="1768335252" code="" uni="6" gp="1" gs="1" spot="4" atpos="c" pos="c" rosterpos="c" bats="R" throws="R" class="JR">
+      <hitting ab="4" pa="6" r="1" h="1" rbi="1" bb="2" so="0" kl="0" double="0" triple="0" hr="1" tb="4" xb="1" ibb="0" sh="0" sf="0" hbp="0" ground="0" fly="3" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="0" fly="3" w2outs="0,0" wrunners="0,1" wrbiops="0,1" wloaded="0,0" vsleft="0,1" vsright="1,3" nohand="0,0" leadoff="1,3" rbi3rd="0,1" pinchhit="0,0" advops="0,1" adv="0" lob="0" rbi-2out="0"/>
+      <hsituation context="empty" pa="2" ab="2" fly="2"/>
+      <hsituation context="runners" pa="4" ab="2" r="1" h="1" rbi="1" bb="2" hr="1" fly="1"/>
+      <hsituation context="runners2" pa="2" ab="1" bb="1" fly="1"/>
+      <hsituation context="scorepos" pa="6" ab="4" r="1" h="1" rbi="1" bb="2" hr="1" fly="3"/>
+      <hsituation context="scorepos2" pa="6" ab="4" r="1" h="1" rbi="1" bb="2" hr="1" fly="3"/>
+      <hsituation context="leadoff" pa="3" ab="3" r="1" h="1" rbi="1" hr="1" fly="2"/>
+      <hsituation context="vsleft" pa="2" ab="1" bb="1" fly="1"/>
+      <hsituation context="vsright" pa="4" ab="3" r="1" h="1" rbi="1" bb="1" hr="1" fly="2"/>
+      <hsituation context="byspot" spot="4" pa="6" ab="4" r="1" h="1" rbi="1" bb="2" hr="1" fly="3"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="2" ab="1" bb="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="2" ab="1" bb="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Vogel,Jacob" pa="1" ab="1" r="1" h="1" rbi="1" hr="1"/>
+      <fielding po="12" a="1" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="1" gs="1" ab="7" r="2" h="2" rbi="1" so="0" bb="3" ibb="0" hbp="0" double="0" triple="0" hr="1" sb="0" cs="1" sh="0" sf="0" picked="0" avg=".286" rcherr="1" rchci="0" rchfc="0" ground="1" fly="3" adv="0" lob="0" rbi-2out="0" vsleft=".000" vsleft-ab=",2" vsright=".400" vsright-ab="2,5" nohand="-" nohand-ab="," advops=".500" advops-ab="1,2" w2outs="-" w2outs-ab="," wrunners=".000" wrunners-ab=",2" wrbiops=".000" wrbiops-ab=",2" leadoff=".400" leadoff-ab="2,5" rbi3rd=".000" rbi3rd-ab=",1" loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="Hull, Owen" shortname="Hull,Owen" id="1768335254" code="" uni="8" gp="1" gs="1" spot="3" atpos="cf" pos="cf" rosterpos="OF" bats="L" throws="R" class="JR">
+      <hitting ab="5" pa="6" r="0" h="0" rbi="0" bb="1" so="1" kl="0" double="0" triple="0" hr="0" tb="0" xb="0" ibb="0" sh="0" sf="0" hbp="0" ground="2" fly="2" hitdp="0" gdp="0" hittp="0" sb="0" cs="0" sba="0" rchci="0" picked="0"/>
+      <hsitsummary rcherr="0" rchfc="0" rchci="0" ground="2" fly="2" w2outs="0,3" wrunners="0,4" wrbiops="0,4" wloaded="0,1" vsleft="0,1" vsright="0,4" nohand="0,0" leadoff="0,0" rbi3rd="0,2" pinchhit="0,0" advops="1,4" adv="1" lob="7" rbi-2out="0"/>
+      <hsituation context="loaded" pa="1" ab="1" lob="3" ground="1"/>
+      <hsituation context="empty" pa="1" ab="1" fly="1"/>
+      <hsituation context="runners" pa="5" ab="4" bb="1" so="1" lob="7" ground="2" fly="1" adv="1"/>
+      <hsituation context="runners2" pa="4" ab="4" so="1" lob="7" ground="2" fly="1" adv="1"/>
+      <hsituation context="scorepos" pa="6" ab="5" bb="1" so="1" lob="7" ground="2" fly="2" adv="1"/>
+      <hsituation context="scorepos2" pa="6" ab="5" bb="1" so="1" lob="7" ground="2" fly="2" adv="1"/>
+      <hsituation context="vsleft" pa="2" ab="1" bb="1" lob="3" ground="1"/>
+      <hsituation context="vsright" pa="4" ab="4" so="1" lob="4" ground="1" fly="2" adv="1"/>
+      <hsituation context="byspot" spot="3" pa="6" ab="5" bb="1" so="1" lob="7" ground="2" fly="2" adv="1"/>
+      <hsituation context="vspitcher" pitcher="Thomas,Brayton" pa="2" ab="1" bb="1" lob="3" ground="1"/>
+      <hsituation context="vspitcher" pitcher="Seebold,Gavin" pa="2" ab="2" lob="2" ground="1" fly="1"/>
+      <hsituation context="vspitcher" pitcher="Yarberry,Jackson" pa="1" ab="1" fly="1" adv="1"/>
+      <hsituation context="vspitcher" pitcher="Vogel,Jacob" pa="1" ab="1" so="1" lob="2"/>
+      <fielding po="3" a="0" e="0" sba="0" csb="0" pb="0" ci="0" indp="0" intp="0"/>
+      <hitseason gp="1" gs="1" ab="8" r="0" h="0" rbi="0" so="2" bb="2" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg=".000" rcherr="0" rchci="0" rchfc="0" ground="4" fly="2" adv="1" lob="8" rbi-2out="0" vsleft=".000" vsleft-ab=",2" vsright=".000" vsright-ab=",6" nohand="-" nohand-ab="," advops=".200" advops-ab="1,5" w2outs=".000" w2outs-ab=",5" wrunners=".000" wrunners-ab=",5" wrbiops=".000" wrbiops-ab=",5" leadoff=".000" leadoff-ab=",1" rbi3rd=".000" rbi3rd-ab=",3" loaded=".000" loaded-ab=",1" pinchhit="-" pinchhit-ab=","/>
+    </player>
+    <player name="McKnight, Matt" shortname="McKnight,Matt" id="1768335256" code="" uni="11" gp="0" rosterpos="inf" bats="R" throws="R" class="FR"/>
+    <player name="Padgett, Cameron" shortname="Padgett,Cameron" id="1768335259" code="" uni="15" gp="0" rosterpos="RHP     " bats="R" throws="R" class="SR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="-" ip="0.0" avg=".333" save="0" cg="0" sho="0" cbo="0" bf="3" ab="3" h="1" r="0" er="0" bb="0" ibb="0" so="1" double="1" triple="0" hr="0" wp="0" hbp="0" bk="0" inheritr="2" inherits="2" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="1" fly="0" picked="0" pitches="0" strikes="0" vsleft=".500" vsleft-ab="1,2" vsright=".000" vsright-ab=",1" nohand="-" nohand-ab="," w2outs=".500" w2outs-ab="1,2" wrunners=".333" wrunners-ab="1,3" wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Seagraves, Camron" shortname="Seagraves,Camron" id="1768335262" code="" uni="19" gp="0" rosterpos="RHP     " bats="R" throws="R" class="SO"/>
+    <player name="Terry, AJ" shortname="Terry,AJ" id="1768335263" code="" uni="20" gp="0" rosterpos="inf" bats="R" throws="R" class="FR"/>
+    <player name="Kellis V, Rom" shortname="KellisV,Rom" id="1768335266" code="" uni="25" gp="0" rosterpos="OF/C    " bats="R" throws="R" class="SR"/>
+    <player name="Percival, Kyle" shortname="Percival,Kyle" id="1768335267" code="" uni="26" gp="0" rosterpos="LHP     " bats="S" throws="R" class="SR"/>
+    <player name="Nunez, Jadyn" shortname="Nunez,Jadyn" id="1768335269" code="" uni="28" gp="0" rosterpos="OF      " bats="R" throws="R" class="FR"/>
+    <player name="DeCaro, Jason" shortname="DeCaro,Jason" id="1768335270" code="" uni="29" gp="0" rosterpos="RHP     " bats="R" throws="R" class="JR">
+      <hitseason gp="1" gs="1" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="0.00" ip="5.0" avg=".125" save="0" cg="0" sho="0" cbo="0" bf="19" ab="16" h="2" r="0" er="0" bb="3" ibb="0" so="7" double="0" triple="0" hr="0" wp="0" hbp="0" bk="0" inheritr="0" inherits="0" win="1" loss="0" cia="0" rcherr="0" rchfc="0" ground="3" fly="4" picked="1" pitches="0" strikes="0" vsleft=".000" vsleft-ab=",8" vsright=".250" vsright-ab="2,8" nohand="-" nohand-ab="," w2outs=".000" w2outs-ab=",5" wrunners=".000" wrunners-ab=",7" wrbiops="-" wrbiops-ab="," leadoff=".000" leadoff-ab=",4" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Johnson, Olin" shortname="Johnson,Olin" id="1768335271" code="" uni="31" gp="0" rosterpos="RHP     " bats="R" throws="R" class="JR"/>
+    <player name="Rose, Jackson" shortname="Rose,Jackson" id="1768335272" code="" uni="35" gp="0" rosterpos="LHP     " bats="L" throws="L" class="FR"/>
+    <player name="Boaz, Folger" shortname="Boaz,Folger" id="1768335273" code="" uni="36" gp="0" rosterpos="LHP     " bats="L" throws="L" class="JR"/>
+    <player name="Cackovic, Jake" shortname="Cackovic,Jake" id="1768335274" code="" uni="39" gp="0" rosterpos="RHP     " bats="R" throws="R" class="FR"/>
+    <player name="Black, Sawyer" shortname="Black,Sawyer" id="1768335250" code="" uni="4" gp="0" rosterpos="OF" bats="L" throws="R" class="SO"/>
+    <player name="McDuffie, Walker" shortname="McDuffie,Walker" id="1768335275" code="" uni="40" gp="0" rosterpos="RHP     " bats="R" throws="R" class="SO">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="-" ip="0.0" avg=".000" save="0" cg="0" sho="0" cbo="0" bf="1" ab="1" h="0" r="0" er="0" bb="0" ibb="0" so="1" double="0" triple="0" hr="0" wp="0" hbp="0" bk="0" inheritr="2" inherits="0" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="0" fly="0" picked="0" pitches="0" strikes="0" vsleft="-" vsleft-ab="," vsright=".000" vsright-ab=",1" nohand="-" nohand-ab="," w2outs=".000" w2outs-ab=",1" wrunners=".000" wrunners-ab=",1" wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Mabe, Justin" shortname="Mabe,Justin" id="1768335276" code="" uni="41" gp="0" rosterpos="RHP     " bats="R" throws="R" class="FR"/>
+    <player name="Flannery, Boston" shortname="Flannery,Boston" id="1768335277" code="" uni="42" gp="0" rosterpos="RHP     " bats="R" throws="R" class="JR">
+      <hitseason gp="1" gs="0" ab="0" r="0" h="0" rbi="0" so="0" bb="0" ibb="0" hbp="0" double="0" triple="0" hr="0" sb="0" cs="0" sh="0" sf="0" picked="0" avg="-" rcherr="0" rchci="0" rchfc="0" ground="0" fly="0" adv="0" lob="0" rbi-2out="0" vsleft="-" vsleft-ab="," vsright="-" vsright-ab="," nohand="-" nohand-ab="," advops="-" advops-ab="," w2outs="-" w2outs-ab="," wrunners="-" wrunners-ab="," wrbiops="-" wrbiops-ab="," leadoff="-" leadoff-ab="," rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," pinchhit="-" pinchhit-ab=","/>
+      <pchseason era="9.00" ip="2.0" avg=".111" save="0" cg="0" sho="0" cbo="0" bf="12" ab="9" h="1" r="2" er="2" bb="3" ibb="0" so="2" double="0" triple="0" hr="0" wp="0" hbp="0" bk="0" inheritr="0" inherits="0" win="0" loss="0" cia="0" rcherr="0" rchfc="0" ground="4" fly="1" picked="0" pitches="0" strikes="0" vsleft=".250" vsleft-ab="1,4" vsright=".000" vsright-ab=",5" nohand="-" nohand-ab="," w2outs=".000" w2outs-ab=",2" wrunners=".000" wrunners-ab=",5" wrbiops="-" wrbiops-ab="," leadoff=".000" leadoff-ab=",2" rbi3rd="-" rbi3rd-ab="," loaded="-" loaded-ab="," relief="-" relief-ab=","/>
+    </player>
+    <player name="Leatherman, Riley" shortname="Leatherman,Riley" id="1768335278" code="" uni="43" gp="0" rosterpos="RHP     " bats="R" throws="R" class="SO"/>
+    <player name="Hurley, Sean" shortname="Hurley,Sean" id="1768335280" code="" uni="47" gp="0" rosterpos="RHP     " bats="R" throws="R" class="FR"/>
+    <player name="Rich, Amos" shortname="Rich,Amos" id="1768335281" code="" uni="49" gp="0" rosterpos="RHP     " bats="R" throws="R" class="FR"/>
+    <player name="Lawson, Tim" shortname="Lawson,Tim" id="1768335282" code="" uni="51" gp="0" rosterpos="LHP     " bats="L" throws="L" class="SO"/>
+    <player name="Wallen, Andrew" shortname="Wallen,Andrew" id="1768335283" code="" uni="52" gp="0" rosterpos="RHP     " bats="R" throws="R" class="SO"/>
+    <player name="Hargett, Perry" shortname="Hargett,Perry" id="1768335253" code="" uni="7" gp="0" rosterpos="OF" bats="R" throws="R" class="SO"/>
+  </team>
+  <plays format="summary">
+    <inning number="1">
+      <batting vh="V" id="IND">
+        <play seq="1" innseq="1" outs="0" batter="Moore,Will" batprof="L" pitcher="Lynch,Ryan" pchprof="R">
+          <narrative text="Moore,Will singled down the left field line (0-0)."/>
+          <batter name="Moore,Will" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="1" wherehit="7" wheredesc="down the left field line"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+        </play>
+        <play seq="2" innseq="2" outs="0" batter="Denny,Hogan" batprof="R" pitcher="Lynch,Ryan" pchprof="R" first="Moore,Will">
+          <narrative text="Denny,Hogan hit by pitch (3-1 BKBB); Moore,Will advanced to second base."/>
+          <batter name="Denny,Hogan" action="HBP" decision="HBP" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="2" hbp="1"/>
+          <pitcher name="Lynch,Ryan" hbp="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BKBB" b="3" s="1"/>
+          <runner name="Moore,Will" pitcher="Lynch,Ryan" base="1" action=" " result="A" how="A" tobase="2B"/>
+        </play>
+        <play seq="3" innseq="3" outs="0" batter="Malamazian,Cooper" batprof="R" pitcher="Lynch,Ryan" pchprof="R" first="Denny,Hogan" second="Moore,Will">
+          <narrative text="Malamazian,Cooper reached on a fielder's choice (0-1 K); Moore,Will advanced to third base; Denny,Hogan out at second base, 2b to ss."/>
+          <batter name="Malamazian,Cooper" action="FC" decision="FC" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="3" rchfc="1"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="KP" b="0" s="1"/>
+          <runner name="Denny,Hogan" pitcher="Lynch,Ryan" base="1" action="46" result="O" how="O" out="1" sequence="46" putout="Schaffner,Jake" assist="Gallaher,Gavin"/>
+          <runner name="Moore,Will" pitcher="Lynch,Ryan" base="2" action=" " result="A" how="A" tobase="3B"/>
+          <fielder pos="ss" name="Schaffner,Jake" po="1" atbase="1"/>
+        </play>
+        <play seq="4" innseq="4" outs="1" batter="Hanley,Jake" batprof="L" pitcher="Lynch,Ryan" pchprof="R" first="Malamazian,Cooper" third="Moore,Will" scoring="Y" runs="1" rbis="1">
+          <narrative text="Hanley,Jake singled to second base, RBI (1-0 B); Moore,Will scored; Malamazian,Cooper advanced to second base."/>
+          <batter name="Hanley,Jake" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="1" gndout="0" flyout="0" so="0" sac="0" h="1" spot="4" wherehit="4" wheredesc="to second base"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="1" er="1"/>
+          <pitches text="BP" b="1" s="0"/>
+          <runner name="Malamazian,Cooper" pitcher="Lynch,Ryan" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <runner name="Moore,Will" pitcher="Lynch,Ryan" base="3" action=" " result="A" how="A" tobase="HP" scored="1" earned="1"/>
+        </play>
+        <play seq="5" innseq="5" outs="1" batter="Decker,Cole" batprof="L" pitcher="Lynch,Ryan" pchprof="R" first="Hanley,Jake" second="Malamazian,Cooper">
+          <narrative text="Decker,Cole flied out to lf (1-2 KBS)."/>
+          <batter name="Decker,Cole" action="F7" decision="F" sequence="7" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="5"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KBSP" b="1" s="2"/>
+          <runner name="Hanley,Jake" pitcher="Lynch,Ryan" base="1" action=" " result="S" tobase="1B"/>
+          <runner name="Malamazian,Cooper" pitcher="Lynch,Ryan" base="2" action=" " result="S" tobase="2B"/>
+          <fielder pos="lf" name="Maginnis,Michael" po="1"/>
+        </play>
+        <play seq="6" innseq="6" outs="2" batter="Ricketts,Brayden" batprof="L" pitcher="Lynch,Ryan" pchprof="R" first="Hanley,Jake" second="Malamazian,Cooper">
+          <narrative text="Ricketts,Brayden grounded out, 1b to p (1-2 BSS)."/>
+          <batter name="Ricketts,Brayden" action="G31" decision="G" sequence="31" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="6"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BSSP" b="1" s="2"/>
+          <runner name="Hanley,Jake" pitcher="Lynch,Ryan" base="1" action=" " result="L"/>
+          <runner name="Malamazian,Cooper" pitcher="Lynch,Ryan" base="2" action=" " result="L"/>
+          <fielder pos="1b" name="Paulsen,Erik" a="1"/>
+          <fielder pos="p" name="Lynch,Ryan" po="1"/>
+        </play>
+        <innsummary r="1" h="2" e="0" lob="2"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="7" innseq="1" outs="0" batter="Schaffner,Jake" batprof="L" pitcher="Thomas,Brayton" pchprof="L">
+          <narrative text="Schaffner,Jake grounded out, ss to 1b (1-1 BK)."/>
+          <batter name="Schaffner,Jake" action="G63" decision="G" sequence="63" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="1"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BKP" b="1" s="1"/>
+          <fielder pos="ss" name="Malamazian,Cooper" a="1"/>
+          <fielder pos="1b" name="Hanley,Jake" po="1"/>
+        </play>
+        <play seq="8" innseq="2" outs="1" batter="Gallaher,Gavin" batprof="R" pitcher="Thomas,Brayton" pchprof="L">
+          <narrative text="Gallaher,Gavin flied out to rf (1-0 B)."/>
+          <batter name="Gallaher,Gavin" action="F9" decision="F" sequence="9" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="2"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BP" b="1" s="0"/>
+          <fielder pos="rf" name="Denny,Hogan" po="1"/>
+        </play>
+        <play seq="9" innseq="3" outs="2" batter="Hull,Owen" batprof="L" pitcher="Thomas,Brayton" pchprof="L">
+          <narrative text="Hull,Owen walked (3-1 BBKBB)."/>
+          <batter name="Hull,Owen" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="3" bb="1"/>
+          <pitcher name="Thomas,Brayton" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBKBB" b="3" s="1"/>
+        </play>
+        <play seq="10" innseq="4" outs="2" batter="Winslow,Macon" batprof="R" pitcher="Thomas,Brayton" pchprof="L" first="Hull,Owen">
+          <narrative text="Winslow,Macon walked (3-1 BKBBB); Hull,Owen advanced to second base."/>
+          <batter name="Winslow,Macon" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="4" bb="1"/>
+          <pitcher name="Thomas,Brayton" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BKBBB" b="3" s="1"/>
+          <runner name="Hull,Owen" pitcher="Thomas,Brayton" base="1" action=" " result="A" how="A" tobase="2B"/>
+        </play>
+        <play seq="11" innseq="5" outs="2" batter="Paulsen,Erik" batprof="L" pitcher="Thomas,Brayton" pchprof="L" first="Winslow,Macon" second="Hull,Owen">
+          <narrative text="Paulsen,Erik flied out to rf (1-1 BS)."/>
+          <batter name="Paulsen,Erik" action="F9" decision="F" sequence="9" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="5"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BSP" b="1" s="1"/>
+          <runner name="Winslow,Macon" pitcher="Thomas,Brayton" base="1" action=" " result="L"/>
+          <runner name="Hull,Owen" pitcher="Thomas,Brayton" base="2" action=" " result="L"/>
+          <fielder pos="rf" name="Denny,Hogan" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="2"/>
+      </batting>
+    </inning>
+    <inning number="2">
+      <batting vh="V" id="IND">
+        <play seq="12" innseq="1" outs="0" batter="Stewart,Aiden" batprof="L" pitcher="Lynch,Ryan" pchprof="R">
+          <narrative text="Stewart,Aiden walked (3-2 BBFBSFB)."/>
+          <batter name="Stewart,Aiden" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="7" bb="1"/>
+          <pitcher name="Lynch,Ryan" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBFBSFB" b="3" s="2"/>
+        </play>
+        <play seq="13" innseq="2" outs="0" batter="Gates,Cal" batprof="" pitcher="Lynch,Ryan" pchprof="R" first="Stewart,Aiden">
+          <narrative text="Stewart,Aiden advanced to second base on a wild pitch."/>
+          <batter name="Gates,Cal" action="" decision="" sequence="" out="0" tobase="0" adv="0" ab="0" rbi="" gndout="0" flyout="0" so="0" sac="0" h="0" spot=""/>
+          <pitcher name="Lynch,Ryan" bf="0" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <runner name="Stewart,Aiden" pitcher="Lynch,Ryan" base="1" action="WP" result="A" how="WP" tobase="2B"/>
+        </play>
+        <play seq="14" innseq="3" outs="0" batter="Gates,Cal" batprof="L" pitcher="Lynch,Ryan" pchprof="R" second="Stewart,Aiden" qualifiers="KS">
+          <narrative text="Gates,Cal struck out swinging (3-2 BBBKKS)."/>
+          <batter name="Gates,Cal" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="8"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="BBBKKS" b="3" s="2"/>
+          <runner name="Stewart,Aiden" pitcher="Lynch,Ryan" base="2" action=" " result="S" tobase="2B"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="15" innseq="4" outs="1" batter="Schuyler,TJ" batprof="R" pitcher="Lynch,Ryan" pchprof="R" second="Stewart,Aiden">
+          <narrative text="Schuyler,TJ hit by pitch (1-1 SB)."/>
+          <batter name="Schuyler,TJ" action="HBP" decision="HBP" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="9" hbp="1"/>
+          <pitcher name="Lynch,Ryan" hbp="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="SB" b="1" s="1"/>
+          <runner name="Stewart,Aiden" pitcher="Lynch,Ryan" base="2" action=" " result="S" tobase="2B"/>
+        </play>
+        <play seq="16" innseq="5" outs="1" batter="Moore,Will" batprof="L" pitcher="Lynch,Ryan" pchprof="R" first="Schuyler,TJ" second="Stewart,Aiden" qualifiers="KL">
+          <narrative text="Moore,Will struck out looking (1-2 FBKK)."/>
+          <batter name="Moore,Will" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="1"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="FBKK" b="1" s="2"/>
+          <runner name="Schuyler,TJ" pitcher="Lynch,Ryan" base="1" action=" " result="S" tobase="1B"/>
+          <runner name="Stewart,Aiden" pitcher="Lynch,Ryan" base="2" action=" " result="S" tobase="2B"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="17" innseq="6" outs="2" batter="Denny,Hogan" batprof="" pitcher="Lynch,Ryan" pchprof="R" first="Schuyler,TJ" second="Stewart,Aiden">
+          <narrative text="Schuyler,TJ advanced to second base on a wild pitch; Stewart,Aiden advanced to third base on a wild pitch."/>
+          <batter name="Denny,Hogan" action="" decision="" sequence="" out="0" tobase="0" adv="0" ab="0" rbi="" gndout="0" flyout="0" so="0" sac="0" h="0" spot=""/>
+          <pitcher name="Lynch,Ryan" bf="0" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <runner name="Schuyler,TJ" pitcher="Lynch,Ryan" base="1" action="WP" result="A" how="WP" tobase="2B"/>
+          <runner name="Stewart,Aiden" pitcher="Lynch,Ryan" base="2" action="WP" result="A" how="WP" tobase="3B"/>
+        </play>
+        <play seq="18" innseq="7" outs="2" batter="Denny,Hogan" batprof="R" pitcher="Lynch,Ryan" pchprof="R" second="Schuyler,TJ" third="Stewart,Aiden">
+          <narrative text="Denny,Hogan flied out to cf (1-2 KFB)."/>
+          <batter name="Denny,Hogan" action="F8" decision="F" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="2"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KFBP" b="1" s="2"/>
+          <runner name="Schuyler,TJ" pitcher="Lynch,Ryan" base="2" action=" " result="L"/>
+          <runner name="Stewart,Aiden" pitcher="Lynch,Ryan" base="3" action=" " result="L"/>
+          <fielder pos="cf" name="Hull,Owen" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="2"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="19" innseq="1" outs="0" batter="Nicholson,Cooper" batprof="R" pitcher="Thomas,Brayton" pchprof="L">
+          <narrative text="Nicholson,Cooper walked (3-2 BBSKBB)."/>
+          <batter name="Nicholson,Cooper" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="6" bb="1"/>
+          <pitcher name="Thomas,Brayton" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBSKBB" b="3" s="2"/>
+        </play>
+        <play seq="20" innseq="2" outs="0" batter="Hynek,Colin" batprof="R" pitcher="Thomas,Brayton" pchprof="L" first="Nicholson,Cooper">
+          <narrative text="Hynek,Colin singled in the infield (0-0); Nicholson,Cooper advanced from first base to third base."/>
+          <batter name="Hynek,Colin" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="7" wherehit="1" wheredesc="in the infield"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <runner name="Nicholson,Cooper" pitcher="Thomas,Brayton" base="1" action=" " result="A" how="A" tobase="3B"/>
+        </play>
+        <play seq="21" innseq="3" outs="0" batter="Maginnis,Michael" batprof="R" pitcher="Thomas,Brayton" pchprof="L" first="Hynek,Colin" third="Nicholson,Cooper" qualifiers="KS">
+          <narrative text="Maginnis,Michael struck out swinging (0-2 FFS)."/>
+          <batter name="Maginnis,Michael" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="8"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="FFS" b="0" s="2"/>
+          <runner name="Hynek,Colin" pitcher="Thomas,Brayton" base="1" action=" " result="S" tobase="1B"/>
+          <runner name="Nicholson,Cooper" pitcher="Thomas,Brayton" base="3" action=" " result="S" tobase="3B"/>
+          <fielder pos="c" name="Schuyler,TJ" po="1"/>
+        </play>
+        <play seq="22" innseq="4" outs="1" batter="Howe,Tyler" batprof="L" pitcher="Thomas,Brayton" pchprof="L" first="Hynek,Colin" third="Nicholson,Cooper" scoring="Y" runs="1" rbis="1">
+          <narrative text="Howe,Tyler singled to deep right field, RBI (1-2 FBS); Nicholson,Cooper scored; Hynek,Colin advanced to second base."/>
+          <batter name="Howe,Tyler" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="1" gndout="0" flyout="0" so="0" sac="0" h="1" spot="9" wherehit="9" wheredesc="to deep right field"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="1" er="1"/>
+          <pitches text="FBSP" b="1" s="2"/>
+          <runner name="Hynek,Colin" pitcher="Thomas,Brayton" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <runner name="Nicholson,Cooper" pitcher="Thomas,Brayton" base="3" action=" " result="A" how="A" tobase="HP" scored="1" earned="1"/>
+        </play>
+        <play seq="23" innseq="5" outs="1" batter="Schaffner,Jake" batprof="L" pitcher="Thomas,Brayton" pchprof="L" first="Howe,Tyler" second="Hynek,Colin" qualifiers="BU">
+          <narrative text="Schaffner,Jake singled to third base, bunt (0-0); Hynek,Colin advanced to third base; Howe,Tyler advanced to second base."/>
+          <batter name="Schaffner,Jake" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="1" wherehit="5" wheredesc="to third base"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <runner name="Howe,Tyler" pitcher="Thomas,Brayton" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <runner name="Hynek,Colin" pitcher="Thomas,Brayton" base="2" action=" " result="A" how="A" tobase="3B"/>
+        </play>
+        <play seq="24" innseq="6" outs="1" batter="Gallaher,Gavin" batprof="R" pitcher="Thomas,Brayton" pchprof="L" first="Schaffner,Jake" second="Howe,Tyler" third="Hynek,Colin">
+          <narrative text="Gallaher,Gavin lined out to ss (3-1 FBBB)."/>
+          <batter name="Gallaher,Gavin" action="L6" decision="L" sequence="6" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="2"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="FBBBP" b="3" s="1"/>
+          <runner name="Schaffner,Jake" pitcher="Thomas,Brayton" base="1" action=" " result="S" tobase="1B"/>
+          <runner name="Howe,Tyler" pitcher="Thomas,Brayton" base="2" action=" " result="S" tobase="2B"/>
+          <runner name="Hynek,Colin" pitcher="Thomas,Brayton" base="3" action=" " result="S" tobase="3B"/>
+          <fielder pos="ss" name="Malamazian,Cooper" po="1"/>
+        </play>
+        <play seq="25" innseq="7" outs="2" batter="Hull,Owen" batprof="L" pitcher="Thomas,Brayton" pchprof="L" first="Schaffner,Jake" second="Howe,Tyler" third="Hynek,Colin">
+          <narrative text="Hull,Owen grounded out, 2b to 1b (2-2 KBFFB)."/>
+          <batter name="Hull,Owen" action="G43" decision="G" sequence="43" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="3"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KBNFFBP" b="2" s="2"/>
+          <runner name="Schaffner,Jake" pitcher="Thomas,Brayton" base="1" action=" " result="L"/>
+          <runner name="Howe,Tyler" pitcher="Thomas,Brayton" base="2" action=" " result="L"/>
+          <runner name="Hynek,Colin" pitcher="Thomas,Brayton" base="3" action=" " result="L"/>
+          <fielder pos="2b" name="Stewart,Aiden" a="1"/>
+          <fielder pos="1b" name="Hanley,Jake" po="1"/>
+        </play>
+        <innsummary r="1" h="3" e="0" lob="3"/>
+      </batting>
+    </inning>
+    <inning number="3">
+      <batting vh="V" id="IND">
+        <play seq="26" innseq="1" outs="0" batter="Malamazian,Cooper" batprof="R" pitcher="Lynch,Ryan" pchprof="R">
+          <narrative text="Malamazian,Cooper walked (3-1 BBKBB)."/>
+          <batter name="Malamazian,Cooper" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="3" bb="1"/>
+          <pitcher name="Lynch,Ryan" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBKBB" b="3" s="1"/>
+        </play>
+        <play seq="27" innseq="2" outs="0" batter="Hanley,Jake" batprof="L" pitcher="Lynch,Ryan" pchprof="R" first="Malamazian,Cooper">
+          <narrative text="Hanley,Jake flied out to lf (0-2 KF)."/>
+          <batter name="Hanley,Jake" action="F7" decision="F" sequence="7" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="4"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KFP" b="0" s="2"/>
+          <runner name="Malamazian,Cooper" pitcher="Lynch,Ryan" base="1" action=" " result="S" tobase="1B"/>
+          <fielder pos="lf" name="Maginnis,Michael" po="1"/>
+        </play>
+        <play seq="28" innseq="3" outs="1" batter="Decker,Cole" batprof="L" pitcher="Lynch,Ryan" pchprof="R" first="Malamazian,Cooper">
+          <narrative text="Decker,Cole reached on a fielder's choice (0-2 KK); Malamazian,Cooper out at second base, 3b to 2b."/>
+          <batter name="Decker,Cole" action="FC" decision="FC" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="5" rchfc="1"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="KKP" b="0" s="2"/>
+          <runner name="Malamazian,Cooper" pitcher="Lynch,Ryan" base="1" action="54" result="O" how="O" out="1" sequence="54" putout="Gallaher,Gavin" assist="Nicholson,Cooper"/>
+          <fielder pos="2b" name="Gallaher,Gavin" po="1" atbase="1"/>
+        </play>
+        <play seq="29" innseq="4" outs="2" batter="Ricketts,Brayden" batprof="L" pitcher="Lynch,Ryan" pchprof="R" first="Decker,Cole" qualifiers="KS">
+          <narrative text="Ricketts,Brayden struck out swinging (2-2 KBBFS)."/>
+          <batter name="Ricketts,Brayden" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="6"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="KBBFS" b="2" s="2"/>
+          <runner name="Decker,Cole" pitcher="Lynch,Ryan" base="1" action=" " result="L"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="1"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="30" innseq="1" outs="0" batter="Winslow,Macon" batprof="R" pitcher="Thomas,Brayton" pchprof="L">
+          <narrative text="Winslow,Macon flied out to cf (2-1 SBB)."/>
+          <batter name="Winslow,Macon" action="F8" decision="F" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="4"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="SBBP" b="2" s="1"/>
+          <fielder pos="cf" name="Decker,Cole" po="1"/>
+        </play>
+        <play seq="31" innseq="2" outs="1" batter="Paulsen,Erik" batprof="L" pitcher="Thomas,Brayton" pchprof="L">
+          <narrative text="Paulsen,Erik flied out to cf (1-1 FB)."/>
+          <batter name="Paulsen,Erik" action="F8" decision="F" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="5"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="FBP" b="1" s="1"/>
+          <fielder pos="cf" name="Decker,Cole" po="1"/>
+        </play>
+        <play seq="32" innseq="3" outs="2" batter="Nicholson,Cooper" batprof="R" pitcher="Thomas,Brayton" pchprof="L" qualifiers="FE">
+          <narrative text="Nicholson,Cooper reached on a fielding error fielding by p by Thomas,Brayton (E1) (0-0); Nicholson,Cooper advanced to second base."/>
+          <batter name="Nicholson,Cooper" action="E1" decision="E" sequence="1" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="6" rcherr="1"/>
+          <pitcher name="Thomas,Brayton" rcherr="1" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <runner name="Nicholson,Cooper" pitcher="Thomas,Brayton" base="0" action=" " result="A" how="A" tobase="2B"/>
+          <fielder pos="p" name="Thomas,Brayton" e="1"/>
+        </play>
+        <play seq="33" innseq="4" outs="2" batter="Hynek,Colin" batprof="R" pitcher="Thomas,Brayton" pchprof="L" second="Nicholson,Cooper">
+          <narrative text="Hynek,Colin flied out to cf (1-2 KBFF)."/>
+          <batter name="Hynek,Colin" action="F8" decision="F" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="7"/>
+          <pitcher name="Thomas,Brayton" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KBFFP" b="1" s="2"/>
+          <runner name="Nicholson,Cooper" pitcher="Thomas,Brayton" base="2" action=" " result="L"/>
+          <fielder pos="cf" name="Decker,Cole" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="1" lob="1"/>
+      </batting>
+    </inning>
+    <inning number="4">
+      <batting vh="V" id="IND">
+        <play seq="34" innseq="1" outs="0" batter="Stewart,Aiden" batprof="L" pitcher="Lynch,Ryan" pchprof="R">
+          <narrative text="Stewart,Aiden flied out to lf (1-1 BK)."/>
+          <batter name="Stewart,Aiden" action="F7" decision="F" sequence="7" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="7"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BKP" b="1" s="1"/>
+          <fielder pos="lf" name="Maginnis,Michael" po="1"/>
+        </play>
+        <play seq="35" innseq="2" outs="1" batter="Gates,Cal" batprof="L" pitcher="Lynch,Ryan" pchprof="R" qualifiers="KS">
+          <narrative text="Gates,Cal struck out swinging (3-2 BKFBFFBS)."/>
+          <batter name="Gates,Cal" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="8"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="BKFBFFBS" b="3" s="2"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="36" innseq="3" outs="2" batter="Schuyler,TJ" batprof="R" pitcher="Lynch,Ryan" pchprof="R" qualifiers="KL">
+          <narrative text="Schuyler,TJ struck out looking (2-2 FBFBFK)."/>
+          <batter name="Schuyler,TJ" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="9"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="FBFBFK" b="2" s="2"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="0"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="37" innseq="1" outs="0" batter="Schaffner,Jake" batprof="" pitcher="" pchprof="">
+          <narrative text="IND pitching change: Seebold,Gavin replaces Thomas,Brayton."/>
+          <sub vh="V" spot="10" who="Seebold,Gavin" for="Thomas,Brayton" pos="p"/>
+        </play>
+        <play seq="38" innseq="2" outs="0" batter="Maginnis,Michael" batprof="R" pitcher="Seebold,Gavin" pchprof="R" sub="Y" reliever="Y" originalpitcher="Thomas,Brayton">
+          <narrative text="Maginnis,Michael singled to short (3-2 BBFFFB)."/>
+          <batter name="Maginnis,Michael" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="8" wherehit="6" wheredesc="to short"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBFFFBP" b="3" s="2"/>
+        </play>
+        <play seq="39" innseq="3" outs="0" batter="Howe,Tyler" batprof="" pitcher="Seebold,Gavin" pchprof="R" first="Maginnis,Michael">
+          <narrative text="Maginnis,Michael out caught stealing at second base, c to ss."/>
+          <batter name="Howe,Tyler" action="" decision="" sequence="" out="0" tobase="0" adv="0" ab="0" rbi="" gndout="0" flyout="0" so="0" sac="0" h="0" spot=""/>
+          <pitcher name="Seebold,Gavin" bf="0" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <runner name="Maginnis,Michael" pitcher="Seebold,Gavin" base="1" action=" CS" result="O" how="CS" out="1" sequence="26" putout="Malamazian,Cooper" assist="Schuyler,TJ"/>
+        </play>
+        <play seq="40" innseq="4" outs="1" batter="Howe,Tyler" batprof="L" pitcher="Seebold,Gavin" pchprof="R">
+          <narrative text="Howe,Tyler hit by pitch (4-2 BBKBKB)."/>
+          <batter name="Howe,Tyler" action="HBP" decision="HBP" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="9" hbp="1"/>
+          <pitcher name="Seebold,Gavin" hbp="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBKBKB" b="3" s="2"/>
+        </play>
+        <play seq="41" innseq="5" outs="1" batter="Schaffner,Jake" batprof="L" pitcher="Seebold,Gavin" pchprof="R" first="Howe,Tyler">
+          <narrative text="Schaffner,Jake hit by pitch (2-1 FBB); Howe,Tyler advanced to second base."/>
+          <batter name="Schaffner,Jake" action="HBP" decision="HBP" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="1" hbp="1"/>
+          <pitcher name="Seebold,Gavin" hbp="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="FBB" b="2" s="1"/>
+          <runner name="Howe,Tyler" pitcher="Seebold,Gavin" base="1" action=" " result="A" how="A" tobase="2B"/>
+        </play>
+        <play seq="42" innseq="6" outs="1" batter="Gallaher,Gavin" batprof="R" pitcher="Seebold,Gavin" pchprof="R" first="Schaffner,Jake" second="Howe,Tyler" qualifiers="KL">
+          <narrative text="Gallaher,Gavin struck out looking (2-2 KBBFK)."/>
+          <batter name="Gallaher,Gavin" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="2"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="KBBFK" b="2" s="2"/>
+          <runner name="Schaffner,Jake" pitcher="Seebold,Gavin" base="1" action=" " result="S" tobase="1B"/>
+          <runner name="Howe,Tyler" pitcher="Seebold,Gavin" base="2" action=" " result="S" tobase="2B"/>
+          <fielder pos="c" name="Schuyler,TJ" po="1"/>
+        </play>
+        <play seq="43" innseq="7" outs="2" batter="Hull,Owen" batprof="L" pitcher="Seebold,Gavin" pchprof="R" first="Schaffner,Jake" second="Howe,Tyler">
+          <narrative text="Hull,Owen grounded out, 2b to 1b (0-1 K)."/>
+          <batter name="Hull,Owen" action="G43" decision="G" sequence="43" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="3"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KP" b="0" s="1"/>
+          <runner name="Schaffner,Jake" pitcher="Seebold,Gavin" base="1" action=" " result="L"/>
+          <runner name="Howe,Tyler" pitcher="Seebold,Gavin" base="2" action=" " result="L"/>
+          <fielder pos="2b" name="Stewart,Aiden" a="1"/>
+          <fielder pos="1b" name="Hanley,Jake" po="1"/>
+        </play>
+        <innsummary r="0" h="1" e="0" lob="2"/>
+      </batting>
+    </inning>
+    <inning number="5">
+      <batting vh="V" id="IND">
+        <play seq="44" innseq="1" outs="0" batter="Moore,Will" batprof="L" pitcher="Lynch,Ryan" pchprof="R">
+          <narrative text="Moore,Will grounded out, p to 1b (2-2 KKBB)."/>
+          <batter name="Moore,Will" action="G13" decision="G" sequence="13" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="1"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KKBBP" b="2" s="2"/>
+          <fielder pos="p" name="Lynch,Ryan" a="1"/>
+          <fielder pos="1b" name="Paulsen,Erik" po="1"/>
+        </play>
+        <play seq="45" innseq="2" outs="1" batter="Denny,Hogan" batprof="R" pitcher="Lynch,Ryan" pchprof="R">
+          <narrative text="Denny,Hogan singled to shallow center field (3-1 KBBB)."/>
+          <batter name="Denny,Hogan" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="2" wherehit="8" wheredesc="to shallow center field"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="KBBBP" b="3" s="1"/>
+        </play>
+        <play seq="46" innseq="3" outs="1" batter="Malamazian,Cooper" batprof="R" pitcher="Lynch,Ryan" pchprof="R" first="Denny,Hogan" qualifiers="KS">
+          <narrative text="Malamazian,Cooper struck out swinging (0-2 FFFS)."/>
+          <batter name="Malamazian,Cooper" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="3"/>
+          <pitcher name="Lynch,Ryan" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="FFFS" b="0" s="2"/>
+          <runner name="Denny,Hogan" pitcher="Lynch,Ryan" base="1" action=" " result="S" tobase="1B"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="47" innseq="4" outs="2" batter="Hanley,Jake" batprof="" pitcher="Lynch,Ryan" pchprof="R" first="Denny,Hogan">
+          <narrative text="Denny,Hogan out caught stealing at second base, c to ss."/>
+          <batter name="Hanley,Jake" action="" decision="" sequence="" out="0" tobase="0" adv="0" ab="0" rbi="" gndout="0" flyout="0" so="0" sac="0" h="0" spot=""/>
+          <pitcher name="Lynch,Ryan" bf="0" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="SSFFB" b="1" s="2"/>
+          <runner name="Denny,Hogan" pitcher="Lynch,Ryan" base="1" action=" CS" result="O" how="CS" out="1" sequence="26" putout="Schaffner,Jake" assist="Winslow,Macon"/>
+        </play>
+        <innsummary r="0" h="1" e="0" lob="0"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="48" innseq="1" outs="0" batter="Winslow,Macon" batprof="R" pitcher="Seebold,Gavin" pchprof="R">
+          <narrative text="Winslow,Macon popped up to cf (3-2 BBBKF)."/>
+          <batter name="Winslow,Macon" action="P8" decision="P" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="4"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BBBKFP" b="3" s="2"/>
+          <fielder pos="cf" name="Decker,Cole" po="1"/>
+        </play>
+        <play seq="49" innseq="2" outs="1" batter="Paulsen,Erik" batprof="L" pitcher="Seebold,Gavin" pchprof="R" qualifiers="KS">
+          <narrative text="Paulsen,Erik struck out swinging (2-2 FSBBS)."/>
+          <batter name="Paulsen,Erik" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="5"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="FSBBS" b="2" s="2"/>
+          <fielder pos="c" name="Schuyler,TJ" po="1"/>
+        </play>
+        <play seq="50" innseq="3" outs="2" batter="Nicholson,Cooper" batprof="R" pitcher="Seebold,Gavin" pchprof="R" qualifiers="KL">
+          <narrative text="Nicholson,Cooper struck out looking (3-2 BFBBSK)."/>
+          <batter name="Nicholson,Cooper" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="6"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="BFBBSK" b="3" s="2"/>
+          <fielder pos="c" name="Schuyler,TJ" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="0"/>
+      </batting>
+    </inning>
+    <inning number="6">
+      <batting vh="V" id="IND">
+        <play seq="51" innseq="1" outs="0" batter="Moore,Will" batprof="" pitcher="" pchprof="">
+          <narrative text="UNC pitching change: Glauber,Caden replaces Lynch,Ryan."/>
+          <sub vh="H" spot="10" who="Glauber,Caden" for="Lynch,Ryan" pos="p"/>
+        </play>
+        <play seq="52" innseq="2" outs="0" batter="Hanley,Jake" batprof="L" pitcher="Glauber,Caden" pchprof="R" sub="Y" reliever="Y" originalpitcher="Lynch,Ryan">
+          <narrative text="Hanley,Jake popped up to cf (0-1 F)."/>
+          <batter name="Hanley,Jake" action="P8" decision="P" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="4"/>
+          <pitcher name="Glauber,Caden" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="FP" b="0" s="1"/>
+          <fielder pos="cf" name="Hull,Owen" po="1"/>
+        </play>
+        <play seq="53" innseq="3" outs="1" batter="Decker,Cole" batprof="L" pitcher="Glauber,Caden" pchprof="R">
+          <narrative text="Decker,Cole walked (3-0 BBBB)."/>
+          <batter name="Decker,Cole" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="5" bb="1"/>
+          <pitcher name="Glauber,Caden" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBBB" b="3" s="0"/>
+        </play>
+        <play seq="54" innseq="4" outs="1" batter="Ricketts,Brayden" batprof="L" pitcher="Glauber,Caden" pchprof="R" first="Decker,Cole" qualifiers="DP">
+          <narrative text="Ricketts,Brayden grounded into double play, ss to 2b to 1b (3-1 BBBK); Decker,Cole out at 2B on the play, ss to 2b, in a double play."/>
+          <batter name="Ricketts,Brayden" action="GDP643" decision="GDP" sequence="643" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="6" hitdp="1"/>
+          <pitcher name="Glauber,Caden" gdp="1" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BBBKP" b="3" s="1"/>
+          <runner name="Decker,Cole" pitcher="Glauber,Caden" base="1" action="64" result="DP" out="1" sequence="64" putout="Gallaher,Gavin" assist="Schaffner,Jake"/>
+          <fielder pos="ss" name="Schaffner,Jake" a="1" indp="1"/>
+          <fielder pos="2b" name="Gallaher,Gavin" a="1" indp="1" po="1" atbase="1"/>
+          <fielder pos="1b" name="Paulsen,Erik" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="0"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="55" innseq="1" outs="0" batter="Hynek,Colin" batprof="R" pitcher="Seebold,Gavin" pchprof="R">
+          <narrative text="Hynek,Colin walked (3-2 BSKFBFBFB)."/>
+          <batter name="Hynek,Colin" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="7" bb="1"/>
+          <pitcher name="Seebold,Gavin" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BSKFBFBFB" b="3" s="2"/>
+        </play>
+        <play seq="56" innseq="2" outs="0" batter="Maginnis,Michael" batprof="R" pitcher="Seebold,Gavin" pchprof="R" first="Hynek,Colin">
+          <narrative text="Maginnis,Michael popped up to 2b (1-0 B)."/>
+          <batter name="Maginnis,Michael" action="P4" decision="P" sequence="4" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="8"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BP" b="1" s="0"/>
+          <runner name="Hynek,Colin" pitcher="Seebold,Gavin" base="1" action=" " result="S" tobase="1B"/>
+          <fielder pos="2b" name="Stewart,Aiden" po="1"/>
+        </play>
+        <play seq="57" innseq="3" outs="1" batter="Howe,Tyler" batprof="L" pitcher="Seebold,Gavin" pchprof="R" first="Hynek,Colin">
+          <narrative text="Howe,Tyler grounded out to 1b, unassisted (1-1 SB); Hynek,Colin advanced to second base."/>
+          <batter name="Howe,Tyler" action="G3" decision="G" sequence="3" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="9"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="SBP" b="1" s="1"/>
+          <runner name="Hynek,Colin" pitcher="Seebold,Gavin" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <fielder pos="1b" name="Hanley,Jake" po="1"/>
+        </play>
+        <play seq="58" innseq="4" outs="2" batter="Schaffner,Jake" batprof="L" pitcher="Seebold,Gavin" pchprof="R" second="Hynek,Colin">
+          <narrative text="Schaffner,Jake popped up to cf (0-2 KKF)."/>
+          <batter name="Schaffner,Jake" action="P8" decision="P" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="1"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KKFP" b="0" s="2"/>
+          <runner name="Hynek,Colin" pitcher="Seebold,Gavin" base="2" action=" " result="L"/>
+          <fielder pos="cf" name="Decker,Cole" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="1"/>
+      </batting>
+    </inning>
+    <inning number="7">
+      <batting vh="V" id="IND">
+        <play seq="59" innseq="1" outs="0" batter="Stewart,Aiden" batprof="L" pitcher="Glauber,Caden" pchprof="R">
+          <narrative text="Stewart,Aiden grounded out, 2b to 1b (1-2 KBF)."/>
+          <batter name="Stewart,Aiden" action="G43" decision="G" sequence="43" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="7"/>
+          <pitcher name="Glauber,Caden" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KBFP" b="1" s="2"/>
+          <fielder pos="2b" name="Gallaher,Gavin" a="1"/>
+          <fielder pos="1b" name="Paulsen,Erik" po="1"/>
+        </play>
+        <play seq="60" innseq="2" outs="1" batter="Gates,Cal" batprof="L" pitcher="Glauber,Caden" pchprof="R" qualifiers="KS">
+          <narrative text="Gates,Cal struck out swinging (2-2 BBSSS)."/>
+          <batter name="Gates,Cal" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="8"/>
+          <pitcher name="Glauber,Caden" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="BBSSS" b="2" s="2"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="61" innseq="3" outs="2" batter="Schuyler,TJ" batprof="R" pitcher="Glauber,Caden" pchprof="R">
+          <narrative text="Schuyler,TJ walked (3-2 BSBBSB)."/>
+          <batter name="Schuyler,TJ" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="9" bb="1"/>
+          <pitcher name="Glauber,Caden" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BSBBSB" b="3" s="2"/>
+        </play>
+        <play seq="62" innseq="4" outs="2" batter="Moore,Will" batprof="L" pitcher="Glauber,Caden" pchprof="R" first="Schuyler,TJ">
+          <narrative text="Moore,Will walked (3-1 KBBBB); Schuyler,TJ advanced to second base."/>
+          <batter name="Moore,Will" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="1" bb="1"/>
+          <pitcher name="Glauber,Caden" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="KBBBB" b="3" s="1"/>
+          <runner name="Schuyler,TJ" pitcher="Glauber,Caden" base="1" action=" " result="A" how="A" tobase="2B"/>
+        </play>
+        <play seq="63" innseq="5" outs="2" batter="Denny,Hogan" batprof="" pitcher="Glauber,Caden" pchprof="">
+          <narrative text="IND substitution: Crouse,Ayden pinch running for Schuyler,TJ."/>
+          <sub vh="V" spot="9" who="Crouse,Ayden" for="Schuyler,TJ" pos="PR"/>
+        </play>
+        <play seq="64" innseq="6" outs="2" batter="Moore,Will" batprof="" pitcher="Glauber,Caden" pchprof="">
+          <narrative text="UNC pitching change: Matthijs,Matthew replaces Glauber,Caden."/>
+          <sub vh="H" spot="10" who="Matthijs,Matthew" for="Glauber,Caden" pos="p"/>
+        </play>
+        <play seq="65" innseq="7" outs="2" batter="Denny,Hogan" batprof="R" pitcher="Matthijs,Matthew" pchprof="R" first="Moore,Will" second="Crouse,Ayden" sub="Y" reliever="Y" originalpitcher="Glauber,Caden" qualifiers="FE">
+          <narrative text="Denny,Hogan reached on a fielding error fielding by ss by Schaffner,Jake (E6) (1-0 B); Crouse,Ayden advanced to third base; Moore,Will advanced to second base."/>
+          <batter name="Denny,Hogan" action="E6" decision="E" sequence="6" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="2" rcherr="1"/>
+          <pitcher name="Matthijs,Matthew" rcherr="1" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BP" b="1" s="0"/>
+          <runner name="Moore,Will" pitcher="Glauber,Caden" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <runner name="Crouse,Ayden" pitcher="Glauber,Caden" base="2" action=" " result="A" how="A" tobase="3B"/>
+          <fielder pos="ss" name="Schaffner,Jake" e="1"/>
+        </play>
+        <play seq="66" innseq="8" outs="2" batter="Malamazian,Cooper" batprof="R" pitcher="Matthijs,Matthew" pchprof="R" first="Denny,Hogan" second="Moore,Will" third="Crouse,Ayden" scoring="Y" runs="2" rbis="2">
+          <narrative text="Malamazian,Cooper singled to shallow center field, 2RBI (0-1 S); Crouse,Ayden scored, unearned; Moore,Will scored from second base, unearned; Denny,Hogan advanced to second base."/>
+          <batter name="Malamazian,Cooper" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="2" gndout="0" flyout="0" so="0" sac="0" h="1" spot="3" wherehit="8" wheredesc="to shallow center field"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="2" er="0"/>
+          <pitcher name="Glauber,Caden" r="1" er="0"/>
+          <pitches text="SP" b="0" s="1"/>
+          <runner name="Denny,Hogan" pitcher="Matthijs,Matthew" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <runner name="Moore,Will" pitcher="Glauber,Caden" base="2" action=" " result="A" how="A" tobase="HP" scored="1" earned="0"/>
+          <runner name="Crouse,Ayden" pitcher="Glauber,Caden" base="3" action=" " result="A" how="A" tobase="HP" scored="1" earned="0"/>
+        </play>
+        <play seq="67" innseq="9" outs="2" batter="Hanley,Jake" batprof="L" pitcher="Matthijs,Matthew" pchprof="R" first="Malamazian,Cooper" second="Denny,Hogan">
+          <narrative text="Hanley,Jake grounded out to p, unassisted (1-2 KBFF)."/>
+          <batter name="Hanley,Jake" action="G1" decision="G" sequence="1" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="4"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KBFFP" b="1" s="2"/>
+          <runner name="Malamazian,Cooper" pitcher="Matthijs,Matthew" base="1" action=" " result="L"/>
+          <runner name="Denny,Hogan" pitcher="Matthijs,Matthew" base="2" action=" " result="L"/>
+          <fielder pos="p" name="Matthijs,Matthew" po="1"/>
+        </play>
+        <innsummary r="2" h="1" e="1" lob="2"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="68" innseq="1" outs="0" batter="Schaffner,Jake" batprof="" pitcher="" pchprof="">
+          <narrative text="IND position change: Denny,Hogan now playing c from rf"/>
+          <sub vh="V" spot="2" who="Denny,Hogan" for="Denny,Hogan" pos="c"/>
+        </play>
+        <play seq="69" innseq="2" outs="0" batter="Hull,Owen" batprof="" pitcher="" pchprof="">
+          <narrative text="IND position change: Crouse,Ayden remains in the game at rf"/>
+          <sub vh="V" spot="9" who="Crouse,Ayden" for="Crouse,Ayden" pos="rf"/>
+        </play>
+        <play seq="70" innseq="3" outs="0" batter="Gallaher,Gavin" batprof="R" pitcher="Seebold,Gavin" pchprof="R" qualifiers="KL">
+          <narrative text="Gallaher,Gavin struck out looking (3-2 BKBKBK)."/>
+          <batter name="Gallaher,Gavin" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="2"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="BKBKBK" b="3" s="2"/>
+          <fielder pos="rf" name="Denny,Hogan" po="1"/>
+        </play>
+        <play seq="71" innseq="4" outs="1" batter="Hull,Owen" batprof="L" pitcher="Seebold,Gavin" pchprof="R">
+          <narrative text="Hull,Owen flied out to rf (0-0)."/>
+          <batter name="Hull,Owen" action="F9" decision="F" sequence="9" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="3"/>
+          <pitcher name="Seebold,Gavin" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <fielder pos="PR" name="Crouse,Ayden" po="1"/>
+        </play>
+        <play seq="72" innseq="5" outs="2" batter="Winslow,Macon" batprof="R" pitcher="Seebold,Gavin" pchprof="R">
+          <narrative text="Winslow,Macon walked (3-1 BBBKB)."/>
+          <batter name="Winslow,Macon" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="4" bb="1"/>
+          <pitcher name="Seebold,Gavin" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBBKB" b="3" s="1"/>
+        </play>
+        <play seq="73" innseq="6" outs="2" batter="French,Carter" batprof="" pitcher="Seebold,Gavin" pchprof="">
+          <narrative text="IND pitching change: Yarberry,Jackson replaces Seebold,Gavin."/>
+          <sub vh="V" spot="10" who="Yarberry,Jackson" for="Seebold,Gavin" pos="p"/>
+        </play>
+        <play seq="74" innseq="7" outs="2" batter="Schaffner,Jake" batprof="" pitcher="Yarberry,Jackson" pchprof="R" first="Winslow,Macon">
+          <narrative text="Winslow,Macon advanced to second base on a passed ball."/>
+          <batter name="Schaffner,Jake" action="" decision="" sequence="" out="0" tobase="0" adv="0" ab="0" rbi="" gndout="0" flyout="0" so="0" sac="0" h="0" spot=""/>
+          <pitcher name="Yarberry,Jackson" bf="0" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <runner name="Winslow,Macon" pitcher="Seebold,Gavin" base="1" action="PB" result="A" how="PB" tobase="2B"/>
+        </play>
+        <play seq="75" innseq="8" outs="2" batter="Paulsen,Erik" batprof="L" pitcher="Yarberry,Jackson" pchprof="R" second="Winslow,Macon" sub="Y" reliever="Y" originalpitcher="Seebold,Gavin">
+          <narrative text="Paulsen,Erik walked (3-1 SBBBB)."/>
+          <batter name="Paulsen,Erik" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="5" bb="1"/>
+          <pitcher name="Yarberry,Jackson" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="SBBBB" b="3" s="1"/>
+          <runner name="Winslow,Macon" pitcher="Seebold,Gavin" base="2" action=" " result="S" tobase="2B"/>
+        </play>
+        <play seq="76" innseq="9" outs="2" batter="Nicholson,Cooper" batprof="R" pitcher="Yarberry,Jackson" pchprof="R" first="Paulsen,Erik" second="Winslow,Macon">
+          <narrative text="Nicholson,Cooper reached on a fielder's choice (0-0); Winslow,Macon out at third base, 3b unassisted."/>
+          <batter name="Nicholson,Cooper" action="FC" decision="FC" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="6" rchfc="1"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <runner name="Nicholson,Cooper" pitcher="Seebold,Gavin" base="0" action=" " result="L" how="A" tobase="1B"/>
+          <runner name="Paulsen,Erik" pitcher="Yarberry,Jackson" base="1" action=" " result="L" how="A" tobase="2B"/>
+          <runner name="Winslow,Macon" pitcher="Seebold,Gavin" base="2" action="5" result="O" how="O" out="1" sequence="5" putout="Moore,Will"/>
+          <fielder pos="3b" name="Moore,Will" po="1" atbase="2"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="2"/>
+      </batting>
+    </inning>
+    <inning number="8">
+      <batting vh="V" id="IND">
+        <play seq="77" innseq="1" outs="0" batter="Decker,Cole" batprof="L" pitcher="Matthijs,Matthew" pchprof="R" qualifiers="KS">
+          <narrative text="Decker,Cole struck out swinging (0-2 KKFS)."/>
+          <batter name="Decker,Cole" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="5"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="KKFS" b="0" s="2"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="78" innseq="2" outs="1" batter="Ricketts,Brayden" batprof="L" pitcher="Matthijs,Matthew" pchprof="R">
+          <narrative text="Ricketts,Brayden grounded out, 2b to 1b (0-0)."/>
+          <batter name="Ricketts,Brayden" action="G43" decision="G" sequence="43" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="6"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <fielder pos="2b" name="Gallaher,Gavin" a="1"/>
+          <fielder pos="1b" name="Paulsen,Erik" po="1"/>
+        </play>
+        <play seq="79" innseq="3" outs="2" batter="Stewart,Aiden" batprof="L" pitcher="Matthijs,Matthew" pchprof="R">
+          <narrative text="Stewart,Aiden grounded out, p to 1b (1-2 BSF)."/>
+          <batter name="Stewart,Aiden" action="G13" decision="G" sequence="13" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="7"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BSFP" b="1" s="2"/>
+          <fielder pos="p" name="Matthijs,Matthew" a="1"/>
+          <fielder pos="1b" name="Paulsen,Erik" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="0"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="80" innseq="1" outs="0" batter="Hynek,Colin" batprof="R" pitcher="Yarberry,Jackson" pchprof="R" qualifiers="KS">
+          <narrative text="Hynek,Colin struck out swinging (1-2 SBSFS)."/>
+          <batter name="Hynek,Colin" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="7"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="SBSFS" b="1" s="2"/>
+          <fielder pos="rf" name="Denny,Hogan" po="1"/>
+        </play>
+        <play seq="81" innseq="2" outs="1" batter="Maginnis,Michael" batprof="R" pitcher="Yarberry,Jackson" pchprof="R">
+          <narrative text="Maginnis,Michael flied out to rf (0-1 F)."/>
+          <batter name="Maginnis,Michael" action="F9" decision="F" sequence="9" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="8"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="FP" b="0" s="1"/>
+          <fielder pos="PR" name="Crouse,Ayden" po="1"/>
+        </play>
+        <play seq="82" innseq="3" outs="2" batter="Howe,Tyler" batprof="L" pitcher="Yarberry,Jackson" pchprof="R">
+          <narrative text="Howe,Tyler grounded out, ss to 1b (2-2 BKSB)."/>
+          <batter name="Howe,Tyler" action="G63" decision="G" sequence="63" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="9"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BKSBP" b="2" s="2"/>
+          <fielder pos="ss" name="Malamazian,Cooper" a="1"/>
+          <fielder pos="1b" name="Hanley,Jake" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="0"/>
+      </batting>
+    </inning>
+    <inning number="9">
+      <batting vh="V" id="IND">
+        <play seq="83" innseq="1" outs="0" batter="Gates,Cal" batprof="L" pitcher="Matthijs,Matthew" pchprof="R">
+          <narrative text="Gates,Cal grounded out, 1b to p (1-2 KBKF)."/>
+          <batter name="Gates,Cal" action="G31" decision="G" sequence="31" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="8"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KBKFP" b="1" s="2"/>
+          <fielder pos="1b" name="Paulsen,Erik" a="1"/>
+          <fielder pos="p" name="Matthijs,Matthew" po="1"/>
+        </play>
+        <play seq="84" innseq="2" outs="1" batter="Crouse,Ayden" batprof="R" pitcher="Matthijs,Matthew" pchprof="R" qualifiers="KL">
+          <narrative text="Crouse,Ayden struck out looking (3-2 BBFSBK)."/>
+          <batter name="Crouse,Ayden" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="9"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="BBFSBK" b="3" s="2"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="85" innseq="3" outs="2" batter="Moore,Will" batprof="L" pitcher="Matthijs,Matthew" pchprof="R" qualifiers="KS">
+          <narrative text="Moore,Will struck out swinging (0-2 KKS)."/>
+          <batter name="Moore,Will" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="1"/>
+          <pitcher name="Matthijs,Matthew" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="KKS" b="0" s="2"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="0"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="86" innseq="1" outs="0" batter="Schaffner,Jake" batprof="L" pitcher="Yarberry,Jackson" pchprof="R">
+          <narrative text="Schaffner,Jake singled to short (0-1 K)."/>
+          <batter name="Schaffner,Jake" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="1" wherehit="6" wheredesc="to short"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="KP" b="0" s="1"/>
+        </play>
+        <play seq="87" innseq="2" outs="0" batter="Gallaher,Gavin" batprof="R" pitcher="Yarberry,Jackson" pchprof="R" first="Schaffner,Jake">
+          <narrative text="Gallaher,Gavin singled through the left side of the infield (0-1 K); Schaffner,Jake advanced to second base."/>
+          <batter name="Gallaher,Gavin" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="2" wherehit="6" wheredesc="through the left side of the infield"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="KP" b="0" s="1"/>
+          <runner name="Schaffner,Jake" pitcher="Yarberry,Jackson" base="1" action=" " result="A" how="A" tobase="2B"/>
+        </play>
+        <play seq="88" innseq="3" outs="0" batter="Hull,Owen" batprof="L" pitcher="Yarberry,Jackson" pchprof="R" first="Gallaher,Gavin" second="Schaffner,Jake">
+          <narrative text="Hull,Owen flied out to cf (0-0); Schaffner,Jake advanced to third base."/>
+          <batter name="Hull,Owen" action="F8" decision="F" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="3"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <runner name="Gallaher,Gavin" pitcher="Yarberry,Jackson" base="1" action=" " result="S" tobase="1B"/>
+          <runner name="Schaffner,Jake" pitcher="Yarberry,Jackson" base="2" action=" " result="A" how="A" tobase="3B"/>
+          <fielder pos="cf" name="Decker,Cole" po="1"/>
+        </play>
+        <play seq="89" innseq="4" outs="1" batter="Winslow,Macon" batprof="R" pitcher="Yarberry,Jackson" pchprof="R" first="Gallaher,Gavin" third="Schaffner,Jake">
+          <narrative text="Winslow,Macon popped up to ss (2-2 KKBFB)."/>
+          <batter name="Winslow,Macon" action="P6" decision="P" sequence="6" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="4"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KKBFBP" b="2" s="2"/>
+          <runner name="Gallaher,Gavin" pitcher="Yarberry,Jackson" base="1" action=" " result="S" tobase="1B"/>
+          <runner name="Schaffner,Jake" pitcher="Yarberry,Jackson" base="3" action=" " result="S" tobase="3B"/>
+          <fielder pos="ss" name="Malamazian,Cooper" po="1"/>
+        </play>
+        <play seq="90" innseq="5" outs="2" batter="Paulsen,Erik" batprof="L" pitcher="Yarberry,Jackson" pchprof="R" first="Gallaher,Gavin" third="Schaffner,Jake">
+          <narrative text="Paulsen,Erik walked (3-1 BSBBB); Gallaher,Gavin advanced to second base."/>
+          <batter name="Paulsen,Erik" action="BB" decision="BB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="5" bb="1"/>
+          <pitcher name="Yarberry,Jackson" bb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BSBBB" b="3" s="1"/>
+          <runner name="Gallaher,Gavin" pitcher="Yarberry,Jackson" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <runner name="Schaffner,Jake" pitcher="Yarberry,Jackson" base="3" action=" " result="S" tobase="3B"/>
+        </play>
+        <play seq="91" innseq="6" outs="2" batter="Sowers,Lee" batprof="" pitcher="Yarberry,Jackson" pchprof="">
+          <narrative text="UNC substitution: French,Carter pinch running for Paulsen,Erik."/>
+          <sub vh="H" spot="5" who="French,Carter" for="Paulsen,Erik" pos="PR"/>
+        </play>
+        <play seq="92" innseq="7" outs="2" batter="Sowers,Lee" batprof="" pitcher="Yarberry,Jackson" pchprof="">
+          <narrative text="UNC substitution: Sowers,Lee pinch hitting for Nicholson,Cooper."/>
+          <sub vh="H" spot="6" who="Sowers,Lee" for="Nicholson,Cooper" pos="PH"/>
+        </play>
+        <play seq="93" innseq="8" outs="2" batter="Sowers,Lee" batprof="L" pitcher="Yarberry,Jackson" pchprof="R" first="French,Carter" second="Gallaher,Gavin" third="Schaffner,Jake" sub="Y" pinchhit="Y" originalbatter="Nicholson,Cooper" qualifiers="TE" scoring="Y" runs="2" rbis="0">
+          <narrative text="Sowers,Lee reached on a throwing error throwing by 2b by Stewart,Aiden (E4) (2-1 BSB); Schaffner,Jake scored, unearned; Gallaher,Gavin scored from second base, unearned; French,Carter advanced from first base to third base; Sowers,Lee advanced to second base."/>
+          <batter name="Sowers,Lee" action="E4" decision="E" sequence="4" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="6" rcherr="1" pinchhit="1"/>
+          <pitcher name="Yarberry,Jackson" rcherr="1" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="2" er="0"/>
+          <pitches text="BSBP" b="2" s="1"/>
+          <runner name="Sowers,Lee" pitcher="Yarberry,Jackson" base="0" action=" " result="A" how="A" tobase="2B"/>
+          <runner name="French,Carter" pitcher="Yarberry,Jackson" base="1" action=" " result="A" how="A" tobase="3B"/>
+          <runner name="Gallaher,Gavin" pitcher="Yarberry,Jackson" base="2" action=" " result="A" how="A" tobase="HP" scored="1" earned="0"/>
+          <runner name="Schaffner,Jake" pitcher="Yarberry,Jackson" base="3" action=" " result="A" how="A" tobase="HP" scored="1" earned="0"/>
+          <fielder pos="2b" name="Stewart,Aiden" e="1"/>
+        </play>
+        <play seq="94" innseq="9" outs="2" batter="Hynek,Colin" batprof="R" pitcher="Yarberry,Jackson" pchprof="R" second="Sowers,Lee" third="French,Carter">
+          <narrative text="Hynek,Colin popped up to ss (1-2 KBF)."/>
+          <batter name="Hynek,Colin" action="P6" decision="P" sequence="6" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="7"/>
+          <pitcher name="Yarberry,Jackson" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KBFP" b="1" s="2"/>
+          <runner name="Sowers,Lee" pitcher="Yarberry,Jackson" base="2" action=" " result="L"/>
+          <runner name="French,Carter" pitcher="Yarberry,Jackson" base="3" action=" " result="L"/>
+          <fielder pos="ss" name="Malamazian,Cooper" po="1"/>
+        </play>
+        <innsummary r="2" h="2" e="1" lob="2"/>
+      </batting>
+    </inning>
+    <inning number="10">
+      <batting vh="V" id="IND">
+        <play seq="95" innseq="1" outs="0" batter="Moore,Will" batprof="" pitcher="" pchprof="">
+          <narrative text="UNC position change: Gallaher,Gavin now playing 3b from 2b"/>
+          <sub vh="H" spot="2" who="Gallaher,Gavin" for="Gallaher,Gavin" pos="3b"/>
+        </play>
+        <play seq="96" innseq="2" outs="0" batter="Malamazian,Cooper" batprof="" pitcher="" pchprof="">
+          <narrative text="UNC position change: French,Carter remains in the game at rf"/>
+          <sub vh="H" spot="5" who="French,Carter" for="French,Carter" pos="rf"/>
+        </play>
+        <play seq="97" innseq="3" outs="0" batter="Ricketts,Brayden" batprof="" pitcher="" pchprof="">
+          <narrative text="UNC position change: Sowers,Lee remains in the game at 2b"/>
+          <sub vh="H" spot="6" who="Sowers,Lee" for="Sowers,Lee" pos="2b"/>
+        </play>
+        <play seq="98" innseq="4" outs="0" batter="Fry,Landen" batprof="" pitcher="" pchprof="">
+          <narrative text="UNC position change: Howe,Tyler now playing 1b from rf"/>
+          <sub vh="H" spot="9" who="Howe,Tyler" for="Howe,Tyler" pos="1b"/>
+        </play>
+        <play seq="99" innseq="5" outs="0" batter="Moore,Will" batprof="" pitcher="" pchprof="">
+          <narrative text="UNC pitching change: Holiday,Talan replaces Matthijs,Matthew."/>
+          <sub vh="H" spot="10" who="Holiday,Talan" for="Matthijs,Matthew" pos="p"/>
+        </play>
+        <play seq="100" innseq="6" outs="0" batter="Denny,Hogan" batprof="R" pitcher="Holiday,Talan" pchprof="R" sub="Y" reliever="Y" originalpitcher="Matthijs,Matthew">
+          <narrative text="Denny,Hogan flied out to cf (2-0 BB)."/>
+          <batter name="Denny,Hogan" action="F8" decision="F" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="2"/>
+          <pitcher name="Holiday,Talan" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BBP" b="2" s="0"/>
+          <fielder pos="cf" name="Hull,Owen" po="1"/>
+        </play>
+        <play seq="101" innseq="7" outs="1" batter="Malamazian,Cooper" batprof="R" pitcher="Holiday,Talan" pchprof="R" qualifiers="KS">
+          <narrative text="Malamazian,Cooper struck out swinging (3-2 FBSBBS)."/>
+          <batter name="Malamazian,Cooper" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="3"/>
+          <pitcher name="Holiday,Talan" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="FBSBBS" b="3" s="2"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="102" innseq="8" outs="1" batter="Hanley,Jake" batprof="" pitcher="Holiday,Talan" pchprof="">
+          <narrative text="UNC pitching change: Chmielewski,Tom replaces Holiday,Talan."/>
+          <sub vh="H" spot="10" who="Chmielewski,Tom" for="Holiday,Talan" pos="p"/>
+        </play>
+        <play seq="103" innseq="9" outs="2" batter="Hanley,Jake" batprof="L" pitcher="Chmielewski,Tom" pchprof="L" sub="Y" reliever="Y" originalpitcher="Holiday,Talan">
+          <narrative text="Hanley,Jake grounded out to 1b, unassisted (3-2 BSFBB)."/>
+          <batter name="Hanley,Jake" action="G3" decision="G" sequence="3" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="1" flyout="0" so="0" sac="0" h="0" spot="4"/>
+          <pitcher name="Chmielewski,Tom" bf="1" ab="1" gndout="1" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BSFBBP" b="3" s="2"/>
+          <fielder pos="rf" name="Howe,Tyler" po="1"/>
+        </play>
+        <innsummary r="0" h="0" e="0" lob="0"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="104" innseq="1" outs="0" batter="Schaffner,Jake" batprof="" pitcher="" pchprof="">
+          <narrative text="IND pitching change: Vogel,Jacob replaces Yarberry,Jackson."/>
+          <sub vh="V" spot="10" who="Vogel,Jacob" for="Yarberry,Jackson" pos="p"/>
+        </play>
+        <play seq="105" innseq="2" outs="0" batter="Maginnis,Michael" batprof="R" pitcher="Vogel,Jacob" pchprof="R" sub="Y" reliever="Y" originalpitcher="Yarberry,Jackson">
+          <narrative text="Maginnis,Michael singled to left field (0-0)."/>
+          <batter name="Maginnis,Michael" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="8" wherehit="7" wheredesc="to left field"/>
+          <pitcher name="Vogel,Jacob" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+        </play>
+        <play seq="106" innseq="3" outs="0" batter="Howe,Tyler" batprof="L" pitcher="Vogel,Jacob" pchprof="R" first="Maginnis,Michael" qualifiers="G">
+          <narrative text="Howe,Tyler sacrifice bunt, p to 1b (1-0 B); Maginnis,Michael advanced to second base."/>
+          <batter name="Howe,Tyler" action="SH13" decision="SH" sequence="13" out="1" tobase="0" adv="0" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="1" h="0" spot="9" sh="1"/>
+          <pitcher name="Vogel,Jacob" sha="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BP" b="1" s="0"/>
+          <runner name="Maginnis,Michael" pitcher="Vogel,Jacob" base="1" action=" " result="A" how="A" tobase="2B"/>
+          <fielder pos="p" name="Vogel,Jacob" a="1"/>
+          <fielder pos="1b" name="Hanley,Jake" po="1"/>
+        </play>
+        <play seq="107" innseq="4" outs="1" batter="Schaffner,Jake" batprof="L" pitcher="Vogel,Jacob" pchprof="R" second="Maginnis,Michael">
+          <narrative text="Schaffner,Jake flied out to cf (0-0); Maginnis,Michael advanced to third base."/>
+          <batter name="Schaffner,Jake" action="F8" decision="F" sequence="8" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="1"/>
+          <pitcher name="Vogel,Jacob" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="P" b="0" s="0"/>
+          <runner name="Maginnis,Michael" pitcher="Vogel,Jacob" base="2" action=" " result="A" how="A" tobase="3B"/>
+          <fielder pos="cf" name="Decker,Cole" po="1"/>
+        </play>
+        <play seq="108" innseq="5" outs="2" batter="Gallaher,Gavin" batprof="R" pitcher="Vogel,Jacob" pchprof="R" third="Maginnis,Michael">
+          <narrative text="Gallaher,Gavin intentionally walked (2-0 BB)."/>
+          <batter name="Gallaher,Gavin" action="IBB" decision="IBB" sequence="" out="0" tobase="1" adv="1" ab="0" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="0" spot="2" bb="1" ibb="1"/>
+          <pitcher name="Vogel,Jacob" bb="1" ibb="1" bf="1" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBI" b="2" s="0"/>
+          <runner name="Maginnis,Michael" pitcher="Vogel,Jacob" base="3" action=" " result="S" tobase="3B"/>
+        </play>
+        <play seq="109" innseq="6" outs="2" batter="Hull,Owen" batprof="" pitcher="Vogel,Jacob" pchprof="R" first="Gallaher,Gavin" third="Maginnis,Michael">
+          <narrative text="Gallaher,Gavin advanced to second base on defensive indifference."/>
+          <batter name="Hull,Owen" action="" decision="" sequence="" out="0" tobase="0" adv="0" ab="0" rbi="" gndout="0" flyout="0" so="0" sac="0" h="0" spot=""/>
+          <pitcher name="Vogel,Jacob" bf="0" ab="0" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <runner name="Gallaher,Gavin" pitcher="Vogel,Jacob" base="1" action=" " result="A" how="DI" tobase="2B"/>
+          <runner name="Maginnis,Michael" pitcher="Vogel,Jacob" base="3" action=" " result="S" tobase="3B"/>
+        </play>
+        <play seq="110" innseq="7" outs="2" batter="Hull,Owen" batprof="L" pitcher="Vogel,Jacob" pchprof="R" second="Gallaher,Gavin" third="Maginnis,Michael" qualifiers="KS">
+          <narrative text="Hull,Owen struck out swinging (2-2 BBKSS)."/>
+          <batter name="Hull,Owen" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="3"/>
+          <pitcher name="Vogel,Jacob" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="BBKSS" b="2" s="2"/>
+          <runner name="Gallaher,Gavin" pitcher="Vogel,Jacob" base="2" action=" " result="L"/>
+          <runner name="Maginnis,Michael" pitcher="Vogel,Jacob" base="3" action=" " result="L"/>
+          <fielder pos="rf" name="Denny,Hogan" po="1"/>
+        </play>
+        <innsummary r="0" h="1" e="0" lob="2"/>
+      </batting>
+    </inning>
+    <inning number="11">
+      <batting vh="V" id="IND">
+        <play seq="111" innseq="1" outs="0" batter="Decker,Cole" batprof="L" pitcher="Chmielewski,Tom" pchprof="L">
+          <narrative text="Decker,Cole fouled out to 3b (1-2 BFF)."/>
+          <batter name="Decker,Cole" action="FF5" decision="FF" sequence="5" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="5"/>
+          <pitcher name="Chmielewski,Tom" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="BFFP" b="1" s="2"/>
+          <fielder pos="2b" name="Gallaher,Gavin" po="1"/>
+        </play>
+        <play seq="112" innseq="2" outs="1" batter="Ricketts,Brayden" batprof="L" pitcher="Chmielewski,Tom" pchprof="L">
+          <narrative text="Ricketts,Brayden singled to left field (2-1 BBK)."/>
+          <batter name="Ricketts,Brayden" action="1B" decision="1B" sequence="" out="0" tobase="1" adv="1" ab="1" rbi="0" gndout="0" flyout="0" so="0" sac="0" h="1" spot="6" wherehit="7" wheredesc="to left field"/>
+          <pitcher name="Chmielewski,Tom" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="0" er="0"/>
+          <pitches text="BBKP" b="2" s="1"/>
+        </play>
+        <play seq="113" innseq="3" outs="1" batter="Fry,Landen" batprof="" pitcher="Chmielewski,Tom" pchprof="">
+          <narrative text="IND substitution: Oever,Owenten pinch hitting for Stewart,Aiden."/>
+          <sub vh="V" spot="7" who="Oever,Owenten" for="Stewart,Aiden" pos="PH"/>
+        </play>
+        <play seq="114" innseq="4" outs="1" batter="Oever,Owenten" batprof="R" pitcher="Chmielewski,Tom" pchprof="L" first="Ricketts,Brayden" sub="Y" pinchhit="Y" originalbatter="Stewart,Aiden" qualifiers="KL">
+          <narrative text="Oever,Owenten struck out looking (0-2 KFK)."/>
+          <batter name="Oever,Owenten" action="K" decision="K" sequence="2" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="0" so="1" sac="0" h="0" spot="7" pinchhit="1"/>
+          <pitcher name="Chmielewski,Tom" bf="1" ab="1" gndout="0" flyout="0" so="1" ip="1" r="0" er="0"/>
+          <pitches text="KFK" b="0" s="2"/>
+          <runner name="Ricketts,Brayden" pitcher="Chmielewski,Tom" base="1" action=" " result="S" tobase="1B"/>
+          <fielder pos="c" name="Winslow,Macon" po="1"/>
+        </play>
+        <play seq="115" innseq="5" outs="2" batter="Gates,Cal" batprof="L" pitcher="Chmielewski,Tom" pchprof="L" first="Ricketts,Brayden">
+          <narrative text="Gates,Cal flied out to lf (1-2 KSB)."/>
+          <batter name="Gates,Cal" action="F7" decision="F" sequence="7" out="1" tobase="0" adv="0" ab="1" rbi="0" gndout="0" flyout="1" so="0" sac="0" h="0" spot="8"/>
+          <pitcher name="Chmielewski,Tom" bf="1" ab="1" gndout="0" flyout="1" so="0" ip="1" r="0" er="0"/>
+          <pitches text="KSBP" b="1" s="2"/>
+          <runner name="Ricketts,Brayden" pitcher="Chmielewski,Tom" base="1" action=" " result="L"/>
+          <fielder pos="lf" name="Maginnis,Michael" po="1"/>
+        </play>
+        <innsummary r="0" h="1" e="0" lob="1"/>
+      </batting>
+      <batting vh="H" id="UNC">
+        <play seq="116" innseq="1" outs="0" batter="Schaffner,Jake" batprof="" pitcher="" pchprof="">
+          <narrative text="IND substitution: Fry,Landen replaces Oever,Owenten at 2b, batting 7th."/>
+          <sub vh="V" spot="7" who="Fry,Landen" for="Oever,Owenten" pos="2b"/>
+        </play>
+        <play seq="117" innseq="2" outs="0" batter="Winslow,Macon" batprof="R" pitcher="Vogel,Jacob" pchprof="R" qualifiers="WO" scoring="Y" runs="1" rbis="1">
+          <narrative text="Winslow,Macon homered to left center, walk off (398 ft), 1st of season, RBI (1-2 BSKF)."/>
+          <batter name="Winslow,Macon" action="HR" decision="HR" sequence="" out="0" tobase="4" adv="1" ab="1" rbi="1" gndout="0" flyout="0" so="0" sac="0" h="1" spot="4" hr="1" wherehit="8" wheredesc="to left center"/>
+          <pitcher name="Vogel,Jacob" hr="1" bf="1" ab="1" gndout="0" flyout="0" so="0" ip="0" r="1" er="1"/>
+          <pitches text="BSKFP" b="1" s="2"/>
+          <runner name="Winslow,Macon" pitcher="Vogel,Jacob" base="0" action=" " result="A" how="A" tobase="HP" scored="1" earned="1"/>
+        </play>
+        <innsummary r="1" h="1" e="0" lob="0"/>
+      </batting>
+    </inning>
+  </plays>
+  <status complete="Y" gamestatus="final"/>
+</bsgame>

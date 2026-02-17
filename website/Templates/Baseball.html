@@ -2,56 +2,79 @@
 {% block title %}Baseball Scoreboard{% endblock %}
 
 {% block content %}
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-bottom: 16px;">
+    <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
+        <div style="display: flex; align-items: center;">
+            <span class="dropdown-indicator"></span>
+            <div class="scoreboard-subtitle">Additional Data Sources</div>
+        </div>
+        <div class="meta-row">
+            <div class="meta-chip">TrackMan <span id="bs-tm-status">n/a</span></div>
+            <div class="meta-chip">StatCrew <span id="bs-sc-status">n/a</span></div>
+        </div>
+    </summary>
+
+    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">TrackMan UDP</div>
+    <form id="bs-trackman-form" class="config-grid">
+        <div>
+            <label for="bs-trackman-port">UDP Port</label>
+            <input id="bs-trackman-port" type="number" min="1" max="65535" placeholder="20998" />
+        </div>
+        <div>
+            <label for="bs-trackman-feed-type">Feed Type</label>
+            <select id="bs-trackman-feed-type">
+                <option value="broadcast">Broadcast (Pitch + Hit, UDP 20998)</option>
+                <option value="scoreboard">Scoreboard (Pitch OR Hit, UDP 20999)</option>
+            </select>
+        </div>
+        <div>
+            <label for="bs-trackman-enabled">Enabled</label>
+            <select id="bs-trackman-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn-config w-100">Save TrackMan</button>
+        </div>
+    </form>
+
+    <div class="section-title" style="margin-top: 12px; margin-bottom: 8px;">StatCrew XML</div>
+    <form id="bs-statcrew-form" class="config-grid">
+        <div style="grid-column: span 2;">
+            <label for="bs-statcrew-path">StatCrew XML File Path</label>
+            <div class="path-input-group">
+                <input id="bs-statcrew-path" type="text" placeholder="/path/to/statcrew.xml" />
+                <button type="button" class="btn-browse" onclick="openFileBrowser('bs-statcrew-path')">Browse</button>
+            </div>
+        </div>
+        <div>
+            <label for="bs-statcrew-enabled">Enabled</label>
+            <select id="bs-statcrew-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn-config w-100">Save StatCrew</button>
+        </div>
+    </form>
+</details>
+
 <section class="scoreboard-shell diamond-sport">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Baseball</div>
-            <div class="scoreboard-subtitle">Live scoreboard feed</div>
+            <div class="scoreboard-subtitle" id="bs-venue-info">Live scoreboard feed</div>
         </div>
         <div class="meta-row">
-            <div class="meta-chip">Pitch <span id="bs-pitch-speed">--</span></div>
+            <div class="meta-chip" id="bs-weather-chip" style="display: none;"><span id="bs-weather">--</span></div>
         </div>
     </div>
 
-    <details class="trackman-shell trackman-config-compact" style="margin-top: 16px;">
-        <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
-            <div>
-                <div class="scoreboard-subtitle">TrackMan UDP Config</div>
-            </div>
-            <div class="meta-row">
-                <div class="meta-chip">Status <span id="bs-tm-status">n/a</span></div>
-                <div class="meta-chip">Port <span id="bs-tm-port">n/a</span></div>
-                <div class="meta-chip">Feed <span id="bs-tm-feed">n/a</span></div>
-            </div>
-        </summary>
-        <form id="bs-trackman-form" class="config-grid">
-            <div>
-                <label for="bs-trackman-port">UDP Port</label>
-                <input id="bs-trackman-port" type="number" min="1" max="65535" placeholder="20998" />
-            </div>
-            <div>
-                <label for="bs-trackman-feed-type">Feed Type</label>
-                <select id="bs-trackman-feed-type">
-                    <option value="broadcast">Broadcast (Pitch + Hit, UDP 20998)</option>
-                    <option value="scoreboard">Scoreboard (Pitch OR Hit, UDP 20999)</option>
-                </select>
-            </div>
-            <div>
-                <label for="bs-trackman-enabled">Enabled</label>
-                <select id="bs-trackman-enabled">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="d-flex align-items-end">
-                <button type="submit" class="btn-config w-100">Save TrackMan</button>
-            </div>
-        </form>
-    </details>
-
     <div class="score-trackman-layout">
-        <div>
-            <div class="section-title">TrackMan Dashboard</div>
+        <div class="trackman-column">
+            <div class="section-title">TrackMan</div>
             <div class="trackman-shell">
                 <div class="trackman-section-label">Pitching</div>
                 <div class="trackman-grid">
@@ -65,36 +88,36 @@
                         <div class="trackman-value" id="bs-tm-spin-rate">n/a</div>
                         <div class="trackman-unit">RPM</div>
                     </div>
-                    <div class="trackman-card trackman-zone" style="grid-column: span 2;">
-                        <div class="trackman-label">Strike Zone</div>
-                        <div class="zone-canvas">
-                            <div class="zone-grid">
-                                <div class="zone-line v v1"></div>
-                                <div class="zone-line v v2"></div>
-                                <div class="zone-line h h1"></div>
-                                <div class="zone-line h h2"></div>
-                            </div>
-                            <div class="zone-dot" id="bs-zone-dot"></div>
+                </div>
+                <div class="trackman-card trackman-zone" style="margin-top: 8px;">
+                    <div class="trackman-label">Strike Zone</div>
+                    <div class="zone-canvas">
+                        <div class="zone-grid">
+                            <div class="zone-line v v1"></div>
+                            <div class="zone-line v v2"></div>
+                            <div class="zone-line h h1"></div>
+                            <div class="zone-line h h2"></div>
                         </div>
-                        <div class="trackman-unit" id="bs-zone-readout">n/a</div>
+                        <div class="zone-dot" id="bs-zone-dot"></div>
                     </div>
+                    <div class="trackman-unit" id="bs-zone-readout">n/a</div>
                 </div>
                 <div class="trackman-section-label" style="margin-top: 8px;">Batting</div>
                 <div class="trackman-grid">
                     <div class="trackman-card">
-                        <div class="trackman-label">Exit Angle</div>
+                        <div class="trackman-label">Exit Speed</div>
+                        <div class="trackman-value" id="bs-tm-exit-velocity">n/a</div>
+                        <div class="trackman-unit">MPH</div>
+                    </div>
+                    <div class="trackman-card">
+                        <div class="trackman-label">Launch Angle</div>
                         <div class="trackman-value" id="bs-tm-launch-angle">n/a</div>
-                        <div class="trackman-unit">Degrees</div>
+                        <div class="trackman-unit">DEG</div>
                     </div>
                     <div class="trackman-card">
                         <div class="trackman-label">Distance</div>
                         <div class="trackman-value" id="bs-tm-distance">n/a</div>
-                        <div class="trackman-unit">Feet</div>
-                    </div>
-                    <div class="trackman-card">
-                        <div class="trackman-label">Exit Speed</div>
-                        <div class="trackman-value" id="bs-tm-exit-velocity">n/a</div>
-                        <div class="trackman-unit">MPH</div>
+                        <div class="trackman-unit">FT</div>
                     </div>
                 </div>
             </div>
@@ -117,29 +140,39 @@
 
             <div class="score-grid">
                 <div class="team-card">
-                    <div class="team-label">Away</div>
+                    <div class="team-label"><span id="bs-away-name">Away</span> <span id="bs-away-record" class="team-record"></span></div>
                     <div class="team-score" id="bs-away-runs">--</div>
                     <div class="diamond-divider"></div>
                     <div class="team-meta">
-                        <div class="stat-line"><span>Hits</span><strong id="bs-away-hits">--</strong></div>
-                        <div class="diamond-divider"></div>
-                        <div class="stat-line"><span>Errors</span><strong id="bs-away-errors">--</strong></div>
+                        <div class="stat-line"><span>H</span><strong id="bs-away-hits">--</strong></div>
+                        <div class="stat-line"><span>E</span><strong id="bs-away-errors">--</strong></div>
+                        <div class="stat-line"><span>LOB</span><strong id="bs-away-lob">--</strong></div>
                     </div>
                 </div>
-                <div class="center-card">
-                    <div class="center-label">Inning</div>
-                    <div class="center-value" id="bs-half-inning">n/a</div>
-                    <div class="center-label compact" style="margin-top: 10px;">Batter</div>
-                    <div class="center-value compact" id="bs-batter">--</div>
+                <div class="center-stack">
+                    <div class="center-card compact">
+                        <div class="center-label">Inning</div>
+                        <div class="center-value" id="bs-half-inning">n/a</div>
+                    </div>
+                    <div class="center-card compact">
+                        <div class="center-label">Pitching</div>
+                        <div class="center-value compact" id="bs-current-pitcher">--</div>
+                        <div class="stat-value compact" id="bs-pitcher-line" style="color: var(--ink-soft);">--</div>
+                    </div>
+                    <div class="center-card compact">
+                        <div class="center-label">At Bat</div>
+                        <div class="center-value compact" id="bs-current-batter">--</div>
+                        <div class="stat-value compact" id="bs-batter-line" style="color: var(--ink-soft);">--</div>
+                    </div>
                 </div>
                 <div class="team-card">
-                    <div class="team-label">Home</div>
+                    <div class="team-label"><span id="bs-home-name">Home</span> <span id="bs-home-record" class="team-record"></span></div>
                     <div class="team-score" id="bs-home-runs">--</div>
                     <div class="diamond-divider"></div>
                     <div class="team-meta">
-                        <div class="stat-line"><span>Hits</span><strong id="bs-home-hits">--</strong></div>
-                        <div class="diamond-divider"></div>
-                        <div class="stat-line"><span>Errors</span><strong id="bs-home-errors">--</strong></div>
+                        <div class="stat-line"><span>H</span><strong id="bs-home-hits">--</strong></div>
+                        <div class="stat-line"><span>E</span><strong id="bs-home-errors">--</strong></div>
+                        <div class="stat-line"><span>LOB</span><strong id="bs-home-lob">--</strong></div>
                     </div>
                 </div>
             </div>
@@ -151,25 +184,15 @@
         </div>
     </div>
 
-    <div class="trackman-meta">
-        <div class="stat-card">
-            <div class="stat-label">Track ID</div>
-            <div class="stat-value" id="bs-tm-track-id">n/a</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Timestamp</div>
-            <div class="stat-value" id="bs-tm-time">n/a</div>
-        </div>
-    </div>
 </section>
 
 <script>
+    let statcrewData = {};
+
     function renderBaseball(data) {
         setText('bs-balls', data.balls);
         setText('bs-strikes', data.strikes);
         setText('bs-outs', data.outs);
-        setText('bs-pitch-speed', data.pitch_speed);
-        setText('bs-batter', data.batter_num);
         setText('bs-away-runs', data.away_runs);
         setText('bs-away-hits', data.away_hits);
         setText('bs-away-errors', data.away_errors);
@@ -179,27 +202,106 @@
 
         const awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
         const homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
+
+        const awayLabel = statcrewData.away_name || 'Away';
+        const homeLabel = statcrewData.home_name || 'Home';
+
         renderLinescoreBaseball(awayInnings, homeInnings, {
-            away: { runs: data.away_runs, hits: data.away_hits, errors: data.away_errors },
-            home: { runs: data.home_runs, hits: data.home_hits, errors: data.home_errors }
+            away: { runs: data.away_runs, hits: data.away_hits, errors: data.away_errors, label: awayLabel },
+            home: { runs: data.home_runs, hits: data.home_hits, errors: data.home_errors, label: homeLabel }
         });
 
-        // Inning half is computed server-side via outs-transition state machine
         setText('bs-half-inning', data.inning_display);
+        updateCurrentBatter(data.batter_num);
+    }
+
+    function renderStatcrewBaseball(data) {
+        statcrewData = data || {};
+
+        const venue = data.venue || {};
+        if (venue.stadium || venue.location) {
+            const parts = [venue.stadium, venue.location].filter(Boolean);
+            setText('bs-venue-info', parts.join(' - ') || 'Live scoreboard feed');
+        }
+
+        if (venue.weather || venue.temp) {
+            const weatherChip = document.getElementById('bs-weather-chip');
+            if (weatherChip) weatherChip.style.display = 'block';
+            setText('bs-weather', venue.weather || (venue.temp ? venue.temp + '\u00B0F' : '--'));
+        }
+
+        setText('bs-away-name', data.away_name || 'Away');
+        setText('bs-home-name', data.home_name || 'Home');
+        setText('bs-away-record', data.away_record ? '(' + data.away_record + ')' : '');
+        setText('bs-home-record', data.home_record ? '(' + data.home_record + ')' : '');
+
+        setText('bs-away-lob', data.away_lob || '--');
+        setText('bs-home-lob', data.home_lob || '--');
+
+        const pName = data.home_pitcher_name || data.away_pitcher_name || '--';
+        const pUni = data.home_pitcher_uni || data.away_pitcher_uni || '';
+        setText('bs-current-pitcher', formatPlayerName(pName) + (pUni ? ' #' + pUni : ''));
+
+        const ip = data.home_pitcher_ip || data.away_pitcher_ip || '--';
+        const so = data.home_pitcher_so || data.away_pitcher_so || '--';
+        const pitches = data.home_pitcher_pitches || data.away_pitcher_pitches || '';
+        let line = ip + ' IP | ' + so + ' K';
+        if (pitches) line += ' | ' + pitches + ' P';
+        setText('bs-pitcher-line', line);
+    }
+
+    function formatPlayerName(name) {
+        if (!name) return '--';
+        const parts = name.split(',');
+        if (parts.length === 2) {
+            const last = parts[0].trim();
+            const first = parts[1].trim();
+            return first + ' ' + last;
+        }
+        return name;
+    }
+
+    function updateCurrentBatter(batterNum) {
+        const awayBatters = statcrewData.away_batters || [];
+        const homeBatters = statcrewData.home_batters || [];
+        const allBatters = awayBatters.concat(homeBatters);
+
+        let batter = null;
+        if (batterNum) {
+            batter = allBatters.find(b => b.uni === String(batterNum) || b.spot === String(batterNum));
+        }
+
+        if (batter) {
+            setText('bs-current-batter', formatPlayerName(batter.name) + (batter.uni ? ' #' + batter.uni : ''));
+            const ab = batter.ab || '--';
+            const h = batter.h || '--';
+            const rbi = batter.rbi || '--';
+            const avg = batter.avg || '--';
+            setText('bs-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
+        } else if (batterNum) {
+            setText('bs-current-batter', '#' + batterNum);
+            setText('bs-batter-line', '--');
+        } else {
+            setText('bs-current-batter', '--');
+            setText('bs-batter-line', '--');
+        }
+    }
+
+    function fetchStatcrewBaseballData() {
+        fetch('/get_statcrew_data/Baseball')
+            .then(response => response.json())
+            .then(data => renderStatcrewBaseball(data || {}))
+            .catch(() => renderStatcrewBaseball({}));
     }
 
     function renderLinescoreBaseball(awayInnings, homeInnings, totals) {
         const table = document.getElementById('bs-linescore-table');
-        if (!table) {
-            return;
-        }
+        if (!table) return;
 
         const isFilled = (value) => value !== undefined && value !== null && String(value).trim() !== '';
         const lastFilledIndex = (arr) => {
             for (let i = arr.length - 1; i >= 0; i -= 1) {
-                if (isFilled(arr[i])) {
-                    return i;
-                }
+                if (isFilled(arr[i])) return i;
             }
             return -1;
         };
@@ -211,7 +313,8 @@
 
         const renderRow = (label, innings, total) => {
             const cells = [];
-            cells.push(`<td class="team-row-label">${label}</td>`);
+            const teamLabel = total.label || label;
+            cells.push(`<td class="team-row-label">${teamLabel}</td>`);
             for (let i = 0; i < inningCount; i += 1) {
                 const value = formatValue(innings[i]);
                 cells.push(`<td>${value}</td>`);
@@ -236,9 +339,7 @@
 
         table.innerHTML = `
             <table class="table-grid">
-                <thead>
-                    <tr>${headerCells}</tr>
-                </thead>
+                <thead><tr>${headerCells}</tr></thead>
                 <tbody>
                     ${renderRow('Away', awayInnings, totals.away)}
                     ${renderRow('Home', homeInnings, totals.home)}
@@ -247,14 +348,19 @@
         `;
     }
 
+    function roundToTenth(val) {
+        if (val === undefined || val === null || val === '' || val === 'n/a') return 'n/a';
+        const num = parseFloat(val);
+        if (isNaN(num)) return val;
+        return Math.round(num * 10) / 10;
+    }
+
     function renderTrackmanBaseball(data) {
-        setText('bs-tm-pitch-speed', data.pitch_speed);
-        setText('bs-tm-spin-rate', data.spin_rate);
-        setText('bs-tm-exit-velocity', data.hit_exit_velocity);
-        setText('bs-tm-launch-angle', data.hit_launch_angle);
-        setText('bs-tm-distance', data.hit_distance);
-        setText('bs-tm-track-id', data.track_id);
-        setText('bs-tm-time', data.time);
+        setText('bs-tm-pitch-speed', roundToTenth(data.pitch_speed));
+        setText('bs-tm-spin-rate', roundToTenth(data.spin_rate));
+        setText('bs-tm-exit-velocity', roundToTenth(data.hit_exit_velocity));
+        setText('bs-tm-launch-angle', roundToTenth(data.hit_launch_angle));
+        setText('bs-tm-distance', roundToTenth(data.hit_distance));
 
         updateStrikeZone('bs-zone-dot', 'bs-zone-readout', data, {
             zone: { minX: -0.83, maxX: 0.83, minV: 1.5, maxV: 3.3775 },
@@ -269,8 +375,6 @@
             ? 'error'
             : (config.enabled ? (config.running ? 'live' : 'idle') : 'disabled');
         setText('bs-tm-status', status);
-        setText('bs-tm-port', config.port);
-        setText('bs-tm-feed', config.feed_type);
         document.getElementById('bs-trackman-port').value = config.port || '';
         document.getElementById('bs-trackman-feed-type').value = config.feed_type || 'broadcast';
         document.getElementById('bs-trackman-enabled').value = config.enabled ? 'true' : 'false';
@@ -306,9 +410,7 @@
             body: JSON.stringify({ port: port, feed_type: feedType, enabled: enabled })
         })
             .then(response => {
-                if (!response.ok) {
-                    return response.json().then(data => { throw data; });
-                }
+                if (!response.ok) return response.json().then(data => { throw data; });
                 return response.json();
             })
             .then(data => renderTrackmanConfigBaseball(data || {}))
@@ -333,7 +435,15 @@
     setInterval(fetchTrackmanBaseballData, 1000);
     bindTrackmanBaseballDefaults();
 
+    fetchStatcrewBaseballData();
+    setInterval(fetchStatcrewBaseballData, 5000);
+
     document.getElementById('bs-trackman-form').addEventListener('submit', submitTrackmanBaseballConfig);
+
+    loadStatcrewConfig('Baseball', 'bs');
+    document.getElementById('bs-statcrew-form').addEventListener('submit', function(e) {
+        submitStatcrewConfig(e, 'Baseball', 'bs');
+    });
 
     document.addEventListener('dataFetched', function (event) {
         renderBaseball(event.detail || {});

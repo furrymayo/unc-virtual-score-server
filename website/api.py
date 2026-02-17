@@ -1,6 +1,8 @@
+import os
+
 from flask import Blueprint, jsonify, request
 
-from . import ingestion, trackman
+from . import ingestion, statcrew, trackman
 
 api = Blueprint("api", __name__)
 
@@ -219,3 +221,85 @@ def get_trackman_debug(sport):
 @api.route("/get_sources", methods=["GET"])
 def get_sources():
     return jsonify({"sources": ingestion.get_sources_snapshot()})
+
+
+@api.route("/statcrew_config/<sport>", methods=["GET", "POST"])
+def statcrew_config_endpoint(sport):
+    sport_name = statcrew.normalize_sport(sport)
+    if not sport_name:
+        return jsonify({"error": "unsupported sport"}), 404
+
+    if request.method == "GET":
+        return jsonify(statcrew.get_config(sport_name))
+
+    payload = request.json or {}
+    result, status_code = statcrew.update_config(sport_name, payload)
+    return jsonify(result), status_code
+
+
+@api.route("/get_statcrew_data/<sport>", methods=["GET"])
+def get_statcrew_data(sport):
+    sport_name = statcrew.normalize_sport(sport)
+    if not sport_name:
+        return jsonify({}), 404
+    return jsonify(statcrew.get_data(sport_name))
+
+
+@api.route("/browse_files", methods=["GET"])
+def browse_files():
+    """Browse server filesystem for XML files."""
+    path = request.args.get("path", "")
+
+    if not path:
+        path = os.getcwd()
+
+    try:
+        path = os.path.abspath(path)
+    except Exception:
+        return jsonify({"error": "invalid path"}), 400
+
+    if os.path.isfile(path):
+        path = os.path.dirname(path)
+
+    if not os.path.exists(path):
+        parent = os.path.dirname(path)
+        if os.path.exists(parent):
+            path = parent
+        else:
+            path = os.getcwd()
+
+    parent_path = os.path.dirname(path)
+    if parent_path == path:
+        parent_path = None
+
+    entries = []
+    try:
+        for name in sorted(os.listdir(path)):
+            entry_path = os.path.join(path, name)
+            is_dir = os.path.isdir(entry_path)
+            if is_dir or name.lower().endswith(".xml"):
+                entries.append({
+                    "name": name,
+                    "path": entry_path,
+                    "is_dir": is_dir,
+                })
+    except PermissionError:
+        return jsonify({
+            "current_path": path,
+            "parent_path": parent_path,
+            "entries": [],
+            "error": "permission denied",
+        })
+    except Exception as exc:
+        return jsonify({
+            "current_path": path,
+            "parent_path": parent_path,
+            "entries": [],
+            "error": str(exc),
+        })
+
+    return jsonify({
+        "current_path": path,
+        "parent_path": parent_path,
+        "entries": entries,
+    })

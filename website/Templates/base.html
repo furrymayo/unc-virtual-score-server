@@ -496,6 +496,128 @@
             margin-top: 12px;
         }
 
+        /* Dropdown indicator for collapsible panels */
+        details.data-sources-panel > summary .dropdown-indicator {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid var(--carolina-soft);
+            transition: transform 0.2s ease;
+            margin-right: 8px;
+        }
+
+        details.data-sources-panel[open] > summary .dropdown-indicator {
+            transform: rotate(180deg);
+        }
+
+        /* File browser path input group */
+        .path-input-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .path-input-group input {
+            flex: 1;
+        }
+
+        .btn-browse {
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            background: rgba(75, 156, 211, 0.25);
+            border: 1px solid rgba(131, 198, 242, 0.3);
+            border-radius: 6px;
+            color: var(--ink);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-browse:hover {
+            background: rgba(75, 156, 211, 0.4);
+        }
+
+        /* File browser modal */
+        .file-browser-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-browser-modal.active {
+            display: flex;
+        }
+
+        .file-browser-content {
+            background: var(--bg-dark);
+            border: 1px solid rgba(131, 198, 242, 0.3);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-browser-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(131, 198, 242, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-browser-path {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.8rem;
+            color: var(--ink-soft);
+            word-break: break-all;
+        }
+
+        .file-browser-close {
+            background: none;
+            border: none;
+            color: var(--ink);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 8px;
+        }
+
+        .file-browser-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .file-browser-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .file-browser-item:hover {
+            background: rgba(75, 156, 211, 0.2);
+        }
+
+        .file-browser-item.is-dir {
+            color: var(--carolina-soft);
+        }
+
+        .file-browser-item .icon {
+            font-size: 1.1rem;
+        }
+
         .trackman-config-compact {
             padding: 4px 8px;
         }
@@ -526,10 +648,54 @@
 
         .score-trackman-layout {
             display: grid;
-            grid-template-columns: minmax(360px, 1.2fr) 1.8fr;
+            grid-template-columns: auto 1fr;
             gap: 18px;
             align-items: start;
             margin-top: 16px;
+        }
+
+        /* Constrained TrackMan column */
+        .trackman-column {
+            max-width: 280px;
+            flex-shrink: 0;
+        }
+
+        .trackman-column .trackman-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .trackman-column .trackman-card {
+            padding: 6px 8px;
+            min-height: 58px;
+        }
+
+        .trackman-column .trackman-value {
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+
+        /* Center stack for multiple cards */
+        .center-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .center-card.compact {
+            padding: 6px 10px;
+            min-width: 100px;
+        }
+
+        .center-card.compact .center-label {
+            font-size: 0.5rem;
+        }
+
+        .center-card.compact .center-value {
+            font-size: 0.95rem;
+        }
+
+        .center-card.compact .center-value.compact {
+            font-size: 0.8rem;
         }
 
         .trackman-zone {
@@ -541,7 +707,7 @@
         .zone-canvas {
             position: relative;
             width: 100%;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 1 / 1;
             border: 1px solid rgba(131, 198, 242, 0.35);
             border-radius: 10px;
             background: rgba(8, 18, 34, 0.6);
@@ -551,8 +717,8 @@
 
         .zone-grid {
             position: absolute;
-            width: 50%;
-            height: 84%;
+            width: 45%;
+            height: 55%;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
@@ -644,6 +810,19 @@
             font-size: 1.05rem;
             font-weight: 600;
             font-family: "JetBrains Mono", monospace;
+        }
+
+        .stat-value.compact {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .team-record {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: var(--ink-soft);
+            margin-left: 4px;
         }
 
         .badge-soft {
@@ -874,6 +1053,132 @@
             const zText = Number.isFinite(rawZ) ? `Z ${rawZ.toFixed(2)} ft` : '';
             readout.textContent = `X ${rawX.toFixed(2)} ft${yText ? ` · ${yText}` : ''}${zText ? ` · ${zText}` : ''}`;
         }
+
+        // StatCrew config helpers
+        function loadStatcrewConfig(sport, prefix) {
+            fetch(`/statcrew_config/${sport}`)
+                .then(response => response.json())
+                .then(data => renderStatcrewConfig(prefix, data || {}))
+                .catch(() => renderStatcrewConfig(prefix, { enabled: false }));
+        }
+
+        function submitStatcrewConfig(event, sport, prefix) {
+            event.preventDefault();
+            const filePath = document.getElementById(`${prefix}-statcrew-path`).value;
+            const enabled = document.getElementById(`${prefix}-statcrew-enabled`).value === 'true';
+            fetch(`/statcrew_config/${sport}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ file_path: filePath, enabled: enabled })
+            })
+                .then(response => response.json())
+                .then(data => renderStatcrewConfig(prefix, data || {}))
+                .catch(() => renderStatcrewConfig(prefix, { enabled: false, error: 'error' }));
+        }
+
+        function renderStatcrewConfig(prefix, config) {
+            const status = config.error
+                ? 'error'
+                : (config.enabled ? (config.running ? 'live' : 'idle') : 'disabled');
+            setText(`${prefix}-sc-status`, status);
+            const pathInput = document.getElementById(`${prefix}-statcrew-path`);
+            const enabledSelect = document.getElementById(`${prefix}-statcrew-enabled`);
+            if (pathInput) pathInput.value = config.file_path || '';
+            if (enabledSelect) enabledSelect.value = config.enabled ? 'true' : 'false';
+        }
+
+        // File browser
+        let fileBrowserCallback = null;
+        let fileBrowserCurrentPath = '';
+
+        function openFileBrowser(inputId) {
+            fileBrowserCallback = inputId;
+            const input = document.getElementById(inputId);
+            const startPath = input && input.value ? input.value : '';
+            fileBrowserCurrentPath = startPath;
+
+            const modal = document.getElementById('file-browser-modal');
+            if (modal) {
+                modal.classList.add('active');
+                loadDirectory(startPath || '');
+            }
+        }
+
+        function closeFileBrowser() {
+            const modal = document.getElementById('file-browser-modal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+            fileBrowserCallback = null;
+        }
+
+        function loadDirectory(path) {
+            fetch(`/browse_files?path=${encodeURIComponent(path)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Browse error:', data.error);
+                    }
+                    fileBrowserCurrentPath = data.current_path || path;
+                    renderFileBrowser(data);
+                })
+                .catch(error => console.error('Browse error:', error));
+        }
+
+        function renderFileBrowser(data) {
+            const pathEl = document.getElementById('file-browser-path');
+            const listEl = document.getElementById('file-browser-list');
+
+            if (pathEl) {
+                pathEl.textContent = data.current_path || '/';
+            }
+
+            if (listEl) {
+                let html = '';
+
+                if (data.parent_path !== null && data.parent_path !== undefined) {
+                    html += `<div class="file-browser-item is-dir" onclick="loadDirectory('${escapeHtml(data.parent_path)}')">
+                        <span class="icon">&#x1F4C1;</span>
+                        <span>..</span>
+                    </div>`;
+                }
+
+                const dirs = (data.entries || []).filter(e => e.is_dir);
+                const files = (data.entries || []).filter(e => !e.is_dir);
+
+                dirs.forEach(entry => {
+                    html += `<div class="file-browser-item is-dir" onclick="loadDirectory('${escapeHtml(entry.path)}')">
+                        <span class="icon">&#x1F4C1;</span>
+                        <span>${escapeHtml(entry.name)}</span>
+                    </div>`;
+                });
+
+                files.forEach(entry => {
+                    html += `<div class="file-browser-item" onclick="selectFile('${escapeHtml(entry.path)}')">
+                        <span class="icon">&#x1F4C4;</span>
+                        <span>${escapeHtml(entry.name)}</span>
+                    </div>`;
+                });
+
+                listEl.innerHTML = html;
+            }
+        }
+
+        function selectFile(path) {
+            if (fileBrowserCallback) {
+                const input = document.getElementById(fileBrowserCallback);
+                if (input) {
+                    input.value = path;
+                }
+            }
+            closeFileBrowser();
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        }
     </script>
 </head>
 <body>
@@ -906,6 +1211,17 @@
     </nav>
     <div class="container content-shell">
         {% block content %}{% endblock %}
+    </div>
+
+    <!-- File Browser Modal -->
+    <div id="file-browser-modal" class="file-browser-modal">
+        <div class="file-browser-content">
+            <div class="file-browser-header">
+                <span class="file-browser-path" id="file-browser-path">/</span>
+                <button class="file-browser-close" onclick="closeFileBrowser()">&times;</button>
+            </div>
+            <div class="file-browser-list" id="file-browser-list"></div>
+        </div>
     </div>
 
     <!-- Scripts -->
