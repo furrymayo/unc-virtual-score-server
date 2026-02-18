@@ -423,7 +423,10 @@
             home: { runs: data.home_runs, hits: data.home_hits, errors: data.home_errors, label: homeLabel }
         });
 
-        setText('bs-half-inning', data.inning_display);
+        // Only use OES inning display when StatCrew doesn't provide one
+        if (!statcrewData.inning_display) {
+            setText('bs-half-inning', data.inning_display);
+        }
 
         // Extract half from inning_display (e.g. "TOP 3rd" → "TOP")
         const display = data.inning_display || '';
@@ -482,18 +485,16 @@
         const pUni = statcrewData[prefix + '_pitcher_uni'] || '';
         setText('bs-current-pitcher', formatPlayerName(pName) + (pUni ? ' #' + pUni : ''));
 
-        // Team tricode + color
+        // Team tricode + color on label only
         const tricode = statcrewData[prefix + '_id'] || '';
         const color = prefix === 'home' ? 'var(--carolina-soft)' : 'var(--away-color, #d46a6a)';
         const label = document.getElementById('bs-pitching-label');
-        const nameEl = document.getElementById('bs-current-pitcher');
         if (label) { label.textContent = tricode ? tricode + ' Pitching' : 'Pitching'; label.style.color = color; }
-        if (nameEl) nameEl.style.color = color;
 
         const ip = statcrewData[prefix + '_pitcher_ip'] || '--';
         const so = statcrewData[prefix + '_pitcher_so'] || '--';
         const pitches = statcrewData[prefix + '_pitcher_pitches'] || '';
-        let line = ip + ' IP | ' + so + ' K';
+        let line = 'Today: ' + ip + ' IP | ' + so + ' K';
         if (pitches) line += ' | ' + pitches + ' P';
         setText('bs-pitcher-line', line);
     }
@@ -513,14 +514,12 @@
         const name = statcrewData.current_batter_name || '';
         const batting = getBattingTeam();
 
-        // Team tricode + color (only when we know who's batting)
+        // Team tricode + color on label only
         if (batting) {
             const tricode = statcrewData[batting + '_id'] || '';
             const color = batting === 'home' ? 'var(--carolina-soft)' : 'var(--away-color, #d46a6a)';
             const label = document.getElementById('bs-atbat-label');
-            const nameEl = document.getElementById('bs-current-batter');
             if (label) { label.textContent = tricode ? tricode + ' At Bat' : 'At Bat'; label.style.color = color; }
-            if (nameEl) nameEl.style.color = color;
         }
 
         if (!name) {

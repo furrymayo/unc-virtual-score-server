@@ -270,7 +270,10 @@
         if (bt) currentHalf = bt.toUpperCase();
 
         var display = bt && inn ? bt + ' ' + inn : (bt || inn || 'n/a');
-        setText('sb-half-inning', display);
+        // Only use OES inning display when StatCrew doesn't provide one
+        if (!statcrewData.inning_display) {
+            setText('sb-half-inning', display);
+        }
 
         var awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
         var homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
@@ -345,9 +348,7 @@
             var tricode = statcrewData[prefix + '_id'] || '';
             var color = prefix === 'home' ? 'var(--carolina-soft)' : 'var(--away-color, #d46a6a)';
             var label = document.getElementById('sb-pitching-label');
-            var nameEl = document.getElementById('sb-current-pitcher');
             if (label) { label.textContent = tricode ? tricode + ' Pitching' : 'Pitching'; label.style.color = color; }
-            if (nameEl) nameEl.style.color = color;
 
             var pName = statcrewData[prefix + '_pitcher_name'] || '';
 
@@ -358,7 +359,7 @@
                 var ip = statcrewData[prefix + '_pitcher_ip'] || '--';
                 var so = statcrewData[prefix + '_pitcher_so'] || '--';
                 var pitches = statcrewData[prefix + '_pitcher_pitches'] || '';
-                var line = ip + ' IP | ' + so + ' K';
+                var line = 'Today: ' + ip + ' IP | ' + so + ' K';
                 if (pitches) line += ' | ' + pitches + ' P';
                 setText('sb-pitcher-line', line);
                 return;
@@ -383,9 +384,7 @@
             var tricode = statcrewData[batting + '_id'] || '';
             var color = batting === 'home' ? 'var(--carolina-soft)' : 'var(--away-color, #d46a6a)';
             var label = document.getElementById('sb-atbat-label');
-            var nameEl = document.getElementById('sb-current-batter');
             if (label) { label.textContent = tricode ? tricode + ' At Bat' : 'At Bat'; label.style.color = color; }
-            if (nameEl) nameEl.style.color = color;
         }
 
         if (name) {
