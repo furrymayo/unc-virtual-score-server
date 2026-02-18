@@ -609,7 +609,9 @@ def _parse_statcrew_xml(xml_text):
                     "ab": h_stats.get("ab", ""),
                     "h": h_stats.get("h", ""),
                     "rbi": h_stats.get("rbi", ""),
+                    "hr": h_stats.get("hr", ""),
                     "avg": season.get("avg", ""),
+                    "season_hr": season.get("hr", ""),
                 })
                 seen.add(uni)
 
@@ -625,7 +627,9 @@ def _parse_statcrew_xml(xml_text):
                         "ab": h_stats.get("ab", ""),
                         "h": h_stats.get("h", ""),
                         "rbi": h_stats.get("rbi", ""),
+                        "hr": h_stats.get("hr", ""),
                         "avg": season.get("avg", ""),
+                        "season_hr": season.get("hr", ""),
                     })
 
             parsed[f"{prefix}_batters"] = batter_list

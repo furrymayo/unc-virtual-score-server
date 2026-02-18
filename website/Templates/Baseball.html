@@ -529,9 +529,18 @@
             const ab = batter.ab || '--';
             const h = batter.h || '--';
             const rbi = batter.rbi || '--';
+            const hr = batter.hr || '0';
             const avg = batter.avg || '';
-            setText('bs-batter-game', 'Today: ' + h + '-' + ab + ' | ' + rbi + ' RBI');
-            setText('bs-batter-season', avg ? 'Season: ' + avg + ' AVG' : '--');
+            const seasonHr = batter.season_hr || '';
+            var gameLine = 'Today: ' + h + '-' + ab + ' | ' + rbi + ' RBI';
+            if (hr !== '0') gameLine += ' | ' + hr + ' HR';
+            setText('bs-batter-game', gameLine);
+            var seasonLine = '';
+            if (avg) {
+                seasonLine = 'Season: ' + avg + ' AVG';
+                if (seasonHr && seasonHr !== '0') seasonLine += ' | ' + seasonHr + ' HR';
+            }
+            setText('bs-batter-season', seasonLine || '--');
         } else {
             setText('bs-current-batter', formatPlayerName(name));
             setText('bs-batter-game', '--');
