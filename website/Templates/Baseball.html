@@ -554,7 +554,7 @@
         const minInnings = 9;
         const inningCount = Math.max(minInnings, lastAway + 1, lastHome + 1, awayInnings.length, homeInnings.length);
 
-        const renderRow = (label, innings, total) => {
+        const renderRow = (label, innings, total, rowClass) => {
             const cells = [];
             const teamLabel = total.label || label;
             cells.push(`<td class="team-row-label">${teamLabel}</td>`);
@@ -565,7 +565,7 @@
             cells.push(`<td class="linescore-total">${formatValue(total.runs)}</td>`);
             cells.push(`<td class="linescore-total">${formatValue(total.hits)}</td>`);
             cells.push(`<td class="linescore-total">${formatValue(total.errors)}</td>`);
-            return `<tr>${cells.join('')}</tr>`;
+            return `<tr class="${rowClass}">${cells.join('')}</tr>`;
         };
 
         const headers = [''].concat(
@@ -584,8 +584,8 @@
             <table class="table-grid">
                 <thead><tr>${headerCells}</tr></thead>
                 <tbody>
-                    ${renderRow('Away', awayInnings, totals.away)}
-                    ${renderRow('Home', homeInnings, totals.home)}
+                    ${renderRow('Away', awayInnings, totals.away, 'linescore-away')}
+                    ${renderRow('Home', homeInnings, totals.home, 'linescore-home')}
                 </tbody>
             </table>
         `;

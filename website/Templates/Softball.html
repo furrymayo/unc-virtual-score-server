@@ -425,7 +425,7 @@
         var minInnings = 7;
         var inningCount = Math.max(minInnings, lastAway + 1, lastHome + 1, awayInnings.length, homeInnings.length);
 
-        var renderRow = function(label, innings, total) {
+        var renderRow = function(label, innings, total, rowClass) {
             var cells = [];
             var teamLabel = total.label || label;
             cells.push('<td class="team-row-label">' + teamLabel + '</td>');
@@ -436,7 +436,7 @@
             cells.push('<td class="linescore-total">' + formatValue(total.runs) + '</td>');
             cells.push('<td class="linescore-total">' + formatValue(total.hits) + '</td>');
             cells.push('<td class="linescore-total">' + formatValue(total.errors) + '</td>');
-            return '<tr>' + cells.join('') + '</tr>';
+            return '<tr class="' + rowClass + '">' + cells.join('') + '</tr>';
         };
 
         var headers = [''].concat(
@@ -455,8 +455,8 @@
             '<table class="table-grid">' +
                 '<thead><tr>' + headerCells + '</tr></thead>' +
                 '<tbody>' +
-                    renderRow('Away', awayInnings, totals.away) +
-                    renderRow('Home', homeInnings, totals.home) +
+                    renderRow('Away', awayInnings, totals.away, 'linescore-away') +
+                    renderRow('Home', homeInnings, totals.home, 'linescore-home') +
                 '</tbody>' +
             '</table>';
     }

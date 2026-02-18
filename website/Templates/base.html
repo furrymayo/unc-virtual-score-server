@@ -1000,6 +1000,18 @@
             font-size: clamp(1rem, 1.6vw, 2.2rem);
         }
 
+        .linescore-away .team-row-label {
+            color: var(--away-color, #d46a6a);
+        }
+
+        .linescore-home .team-row-label {
+            color: var(--carolina-soft);
+        }
+
+        .table-grid tbody tr.linescore-away td {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
         @media (max-width: 768px) {
             .score-grid {
                 grid-template-columns: 1fr;
