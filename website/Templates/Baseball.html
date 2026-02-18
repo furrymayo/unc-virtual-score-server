@@ -451,6 +451,11 @@
         setText('bs-away-name', data.away_name || 'Away');
         setText('bs-home-name', data.home_name || 'Home');
 
+        // Inning display from StatCrew (has MID/END transitions)
+        if (data.inning_display) {
+            setText('bs-half-inning', data.inning_display);
+        }
+
         // Re-render pitcher and batter from StatCrew status element
         updateCurrentPitcher();
         updateCurrentBatter();

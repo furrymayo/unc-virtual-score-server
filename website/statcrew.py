@@ -254,6 +254,22 @@ def normalize_sport(sport):
     return None
 
 
+# --- Helpers ---
+
+
+def _ordinal(n):
+    """Convert number to ordinal string: 1 → '1st', 2 → '2nd', etc."""
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return str(n)
+    if 11 <= (n % 100) <= 13:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
 # --- XML Parser ---
 
 
@@ -468,6 +484,18 @@ def _parse_statcrew_xml(xml_text):
                 parsed["batting_team"] = (
                     "away" if batting_vh == "V" else "home"
                 )
+
+            # Inning display with MID/END transitions on 3 outs
+            s_inning = status.get("inning", "")
+            s_outs = int(status.get("outs", "0") or "0")
+            s_endinn = status.get("endinn", "").upper() == "Y"
+            if s_inning:
+                inning_over = s_outs >= 3 or s_endinn
+                if inning_over:
+                    half = "MID" if batting_vh == "V" else "END"
+                else:
+                    half = "TOP" if batting_vh == "V" else "BOT"
+                parsed["inning_display"] = f"{half} {_ordinal(s_inning)}"
 
             # Live pitch count: cumulative pitches + current at-bat pitches.
             # <pitching pitches="X"> only updates after completed at-bats.
