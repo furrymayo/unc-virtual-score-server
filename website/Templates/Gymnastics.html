@@ -168,7 +168,7 @@
     .gym-rotation-evt.gym-rotation-away {
         background: rgba(212, 106, 106, 0.12);
         border: 1px solid rgba(212, 106, 106, 0.3);
-        color: #d46a6a;
+        color: var(--away-color, #d46a6a);
     }
 
     .gym-rotation-evt strong {
@@ -258,11 +258,11 @@
     }
 
     .gym-away .team-label {
-        color: #d46a6a;
+        color: var(--away-color, #d46a6a);
     }
 
     .gym-away .team-score {
-        color: #d46a6a;
+        color: var(--away-color, #d46a6a);
     }
 
     .gym-lineup-card.gym-home {
@@ -278,15 +278,15 @@
     }
 
     .gym-lineup-card.gym-away {
-        border-left: 3px solid #d46a6a;
+        border-left: 3px solid var(--away-color, #d46a6a);
     }
 
     .gym-lineup-card.gym-away .gym-lineup-team {
-        color: #d46a6a;
+        color: var(--away-color, #d46a6a);
     }
 
     .gym-lineup-card.gym-away .gym-lineup-event {
-        color: #d46a6a;
+        color: var(--away-color, #d46a6a);
     }
 
     /* --- Lineup cards --- */
@@ -446,7 +446,7 @@
     }
 
     .gym-aa-score-away {
-        color: #d46a6a;
+        color: var(--away-color, #d46a6a);
     }
 
     .gym-aa-placeholder .gym-aa-name,
@@ -691,6 +691,10 @@
         var clock = payload.clock || (payload.oes && payload.oes.game_clock);
         setText('gym-center-clock', clock || '--');
         renderVirtiusGymnastics(payload.virtius || {});
+
+        if (payload.away_team_color && typeof applyAwayTeamColor === 'function') {
+            applyAwayTeamColor(payload.away_team_color);
+        }
     }
 
     function fetchGymnasticsData() {

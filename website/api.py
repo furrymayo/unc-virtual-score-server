@@ -278,11 +278,23 @@ def get_statcrew_data(sport):
 def get_gymnastics_data():
     source_id = request.args.get("source")
     oes = ingestion.get_sport_data("Gymnastics", source_id)
+    virtius_data = virtius.get_data("Gymnastics")
+
+    # Look up away team color from Virtius team name
+    away_team_color = None
+    teams = virtius_data.get("teams") or []
+    away = next((t for t in teams if not t.get("home")), None)
+    if away:
+        away_team_color = statcrew.lookup_away_team_color(
+            away.get("name", ""), away.get("tricode", "")
+        )
+
     return jsonify(
         {
             "clock": oes.get("game_clock"),
             "oes": oes,
-            "virtius": virtius.get_data("Gymnastics"),
+            "virtius": virtius_data,
+            "away_team_color": away_team_color,
         }
     )
 
