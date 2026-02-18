@@ -154,7 +154,7 @@
 
     <div class="info-top-row">
         <div class="center-card compact">
-            <div class="center-label" id="sb-pitching-label">Pitching</div>
+            <div class="center-label">Pitching</div>
             <div class="center-value compact" id="sb-current-pitcher">--</div>
             <div class="stat-value compact" id="sb-pitcher-line" style="color: var(--ink-soft);">--</div>
         </div>
@@ -168,7 +168,7 @@
             <div class="center-value" id="sb-half-inning">n/a</div>
         </div>
         <div class="center-card compact">
-            <div class="center-label" id="sb-atbat-label">At Bat</div>
+            <div class="center-label">At Bat</div>
             <div class="center-value compact" id="sb-current-batter">--</div>
             <div class="stat-value compact" id="sb-batter-game" style="color: var(--ink-soft);">--</div>
             <div class="stat-value compact" id="sb-batter-season" style="color: var(--ink-soft);">--</div>
@@ -337,19 +337,9 @@
     function updateCurrentPitcher() {
         var batting = getBattingTeam();
 
-        // Team tricode + color on label and name
-        if (batting) {
-            var prefix = batting === 'away' ? 'home' : 'away';
-            var tricode = statcrewData[prefix + '_id'] || '';
-            var label = document.getElementById('sb-pitching-label');
-            var nameEl = document.getElementById('sb-current-pitcher');
-            var color = prefix === 'home' ? 'var(--carolina-soft)' : 'var(--away-color, #d46a6a)';
-            if (label) { label.textContent = tricode ? tricode + ' Pitching' : 'Pitching'; label.style.color = color; }
-            if (nameEl) nameEl.style.color = color;
-        }
-
         // Try StatCrew first
         if (batting) {
+            var prefix = batting === 'away' ? 'home' : 'away';
             var pName = statcrewData[prefix + '_pitcher_name'] || '';
 
             if (pName) {
@@ -377,17 +367,6 @@
 
     function updateCurrentBatter() {
         var name = statcrewData.current_batter_name || '';
-
-        // Team tricode + color on label and name
-        var batting = getBattingTeam();
-        var batPrefix = batting || '';
-        var tricode = batPrefix ? (statcrewData[batPrefix + '_id'] || '') : '';
-        var label = document.getElementById('sb-atbat-label');
-        var nameEl = document.getElementById('sb-current-batter');
-        if (label) { label.textContent = tricode ? tricode + ' At Bat' : 'At Bat'; }
-        var color = batPrefix === 'home' ? 'var(--carolina-soft)' : 'var(--away-color, #d46a6a)';
-        if (label) label.style.color = color;
-        if (nameEl) nameEl.style.color = color;
 
         if (name) {
             // StatCrew path: find batter in lineup for stats
