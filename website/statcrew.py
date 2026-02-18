@@ -296,7 +296,10 @@ def _parse_statcrew_xml(xml_text):
 
     # Detect sport type from root element
     root_tag = root.tag.lower()
-    is_baseball = root_tag in ("bsgame", "bbgame")
+    is_baseball = root_tag in ("bsgame",)
+    is_basketball = root_tag in ("bbgame", "wbbgame")
+    if is_basketball:
+        parsed["basketball_gender"] = "W" if root_tag == "wbbgame" else "M"
 
     # Try to extract venue info
     venue = root.find(".//venue")
@@ -633,6 +636,45 @@ def _parse_statcrew_xml(xml_text):
                     })
 
             parsed[f"{prefix}_batters"] = batter_list
+
+    # --- Basketball: extract oncourt players with stats ---
+    if is_basketball:
+        for team in teams:
+            vh = team.get("vh", "").upper()
+            if vh not in ("V", "H"):
+                continue
+            prefix = "away" if vh == "V" else "home"
+            oncourt = []
+            for player in team.findall(".//player"):
+                if player.get("gp", "0") == "0":
+                    continue
+                stats_el = player.find("stats")
+                s = dict(stats_el.attrib) if stats_el is not None else {}
+                oncourt.append({
+                    "name": player.get("name", ""),
+                    "uni": player.get("uni", ""),
+                    "pos": player.get("pos", ""),
+                    "oncourt": player.get("oncourt", "N").upper() == "Y",
+                    "pts": s.get("tp", "0"),
+                    "reb": s.get("treb", "0"),
+                    "ast": s.get("ast", "0"),
+                    "stl": s.get("stl", "0"),
+                    "blk": s.get("blk", "0"),
+                    "pf": s.get("pf", "0"),
+                    "to": s.get("to", "0"),
+                    "min": s.get("min", "0"),
+                    "fgm": s.get("fgm", "0"),
+                    "fga": s.get("fga", "0"),
+                    "fgm3": s.get("fgm3", "0"),
+                    "fga3": s.get("fga3", "0"),
+                    "ftm": s.get("ftm", "0"),
+                    "fta": s.get("fta", "0"),
+                })
+            # Sort: oncourt first, then by points descending
+            oncourt.sort(
+                key=lambda p: (not p["oncourt"], -int(p.get("pts", "0") or "0"))
+            )
+            parsed[f"{prefix}_players"] = oncourt
 
     # Generic fallback: try to extract all elements with text content
     if not parsed:

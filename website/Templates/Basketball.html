@@ -11,39 +11,282 @@
         </div>
     </div>
 
-    <div class="score-grid">
-        <div class="team-card team-home">
-            <div class="team-label is-home"><span class="possession-dot" id="bb-poss-home"></span><span id="bb-home-name">Home</span> <span id="bb-home-record" class="team-record"></span></div>
-            <div class="team-score" id="bb-home-score">--</div>
-            <div class="team-divider"></div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Fouls</span><strong id="bb-home-fouls">--</strong></div>
-                <div class="stat-line"><span>TOL</span><strong id="bb-home-tol">--</strong></div>
-                <div class="stat-line"><span>Bonus</span><strong id="bb-home-bonus">--</strong></div>
-            </div>
+    <!-- Row 1: Period + Game Clock + Shot Clock -->
+    <div class="bb-clock-row">
+        <div class="center-card bb-period-card">
+            <div class="center-label">Period</div>
+            <div class="bb-period-value" id="bb-period">--</div>
         </div>
         <div class="center-card">
             <div class="center-label">Game Clock</div>
-            <div class="center-value emphasis" id="bb-game-clock">--</div>
-            <div class="center-divider"></div>
-            <div class="center-label" style="margin-top: 8px;">Period</div>
-            <div class="center-value period-small" id="bb-period">--</div>
-            <div class="center-divider"></div>
-            <div class="center-label shot-label" style="margin-top: 12px;">Shot Clock</div>
-            <div class="center-value shot-value" id="bb-shot-clock-center">--</div>
+            <div class="bb-clock-value" id="bb-game-clock">--</div>
         </div>
-        <div class="team-card team-away">
-            <div class="team-label is-visitor"><span class="possession-dot" id="bb-poss-visitor"></span><span id="bb-visitor-name">Visitor</span> <span id="bb-visitor-record" class="team-record"></span></div>
-            <div class="team-score" id="bb-visitor-score">--</div>
-            <div class="team-divider"></div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Fouls</span><strong id="bb-visitor-fouls">--</strong></div>
-                <div class="stat-line"><span>TOL</span><strong id="bb-visitor-tol">--</strong></div>
-                <div class="stat-line"><span>Bonus</span><strong id="bb-visitor-bonus">--</strong></div>
+        <div class="center-card bb-shot-card">
+            <div class="center-label">Shot Clock</div>
+            <div class="bb-shot-clock" id="bb-shot-clock-center">--</div>
+        </div>
+    </div>
+
+    <!-- Row 2: Scores + Stats + Rosters -->
+    <div class="bb-score-row">
+        <div class="bb-team-column bb-side-home">
+            <div class="bb-team-top">
+                <div class="bb-team-cell team-home">
+                    <div class="team-label is-home"><span class="possession-dot" id="bb-poss-home"></span><span id="bb-home-name">Home</span> <span id="bb-home-record" class="team-record"></span></div>
+                    <div class="team-score" id="bb-home-score">--</div>
+                </div>
+                <div class="bb-stat-card bb-stat-home">
+                    <div class="bb-stat-item"><span class="bb-stat-name">Fouls</span><strong id="bb-home-fouls">--</strong></div>
+                    <div class="bb-stat-item"><span class="bb-stat-name">TOL</span><strong id="bb-home-tol">--</strong></div>
+                    <div class="bb-stat-item"><span class="bb-stat-name">Bonus</span><strong id="bb-home-bonus">--</strong></div>
+                </div>
             </div>
+            <div class="bb-roster-card" id="bb-home-roster"></div>
+        </div>
+        <div class="bb-team-column bb-side-away">
+            <div class="bb-team-top">
+                <div class="bb-stat-card bb-stat-away">
+                    <div class="bb-stat-item"><span class="bb-stat-name">Fouls</span><strong id="bb-visitor-fouls">--</strong></div>
+                    <div class="bb-stat-item"><span class="bb-stat-name">TOL</span><strong id="bb-visitor-tol">--</strong></div>
+                    <div class="bb-stat-item"><span class="bb-stat-name">Bonus</span><strong id="bb-visitor-bonus">--</strong></div>
+                </div>
+                <div class="bb-team-cell team-away">
+                    <div class="team-label is-visitor"><span id="bb-visitor-name">Visitor</span> <span id="bb-visitor-record" class="team-record"></span><span class="possession-dot" id="bb-poss-visitor"></span></div>
+                    <div class="team-score" id="bb-visitor-score">--</div>
+                </div>
+            </div>
+            <div class="bb-roster-card" id="bb-visitor-roster"></div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Basketball TV-Optimized Layout */
+    .basketball-scoreboard {
+        gap: clamp(6px, 1vh, 14px);
+    }
+
+    /* Row 1: Period + Game Clock + Shot Clock */
+    .bb-clock-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(8px, 1vw, 16px);
+        align-items: stretch;
+        text-align: center;
+        padding: 0 clamp(40px, 8vw, 160px);
+    }
+
+    .bb-clock-row .center-card {
+        padding: clamp(6px, 0.8vh, 14px) clamp(12px, 2vw, 28px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .bb-clock-value {
+        font-size: clamp(5rem, 12vw, 14rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .bb-period-card {
+        min-width: 0;
+    }
+
+    .bb-shot-card {
+        min-width: 0;
+    }
+
+    /* Row 2: two team columns side by side */
+    .bb-score-row {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(12px, 2vw, 32px);
+        align-items: start;
+    }
+
+    .bb-team-column {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(6px, 0.8vh, 12px);
+        height: 100%;
+    }
+
+    /* Top row: score card + stat card joined flush */
+    .bb-team-top {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .bb-team-cell {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        padding: clamp(8px, 1vh, 16px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    /* Home side: score left (rounded left), stat right (rounded right) */
+    .bb-side-home .bb-team-cell {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .bb-side-home .bb-stat-card {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    /* Away side: stat left (rounded left), score right (rounded right) */
+    .bb-side-away .bb-stat-card {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .bb-side-away .bb-team-cell {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    .bb-shot-clock {
+        font-size: clamp(2.5rem, 4vw, 6rem);
+        font-weight: 800;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        line-height: 1.1;
+    }
+
+    .bb-period-value {
+        font-size: clamp(1.4rem, 2.2vw, 3.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Vertical stat cards (fouls/TOL/bonus) attached to team scores */
+    .bb-stat-card {
+        background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
+        padding: clamp(8px, 1vh, 16px) clamp(10px, 1.2vw, 20px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(6px, 0.8vh, 14px);
+        flex: 0 0 auto;
+    }
+
+    .bb-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .bb-stat-name {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+    }
+
+    .bb-stat-item strong {
+        font-size: clamp(1.2rem, 1.8vw, 2.8rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Roster card (player stats from StatCrew) */
+    .bb-roster-card {
+        flex: 1 1 auto;
+        min-height: 0;
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(6px, 0.8vh, 12px) clamp(8px, 1vw, 16px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        overflow-y: auto;
+    }
+
+    .bb-roster-card:empty {
+        display: none;
+    }
+
+    .bb-roster-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    /* Column widths: # narrow, Name flexible, stats equal narrow */
+    .bb-roster-table col.bb-col-uni  { width: 8%; }
+    .bb-roster-table col.bb-col-name { width: auto; }
+    .bb-roster-table col.bb-col-stat { width: 11%; }
+
+    .bb-roster-table th {
+        font-size: clamp(0.55rem, 0.8vw, 1.1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-soft);
+        padding: clamp(1px, 0.2vh, 3px) clamp(2px, 0.3vw, 5px);
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .bb-roster-table th:first-child,
+    .bb-roster-table td:first-child {
+        text-align: left;
+    }
+
+    .bb-roster-table th:nth-child(2),
+    .bb-roster-table td:nth-child(2) {
+        text-align: left;
+    }
+
+    .bb-roster-table td {
+        font-size: clamp(0.7rem, 1vw, 1.5rem);
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 500;
+        padding: clamp(1px, 0.2vh, 4px) clamp(2px, 0.3vw, 5px);
+        text-align: center;
+        color: var(--ink);
+    }
+
+    .bb-roster-table td.bb-player-name {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .bb-roster-table tbody tr {
+        border-top: 1px solid rgba(131, 198, 242, 0.08);
+    }
+
+    .bb-roster-table tbody tr.bb-oncourt {
+        background: rgba(75, 156, 211, 0.1);
+    }
+
+    .bb-roster-table .bb-uni {
+        color: var(--ink-soft);
+        font-size: clamp(0.6rem, 0.9vw, 1.2rem);
+    }
+
+    /* Conditional formatting */
+    .bb-warning-red {
+        color: #ff6b6b !important;
+    }
+
+    .bb-warning-green {
+        color: #6bff8a !important;
+    }
+</style>
 
 <details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
@@ -113,6 +356,25 @@
         return Number.isFinite(parsed) ? parsed : null;
     }
 
+    function parseGameClockTotalSeconds(value) {
+        if (value === undefined || value === null) return null;
+        var text = String(value).trim();
+        if (!text) return null;
+        // "MM:SS" or "M:SS" format
+        var colonMatch = text.match(/(\d+):(\d+)/);
+        if (colonMatch) {
+            return parseInt(colonMatch[1], 10) * 60 + parseInt(colonMatch[2], 10);
+        }
+        // "SS.T" tenths format (under 1 minute)
+        var dotMatch = text.match(/(\d+)\.(\d)/);
+        if (dotMatch) {
+            return parseInt(dotMatch[1], 10) + parseInt(dotMatch[2], 10) / 10;
+        }
+        // Plain number
+        var plain = parseFloat(text);
+        return Number.isFinite(plain) ? plain : null;
+    }
+
     function renderBasketball(data) {
         const gameClock = normalizeClock(data.game_clock);
         const shotClock = normalizeClock(data.shot_clock);
@@ -131,9 +393,58 @@
         setText('bb-visitor-bonus', visitorBonus);
         setPossession('bb-poss-home', 'bb-poss-visitor', data.possession);
 
+        // Game clock: red when under 10 seconds
+        const gameClockSecs = parseGameClockTotalSeconds(gameClock);
+        const gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 10;
+        document.getElementById('bb-game-clock').classList.toggle('bb-warning-red', gameClockCritical);
+
+        // Shot clock: red when under 10 seconds
         const shotClockValue = parseClockSeconds(shotClock);
-        const isCritical = Number.isFinite(shotClockValue) && shotClockValue <= 5;
-        document.getElementById('bb-shot-clock-center').classList.toggle('clock-critical', isCritical);
+        const shotClockCritical = Number.isFinite(shotClockValue) && shotClockValue < 10;
+        document.getElementById('bb-shot-clock-center').classList.toggle('bb-warning-red', shotClockCritical);
+
+        // Fouls: green at 6+ for men's basketball only
+        var isMens = statcrewData.basketball_gender === 'M';
+        var homeFouls = parseInt(data.home_fouls, 10) || 0;
+        var visFouls = parseInt(data.visitor_fouls, 10) || 0;
+        document.getElementById('bb-home-fouls').classList.toggle('bb-warning-green', isMens && homeFouls >= 6);
+        document.getElementById('bb-visitor-fouls').classList.toggle('bb-warning-green', isMens && visFouls >= 6);
+
+        // Bonus: green when Yes
+        document.getElementById('bb-home-bonus').classList.toggle('bb-warning-green', homeBonus === 'Yes');
+        document.getElementById('bb-visitor-bonus').classList.toggle('bb-warning-green', visitorBonus === 'Yes');
+    }
+
+    function renderRoster(containerId, players) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (!Array.isArray(players) || players.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+        let html = '<table class="bb-roster-table"><colgroup>';
+        html += '<col class="bb-col-uni"><col class="bb-col-name">';
+        html += '<col class="bb-col-stat"><col class="bb-col-stat"><col class="bb-col-stat">';
+        html += '<col class="bb-col-stat"><col class="bb-col-stat"><col class="bb-col-stat">';
+        html += '</colgroup><thead><tr>';
+        html += '<th>#</th><th>Name</th><th>PTS</th><th>REB</th><th>AST</th><th>BLK</th><th>STL</th><th>PF</th>';
+        html += '</tr></thead><tbody>';
+        players.forEach(function(p) {
+            const rowClass = p.oncourt ? ' class="bb-oncourt"' : '';
+            const lastName = (p.name || '').split(',')[0] || p.name || '';
+            html += '<tr' + rowClass + '>';
+            html += '<td class="bb-uni">' + escapeHtml(p.uni || '') + '</td>';
+            html += '<td class="bb-player-name">' + escapeHtml(lastName) + '</td>';
+            html += '<td>' + (p.pts || '0') + '</td>';
+            html += '<td>' + (p.reb || '0') + '</td>';
+            html += '<td>' + (p.ast || '0') + '</td>';
+            html += '<td>' + (p.blk || '0') + '</td>';
+            html += '<td>' + (p.stl || '0') + '</td>';
+            html += '<td>' + (p.pf || '0') + '</td>';
+            html += '</tr>';
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
     }
 
     function renderStatcrewBasketball(data) {
@@ -144,6 +455,13 @@
         setText('bb-visitor-name', info.visitorName || 'Visitor');
         setText('bb-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
         setText('bb-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+
+        if (statcrewData.away_team_color) {
+            applyAwayTeamColor(statcrewData.away_team_color);
+        }
+
+        renderRoster('bb-home-roster', statcrewData.home_players || []);
+        renderRoster('bb-visitor-roster', statcrewData.away_players || []);
     }
 
     function fetchStatcrewBasketballData() {
