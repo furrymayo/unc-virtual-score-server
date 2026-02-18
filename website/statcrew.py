@@ -483,7 +483,7 @@ def _parse_statcrew_xml(xml_text):
                     live_pitches = int(cum_pitches) + status_np
                     parsed[f"{prefix}_pitcher_pitches"] = str(live_pitches)
 
-        # --- Base runners from <play> elements ---
+        # --- Base runners ---
         # Default to empty (no runners on base)
         parsed["runner_first"] = ""
         parsed["runner_second"] = ""
@@ -493,44 +493,52 @@ def _parse_statcrew_xml(xml_text):
             status is not None and status.get("complete", "").upper() == "Y"
         )
         if not game_complete:
-            plays_el = root.find(".//plays")
-            if plays_el is not None:
-                target_batting = None
-                # Use <status vh inning> to find the current half-inning
-                if status is not None:
-                    s_vh = status.get("vh", "").upper()
-                    s_inn = status.get("inning", "")
-                    if s_vh and s_inn:
-                        for batting in plays_el.findall("batting"):
-                            if (
-                                batting.get("vh", "").upper() == s_vh
-                                and batting.get("inning", "") == s_inn
-                            ):
+            # Primary: <status first="" second="" third=""> (live, authoritative)
+            if status is not None and (
+                status.get("first") is not None
+                or status.get("second") is not None
+                or status.get("third") is not None
+            ):
+                parsed["runner_first"] = status.get("first", "")
+                parsed["runner_second"] = status.get("second", "")
+                parsed["runner_third"] = status.get("third", "")
+            else:
+                # Fallback: last <play> element in current half-inning
+                plays_el = root.find(".//plays")
+                if plays_el is not None:
+                    target_batting = None
+                    if status is not None:
+                        s_vh = status.get("vh", "").upper()
+                        s_inn = status.get("inning", "")
+                        if s_vh and s_inn:
+                            for batting in plays_el.findall("batting"):
+                                if (
+                                    batting.get("vh", "").upper() == s_vh
+                                    and batting.get("inning", "") == s_inn
+                                ):
+                                    target_batting = batting
+                                    break
+
+                    if target_batting is None:
+                        for batting in reversed(plays_el.findall("batting")):
+                            if batting.find("innsummary") is None:
                                 target_batting = batting
                                 break
 
-                # Fallback: last <batting> without <innsummary>
-                if target_batting is None:
-                    for batting in reversed(plays_el.findall("batting")):
-                        if batting.find("innsummary") is None:
-                            target_batting = batting
-                            break
-
-                if target_batting is not None:
-                    # If this half has <innsummary>, it's complete — bases empty
-                    if target_batting.find("innsummary") is None:
-                        play_els = target_batting.findall("play")
-                        if play_els:
-                            last_play = play_els[-1]
-                            parsed["runner_first"] = last_play.get(
-                                "first", ""
-                            )
-                            parsed["runner_second"] = last_play.get(
-                                "second", ""
-                            )
-                            parsed["runner_third"] = last_play.get(
-                                "third", ""
-                            )
+                    if target_batting is not None:
+                        if target_batting.find("innsummary") is None:
+                            play_els = target_batting.findall("play")
+                            if play_els:
+                                last_play = play_els[-1]
+                                parsed["runner_first"] = last_play.get(
+                                    "first", ""
+                                )
+                                parsed["runner_second"] = last_play.get(
+                                    "second", ""
+                                )
+                                parsed["runner_third"] = last_play.get(
+                                    "third", ""
+                                )
 
         # Build batter lists from batord (full lineup) + overlay hitting stats
         for team in teams:

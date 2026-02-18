@@ -170,6 +170,21 @@ class TestParseStatcrewXml:
         # Should fallback to generic parsing
         assert "score" in result or "status_active" in result
 
+    def test_base_runners_from_status_element(self):
+        """Runners read directly from <status first="" second="" third="">."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Away" code="AWY"/>
+            <team vh="H" name="Home" code="HOM"/>
+            <status vh="V" inning="1" batter="Batter, X" pitcher="Pitcher, Y"
+                    first="Runner, A" second="" third="Runner, B"/>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert result["runner_first"] == "Runner, A"
+        assert result["runner_second"] == ""
+        assert result["runner_third"] == "Runner, B"
+
     def test_base_runners_parsed_from_play(self):
         """Runners on first and third from last <play> in current half-inning."""
         xml = """<?xml version="1.0"?>
