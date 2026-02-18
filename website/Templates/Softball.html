@@ -250,8 +250,8 @@
     // Prefers StatCrew XML (batting_team) over OES half-inning state.
     function getBattingTeam() {
         if (statcrewData.batting_team) return statcrewData.batting_team;
-        if (currentHalf === 'TOP') return 'away';
-        if (currentHalf === 'BOT') return 'home';
+        if (currentHalf === 'TOP' || currentHalf === 'MID') return 'away';
+        if (currentHalf === 'BOT' || currentHalf === 'END') return 'home';
         return '';
     }
 
@@ -270,10 +270,7 @@
         if (bt) currentHalf = bt.toUpperCase();
 
         var display = bt && inn ? bt + ' ' + inn : (bt || inn || 'n/a');
-        // Only use OES inning display when StatCrew doesn't provide one
-        if (!statcrewData.inning_display) {
-            setText('sb-half-inning', display);
-        }
+        setText('sb-half-inning', display);
 
         var awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
         var homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
@@ -305,11 +302,6 @@
 
         setText('sb-away-name', data.away_name || 'Away');
         setText('sb-home-name', data.home_name || 'Home');
-
-        // Inning display from StatCrew (has MID/END transitions)
-        if (data.inning_display) {
-            setText('sb-half-inning', data.inning_display);
-        }
 
         updateCurrentPitcher();
         updateCurrentBatter();
