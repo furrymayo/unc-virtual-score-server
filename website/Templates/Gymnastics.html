@@ -311,7 +311,7 @@
     }
 
     .gym-lineup-team {
-        font-size: clamp(0.8rem, 1.2vw, 1.6rem);
+        font-size: clamp(1.1rem, 1.6vw, 2.2rem);
         text-transform: uppercase;
         letter-spacing: 0.12em;
         color: var(--ink-soft);
@@ -323,7 +323,7 @@
     }
 
     .gym-lineup-event {
-        font-size: clamp(0.8rem, 1.2vw, 1.6rem);
+        font-size: clamp(1.1rem, 1.6vw, 2.2rem);
         font-weight: 700;
         color: var(--carolina-soft);
     }
@@ -342,7 +342,7 @@
     }
 
     .gym-lineup-order {
-        font-size: clamp(0.8rem, 1.1vw, 1.4rem);
+        font-size: clamp(1rem, 1.5vw, 2rem);
         color: var(--ink-soft);
         font-family: "JetBrains Mono", monospace;
         min-width: 1.5em;
@@ -350,7 +350,7 @@
     }
 
     .gym-lineup-name {
-        font-size: clamp(0.85rem, 1.2vw, 1.6rem);
+        font-size: clamp(1.1rem, 1.6vw, 2.2rem);
         font-weight: 600;
         line-height: 1.2;
         min-width: 0;
@@ -361,7 +361,7 @@
 
     .gym-lineup-score {
         font-family: "JetBrains Mono", monospace;
-        font-size: clamp(0.85rem, 1.2vw, 1.6rem);
+        font-size: clamp(1.1rem, 1.6vw, 2.2rem);
         color: var(--ink-soft);
         text-align: right;
     }
@@ -385,7 +385,7 @@
     }
 
     .gym-aa-title {
-        font-size: clamp(0.75rem, 1.1vw, 1.5rem);
+        font-size: clamp(1rem, 1.4vw, 2rem);
         text-transform: uppercase;
         letter-spacing: 0.2em;
         color: var(--ink-soft);
@@ -395,18 +395,29 @@
     .gym-aa-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 4px 16px;
+        gap: 0 0;
     }
 
     .gym-aa-row {
-        display: grid;
-        grid-template-columns: 1fr auto auto;
-        gap: 8px;
+        display: flex;
+        gap: 12px;
         align-items: baseline;
+        padding: 6px 14px 6px 14px;
+        border-bottom: 1px solid rgba(131, 198, 242, 0.1);
+        border-right: 2px solid rgba(131, 198, 242, 0.2);
+    }
+
+    .gym-aa-row:nth-child(3n) {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .gym-aa-row:nth-child(3n+1) {
+        padding-left: 0;
     }
 
     .gym-aa-name {
-        font-size: clamp(0.8rem, 1.1vw, 1.4rem);
+        font-size: clamp(1rem, 1.5vw, 2rem);
         font-weight: 600;
         min-width: 0;
         overflow: hidden;
@@ -415,25 +426,42 @@
         line-height: 1.2;
     }
 
-    .gym-aa-events {
-        font-size: clamp(0.65rem, 0.9vw, 1.1rem);
-        color: var(--ink-soft);
-        font-family: "JetBrains Mono", monospace;
-        white-space: nowrap;
+    .gym-aa-sep {
+        flex: 1;
+        border-bottom: 1px dotted rgba(131, 198, 242, 0.2);
+        min-width: 10px;
+        margin-bottom: 0.25em;
     }
 
     .gym-aa-score {
         font-family: "JetBrains Mono", monospace;
-        font-size: clamp(0.8rem, 1.1vw, 1.4rem);
+        font-size: clamp(1rem, 1.5vw, 2rem);
         font-weight: 600;
-        text-align: right;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .gym-aa-score-home {
+        color: var(--carolina-soft);
+    }
+
+    .gym-aa-score-away {
+        color: #d46a6a;
     }
 
     .gym-aa-placeholder .gym-aa-name,
-    .gym-aa-placeholder .gym-aa-score,
-    .gym-aa-placeholder .gym-aa-events {
+    .gym-aa-placeholder .gym-aa-score {
         color: rgba(167, 189, 217, 0.35);
         font-weight: 500;
+    }
+
+    .gym-aa-placeholder .gym-aa-sep {
+        border-bottom-color: rgba(131, 198, 242, 0.06);
+    }
+
+    .gym-aa-placeholder {
+        border-bottom-color: rgba(131, 198, 242, 0.05);
+        border-right-color: rgba(131, 198, 242, 0.08);
     }
 
     /* --- Responsive --- */
@@ -460,7 +488,7 @@
 
 <script>
     const GYM_EVENT_KEYS = ['VAULT', 'BARS', 'BEAM', 'FLOOR'];
-    const GYM_LINEUP_SLOTS = 5;
+    const GYM_LINEUP_SLOTS = 6;
     const GYM_AA_LIMIT = 6;
     const GYM_EVENT_LABELS = {
         VAULT: 'Vault',
@@ -572,7 +600,7 @@
         }
     }
 
-    function renderAALeaders(containerId, leaders) {
+    function renderAALeaders(containerId, leaders, homeName) {
         var container = document.getElementById(containerId);
         if (!container) return;
         container.textContent = '';
@@ -597,17 +625,16 @@
             var teamTag = leader.team ? ' (' + leader.team + ')' : '';
             name.textContent = (index + 1) + '. ' + (leader.name || 'Gymnast') + teamTag;
 
-            var events = document.createElement('span');
-            events.className = 'gym-aa-events';
-            var ec = leader.events_completed;
-            events.textContent = ec ? ec + '/4' : '';
+            var sep = document.createElement('span');
+            sep.className = 'gym-aa-sep';
 
             var score = document.createElement('span');
-            score.className = 'gym-aa-score';
+            var isHome = homeName && leader.team && leader.team === homeName;
+            score.className = 'gym-aa-score' + (isHome ? ' gym-aa-score-home' : ' gym-aa-score-away');
             score.textContent = leader.score || '--';
 
             row.appendChild(name);
-            row.appendChild(events);
+            row.appendChild(sep);
             row.appendChild(score);
             container.appendChild(row);
         });
@@ -620,16 +647,15 @@
             name.className = 'gym-aa-name';
             name.textContent = (i + 1) + '. --';
 
-            var events = document.createElement('span');
-            events.className = 'gym-aa-events';
-            events.textContent = '';
+            var sep = document.createElement('span');
+            sep.className = 'gym-aa-sep';
 
             var score = document.createElement('span');
             score.className = 'gym-aa-score';
             score.textContent = '--';
 
             row.appendChild(name);
-            row.appendChild(events);
+            row.appendChild(sep);
             row.appendChild(score);
             container.appendChild(row);
         }
@@ -655,7 +681,7 @@
         renderLineup('gym-away-lineup-list', away.current_lineup || []);
 
         var allAround = (data.leaders || {}).ALL_AROUND || [];
-        renderAALeaders('gym-leaders-aa', allAround);
+        renderAALeaders('gym-leaders-aa', allAround, home.name || '');
 
         var updated = data.updated_at || (data._meta && data._meta.fetched_at);
         setText('gym-updated', updated ? formatUpdatedTime(updated) : '--');
