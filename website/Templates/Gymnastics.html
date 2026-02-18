@@ -14,14 +14,14 @@
     <!-- ROW 2: Teams + Clock -->
     <div class="gym-main-grid">
         <!-- Home team -->
-        <div class="team-card gym-team-card">
+        <div class="team-card gym-team-card gym-home">
             <div class="team-label"><span id="gym-home-name">Home</span></div>
             <div class="team-score gym-team-total" id="gym-home-score">--</div>
             <div class="gym-event-scores">
-                <div class="gym-evt"><span>VT</span><strong id="gym-home-vault">--</strong></div>
-                <div class="gym-evt"><span>UB</span><strong id="gym-home-bars">--</strong></div>
-                <div class="gym-evt"><span>BB</span><strong id="gym-home-beam">--</strong></div>
-                <div class="gym-evt"><span>FX</span><strong id="gym-home-floor">--</strong></div>
+                <div class="gym-evt"><span>Vault</span><strong id="gym-home-vault">--</strong></div>
+                <div class="gym-evt"><span>Bars</span><strong id="gym-home-bars">--</strong></div>
+                <div class="gym-evt"><span>Beam</span><strong id="gym-home-beam">--</strong></div>
+                <div class="gym-evt"><span>Floor</span><strong id="gym-home-floor">--</strong></div>
             </div>
         </div>
 
@@ -32,21 +32,21 @@
         </div>
 
         <!-- Away team -->
-        <div class="team-card gym-team-card">
+        <div class="team-card gym-team-card gym-away">
             <div class="team-label"><span id="gym-away-name">Away</span></div>
             <div class="team-score gym-team-total" id="gym-away-score">--</div>
             <div class="gym-event-scores">
-                <div class="gym-evt"><span>VT</span><strong id="gym-away-vault">--</strong></div>
-                <div class="gym-evt"><span>UB</span><strong id="gym-away-bars">--</strong></div>
-                <div class="gym-evt"><span>BB</span><strong id="gym-away-beam">--</strong></div>
-                <div class="gym-evt"><span>FX</span><strong id="gym-away-floor">--</strong></div>
+                <div class="gym-evt"><span>Vault</span><strong id="gym-away-vault">--</strong></div>
+                <div class="gym-evt"><span>Bars</span><strong id="gym-away-bars">--</strong></div>
+                <div class="gym-evt"><span>Beam</span><strong id="gym-away-beam">--</strong></div>
+                <div class="gym-evt"><span>Floor</span><strong id="gym-away-floor">--</strong></div>
             </div>
         </div>
     </div>
 
     <!-- ROW 3: Current event lineups -->
     <div class="gym-lineup-grid">
-        <div class="gym-lineup-card">
+        <div class="gym-lineup-card gym-home">
             <div class="gym-lineup-header">
                 <span class="gym-lineup-team" id="gym-home-lineup-team">Home</span>
                 <span class="gym-lineup-dash">&mdash;</span>
@@ -54,7 +54,7 @@
             </div>
             <div class="gym-lineup-table" id="gym-home-lineup-list"></div>
         </div>
-        <div class="gym-lineup-card">
+        <div class="gym-lineup-card gym-away">
             <div class="gym-lineup-header">
                 <span class="gym-lineup-team" id="gym-away-lineup-team">Away</span>
                 <span class="gym-lineup-dash">&mdash;</span>
@@ -154,6 +154,21 @@
 
     .gym-rotation-evt {
         white-space: nowrap;
+        padding: 4px 14px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .gym-rotation-evt.gym-rotation-home {
+        background: rgba(75, 156, 211, 0.18);
+        border: 1px solid rgba(131, 198, 242, 0.3);
+        color: var(--carolina-soft);
+    }
+
+    .gym-rotation-evt.gym-rotation-away {
+        background: rgba(212, 106, 106, 0.12);
+        border: 1px solid rgba(212, 106, 106, 0.3);
+        color: #d46a6a;
     }
 
     .gym-rotation-evt strong {
@@ -164,7 +179,7 @@
     /* --- Main grid: Home | Clock | Away --- */
     .gym-main-grid {
         display: grid;
-        grid-template-columns: 1fr minmax(120px, 180px) 1fr;
+        grid-template-columns: 1fr minmax(360px, 540px) 1fr;
         gap: clamp(6px, 0.8vw, 12px);
         align-items: stretch;
     }
@@ -172,6 +187,10 @@
     .gym-team-card {
         padding: clamp(8px, 1vh, 14px);
         text-align: center;
+    }
+
+    .gym-team-card .team-label {
+        justify-content: center;
     }
 
     .gym-team-total {
@@ -227,6 +246,47 @@
         letter-spacing: 0.18em;
         color: var(--ink-soft);
         margin-top: 4px;
+    }
+
+    /* --- Team-specific colors --- */
+    .gym-home .team-label {
+        color: var(--carolina-soft);
+    }
+
+    .gym-home .team-score {
+        color: var(--carolina-soft);
+    }
+
+    .gym-away .team-label {
+        color: #d46a6a;
+    }
+
+    .gym-away .team-score {
+        color: #d46a6a;
+    }
+
+    .gym-lineup-card.gym-home {
+        border-left: 3px solid var(--carolina);
+    }
+
+    .gym-lineup-card.gym-home .gym-lineup-team {
+        color: var(--carolina-soft);
+    }
+
+    .gym-lineup-card.gym-home .gym-lineup-event {
+        color: var(--carolina-soft);
+    }
+
+    .gym-lineup-card.gym-away {
+        border-left: 3px solid #d46a6a;
+    }
+
+    .gym-lineup-card.gym-away .gym-lineup-team {
+        color: #d46a6a;
+    }
+
+    .gym-lineup-card.gym-away .gym-lineup-event {
+        color: #d46a6a;
     }
 
     /* --- Lineup cards --- */
@@ -297,11 +357,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-    }
-
-    .gym-lineup-name.exhibition {
-        color: var(--ink-soft);
-        font-weight: 500;
     }
 
     .gym-lineup-score {
@@ -405,7 +460,7 @@
 
 <script>
     const GYM_EVENT_KEYS = ['VAULT', 'BARS', 'BEAM', 'FLOOR'];
-    const GYM_LINEUP_SLOTS = 6;
+    const GYM_LINEUP_SLOTS = 5;
     const GYM_AA_LIMIT = 6;
     const GYM_EVENT_LABELS = {
         VAULT: 'Vault',
@@ -439,12 +494,12 @@
         const awayKey = away.tricode || away.name;
 
         const pairs = [];
-        if (homeKey && map[homeKey]) pairs.push({ team: home.name || 'Home', event: formatGymEventLabel(map[homeKey]) });
-        if (awayKey && map[awayKey]) pairs.push({ team: away.name || 'Away', event: formatGymEventLabel(map[awayKey]) });
+        if (homeKey && map[homeKey]) pairs.push({ team: home.name || 'Home', event: formatGymEventLabel(map[homeKey]), isHome: true });
+        if (awayKey && map[awayKey]) pairs.push({ team: away.name || 'Away', event: formatGymEventLabel(map[awayKey]), isHome: false });
 
         pairs.forEach(function(p) {
             const span = document.createElement('span');
-            span.className = 'gym-rotation-evt';
+            span.className = 'gym-rotation-evt ' + (p.isHome ? 'gym-rotation-home' : 'gym-rotation-away');
             span.textContent = p.team + ' ';
             const strong = document.createElement('strong');
             strong.textContent = p.event;
@@ -482,7 +537,6 @@
 
             var name = document.createElement('span');
             name.className = 'gym-lineup-name';
-            if (gymnast.counting === false) name.className += ' exhibition';
             name.textContent = gymnast.name || 'Gymnast';
 
             var score = document.createElement('span');
