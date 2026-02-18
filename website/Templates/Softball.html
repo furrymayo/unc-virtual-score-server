@@ -3,235 +3,217 @@
 {% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell diamond-sport">
+<style>
+    /* === Softball-specific layout overrides ===
+       No TrackMan/StrikeZone side columns — full-width center layout.
+       Scaled up from baseball to fill the extra horizontal space. */
+
+    /* Count bar: single row, no wrap */
+    .softball-scoreboard .count-bar {
+        margin: 0;
+        flex-wrap: nowrap;
+    }
+
+    /* Top row: Pitching | Inning | At Bat */
+    .softball-scoreboard .info-top-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: clamp(8px, 1vw, 16px);
+        align-items: stretch;
+    }
+
+    /* Section title tighter margins */
+    .softball-scoreboard .section-title {
+        margin: clamp(4px, 0.6vh, 10px) 0;
+    }
+
+    /* Score-count row: team | B/S/O pills | team */
+    .softball-scoreboard .score-count-row {
+        display: grid;
+        grid-template-columns: minmax(80px, 0.22fr) 1fr minmax(80px, 0.22fr);
+        gap: clamp(8px, 1vw, 16px);
+        align-items: stretch;
+    }
+
+    /* Team cards in score row — larger without side columns */
+    .softball-scoreboard .score-count-row .team-card {
+        padding: clamp(4px, 0.6vh, 12px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .softball-scoreboard .score-count-row .team-label {
+        font-size: clamp(0.9rem, 1.2vw, 1.8rem);
+        justify-content: center;
+    }
+    .softball-scoreboard .score-count-row .team-score {
+        font-size: clamp(2.5rem, 4vw, 6rem);
+    }
+
+    /* Compact center cards in top row */
+    .softball-scoreboard .info-top-row .center-card {
+        padding: clamp(8px, 1vh, 16px);
+    }
+
+    /* Balls/Strikes/Outs: pronounced cards with glow — larger than baseball */
+    .softball-scoreboard .count-pill {
+        padding: clamp(10px, 1.4vh, 22px) clamp(14px, 2vw, 34px);
+        min-width: clamp(120px, 12vw, 220px);
+        background: linear-gradient(
+            145deg,
+            rgba(15, 42, 82, 0.95) 0%,
+            rgba(20, 55, 100, 0.92) 50%,
+            rgba(18, 48, 88, 0.95) 100%
+        );
+        border: 1px solid rgba(75, 156, 211, 0.45);
+        box-shadow:
+            inset 0 1px 1px rgba(131, 198, 242, 0.08),
+            0 0 8px rgba(75, 156, 211, 0.25),
+            0 0 20px rgba(75, 156, 211, 0.15),
+            0 8px 24px rgba(3, 9, 18, 0.4);
+    }
+    .softball-scoreboard .count-value {
+        font-size: clamp(3.2rem, 5.5vw, 8rem);
+        color: #ffffff;
+        text-shadow:
+            0 0 12px rgba(75, 156, 211, 0.5),
+            0 0 24px rgba(75, 156, 211, 0.2);
+    }
+    .softball-scoreboard .count-label {
+        font-size: clamp(1.1rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        color: rgba(131, 198, 242, 0.85);
+        text-shadow: 0 0 8px rgba(75, 156, 211, 0.15);
+    }
+
+    /* Pitching/At Bat cards: scaled up */
+    .softball-scoreboard .info-top-row .center-label {
+        font-size: clamp(0.9rem, 1.4vw, 2rem);
+    }
+    .softball-scoreboard .center-value.compact {
+        font-size: clamp(1.6rem, 2.6vw, 3.6rem);
+    }
+    .softball-scoreboard .stat-value.compact {
+        font-size: clamp(1.2rem, 2vw, 2.8rem);
+    }
+
+    /* Linescore */
+    .softball-scoreboard .linescore-full {
+        margin-top: clamp(6px, 0.8vh, 12px);
+    }
+
+    /* Linescore team name: short code, constrained width */
+    .softball-scoreboard .team-row-label {
+        font-size: clamp(1.6rem, 2.2vw, 2.8rem);
+        text-align: left;
+        max-width: 6ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Inning headers */
+    .softball-scoreboard .table-grid th {
+        font-size: clamp(1.5rem, 2vw, 2.8rem);
+    }
+
+    /* Inning data */
+    .softball-scoreboard .table-grid td {
+        font-size: clamp(1.8rem, 2.6vw, 3.4rem);
+    }
+
+    /* R/H/E card: visual separation */
+    .softball-scoreboard .linescore-total,
+    .softball-scoreboard .linescore-label {
+        font-size: clamp(2rem, 3vw, 4rem) !important;
+        font-weight: 700;
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9)) !important;
+    }
+    .softball-scoreboard .table-grid th:nth-last-child(3),
+    .softball-scoreboard .table-grid td:nth-last-child(3) {
+        border-left: 3px solid var(--carolina);
+        padding-left: 12px;
+    }
+
+    /* Config panel reduced margin */
+    .softball-scoreboard ~ details.data-sources-panel {
+        margin-top: 8px;
+    }
+</style>
+
+<section class="scoreboard-shell diamond-sport softball-scoreboard">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Softball</div>
             <div class="scoreboard-subtitle" id="sb-venue-info">Live scoreboard feed</div>
         </div>
         <div class="meta-row">
-            <div class="meta-chip">Inning <span id="sb-inning">--</span></div>
-            <div class="meta-chip">Pitch <span id="sb-pitch-speed">--</span></div>
+            <div class="meta-chip" id="sb-weather-chip" style="display: none;"><span id="sb-weather">--</span></div>
         </div>
     </div>
 
-    <div class="count-bar">
-        <div class="count-pill">
-            <div class="count-label">Balls</div>
-            <div class="count-value" id="sb-balls">--</div>
+    <div class="info-top-row">
+        <div class="center-card compact">
+            <div class="center-label">Pitching</div>
+            <div class="center-value compact" id="sb-current-pitcher">--</div>
+            <div class="stat-value compact" id="sb-pitcher-line" style="color: var(--ink-soft);">--</div>
         </div>
-        <div class="count-pill">
-            <div class="count-label">Strikes</div>
-            <div class="count-value" id="sb-strikes">--</div>
-        </div>
-        <div class="count-pill">
-            <div class="count-label">Outs</div>
-            <div class="count-value" id="sb-outs">--</div>
-        </div>
-    </div>
-
-    <div class="score-grid">
-        <div class="team-card">
-            <div class="team-label"><span id="sb-away-name">Away</span> <span id="sb-away-record" class="team-record"></span></div>
-            <div class="team-score" id="sb-away-runs">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Hits</span><strong id="sb-away-hits">--</strong></div>
-                <div class="stat-line"><span>Errors</span><strong id="sb-away-errors">--</strong></div>
-            </div>
-        </div>
-        <div class="center-card">
+        <div class="center-card compact" style="text-align: center;">
             <div class="center-label">Inning</div>
-            <div class="center-value" id="sb-half-inning">--</div>
+            <div class="center-value" id="sb-half-inning">n/a</div>
+        </div>
+        <div class="center-card compact">
+            <div class="center-label">At Bat</div>
+            <div class="center-value compact" id="sb-current-batter">--</div>
+            <div class="stat-value compact" id="sb-batter-line" style="color: var(--ink-soft);">--</div>
+        </div>
+    </div>
+
+    <div class="score-count-row" style="margin-top: clamp(6px, 0.8vh, 12px);">
+        <div class="team-card">
+            <div class="team-label"><span id="sb-away-name">Away</span></div>
+            <div class="team-score" id="sb-away-runs">--</div>
+        </div>
+        <div class="count-bar">
+            <div class="count-pill">
+                <div class="count-label">Balls</div>
+                <div class="count-value" id="sb-balls">--</div>
+            </div>
+            <div class="count-pill">
+                <div class="count-label">Strikes</div>
+                <div class="count-value" id="sb-strikes">--</div>
+            </div>
+            <div class="count-pill">
+                <div class="count-label">Outs</div>
+                <div class="count-value" id="sb-outs">--</div>
+            </div>
         </div>
         <div class="team-card">
-            <div class="team-label"><span id="sb-home-name">Home</span> <span id="sb-home-record" class="team-record"></span></div>
+            <div class="team-label"><span id="sb-home-name">Home</span></div>
             <div class="team-score" id="sb-home-runs">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Hits</span><strong id="sb-home-hits">--</strong></div>
-                <div class="stat-line"><span>Errors</span><strong id="sb-home-errors">--</strong></div>
-            </div>
         </div>
     </div>
 
-    <div class="stat-grid">
-        <div class="stat-card">
-            <div class="stat-label">Batter</div>
-            <div class="stat-value" id="sb-batter-num">--</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Batter Avg</div>
-            <div class="stat-value" id="sb-batter-avg">--</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Pitcher</div>
-            <div class="stat-value" id="sb-pitcher-num">--</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Pitch Count</div>
-            <div class="stat-value" id="sb-pitcher-count">--</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Last Play</div>
-            <div class="stat-value" id="sb-last-play">--</div>
+    <div class="linescore-full">
+        <div class="section-title">Innings</div>
+        <div class="table-card">
+            <div id="sb-linescore-table"></div>
         </div>
     </div>
-
-    <div class="section-title">Innings</div>
-    <div class="table-card">
-        <div id="sb-linescore-table"></div>
-    </div>
-
-    <div class="score-trackman-layout">
-        <div>
-            <div class="section-title">TrackMan Dashboard</div>
-            <div class="trackman-shell">
-                <div class="trackman-section-label">Pitching</div>
-                <div class="trackman-grid">
-                    <div class="trackman-card">
-                        <div class="trackman-label">Release Speed</div>
-                        <div class="trackman-value" id="sb-tm-pitch-speed">n/a</div>
-                        <div class="trackman-unit">MPH</div>
-                    </div>
-                    <div class="trackman-card">
-                        <div class="trackman-label">Spin Rate</div>
-                        <div class="trackman-value" id="sb-tm-spin-rate">n/a</div>
-                        <div class="trackman-unit">RPM</div>
-                    </div>
-                    <div class="trackman-card trackman-zone" style="grid-column: span 2;">
-                        <div class="trackman-label">Strike Zone</div>
-                        <div class="zone-canvas">
-                            <div class="zone-grid">
-                                <div class="zone-line v v1"></div>
-                                <div class="zone-line v v2"></div>
-                                <div class="zone-line h h1"></div>
-                                <div class="zone-line h h2"></div>
-                            </div>
-                            <div class="zone-dot" id="sb-zone-dot"></div>
-                        </div>
-                        <div class="trackman-unit" id="sb-zone-readout">n/a</div>
-                    </div>
-                </div>
-                <div class="trackman-section-label" style="margin-top: 8px;">Batting</div>
-                <div class="trackman-grid">
-                    <div class="trackman-card">
-                        <div class="trackman-label">Exit Angle</div>
-                        <div class="trackman-value" id="sb-tm-launch-angle">n/a</div>
-                        <div class="trackman-unit">Degrees</div>
-                    </div>
-                    <div class="trackman-card">
-                        <div class="trackman-label">Distance</div>
-                        <div class="trackman-value" id="sb-tm-distance">n/a</div>
-                        <div class="trackman-unit">Feet</div>
-                    </div>
-                    <div class="trackman-card">
-                        <div class="trackman-label">Exit Speed</div>
-                        <div class="trackman-value" id="sb-tm-exit-velocity">n/a</div>
-                        <div class="trackman-unit">MPH</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="count-bar">
-                <div class="count-pill">
-                    <div class="count-label">Balls</div>
-                    <div class="count-value" id="sb-balls">--</div>
-                </div>
-                <div class="count-pill">
-                    <div class="count-label">Strikes</div>
-                    <div class="count-value" id="sb-strikes">--</div>
-                </div>
-                <div class="count-pill">
-                    <div class="count-label">Outs</div>
-                    <div class="count-value" id="sb-outs">--</div>
-                </div>
-            </div>
-
-            <div class="score-grid">
-                <div class="team-card">
-                    <div class="team-label">Away</div>
-                    <div class="team-score" id="sb-away-runs">--</div>
-                    <div class="diamond-divider"></div>
-                    <div class="team-meta">
-                        <div class="stat-line"><span>Hits</span><strong id="sb-away-hits">--</strong></div>
-                        <div class="diamond-divider"></div>
-                        <div class="stat-line"><span>Errors</span><strong id="sb-away-errors">--</strong></div>
-                    </div>
-                </div>
-                <div class="center-card">
-                    <div class="center-label">Inning</div>
-                    <div class="center-value" id="sb-half-inning">--</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-label">Home</div>
-                    <div class="team-score" id="sb-home-runs">--</div>
-                    <div class="diamond-divider"></div>
-                    <div class="team-meta">
-                        <div class="stat-line"><span>Hits</span><strong id="sb-home-hits">--</strong></div>
-                        <div class="diamond-divider"></div>
-                        <div class="stat-line"><span>Errors</span><strong id="sb-home-errors">--</strong></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-title">Innings</div>
-            <div class="table-card">
-                <div id="sb-linescore-table"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="trackman-meta">
-        <div class="stat-card">
-            <div class="stat-label">Track ID</div>
-            <div class="stat-value" id="sb-tm-track-id">n/a</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Timestamp</div>
-            <div class="stat-value" id="sb-tm-time">n/a</div>
-        </div>
-    </div>
-
 </section>
 
-<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 8px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
         <div style="display: flex; align-items: center;">
             <span class="dropdown-indicator"></span>
             <div class="scoreboard-subtitle">Additional Data Sources</div>
         </div>
         <div class="meta-row">
-            <div class="meta-chip">TrackMan <span id="sb-tm-status">n/a</span></div>
             <div class="meta-chip">StatCrew <span id="sb-sc-status">n/a</span></div>
         </div>
     </summary>
 
-    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">TrackMan UDP</div>
-    <form id="sb-trackman-form" class="config-grid">
-        <div>
-            <label for="sb-trackman-port">UDP Port</label>
-            <input id="sb-trackman-port" type="number" min="1" max="65535" placeholder="20998" />
-        </div>
-        <div>
-            <label for="sb-trackman-feed-type">Feed Type</label>
-            <select id="sb-trackman-feed-type">
-                <option value="broadcast">Broadcast (Pitch + Hit, UDP 20998)</option>
-                <option value="scoreboard">Scoreboard (Pitch OR Hit, UDP 20999)</option>
-            </select>
-        </div>
-        <div>
-            <label for="sb-trackman-enabled">Enabled</label>
-            <select id="sb-trackman-enabled">
-                <option value="true">Enabled</option>
-                <option value="false">Disabled</option>
-            </select>
-        </div>
-        <div class="d-flex align-items-end">
-            <button type="submit" class="btn-config w-100">Save TrackMan</button>
-        </div>
-    </form>
-
-    <div class="section-title" style="margin-top: 12px; margin-bottom: 8px;">StatCrew XML</div>
+    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">StatCrew XML</div>
     <form id="sb-statcrew-form" class="config-grid">
         <div style="grid-column: span 2;">
             <label for="sb-statcrew-path">StatCrew XML File Path</label>
@@ -255,184 +237,211 @@
 
 <script>
     let statcrewData = {};
+    let oesData = {};
+    let currentHalf = '';  // TOP or BOT from OES batting_team
+
+    // Returns which team is batting: 'away' or 'home'.
+    // Prefers StatCrew XML (batting_team) over OES half-inning state.
+    function getBattingTeam() {
+        if (statcrewData.batting_team) return statcrewData.batting_team;
+        if (currentHalf === 'TOP') return 'away';
+        if (currentHalf === 'BOT') return 'home';
+        return '';
+    }
 
     function renderSoftball(data) {
-        setText('sb-inning', data.inning);
+        oesData = data || {};
+
         setText('sb-balls', data.balls);
         setText('sb-strikes', data.strikes);
         setText('sb-outs', data.outs);
-        setText('sb-pitch-speed', data.pitch_speed);
-        const halfInning = data.batting_team && data.inning
-            ? `${data.batting_team} ${data.inning}`
-            : (data.batting_team || data.inning);
-        setText('sb-half-inning', halfInning);
         setText('sb-away-runs', data.away_runs);
-        setText('sb-away-hits', data.away_hits);
-        setText('sb-away-errors', data.away_errors);
         setText('sb-home-runs', data.home_runs);
-        setText('sb-home-hits', data.home_hits);
-        setText('sb-home-errors', data.home_errors);
-        setText('sb-batter-num', data.batter_num);
-        setText('sb-batter-avg', data.batter_avg);
-        setText('sb-pitcher-num', data.pitcher_num);
-        setText('sb-pitcher-count', data.pitcher_count);
-        setText('sb-last-play', data.last_play);
 
-        const awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
-        const homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
+        // Build half-inning display from separate OES fields
+        var bt = data.batting_team || '';
+        var inn = data.inning || '';
+        if (bt) currentHalf = bt.toUpperCase();
+
+        var display = bt && inn ? bt + ' ' + inn : (bt || inn || 'n/a');
+        setText('sb-half-inning', display);
+
+        var awayInnings = Array.isArray(data.away_innings) ? data.away_innings : [];
+        var homeInnings = Array.isArray(data.home_innings) ? data.home_innings : [];
+
         renderLinescoreSoftball(awayInnings, homeInnings, {
-            away: { runs: data.away_runs, hits: data.away_hits, errors: data.away_errors },
-            home: { runs: data.home_runs, hits: data.home_hits, errors: data.home_errors }
+            away: { runs: data.away_runs, hits: data.away_hits, errors: data.away_errors, label: 'Away' },
+            home: { runs: data.home_runs, hits: data.home_hits, errors: data.home_errors, label: 'Home' }
         });
+
+        updateCurrentPitcher();
+        updateCurrentBatter();
     }
 
     function renderStatcrewSoftball(data) {
         statcrewData = data || {};
-        const info = getStatcrewTeamInfo(statcrewData);
-        setText('sb-venue-info', info.venueText || 'Live scoreboard feed');
-        setText('sb-away-name', info.visitorName || 'Away');
-        setText('sb-home-name', info.homeName || 'Home');
-        setText('sb-away-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
-        setText('sb-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
+
+        var venue = data.venue || {};
+        if (venue.stadium || venue.location) {
+            var parts = [venue.stadium, venue.location].filter(Boolean);
+            setText('sb-venue-info', parts.join(' - ') || 'Live scoreboard feed');
+        }
+
+        if (venue.weather || venue.temp) {
+            var weatherChip = document.getElementById('sb-weather-chip');
+            if (weatherChip) weatherChip.style.display = 'block';
+            setText('sb-weather', venue.weather || (venue.temp ? venue.temp + '\u00B0F' : '--'));
+        }
+
+        setText('sb-away-name', data.away_name || 'Away');
+        setText('sb-home-name', data.home_name || 'Home');
+
+        updateCurrentPitcher();
+        updateCurrentBatter();
     }
 
-    function renderLinescoreSoftball(awayInnings, homeInnings, totals) {
-        const table = document.getElementById('sb-linescore-table');
-        if (!table) {
+    function formatPlayerName(name) {
+        if (!name) return '--';
+        var parts = name.split(',');
+        if (parts.length === 2) {
+            var last = parts[0].trim();
+            var first = parts[1].trim();
+            return first + ' ' + last;
+        }
+        return name;
+    }
+
+    function updateCurrentPitcher() {
+        var batting = getBattingTeam();
+
+        // Try StatCrew first
+        if (batting) {
+            var prefix = batting === 'away' ? 'home' : 'away';
+            var pName = statcrewData[prefix + '_pitcher_name'] || '';
+
+            if (pName) {
+                var pUni = statcrewData[prefix + '_pitcher_uni'] || '';
+                setText('sb-current-pitcher', formatPlayerName(pName) + (pUni ? ' #' + pUni : ''));
+
+                var ip = statcrewData[prefix + '_pitcher_ip'] || '--';
+                var so = statcrewData[prefix + '_pitcher_so'] || '--';
+                var pitches = statcrewData[prefix + '_pitcher_pitches'] || '';
+                var line = ip + ' IP | ' + so + ' K';
+                if (pitches) line += ' | ' + pitches + ' P';
+                setText('sb-pitcher-line', line);
+                return;
+            }
+        }
+
+        // OES fallback — softball provides pitcher_num and pitcher_count
+        var pNum = oesData.pitcher_num ? String(oesData.pitcher_num).trim() : '';
+        if (pNum) {
+            setText('sb-current-pitcher', '#' + pNum);
+            var count = oesData.pitcher_count ? String(oesData.pitcher_count).trim() + ' pitches' : '--';
+            setText('sb-pitcher-line', count);
+        }
+    }
+
+    function updateCurrentBatter() {
+        var name = statcrewData.current_batter_name || '';
+
+        if (name) {
+            // StatCrew path: find batter in lineup for stats
+            var normalize = function(s) {
+                return s.replace(/\./g, '').replace(/,\s+/g, ',').replace(/\s+/g, '');
+            };
+            var target = normalize(name);
+
+            var batting = getBattingTeam();
+            var batters = batting ? (statcrewData[batting + '_batters'] || []) : [];
+            var batter = batters.find(function(b) {
+                if (!b.name) return false;
+                return normalize(b.name) === target || b.name === name;
+            });
+
+            if (batter) {
+                setText('sb-current-batter', formatPlayerName(batter.name) + (batter.uni ? ' #' + batter.uni : ''));
+                var ab = batter.ab || '--';
+                var h = batter.h || '--';
+                var rbi = batter.rbi || '--';
+                var avg = batter.avg || '--';
+                setText('sb-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
+            } else {
+                setText('sb-current-batter', formatPlayerName(name));
+                setText('sb-batter-line', '--');
+            }
             return;
         }
 
-        const isFilled = (value) => value !== undefined && value !== null && String(value).trim() !== '';
-        const lastFilledIndex = (arr) => {
-            for (let i = arr.length - 1; i >= 0; i -= 1) {
-                if (isFilled(arr[i])) {
-                    return i;
-                }
-            }
-            return -1;
-        };
-
-        const lastAway = lastFilledIndex(awayInnings);
-        const lastHome = lastFilledIndex(homeInnings);
-        const minInnings = 7;
-        const inningCount = Math.max(minInnings, lastAway + 1, lastHome + 1, awayInnings.length, homeInnings.length);
-
-        const renderRow = (label, innings, total) => {
-            const cells = [];
-            cells.push(`<td class="team-row-label">${label}</td>`);
-            for (let i = 0; i < inningCount; i += 1) {
-                const value = formatValue(innings[i]);
-                cells.push(`<td>${value}</td>`);
-            }
-            cells.push(`<td class="linescore-total">${formatValue(total.runs)}</td>`);
-            cells.push(`<td class="linescore-total">${formatValue(total.hits)}</td>`);
-            cells.push(`<td class="linescore-total">${formatValue(total.errors)}</td>`);
-            return `<tr>${cells.join('')}</tr>`;
-        };
-
-        const headers = [''].concat(
-            Array.from({ length: inningCount }, (_, idx) => `${idx + 1}`),
-            ['R', 'H', 'E']
-        );
-
-        const headerCells = headers.map((label, index) => {
-            if (index >= headers.length - 3 && label) {
-                return `<th class="linescore-label">${label}</th>`;
-            }
-            return `<th>${label}</th>`;
-        }).join('');
-
-        table.innerHTML = `
-            <table class="table-grid">
-                <thead>
-                    <tr>${headerCells}</tr>
-                </thead>
-                <tbody>
-                    ${renderRow('Away', awayInnings, totals.away)}
-                    ${renderRow('Home', homeInnings, totals.home)}
-                </tbody>
-            </table>
-        `;
-    }
-
-    function renderTrackmanSoftball(data) {
-        setText('sb-tm-pitch-speed', data.pitch_speed);
-        setText('sb-tm-spin-rate', data.spin_rate);
-        setText('sb-tm-exit-velocity', data.hit_exit_velocity);
-        setText('sb-tm-launch-angle', data.hit_launch_angle);
-        setText('sb-tm-distance', data.hit_distance);
-        setText('sb-tm-track-id', data.track_id);
-        setText('sb-tm-time', data.time);
-
-        updateStrikeZone('sb-zone-dot', 'sb-zone-readout', data, {
-            zone: { minX: -0.83, maxX: 0.83, minV: 1.5, maxV: 3.3775 },
-            margin: 1.0,
-            xOffset: 1.42,
-            xScale: 0.85
-        });
-    }
-
-    function renderTrackmanConfigSoftball(config) {
-        const status = config.error
-            ? 'error'
-            : (config.enabled ? (config.running ? 'live' : 'idle') : 'disabled');
-        setText('sb-tm-status', status);
-        document.getElementById('sb-trackman-port').value = config.port || '';
-        document.getElementById('sb-trackman-feed-type').value = config.feed_type || 'broadcast';
-        document.getElementById('sb-trackman-enabled').value = config.enabled ? 'true' : 'false';
-    }
-
-    function loadTrackmanSoftballConfig() {
-        fetch('/trackman_config/Softball')
-            .then(response => response.json())
-            .then(data => renderTrackmanConfigSoftball(data || {}))
-            .catch(() => renderTrackmanConfigSoftball({ enabled: false }));
-    }
-
-    function bindTrackmanSoftballDefaults() {
-        const portInput = document.getElementById('sb-trackman-port');
-        const feedSelect = document.getElementById('sb-trackman-feed-type');
-        const applyDefault = () => {
-            if (!portInput.value) {
-                portInput.value = feedSelect.value === 'scoreboard' ? '20999' : '20998';
-            }
-        };
-        feedSelect.addEventListener('change', applyDefault);
-        applyDefault();
-    }
-
-    function submitTrackmanSoftballConfig(event) {
-        event.preventDefault();
-        const port = parseInt(document.getElementById('sb-trackman-port').value, 10);
-        const feedType = document.getElementById('sb-trackman-feed-type').value;
-        const enabled = document.getElementById('sb-trackman-enabled').value === 'true';
-        fetch('/trackman_config/Softball', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ port: port, feed_type: feedType, enabled: enabled })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(data => { throw data; });
-                }
-                return response.json();
-            })
-            .then(data => renderTrackmanConfigSoftball(data || {}))
-            .catch(error => renderTrackmanConfigSoftball({ enabled: false, error: error.error || 'error' }));
-    }
-
-    function fetchTrackmanSoftballData() {
-        fetch('/get_trackman_data/Softball')
-            .then(response => response.json())
-            .then(data => renderTrackmanSoftball(data || {}))
-            .catch(() => renderTrackmanSoftball({}));
+        // OES fallback — softball provides batter_num and batter_avg
+        var bNum = oesData.batter_num ? String(oesData.batter_num).trim() : '';
+        if (bNum) {
+            setText('sb-current-batter', '#' + bNum);
+            var avg = oesData.batter_avg ? String(oesData.batter_avg).trim() : '';
+            setText('sb-batter-line', avg ? 'AVG .' + avg : '--');
+        }
     }
 
     function fetchStatcrewSoftballData() {
         fetch('/get_statcrew_data/Softball')
-            .then(response => response.json())
-            .then(data => renderStatcrewSoftball(data || {}))
-            .catch(() => renderStatcrewSoftball({}));
+            .then(function(response) { return response.json(); })
+            .then(function(data) { renderStatcrewSoftball(data || {}); })
+            .catch(function() { renderStatcrewSoftball({}); });
+    }
+
+    function renderLinescoreSoftball(awayInnings, homeInnings, totals) {
+        var table = document.getElementById('sb-linescore-table');
+        if (!table) return;
+
+        var isFilled = function(value) {
+            return value !== undefined && value !== null && String(value).trim() !== '';
+        };
+        var lastFilledIndex = function(arr) {
+            for (var i = arr.length - 1; i >= 0; i -= 1) {
+                if (isFilled(arr[i])) return i;
+            }
+            return -1;
+        };
+
+        var lastAway = lastFilledIndex(awayInnings);
+        var lastHome = lastFilledIndex(homeInnings);
+        var minInnings = 7;
+        var inningCount = Math.max(minInnings, lastAway + 1, lastHome + 1, awayInnings.length, homeInnings.length);
+
+        var renderRow = function(label, innings, total) {
+            var cells = [];
+            var teamLabel = total.label || label;
+            cells.push('<td class="team-row-label">' + teamLabel + '</td>');
+            for (var i = 0; i < inningCount; i += 1) {
+                var value = formatValue(innings[i]);
+                cells.push('<td>' + value + '</td>');
+            }
+            cells.push('<td class="linescore-total">' + formatValue(total.runs) + '</td>');
+            cells.push('<td class="linescore-total">' + formatValue(total.hits) + '</td>');
+            cells.push('<td class="linescore-total">' + formatValue(total.errors) + '</td>');
+            return '<tr>' + cells.join('') + '</tr>';
+        };
+
+        var headers = [''].concat(
+            Array.from({ length: inningCount }, function(_, idx) { return '' + (idx + 1); }),
+            ['R', 'H', 'E']
+        );
+
+        var headerCells = headers.map(function(label, index) {
+            if (index >= headers.length - 3 && label) {
+                return '<th class="linescore-label">' + label + '</th>';
+            }
+            return '<th>' + label + '</th>';
+        }).join('');
+
+        table.innerHTML =
+            '<table class="table-grid">' +
+                '<thead><tr>' + headerCells + '</tr></thead>' +
+                '<tbody>' +
+                    renderRow('Away', awayInnings, totals.away) +
+                    renderRow('Home', homeInnings, totals.home) +
+                '</tbody>' +
+            '</table>';
     }
 
     function fetchSoftballData() {
@@ -441,21 +450,16 @@
 
     fetchSoftballData();
     setInterval(fetchSoftballData, 1000);
-    loadTrackmanSoftballConfig();
-    fetchTrackmanSoftballData();
-    setInterval(fetchTrackmanSoftballData, 1000);
-    bindTrackmanSoftballDefaults();
+
+    fetchStatcrewSoftballData();
+    setInterval(fetchStatcrewSoftballData, 2000);
 
     loadStatcrewConfig('Softball', 'sb');
-    fetchStatcrewSoftballData();
-    setInterval(fetchStatcrewSoftballData, 5000);
-
-    document.getElementById('sb-trackman-form').addEventListener('submit', submitTrackmanSoftballConfig);
     document.getElementById('sb-statcrew-form').addEventListener('submit', function(e) {
         submitStatcrewConfig(e, 'Softball', 'sb');
     });
 
-    document.addEventListener('dataFetched', function (event) {
+    document.addEventListener('dataFetched', function(event) {
         renderSoftball(event.detail || {});
     });
 </script>
