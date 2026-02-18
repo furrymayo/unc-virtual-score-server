@@ -1,5 +1,9 @@
 from website.statcrew import (
+    _find_ncaa_team,
+    _hex_to_hsl,
+    _is_valid_away_color,
     _parse_statcrew_xml,
+    lookup_away_team_color,
     normalize_sport,
 )
 
@@ -327,3 +331,139 @@ class TestParseStatcrewXml:
         assert "H" in result["players"]
         assert result["teams"][0]["linescore"]["runs"] == "5"
         assert result["teams"][1]["linescore"]["runs"] == "3"
+
+
+class TestHexToHsl:
+    def test_pure_red(self):
+        h, s, l = _hex_to_hsl("#FF0000")
+        assert abs(h - 0) < 1
+        assert abs(s - 1.0) < 0.01
+        assert abs(l - 0.5) < 0.01
+
+    def test_pure_white(self):
+        h, s, l = _hex_to_hsl("#FFFFFF")
+        assert abs(l - 1.0) < 0.01
+
+    def test_pure_black(self):
+        h, s, l = _hex_to_hsl("#000000")
+        assert abs(l - 0.0) < 0.01
+
+    def test_carolina_blue(self):
+        h, s, l = _hex_to_hsl("#4b9cd3")
+        assert 195 < h < 215  # blue range
+
+    def test_invalid_hex(self):
+        h, s, l = _hex_to_hsl("xyz")
+        assert (h, s, l) == (0, 0, 0)
+
+
+class TestIsValidAwayColor:
+    def test_rejects_white(self):
+        assert _is_valid_away_color("#FFFFFF") is False
+
+    def test_rejects_near_white(self):
+        assert _is_valid_away_color("#EEEEEE") is False
+
+    def test_rejects_black(self):
+        assert _is_valid_away_color("#000000") is False
+
+    def test_rejects_near_black(self):
+        assert _is_valid_away_color("#111111") is False
+
+    def test_rejects_blue(self):
+        assert _is_valid_away_color("#004C7D") is False  # Duke blue
+
+    def test_rejects_carolina_blue(self):
+        assert _is_valid_away_color("#4b9cd3") is False
+
+    def test_accepts_red(self):
+        assert _is_valid_away_color("#CC0000") is True
+
+    def test_accepts_orange(self):
+        assert _is_valid_away_color("#F06014") is True  # Clemson orange
+
+    def test_accepts_purple(self):
+        assert _is_valid_away_color("#441F6F") is True  # Clemson purple
+
+    def test_accepts_gold(self):
+        assert _is_valid_away_color("#C29C41") is True
+
+
+class TestFindNcaaTeam:
+    def test_exact_match(self):
+        team = _find_ncaa_team("Clemson Tigers", "")
+        assert team is not None
+        assert team["slug"] == "clemson_tigers"
+
+    def test_prefix_match(self):
+        # StatCrew might send "Duke" without "Blue Devils"
+        team = _find_ncaa_team("Duke", "")
+        assert team is not None
+        assert team["slug"] == "duke_blue_devils"
+
+    def test_code_slug_match(self):
+        team = _find_ncaa_team("", "clemson")
+        assert team is not None
+        assert team["slug"] == "clemson_tigers"
+
+    def test_no_match(self):
+        team = _find_ncaa_team("Nonexistent School", "xyz")
+        assert team is None
+
+    def test_case_insensitive(self):
+        team = _find_ncaa_team("CLEMSON TIGERS", "")
+        assert team is not None
+        assert team["slug"] == "clemson_tigers"
+
+    def test_periods_stripped(self):
+        # "U.S.C." → "usc" should match via prefix on "usc trojans"
+        team = _find_ncaa_team("U.S.C.", "")
+        assert team is not None
+        assert "usc" in team["slug"]
+
+    def test_empty_inputs(self):
+        team = _find_ncaa_team("", "")
+        assert team is None
+
+    def test_none_inputs(self):
+        team = _find_ncaa_team(None, None)
+        assert team is None
+
+
+class TestLookupAwayTeamColor:
+    def test_duke_falls_back(self):
+        """Duke only has white + blue — both rejected — should return fallback."""
+        color = lookup_away_team_color("Duke Blue Devils", "duke")
+        assert color == "#d46a6a"
+
+    def test_nc_state_returns_red(self):
+        color = lookup_away_team_color("North Carolina State Wolfpack", "")
+        assert color != "#d46a6a"
+        # NC State's red (#EF1216) should be valid
+        assert _is_valid_away_color(color)
+
+    def test_clemson_returns_valid(self):
+        color = lookup_away_team_color("Clemson Tigers", "clemson")
+        assert color != "#d46a6a"
+        assert _is_valid_away_color(color)
+
+    def test_unknown_returns_fallback(self):
+        color = lookup_away_team_color("Unknown School", "xyz")
+        assert color == "#d46a6a"
+
+    def test_empty_returns_fallback(self):
+        color = lookup_away_team_color("", "")
+        assert color == "#d46a6a"
+
+    def test_parser_includes_away_team_color(self):
+        """The XML parser should add away_team_color to parsed output."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Clemson Tigers" code="clemson"/>
+            <team vh="H" name="North Carolina" code="unc"/>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert "away_team_color" in result
+        assert result["away_team_color"] != "#d46a6a"
+        assert _is_valid_away_color(result["away_team_color"])

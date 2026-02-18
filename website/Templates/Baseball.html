@@ -434,6 +434,7 @@
 
     function renderStatcrewBaseball(data) {
         statcrewData = data || {};
+        if (data.away_team_color) applyAwayTeamColor(data.away_team_color);
 
         const venue = data.venue || {};
         if (venue.stadium || venue.location) {

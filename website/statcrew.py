@@ -1,5 +1,7 @@
+import colorsys
 import json
 import os
+import re
 import threading
 import time
 import xml.etree.ElementTree as ET
@@ -45,6 +47,99 @@ def _init_config():
 
 
 _init_config()
+
+
+# --- NCAA Team Color Lookup ---
+
+_AWAY_COLOR_FALLBACK = "#d46a6a"
+_ncaa_teams = []
+
+
+def _load_ncaa_colors():
+    """Load NCAA team colors JSON once at module init."""
+    global _ncaa_teams
+    json_path = os.path.join(os.path.dirname(__file__), "ncaa_team_colors.json")
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            _ncaa_teams = json.load(f)
+    except Exception as exc:
+        print(f"Failed to load NCAA team colors: {exc}")
+        _ncaa_teams = []
+
+
+def _hex_to_hsl(hex_color):
+    """Convert hex color to (h: 0-360, s: 0-1, l: 0-1)."""
+    hex_color = hex_color.lstrip("#")
+    if len(hex_color) != 6:
+        return (0, 0, 0)
+    r = int(hex_color[0:2], 16) / 255.0
+    g = int(hex_color[2:4], 16) / 255.0
+    b = int(hex_color[4:6], 16) / 255.0
+    # colorsys uses HLS (not HSL) — returns (h, l, s)
+    h, l, s = colorsys.rgb_to_hls(r, g, b)
+    return (h * 360, s, l)
+
+
+def _is_valid_away_color(hex_color):
+    """Reject white (L>0.85), black (L<0.15), blue (H 170-260 with S>0.2)."""
+    h, s, l = _hex_to_hsl(hex_color)
+    if l > 0.85:
+        return False  # too white
+    if l < 0.15:
+        return False  # too black
+    if 170 <= h <= 260 and s > 0.2:
+        return False  # too blue (conflicts with Carolina blue)
+    return True
+
+
+def _normalize_name(name):
+    """Lowercase, strip periods, collapse whitespace."""
+    name = name.lower().replace(".", "").strip()
+    return re.sub(r"\s+", " ", name)
+
+
+def _find_ncaa_team(away_name, away_code):
+    """3-pass matching against NCAA team colors list."""
+    if not away_name and not away_code:
+        return None
+
+    norm_name = _normalize_name(away_name) if away_name else ""
+    norm_code = (away_code or "").lower().strip()
+
+    # Pass 1: exact normalized name match
+    for team in _ncaa_teams:
+        if norm_name and _normalize_name(team["name"]) == norm_name:
+            return team
+
+    # Pass 2: StatCrew name is prefix of JSON name (word boundary)
+    if norm_name:
+        for team in _ncaa_teams:
+            json_name = _normalize_name(team["name"])
+            if json_name.startswith(norm_name + " ") or json_name == norm_name:
+                return team
+
+    # Pass 3: code matches slug prefix
+    if norm_code:
+        for team in _ncaa_teams:
+            slug = team.get("slug", "")
+            if slug.startswith(norm_code + "_") or slug == norm_code:
+                return team
+
+    return None
+
+
+def lookup_away_team_color(away_name, away_code):
+    """Find team, pick first valid color, fallback to #d46a6a."""
+    team = _find_ncaa_team(away_name, away_code)
+    if not team:
+        return _AWAY_COLOR_FALLBACK
+    for color in team.get("colors", []):
+        if _is_valid_away_color(color):
+            return color
+    return _AWAY_COLOR_FALLBACK
+
+
+_load_ncaa_colors()
 
 
 # --- Config persistence ---
@@ -328,6 +423,9 @@ def _parse_statcrew_xml(xml_text):
             parsed["away_id"] = visitor_team.get("id", "")
             parsed["away_record"] = visitor_team.get("record", "")
             parsed["away_lob"] = visitor_team.get("linescore", {}).get("lob", "")
+            parsed["away_team_color"] = lookup_away_team_color(
+                parsed["away_name"], parsed["away_code"]
+            )
         if home_team:
             parsed["home_name"] = home_team.get("name", "Home")
             parsed["home_code"] = home_team.get("code", "") or home_team.get("id", "")

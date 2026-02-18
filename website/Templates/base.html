@@ -234,7 +234,7 @@
         }
 
         .team-label.is-visitor {
-            color: #d46a6a;
+            color: var(--away-color, #d46a6a);
         }
 
         /* Global team color coding: home = UNC Carolina Blue, away = subtle red */
@@ -247,11 +247,11 @@
         }
 
         .team-away .team-label {
-            color: #d46a6a;
+            color: var(--away-color, #d46a6a);
         }
 
         .team-away .team-score {
-            color: #d46a6a;
+            color: var(--away-color, #d46a6a);
         }
 
         .team-score {
@@ -1362,6 +1362,29 @@
             div.textContent = text;
             return div.innerHTML.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         }
+
+        function applyAwayTeamColor(color) {
+            if (color) {
+                document.documentElement.style.setProperty('--away-color', color);
+            }
+        }
+
+        // Auto-fetch away team color from StatCrew on page load
+        (function() {
+            const path = window.location.pathname.replace(/^\//, '');
+            const sports = ['Basketball','Hockey','Lacrosse','Football','Volleyball',
+                            'Wrestling','Soccer','Softball','Baseball'];
+            const sport = sports.find(function(s) { return path === s; });
+            if (!sport) return;
+            fetch('/get_statcrew_data/' + sport, { cache: 'no-store' })
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data && data.away_team_color) {
+                        applyAwayTeamColor(data.away_team_color);
+                    }
+                })
+                .catch(function() {});
+        })();
     </script>
 </head>
 <body>
