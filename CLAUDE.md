@@ -31,6 +31,7 @@ Flask web application that displays real-time sports scoreboards by reading data
 - innerHTML XSS vulnerabilities fixed in Debug and home templates
 - TV-optimized UI: thin single-row navbar, raised clamp() ceilings for large-screen readability
 - TV-optimized Gymnastics layout: rotation bar, team scores, clock, lineup cards, all-around leaders
+- Softball layout mirrors Baseball: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, 7-inning linescore (no TrackMan)
 - Baseball layout: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, linescore in center column
 - Baseball strike zone uses correct 3:4 portrait aspect ratio (17"×24" real proportions)
 - OES baseball batter_num 0x3A blank handling fixed in protocol.py
@@ -92,6 +93,7 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 | `<innsummary>` | Present when a half-inning is complete |
 
 ## Recent Activity
+- 2026-02-18: Softball rewrite — mirrors Baseball layout (Pitching/Inning/AtBat top row, Away/B-S-O/Home score row, 7-inning linescore), removed TrackMan elements, OES fallback for pitcher/batter. Cleaned up dead files (auth.py, models.py). Added `virtius_sources.json` for boot persistence.
 - 2026-02-18: Gymnastics overhaul — TV-optimized template (rotation bar, team scores, clock, lineup cards, all-around leaders), Virtius API integration with exhibition gymnasts and running AA totals, duplicate host:port data sources with auto-suffixed IDs, home page sport override dropdown, Virtius auto-start on boot
 - 2026-02-18: Baseball real-time: `<status>` element for live batter/pitcher/batting team, `appear` attr for pitcher detection after subs, live pitch count (`pitches` + `np`), reduced poll/fetch to 2s, TV layout restructure (compact cards, center linescore)
 - 2026-02-17: TV readability overhaul — collapsed navbar to thin bar, raised all clamp() ceilings (~2x primary, ~1.5x secondary), fixed baseball TrackMan card overflow, strike zone 3:4 portrait ratio, linescore static Away/Home labels, reduced team score cards, added `away_code`/`home_code` to statcrew parser
