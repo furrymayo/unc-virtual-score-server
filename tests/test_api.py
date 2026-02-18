@@ -72,13 +72,26 @@ class TestDataSourcesCRUD:
         assert sources[0]["id"] == source_id
         assert sources[0]["sport_overrides"] == {"Lacrosse": "Gymnastics"}
 
-    def test_add_duplicate(self, client):
+    def test_add_duplicate_gets_unique_id(self, client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999})
-        client.post("/data_sources", data=payload, content_type="application/json")
-        resp = client.post(
-            "/data_sources", data=payload, content_type="application/json"
-        )
-        assert resp.status_code == 409
+        resp1 = client.post("/data_sources", data=payload, content_type="application/json")
+        assert resp1.status_code == 200
+        id1 = resp1.get_json()["source"]["id"]
+        assert id1 == "tcp:127.0.0.1:9999"
+
+        resp2 = client.post("/data_sources", data=payload, content_type="application/json")
+        assert resp2.status_code == 200
+        id2 = resp2.get_json()["source"]["id"]
+        assert id2 == "tcp:127.0.0.1:9999:2"
+
+        resp3 = client.post("/data_sources", data=payload, content_type="application/json")
+        assert resp3.status_code == 200
+        id3 = resp3.get_json()["source"]["id"]
+        assert id3 == "tcp:127.0.0.1:9999:3"
+
+        resp = client.get("/data_sources")
+        sources = resp.get_json()["sources"]
+        assert len(sources) == 3
 
     def test_delete(self, client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999})

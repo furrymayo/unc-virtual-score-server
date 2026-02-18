@@ -299,11 +299,12 @@ def _build_current_lineups(teams, current_rotation):
         for gymnast in current_event_obj.get("gymnasts", []):
             if not isinstance(gymnast, dict):
                 continue
+            counting = True
             gymnast_type = gymnast.get("type")
             if gymnast_type is not None:
                 try:
                     if int(gymnast_type) == 0:
-                        continue
+                        counting = False
                 except (TypeError, ValueError):
                     pass
             name = (
@@ -325,6 +326,7 @@ def _build_current_lineups(teams, current_rotation):
                     "name": name,
                     "score": score,
                     "order": order_value,
+                    "counting": counting,
                 }
             )
 
@@ -397,7 +399,8 @@ def _compute_all_around_leaders(teams, limit):
 
     results = []
     for entry in gymnasts.values():
-        if len(entry["scores"]) < 4:
+        events_completed = len(entry["scores"])
+        if events_completed < 2:
             continue
         total = sum(entry["scores"].values())
         results.append(
@@ -405,11 +408,18 @@ def _compute_all_around_leaders(teams, limit):
                 "name": entry["name"],
                 "team": entry["team"],
                 "score": _format_score(total),
+                "events_completed": events_completed,
                 "place": None,
             }
         )
 
-    results.sort(key=lambda item: _parse_score(item.get("score")) or 0, reverse=True)
+    results.sort(
+        key=lambda item: (
+            item.get("events_completed", 0),
+            _parse_score(item.get("score")) or 0,
+        ),
+        reverse=True,
+    )
     return results[:limit]
 
 

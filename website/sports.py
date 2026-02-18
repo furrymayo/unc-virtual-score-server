@@ -55,7 +55,7 @@ def Baseball():
 
 @sports.route("/Gymnastics")
 def Gymnastics():
-    return render_template("copyPasta.html")
+    return render_template("Gymnastics.html")
 
 
 @sports.route("/Debug")

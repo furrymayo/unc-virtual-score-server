@@ -598,6 +598,18 @@ def _make_source_id(host, port):
     return f"tcp:{host}:{port}"
 
 
+def _make_unique_source_id(host, port):
+    """Generate a unique source ID, appending :2, :3, etc. if the base ID is taken."""
+    base_id = _make_source_id(host, port)
+    existing_ids = {source["id"] for source in data_sources}
+    if base_id not in existing_ids:
+        return base_id
+    suffix = 2
+    while f"{base_id}:{suffix}" in existing_ids:
+        suffix += 1
+    return f"{base_id}:{suffix}"
+
+
 def start_configured_sources():
     global data_sources
     loaded = _load_data_sources()

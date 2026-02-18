@@ -76,20 +76,16 @@ def data_sources_endpoint():
     except (TypeError, ValueError):
         return jsonify({"error": "invalid port"}), 400
 
-    source_id = ingestion._make_source_id(host, port)
-    entry = {
-        "id": source_id,
-        "name": name,
-        "host": host,
-        "port": port,
-        "enabled": True,
-        "sport_overrides": sport_overrides,
-    }
-
     with ingestion.data_sources_lock:
-        for source in ingestion.data_sources:
-            if source["id"] == source_id:
-                return jsonify({"error": "source already exists"}), 409
+        source_id = ingestion._make_unique_source_id(host, port)
+        entry = {
+            "id": source_id,
+            "name": name,
+            "host": host,
+            "port": port,
+            "enabled": True,
+            "sport_overrides": sport_overrides,
+        }
         ingestion.data_sources.append(entry)
 
     ingestion._save_data_sources()
