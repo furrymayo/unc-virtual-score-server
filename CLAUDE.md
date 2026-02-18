@@ -23,9 +23,17 @@ Flask web application that displays real-time sports scoreboards by reading data
 - StatCrew `<pitching appear>` attribute for accurate pitcher detection after substitutions
 - Live pitch count: `<pitching pitches>` (cumulative) + `<status np>` (current at-bat) — self-correcting
 - StatCrew `batord` elements reflect live lineup changes (substitutions, pinch hitters)
+- StatCrew base runners from `<status first="" second="" third="">` (primary), `<play>` elements (fallback)
+- StatCrew inning display: MID/END transitions from `<status>` outs/endinn/vh, OES fallback guarded
+- StatCrew at-bat card: "Today:" game stats (H-AB, RBI, HR) + "Season:" stats (AVG, HR)
+- StatCrew pitcher card: "Today:" prefix on game stat line
+- Dynamic away team colors: NCAA 347-team color JSON lookup, HSL validation (rejects white/black/blue), CSS `var(--away-color)` theming
+- Team tricode labels on Pitching/At Bat cards with team font color
+- Linescore row styling: away team color, home Carolina blue, subtle background differentiation
+- TrackMan values rounded to whole numbers (no decimal)
 - StatCrew network share mounted at `/mnt/stats` on Ubuntu server (CIFS, persistent)
 - StatCrew poll interval: 2s (file mtime check 0.3ms, full parse 10ms)
-- 95 pytest tests covering protocol, ingestion, trackman, statcrew, and API
+- 131 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup), and API
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
 - innerHTML XSS vulnerabilities fixed in Debug and home templates
@@ -57,7 +65,8 @@ Flask web application that displays real-time sports scoreboards by reading data
 | `website/protocol.py` | Protocol constants, PacketStreamParser, decoders, 9 sport parsers, `identify_and_parse()` |
 | `website/ingestion.py` | Data store, serial/TCP/UDP readers, source management, cleanup thread |
 | `website/trackman.py` | TrackMan state, JSON parser, UDP listener, config management |
-| `website/statcrew.py` | StatCrew XML parser, file watcher thread, config persistence |
+| `website/statcrew.py` | StatCrew XML parser, file watcher thread, config persistence, NCAA color lookup |
+| `website/ncaa_team_colors.json` | Static NCAA team colors data (347 teams) for away team color lookup |
 | `website/virtius.py` | Virtius live scoring API poller, session parser, config persistence |
 
 ## Dependency Graph (no cycles)
@@ -85,7 +94,7 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 ## StatCrew XML Key Elements
 | Element | Purpose |
 |---------|---------|
-| `<status>` | Real-time game state: `batter`, `pitcher`, `vh` (batting team), `np` (pitches in current at-bat), `b`/`s` (count), `outs`, `inning` |
+| `<status>` | Real-time game state: `batter`, `pitcher`, `vh` (batting team), `np` (pitches in current at-bat), `b`/`s` (count), `outs`, `inning`, `first`/`second`/`third` (runners), `endinn` |
 | `<pitching appear="N">` | Order of pitcher appearance — highest value = most recently entered pitcher per team |
 | `<pitching pitches="X">` | Cumulative pitch count — only updates after completed at-bats |
 | `<batord>` | Live batting order — updates with substitutions (pinch hitters get `in`/`seq` attrs) |
@@ -93,6 +102,7 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 | `<innsummary>` | Present when a half-inning is complete |
 
 ## Recent Activity
+- 2026-02-18: Live game enhancements — dynamic away team colors (NCAA JSON lookup, HSL validation, CSS variable theming), team tricode labels on Pitching/At Bat cards, linescore row styling (away color, home Carolina blue), base runners from `<status>` element, inning MID/END transitions with OES/StatCrew priority fix, at-bat "Today:"/"Season:" stat labels with HR, pitcher "Today:" prefix, TrackMan whole-number rounding
 - 2026-02-18: Softball rewrite — mirrors Baseball layout (Pitching/Inning/AtBat top row, Away/B-S-O/Home score row, 7-inning linescore), removed TrackMan elements, OES fallback for pitcher/batter. Cleaned up dead files (auth.py, models.py). Added `virtius_sources.json` for boot persistence.
 - 2026-02-18: Gymnastics overhaul — TV-optimized template (rotation bar, team scores, clock, lineup cards, all-around leaders), Virtius API integration with exhibition gymnasts and running AA totals, duplicate host:port data sources with auto-suffixed IDs, home page sport override dropdown, Virtius auto-start on boot
 - 2026-02-18: Baseball real-time: `<status>` element for live batter/pitcher/batting team, `appear` attr for pitcher detection after subs, live pitch count (`pitches` + `np`), reduced poll/fetch to 2s, TV layout restructure (compact cards, center linescore)
