@@ -274,7 +274,8 @@
                 <div class="center-card compact">
                     <div class="center-label">At Bat</div>
                     <div class="center-value compact" id="bs-current-batter">--</div>
-                    <div class="stat-value compact" id="bs-batter-line" style="color: var(--ink-soft);">--</div>
+                    <div class="stat-value compact" id="bs-batter-game" style="color: var(--ink-soft);">--</div>
+                    <div class="stat-value compact" id="bs-batter-season" style="color: var(--ink-soft);">--</div>
                 </div>
             </div>
 
@@ -504,7 +505,8 @@
         const name = statcrewData.current_batter_name || '';
         if (!name) {
             setText('bs-current-batter', '--');
-            setText('bs-batter-line', '--');
+            setText('bs-batter-game', '--');
+            setText('bs-batter-season', '--');
             return;
         }
 
@@ -527,11 +529,13 @@
             const ab = batter.ab || '--';
             const h = batter.h || '--';
             const rbi = batter.rbi || '--';
-            const avg = batter.avg || '--';
-            setText('bs-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
+            const avg = batter.avg || '';
+            setText('bs-batter-game', 'Today: ' + h + '-' + ab + ' | ' + rbi + ' RBI');
+            setText('bs-batter-season', avg ? 'Season: ' + avg + ' AVG' : '--');
         } else {
             setText('bs-current-batter', formatPlayerName(name));
-            setText('bs-batter-line', '--');
+            setText('bs-batter-game', '--');
+            setText('bs-batter-season', '--');
         }
     }
 

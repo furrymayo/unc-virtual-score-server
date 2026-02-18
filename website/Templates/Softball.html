@@ -170,7 +170,8 @@
         <div class="center-card compact">
             <div class="center-label">At Bat</div>
             <div class="center-value compact" id="sb-current-batter">--</div>
-            <div class="stat-value compact" id="sb-batter-line" style="color: var(--ink-soft);">--</div>
+            <div class="stat-value compact" id="sb-batter-game" style="color: var(--ink-soft);">--</div>
+            <div class="stat-value compact" id="sb-batter-season" style="color: var(--ink-soft);">--</div>
         </div>
     </div>
 
@@ -386,11 +387,13 @@
                 var ab = batter.ab || '--';
                 var h = batter.h || '--';
                 var rbi = batter.rbi || '--';
-                var avg = batter.avg || '--';
-                setText('sb-batter-line', h + '-' + ab + ' | ' + rbi + ' RBI | ' + avg);
+                var avg = batter.avg || '';
+                setText('sb-batter-game', 'Today: ' + h + '-' + ab + ' | ' + rbi + ' RBI');
+                setText('sb-batter-season', avg ? 'Season: ' + avg + ' AVG' : '--');
             } else {
                 setText('sb-current-batter', formatPlayerName(name));
-                setText('sb-batter-line', '--');
+                setText('sb-batter-game', '--');
+                setText('sb-batter-season', '--');
             }
             return;
         }
@@ -400,7 +403,8 @@
         if (bNum) {
             setText('sb-current-batter', '#' + bNum);
             var avg = oesData.batter_avg ? String(oesData.batter_avg).trim() : '';
-            setText('sb-batter-line', avg ? 'AVG .' + avg : '--');
+            setText('sb-batter-game', '--');
+            setText('sb-batter-season', avg ? 'Season: .' + avg + ' AVG' : '--');
         }
     }
 
