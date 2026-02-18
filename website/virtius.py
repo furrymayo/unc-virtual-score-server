@@ -299,14 +299,6 @@ def _build_current_lineups(teams, current_rotation):
         for gymnast in current_event_obj.get("gymnasts", []):
             if not isinstance(gymnast, dict):
                 continue
-            # Skip exhibition gymnasts (type == 0)
-            gymnast_type = gymnast.get("type")
-            if gymnast_type is not None:
-                try:
-                    if int(gymnast_type) == 0:
-                        continue
-                except (TypeError, ValueError):
-                    pass
             name = (
                 gymnast.get("full_name")
                 or " ".join(
