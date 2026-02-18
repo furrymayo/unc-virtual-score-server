@@ -1,10 +1,10 @@
 # Architecture
 
-**Last Updated**: 2026-02-17
+**Last Updated**: 2026-02-18
 
 ## Overview
 
-Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport pages in a browser. Parsing logic is based on the legacy desktop app and uses packet-length guards to distinguish sports that share the same packet type. Supports TrackMan UDP for pitch/hit tracking and StatCrew XML for enhanced game stats.
+Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport pages in a browser. Parsing logic is based on the legacy desktop app and uses packet-length guards to distinguish sports that share the same packet type. Supports TrackMan UDP for pitch/hit tracking, StatCrew XML for enhanced game stats, and Virtius API for live gymnastics scoring.
 
 ## Data Flow
 
@@ -14,6 +14,8 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 [TrackMan System] -----> [UDP] ---------> [trackman.py] --> [trackman_data store]          |
                                                                     |                      |
 [StatCrew XML Files] --> [file watcher] --> [statcrew.py] --> [statcrew_data store]        |
+                                                                    |                      |
+[Virtius API] --------> [HTTP poller] --> [virtius.py] --> [virtius_data store]            |
                                                                     |                      |
 [Browser] <-- [Templates] <-- [views.py / sports.py] <-- [api.py] <-- accessor functions --+
 ```
@@ -34,6 +36,7 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 - TCP client workers (outbound connections to OES controllers, with backoff)
 - UDP/TCP inbound listeners
 - Data source CRUD helpers (`_load_data_sources`, `_save_data_sources`, etc.)
+- `_make_unique_source_id()` for duplicate host:port support (auto-suffixes `:2`, `:3`, etc.)
 - Stale source cleanup daemon thread (5min interval, 1hr TTL)
 - Per-source `sport_overrides` to remap packets (e.g., Lacrosse → Gymnastics for the gymnastics venue)
 
@@ -51,8 +54,17 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 - Config persistence via `statcrew_sources.json`
 - Accessor functions: `get_data()`, `get_config()`, `update_config()`
 
+### `website/virtius.py` — Virtius live scoring subsystem
+- Separate shared state: `virtius_data`, `virtius_config`
+- HTTP poller for Virtius API (`api.virti.us/session/{key}/json`)
+- Session parser: builds team scores, event-by-event breakdowns, current lineups, all-around leaders
+- Includes exhibition gymnasts in lineups with `counting` boolean flag
+- Running all-around leaders from 2+ events (updates throughout the meet)
+- Config persistence via `virtius_sources.json`
+- Auto-starts configured watchers on server boot
+
 ### `website/api.py` — API routes blueprint
-- 12 REST endpoints, calls accessor functions from ingestion/trackman/statcrew
+- 14 REST endpoints, calls accessor functions from ingestion/trackman/statcrew/virtius
 - No direct state access — all through module functions
 
 ### `website/sports.py` — Sport page routes
@@ -79,6 +91,8 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 | `/statcrew_config/<sport>` | GET/POST | Configure StatCrew XML file watcher |
 | `/get_statcrew_data/<sport>` | GET | Latest parsed StatCrew data |
 | `/browse_files?path=...` | GET | Browse server filesystem for XML files |
+| `/virtius_config/<sport>` | GET/POST | Configure Virtius API polling |
+| `/get_virtius_data/<sport>` | GET | Latest parsed Virtius scoring data |
 | `/get_available_com_ports` | GET | List serial ports on the machine |
 
 ## Threading Model
@@ -90,4 +104,5 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
   - UDP listener (1 for scoreboard data)
   - TrackMan UDP listeners (1 per enabled sport)
   - StatCrew file watchers (1 per enabled sport, polls mtime every 5s)
+  - Virtius API pollers (1 per enabled sport, polls HTTP endpoint)
   - Stale source cleanup (1, runs every 5 minutes)

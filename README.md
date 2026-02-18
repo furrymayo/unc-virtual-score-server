@@ -6,13 +6,17 @@ A Flask web application that displays real-time sports scoreboards by reading da
 
 Basketball, Hockey, Lacrosse, Football, Volleyball, Wrestling, Soccer, Softball, Baseball, Gymnastics
 
-Also includes TrackMan UDP integration for Baseball and Softball pitch/hit tracking.
+Also includes TrackMan UDP integration for Baseball and Softball pitch/hit tracking, and Virtius API integration for live Gymnastics scoring.
 
 ## Gymnastics Special Case (Lacrosse Sport Code)
 
 Gymnastics is a one-off exception. The OES controller has no Gymnastics sport code, so the venue transmits Gymnastics using the Lacrosse packet type. Only the running clock is used for Gymnastics, and we must avoid confusing this data with real Lacrosse from other venues.
 
-To handle this safely, we support **per-source sport overrides** on configured TCP data sources. Assign the Gymnastics venue's TCP data source a `sport_overrides` mapping that remaps Lacrosse packets to Gymnastics. Other venues that actually play Lacrosse remain unaffected.
+To handle this safely, we support **per-source sport overrides** on configured TCP data sources. Assign the Gymnastics venue's TCP data source a `sport_overrides` mapping that remaps Lacrosse packets to Gymnastics. Other venues that actually play Lacrosse remain unaffected. You can assign overrides from the home page's "Sport Override" dropdown when adding a data source.
+
+**Duplicate host:port sources** are supported — the same OES controller can be added twice with different overrides (one for Lacrosse, one for Gymnastics→clock). Each gets an auto-suffixed unique ID (e.g., `tcp:10.0.0.9:9999:2`).
+
+**Virtius live scoring** is available for Gymnastics via the Virtius API. Configure it from the collapsible panel at the bottom of the Gymnastics page with a Virtius session key. Watchers auto-resume on server restart from `virtius_sources.json`.
 
 Example `data_sources.json` entry:
 
@@ -54,6 +58,7 @@ website/
   ingestion.py           # Data store, serial/TCP/UDP readers, source management
   trackman.py            # TrackMan state, parser, UDP listener
   statcrew.py            # StatCrew XML parser, file watcher thread
+  virtius.py             # Virtius live scoring API poller, session parser
   Templates/             # Jinja2 HTML templates
 tests/                   # pytest test suite
 deploy/                  # Deployment files (systemd unit)
@@ -276,6 +281,8 @@ sudo ufw allow 20998/udp   # TrackMan (default)
 | GET | `/get_trackman_debug/<sport>` | TrackMan debug info (raw + parsed) |
 | GET/POST | `/statcrew_config/<sport>` | Get or update StatCrew config |
 | GET | `/get_statcrew_data/<sport>` | Latest parsed StatCrew data |
+| GET/POST | `/virtius_config/<sport>` | Get or update Virtius config |
+| GET | `/get_virtius_data/<sport>` | Latest Virtius scoring data |
 | GET | `/browse_files?path=...` | Browse server filesystem for XML files |
 
 ## Environment Variables

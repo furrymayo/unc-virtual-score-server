@@ -3,14 +3,21 @@
 Tags: #project #status/active #todo
 
 ## Overview
-Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport-specific scoreboards in a browser. Modular architecture with 6 backend modules, 95 tests, and systemd deployment for Ubuntu. Supports TrackMan UDP for pitch/hit tracking and StatCrew XML for real-time game state (current pitcher/batter, live pitch count, batting team).
+Flask service that ingests live scoreboard packets (serial, TCP, UDP) and renders sport-specific scoreboards in a browser. Modular architecture with 7 backend modules, 95 tests, and systemd deployment for Ubuntu. Supports TrackMan UDP for pitch/hit tracking, StatCrew XML for real-time game state (current pitcher/batter, live pitch count, batting team), and Virtius API for live gymnastics scoring.
 
 **Gymnastics special case**: The OES controller has no Gymnastics sport code, so the gymnastics venue transmits using the Lacrosse packet type. We use per-source `sport_overrides` to remap Lacrosse packets to Gymnastics for that venue, and only the running clock is consumed for Gymnastics.
 
 Repo: https://github.com/furrymayo/unc-virtual-score-server
 Secure config lives in `.env` (see `.env.example` for required variables).
 
-## Session Summary (2026-02-18)
+## Session Summary (2026-02-18 — Gymnastics Overhaul)
+- **Gymnastics TV Template**: Full redesign — rotation bar, Home|Clock|Away grid, lineup cards for both teams, all-around leaders panel. Compound CSS selector (`.scoreboard-shell.gym-shell`) overrides base viewport height for collapsible config panel.
+- **Duplicate Host:Port Sources**: `_make_unique_source_id()` in `ingestion.py` auto-suffixes IDs (`:2`, `:3`) so the same OES controller can feed Lacrosse and Gymnastics pages simultaneously.
+- **Virtius Integration**: Exhibition gymnasts included in lineups (`counting` flag), running all-around leaders from 2+ events (previously required all 4), auto-start watchers on server boot from `virtius_sources.json`.
+- **Home Page UI**: Added sport override dropdown to data source form. Custom flexbox layout (`source-form-row`) replaces CSS Grid to avoid specificity conflicts with base `.config-grid` styles.
+- **Bug Fix**: `sports.py` Gymnastics route was rendering `copyPasta.html` instead of `Gymnastics.html`.
+
+## Session Summary (2026-02-18 — Baseball Real-Time)
 - **`<status>` Element Discovery**: StatCrew XML has a `<status>` element with real-time game state — current batter, pitcher, batting team (vh), pitches in current at-bat (np), ball/strike count, outs, inning. This is the same data source that powers the team's live stats website.
 - **Pitcher Detection Rewrite**: Uses `<pitching appear="N">` attribute to find the most recently entered pitcher per team. Handles mid-game substitutions correctly (relievers show instead of starters).
 - **Live Pitch Count**: `<pitching pitches>` (cumulative, updates after completed at-bats) + `<status np>` (current at-bat pitches). Self-correcting — when at-bat ends, cumulative increases by np and np resets to 0.
@@ -44,9 +51,12 @@ Secure config lives in `.env` (see `.env.example` for required variables).
 ## TODOs
 - [ ] **Verify strike zone calibration** with live TrackMan data (X/Z coordinates)
 - [ ] **Verify CIFS mount** on Ubuntu server — confirm StatCrew XMLs visible via app file browser
+- [ ] **Test Virtius live** with a real NCAA gymnastics meet session URL
 - [ ] Add StatCrew data sources panel to remaining sport pages (Basketball, Hockey, etc.)
 - [ ] Validate TrackMan feed values against live stadium output
 - [ ] Add admin protection for API endpoints if exposed beyond trusted networks
+- [x] ~~Gymnastics TV-optimized template with Virtius integration~~ — Completed 2026-02-18
+- [x] ~~Duplicate host:port data source support~~ — Completed 2026-02-18 (auto-suffixed IDs)
 - [x] ~~Confirm inning/top-bot derivation for baseball against real game flow~~ — Resolved via `<status vh>` element
 - [x] ~~Real-time pitch count for current pitcher~~ — Resolved via `pitches` + `status np`
 
@@ -63,11 +73,12 @@ website/
   __init__.py            — App factory, registers 3 blueprints
   views.py               — Home page route
   sports.py              — Sport page routes
-  api.py                 — 12 API routes (Blueprint)
+  api.py                 — 14 API routes (Blueprint)
   protocol.py            — Serial protocol parser, decoders, sport parsers
   ingestion.py           — Data store, serial/TCP/UDP readers, source mgmt
   trackman.py            — TrackMan state, parser, UDP listener
   statcrew.py            — StatCrew XML parser, file watcher thread
+  virtius.py             — Virtius live scoring API poller, session parser
   Templates/             — Jinja2 HTML templates
 tests/                   — 95 pytest tests
 deploy/                  — systemd unit file
@@ -84,9 +95,11 @@ flowchart LR
   C --> D[parsed_data store]
   E[TrackMan] -->|UDP| F[trackman.py]
   G[StatCrew XML] -->|file watcher| H[statcrew.py]
+  L[Virtius API] -->|HTTP poller| M[virtius.py]
   D --> I[api.py]
   F --> I
   H --> I
+  M --> I
   I --> J[Templates]
   J --> K[Browser]
 ```

@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2026-02-18
+
+### Gymnastics Page Overhaul
+- Full TV-optimized Gymnastics template: rotation bar, Home|Clock|Away grid, lineup cards, all-around leaders panel.
+- Virtius live scoring API integration: polls `api.virti.us/session/{key}/json` for real-time NCAA gymnastics data.
+- Exhibition gymnasts now included in lineup displays with visual `counting` flag to distinguish from scoring athletes.
+- Running all-around leaders update throughout the meet (2+ events threshold instead of waiting for all 4).
+- Collapsible Virtius config panel at bottom of Gymnastics page (hidden during broadcast).
+
+### Duplicate Host:Port Data Sources
+- TCP data sources with the same host:port now get auto-suffixed unique IDs (`:2`, `:3`, etc.) instead of being rejected.
+- Enables a single OES controller to feed both Lacrosse and Gymnastics pages simultaneously with different sport overrides.
+- Added `_make_unique_source_id()` to `ingestion.py`.
+- Updated test suite to verify sequential duplicate source creation.
+
+### Home Page Data Source UI
+- Added "Sport Override" dropdown to the data source form (currently supports Lacrosse → Gymnastics).
+- Source list displays active overrides in brackets (e.g., `[Lacrosse → Gymnastics]`).
+- Edit mode preserves and restores sport override selection.
+- Replaced CSS Grid layout with custom flexbox for reliable single-row form alignment.
+
+### Virtius Auto-Start
+- Virtius configured watchers now start automatically on server boot from persisted `virtius_sources.json`.
+- Previously, watchers only started when manually saved via the config API.
+
+### Other
+- Fixed `sports.py` Gymnastics route rendering wrong template (`copyPasta.html` → `Gymnastics.html`).
+- Gymnastics template uses compound CSS selector (`.scoreboard-shell.gym-shell`) to override base viewport height, allowing config panel to be visible below the scoreboard.
+
 ## 2026-02-17
 
 ### StatCrew XML Integration
