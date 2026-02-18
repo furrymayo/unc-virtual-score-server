@@ -39,6 +39,9 @@ Flask web application that displays real-time sports scoreboards by reading data
 - innerHTML XSS vulnerabilities fixed in Debug and home templates
 - TV-optimized UI: thin single-row navbar, raised clamp() ceilings for large-screen readability
 - TV-optimized Gymnastics layout: rotation bar, team scores, clock, lineup cards, all-around leaders
+- TV-optimized Basketball layout: clock-dominant 3-row design (Period|GameClock|ShotClock top, flush-joined score+stat cards middle, roster tables bottom)
+- Basketball StatCrew: oncourt player detection, full game stats (PTS/REB/AST/BLK/STL/PF), men's/women's gender detection
+- Basketball conditional formatting: game clock/shot clock red <10s, fouls green ≥6 (men's only), bonus green on "Yes"
 - Softball layout mirrors Baseball: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, 7-inning linescore (no TrackMan)
 - Baseball layout: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, linescore in center column
 - Baseball strike zone uses correct 3:4 portrait aspect ratio (17"×24" real proportions)
@@ -65,7 +68,7 @@ Flask web application that displays real-time sports scoreboards by reading data
 | `website/protocol.py` | Protocol constants, PacketStreamParser, decoders, 9 sport parsers, `identify_and_parse()` |
 | `website/ingestion.py` | Data store, serial/TCP/UDP readers, source management, cleanup thread |
 | `website/trackman.py` | TrackMan state, JSON parser, UDP listener, config management |
-| `website/statcrew.py` | StatCrew XML parser, file watcher thread, config persistence, NCAA color lookup |
+| `website/statcrew.py` | StatCrew XML parser (baseball/softball/basketball), file watcher thread, config persistence, NCAA color lookup |
 | `website/ncaa_team_colors.json` | Static NCAA team colors data (347 teams) for away team color lookup |
 | `website/virtius.py` | Virtius live scoring API poller, session parser, config persistence |
 
@@ -101,7 +104,15 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 | `<pitches text="BKSFP">` | Per-at-bat pitch sequence within `<play>` elements |
 | `<innsummary>` | Present when a half-inning is complete |
 
+## StatCrew Basketball XML Elements
+| Element | Purpose |
+|---------|---------|
+| `<bbgame>` / `<wbbgame>` | Root tag — men's vs women's basketball |
+| `<player oncourt="Y/N">` | Active player on court flag |
+| `<stats tp="" treb="" ast="" stl="" blk="" pf="">` | Player game stats (total points, total rebounds, assists, steals, blocks, personal fouls) |
+
 ## Recent Activity
+- 2026-02-18: Basketball TV-optimized layout — clock-dominant 3-row design (Period|GameClock|ShotClock row, flush-joined score+stat cards with roster tables), StatCrew basketball player parsing (oncourt detection, full game stats, men's/women's gender), conditional formatting (clock red <10s, fouls green ≥6 men's, bonus green), fixed `bbgame` misclassification bug in statcrew parser
 - 2026-02-18: Live game enhancements — dynamic away team colors (NCAA JSON lookup, HSL validation, CSS variable theming), team tricode labels on Pitching/At Bat cards, linescore row styling (away color, home Carolina blue), base runners from `<status>` element, inning MID/END transitions with OES/StatCrew priority fix, at-bat "Today:"/"Season:" stat labels with HR, pitcher "Today:" prefix, TrackMan whole-number rounding
 - 2026-02-18: Softball rewrite — mirrors Baseball layout (Pitching/Inning/AtBat top row, Away/B-S-O/Home score row, 7-inning linescore), removed TrackMan elements, OES fallback for pitcher/batter. Cleaned up dead files (auth.py, models.py). Added `virtius_sources.json` for boot persistence.
 - 2026-02-18: Gymnastics overhaul — TV-optimized template (rotation bar, team scores, clock, lineup cards, all-around leaders), Virtius API integration with exhibition gymnasts and running AA totals, duplicate host:port data sources with auto-suffixed IDs, home page sport override dropdown, Virtius auto-start on boot
