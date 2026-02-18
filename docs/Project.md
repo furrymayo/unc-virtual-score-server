@@ -10,12 +10,14 @@ Flask service that ingests live scoreboard packets (serial, TCP, UDP) and render
 Repo: https://github.com/furrymayo/unc-virtual-score-server
 Secure config lives in `.env` (see `.env.example` for required variables).
 
-## Session Summary (2026-02-18 — Gymnastics Overhaul)
+## Session Summary (2026-02-18 — Softball, Gymnastics, Cleanup)
+- **Softball Rewrite**: Replaced old Softball template with Baseball's layout structure — Pitching/Inning/AtBat top row, Away/B-S-O/Home score row, 7-inning linescore. Removed all TrackMan elements, scaled up remaining UI. Added OES fallback for pitcher/batter display when StatCrew is not configured.
 - **Gymnastics TV Template**: Full redesign — rotation bar, Home|Clock|Away grid, lineup cards for both teams, all-around leaders panel. Compound CSS selector (`.scoreboard-shell.gym-shell`) overrides base viewport height for collapsible config panel.
 - **Duplicate Host:Port Sources**: `_make_unique_source_id()` in `ingestion.py` auto-suffixes IDs (`:2`, `:3`) so the same OES controller can feed Lacrosse and Gymnastics pages simultaneously.
 - **Virtius Integration**: Exhibition gymnasts included in lineups (`counting` flag), running all-around leaders from 2+ events (previously required all 4), auto-start watchers on server boot from `virtius_sources.json`.
 - **Home Page UI**: Added sport override dropdown to data source form. Custom flexbox layout (`source-form-row`) replaces CSS Grid to avoid specificity conflicts with base `.config-grid` styles.
 - **Bug Fix**: `sports.py` Gymnastics route was rendering `copyPasta.html` instead of `Gymnastics.html`.
+- **Cleanup**: Committed `virtius_sources.json` for boot persistence. Deleted dead files (`auth.py`, `models.py`) — leftover stubs from pre-refactor era.
 
 ## Session Summary (2026-02-18 — Baseball Real-Time)
 - **`<status>` Element Discovery**: StatCrew XML has a `<status>` element with real-time game state — current batter, pitcher, batting team (vh), pitches in current at-bat (np), ball/strike count, outs, inning. This is the same data source that powers the team's live stats website.
@@ -55,6 +57,7 @@ Secure config lives in `.env` (see `.env.example` for required variables).
 - [ ] Add StatCrew data sources panel to remaining sport pages (Basketball, Hockey, etc.)
 - [ ] Validate TrackMan feed values against live stadium output
 - [ ] Add admin protection for API endpoints if exposed beyond trusted networks
+- [x] ~~Softball page rewrite to match Baseball layout~~ — Completed 2026-02-18
 - [x] ~~Gymnastics TV-optimized template with Virtius integration~~ — Completed 2026-02-18
 - [x] ~~Duplicate host:port data source support~~ — Completed 2026-02-18 (auto-suffixed IDs)
 - [x] ~~Confirm inning/top-bot derivation for baseball against real game flow~~ — Resolved via `<status vh>` element
