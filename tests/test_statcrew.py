@@ -166,6 +166,133 @@ class TestParseStatcrewXml:
         # Should fallback to generic parsing
         assert "score" in result or "status_active" in result
 
+    def test_base_runners_parsed_from_play(self):
+        """Runners on first and third from last <play> in current half-inning."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Away" code="AWY"/>
+            <team vh="H" name="Home" code="HOM"/>
+            <status vh="V" inning="3" batter="Smith, John" pitcher="Doe, Jane"/>
+            <plays>
+                <batting vh="V" inning="3">
+                    <play first="" second="" third=""/>
+                    <play first="Runner, A" second="" third="Runner, B"/>
+                </batting>
+            </plays>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert result["runner_first"] == "Runner, A"
+        assert result["runner_second"] == ""
+        assert result["runner_third"] == "Runner, B"
+
+    def test_base_runners_empty_when_no_plays(self):
+        """Without a <plays> element, all runners should be empty."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Away" code="AWY"/>
+            <team vh="H" name="Home" code="HOM"/>
+            <status vh="V" inning="1" batter="Smith, John" pitcher="Doe, Jane"/>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert result["runner_first"] == ""
+        assert result["runner_second"] == ""
+        assert result["runner_third"] == ""
+
+    def test_base_runners_empty_when_game_complete(self):
+        """When game is complete, all bases should be empty."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Away" code="AWY"/>
+            <team vh="H" name="Home" code="HOM"/>
+            <status vh="H" inning="9" complete="Y" batter="" pitcher=""/>
+            <plays>
+                <batting vh="H" inning="9">
+                    <play first="Runner, X" second="" third=""/>
+                </batting>
+            </plays>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert result["runner_first"] == ""
+        assert result["runner_second"] == ""
+        assert result["runner_third"] == ""
+
+    def test_base_runners_correct_half_inning_targeting(self):
+        """Uses <status vh inning> to find the right <batting> element."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Away" code="AWY"/>
+            <team vh="H" name="Home" code="HOM"/>
+            <status vh="H" inning="2" batter="Batter, X" pitcher="Pitcher, Y"/>
+            <plays>
+                <batting vh="V" inning="1">
+                    <play first="Old Runner" second="" third=""/>
+                    <innsummary/>
+                </batting>
+                <batting vh="H" inning="1">
+                    <play first="" second="Old Runner 2" third=""/>
+                    <innsummary/>
+                </batting>
+                <batting vh="V" inning="2">
+                    <play first="" second="" third="Wrong Runner"/>
+                    <innsummary/>
+                </batting>
+                <batting vh="H" inning="2">
+                    <play first="" second="Current Runner" third=""/>
+                </batting>
+            </plays>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert result["runner_first"] == ""
+        assert result["runner_second"] == "Current Runner"
+        assert result["runner_third"] == ""
+
+    def test_base_runners_empty_when_innsummary_present(self):
+        """When the targeted half-inning has <innsummary>, bases are empty."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Away" code="AWY"/>
+            <team vh="H" name="Home" code="HOM"/>
+            <status vh="V" inning="3" batter="" pitcher=""/>
+            <plays>
+                <batting vh="V" inning="3">
+                    <play first="Runner, A" second="" third=""/>
+                    <innsummary/>
+                </batting>
+            </plays>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert result["runner_first"] == ""
+        assert result["runner_second"] == ""
+        assert result["runner_third"] == ""
+
+    def test_base_runners_fallback_no_status_vh(self):
+        """Fallback: when <status> lacks vh/inning, use last <batting> without <innsummary>."""
+        xml = """<?xml version="1.0"?>
+        <bsgame>
+            <team vh="V" name="Away" code="AWY"/>
+            <team vh="H" name="Home" code="HOM"/>
+            <status batter="Someone" pitcher="Someone Else"/>
+            <plays>
+                <batting vh="V" inning="1">
+                    <play first="Old" second="" third=""/>
+                    <innsummary/>
+                </batting>
+                <batting vh="H" inning="1">
+                    <play first="" second="Fallback Runner" third=""/>
+                </batting>
+            </plays>
+        </bsgame>
+        """
+        result = _parse_statcrew_xml(xml)
+        assert result["runner_first"] == ""
+        assert result["runner_second"] == "Fallback Runner"
+        assert result["runner_third"] == ""
+
     def test_complex_game(self):
         xml = """<?xml version="1.0"?>
         <game>

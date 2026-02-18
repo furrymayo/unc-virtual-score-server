@@ -159,7 +159,12 @@
             <div class="stat-value compact" id="sb-pitcher-line" style="color: var(--ink-soft);">--</div>
         </div>
         <div class="center-card compact" style="text-align: center;">
-            <div class="center-label">Inning</div>
+            <div class="base-diamond">
+                <div class="base-diamond-shape"></div>
+                <div class="base-marker base-first" id="sb-base-1"></div>
+                <div class="base-marker base-second" id="sb-base-2"></div>
+                <div class="base-marker base-third" id="sb-base-3"></div>
+            </div>
             <div class="center-value" id="sb-half-inning">n/a</div>
         </div>
         <div class="center-card compact">
@@ -170,7 +175,7 @@
     </div>
 
     <div class="score-count-row" style="margin-top: clamp(6px, 0.8vh, 12px);">
-        <div class="team-card">
+        <div class="team-card team-away">
             <div class="team-label"><span id="sb-away-name">Away</span></div>
             <div class="team-score" id="sb-away-runs">--</div>
         </div>
@@ -188,7 +193,7 @@
                 <div class="count-value" id="sb-outs">--</div>
             </div>
         </div>
-        <div class="team-card">
+        <div class="team-card team-home">
             <div class="team-label"><span id="sb-home-name">Home</span></div>
             <div class="team-score" id="sb-home-runs">--</div>
         </div>
@@ -298,6 +303,17 @@
 
         updateCurrentPitcher();
         updateCurrentBatter();
+        updateDiamond();
+    }
+
+    function updateDiamond() {
+        var first = document.getElementById('sb-base-1');
+        var second = document.getElementById('sb-base-2');
+        var third = document.getElementById('sb-base-3');
+        if (!first) return;
+        first.classList.toggle('occupied', !!(statcrewData.runner_first));
+        second.classList.toggle('occupied', !!(statcrewData.runner_second));
+        third.classList.toggle('occupied', !!(statcrewData.runner_third));
     }
 
     function formatPlayerName(name) {

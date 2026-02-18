@@ -234,7 +234,24 @@
         }
 
         .team-label.is-visitor {
-            color: #ffffff;
+            color: #d46a6a;
+        }
+
+        /* Global team color coding: home = UNC Carolina Blue, away = subtle red */
+        .team-home .team-label {
+            color: var(--carolina-soft);
+        }
+
+        .team-home .team-score {
+            color: var(--carolina-soft);
+        }
+
+        .team-away .team-label {
+            color: #d46a6a;
+        }
+
+        .team-away .team-score {
+            color: #d46a6a;
         }
 
         .team-score {
@@ -349,6 +366,60 @@
             height: 1px;
             background: rgba(131, 198, 242, 0.16);
             margin: 10px 0 12px;
+        }
+
+        /* Base runner diamond */
+        .base-diamond {
+            position: relative;
+            width: clamp(70px, 8vw, 120px);
+            height: clamp(70px, 8vw, 120px);
+            margin: 0 auto;
+        }
+
+        .base-diamond-shape {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            border: 2px solid rgba(131, 198, 242, 0.35);
+            border-radius: 2px;
+        }
+
+        .base-marker {
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            border: 1px solid rgba(131, 198, 242, 0.25);
+            background: rgba(231, 240, 255, 0.15);
+            border-radius: 2px;
+            transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+            /* center the marker on its position point */
+            margin-left: -10%;
+            margin-top: -10%;
+            transform: rotate(45deg);
+        }
+
+        .base-marker.base-first {
+            top: 50%;
+            left: 85%;
+        }
+
+        .base-marker.base-second {
+            top: 15%;
+            left: 50%;
+        }
+
+        .base-marker.base-third {
+            top: 50%;
+            left: 15%;
+        }
+
+        .base-marker.occupied {
+            background: var(--carolina);
+            border-color: var(--carolina-soft);
+            box-shadow: 0 0 8px rgba(75, 156, 211, 0.6), 0 0 16px rgba(75, 156, 211, 0.3);
         }
 
         .count-row {
