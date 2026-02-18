@@ -591,19 +591,19 @@
         `;
     }
 
-    function roundToTenth(val) {
+    function roundToWhole(val) {
         if (val === undefined || val === null || val === '' || val === 'n/a') return 'n/a';
         const num = parseFloat(val);
         if (isNaN(num)) return val;
-        return Math.round(num * 10) / 10;
+        return Math.round(num);
     }
 
     function renderTrackmanBaseball(data) {
-        setText('bs-tm-pitch-speed', roundToTenth(data.pitch_speed));
-        setText('bs-tm-spin-rate', roundToTenth(data.spin_rate));
-        setText('bs-tm-exit-velocity', roundToTenth(data.hit_exit_velocity));
-        setText('bs-tm-launch-angle', roundToTenth(data.hit_launch_angle));
-        setText('bs-tm-distance', roundToTenth(data.hit_distance));
+        setText('bs-tm-pitch-speed', roundToWhole(data.pitch_speed));
+        setText('bs-tm-spin-rate', roundToWhole(data.spin_rate));
+        setText('bs-tm-exit-velocity', roundToWhole(data.hit_exit_velocity));
+        setText('bs-tm-launch-angle', roundToWhole(data.hit_launch_angle));
+        setText('bs-tm-distance', roundToWhole(data.hit_distance));
 
         updateStrikeZone('bs-zone-dot', 'bs-zone-readout', data, {
             zone: { minX: -0.83, maxX: 0.83, minV: 1.5, maxV: 3.3775 },
