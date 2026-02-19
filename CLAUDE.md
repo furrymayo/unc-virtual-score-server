@@ -36,42 +36,13 @@ Flask web application that displays real-time sports scoreboards by reading data
 - 141 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup, lacrosse), and API
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
-- innerHTML XSS vulnerabilities fixed in Debug and home templates
-- TV-optimized UI: thin single-row navbar, raised clamp() ceilings for large-screen readability
-- TV-optimized Gymnastics layout: rotation bar, team scores, clock, lineup cards, all-around leaders
-- TV-optimized Basketball layout: clock-dominant 3-row design (Period|GameClock|ShotClock top, flush-joined score+stat cards middle, roster tables bottom)
-- Basketball StatCrew: oncourt player detection, full game stats (PTS/REB/AST/BLK/STL/PF), men's/women's gender detection
-- Basketball conditional formatting: game clock/shot clock red <10s, fouls green ≥6 (men's only), bonus green on "Yes"
-- Softball layout mirrors Baseball: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, 7-inning linescore (no TrackMan)
-- Baseball layout: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, linescore in center column
-- Baseball strike zone uses correct 3:4 portrait aspect ratio (17"×24" real proportions)
-- TV-optimized Lacrosse layout: clock-dominant 3-row design (Period|GameClock|ShotClock top, flush-joined score+stat cards middle, penalty cards bottom), shot clock red <10s
-- Lacrosse StatCrew: `<lcgame>` XML parser with men's/women's gender detection (`<show faceoffs>` vs `<show dcs>`), team stats extraction (FO W-L, GB, TO, CT, Clears, Save%, DC, Fouls)
-- Lacrosse template Row 4 team stats bar: gender-aware labels (FO for men's, DC for women's), hidden until StatCrew data arrives
-- Lacrosse penalty cards: 2 slots per team with `#player` + countdown time, always-visible `0:00` placeholder
-- TV-optimized Field Hockey layout: clock-dominant design (Period|GameClock|PenaltyCorners top, flush-joined score+stat cards middle, penalty cards bottom), no shot clock
-- Field Hockey penalty corners prominently displayed in clock row (H/A split), penalty cards with green/yellow card timers
-- Field Hockey Row 4 team stats bar: SOG, PC, Fouls, DSv (defensive saves), Save% — hidden until StatCrew data arrives
-- Field Hockey StatCrew parser: pending example XML file (template hooks wired, needs `fhgame` root tag detection + team stats extraction)
-- TV-optimized Soccer layout: clock-dominant design (Half|GameClock|CornerKicks top, flush-joined score+stat cards with Shots/Saves/PKs middle, team stats bar from StatCrew bottom)
-- Soccer uses halves (not quarters), no shot clock, no timed penalty box — cards (yellow/red) only
-- Soccer corner kicks prominently displayed in clock row (H/A split format), PKs in stat card alongside Shots/Saves
-- Soccer StatCrew template Row 3 stats bar: SOG, Fouls, Offside, Save%, YC/RC — hidden until StatCrew data arrives
-- Soccer StatCrew parser: pending example XML file (template hooks wired for men's and women's)
-- TV-optimized Football layout: clock-dominant design (Quarter|GameClock|PlayClock top, flush-joined score+TOL cards with possession dots middle, Down/ToGo/BallOn situation row bottom)
-- Football play clock red <10s, game clock red <2min (two-minute warning awareness)
-- Football Down & Distance row: 3-column grid with large prominent values for Down, Yards To Go, Ball On
-- Football StatCrew template Row 4 stats bar: 1st Dn, Tot Yds, Rush, Pass, TO, Pen — hidden until StatCrew data arrives
-- Football StatCrew parser: pending example XML file (template hooks wired)
-- TV-optimized Volleyball layout: clock-dominant design (Set|GameClock|SetsWon top, flush-joined score+TOL cards with serve dots middle, set scores table bottom)
-- Volleyball Sets Won displayed prominently in clock row (H/A split with team colors), set scores table styled with home Carolina blue / away dynamic color rows
-- Volleyball set scores table: 5-column grid (S1-S5) with team name labels from StatCrew
-- Volleyball StatCrew template Row 4 stats bar: K, A, D, Blk, Hit%, Err — hidden until StatCrew data arrives
-- Volleyball StatCrew parser: pending example XML file (template hooks wired)
-- TV-optimized Wrestling layout: clock-dominant design (Period|MatchClock|WeightClass top, flush-joined bout score+advantage time cards middle, InjuryTime|DualMeetScore|InjuryTime bottom)
-- Wrestling weight class prominently displayed in clock row (accent color), dual meet team score in H/A split with team colors
-- Wrestling conditional formatting: match clock red <30s, advantage time green ≥1:00 (riding time point earned)
-- Wrestling tracks both individual bout score (Row 2) and dual meet team score (Row 3)
+- All 12 templates TV-optimized with consistent design language (see TV Layout Reference below)
+- Shared TV layout pattern: clock-dominant Row 1 (period|game clock|sport-specific), flush-joined score+stat cards Row 2, sport-specific Row 3, StatCrew stats Row 4 (hidden until data)
+- Responsive `clamp()` CSS sizing throughout all templates for TV/desktop readability
+- Conditional formatting: clock red warnings, basketball fouls green ≥6, wrestling advantage green ≥1:00
+- StatCrew XML parsers: baseball/softball/basketball/lacrosse implemented; field hockey/soccer/football/volleyball/wrestling hooks wired (pending example XML)
+- Debug console: side-by-side OES/TrackMan log panels with timestamps, color-coded JSON, clear buttons, auto-scroll (500 entry cap)
+- Home page: modernized hub with responsive sport cards, styled data source management panel
 - OES baseball batter_num 0x3A blank handling fixed in protocol.py
 
 ## Quick Reference
@@ -149,7 +120,27 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 | `<totals><clear clearm="" cleara="">` | Clears made / attempted |
 | `<totals><penalty foul="">` | Foul count (primarily women's card-based system) |
 
+## TV Layout Reference
+All sport templates follow a consistent clock-dominant design. Row 1 is always the largest element.
+
+| Sport | Row 1 (Clock Row) | Row 2 (Score Row) | Row 3 (Sport-Specific) | Row 4 (StatCrew Stats) | Conditional Formatting |
+|-------|-------------------|-------------------|------------------------|------------------------|----------------------|
+| Basketball | Period \| GameClock \| ShotClock | Score+Fouls/TOL/Bonus | Roster tables (oncourt) | — (stats in roster) | Clock red <10s, fouls green ≥6 (men's), bonus green |
+| Lacrosse | Period \| GameClock \| ShotClock | Score+TOL/Shots | Penalty cards (2 slots) | FO/DC, GB, TO, CT, Clears, Save% | Shot clock red <10s |
+| Field Hockey | Period \| GameClock \| PenaltyCorners | Score+Shots/Saves | Penalty cards (2 slots) | SOG, PC, Fouls, DSv, Save% | — |
+| Soccer | Half \| GameClock \| CornerKicks | Score+Shots/Saves/PKs | — (no penalties) | SOG, Fouls, Offside, Save%, YC/RC | — |
+| Football | Quarter \| GameClock \| PlayClock | Score+TOL (possession dots) | Down/ToGo/BallOn | 1stDn, TotYds, Rush, Pass, TO, Pen | Play clock red <10s, game clock red <2min |
+| Volleyball | Set \| GameClock \| SetsWon | Score+TOL (serve dots) | Set scores table (S1-S5) | K, A, D, Blk, Hit%, Err | — |
+| Wrestling | Period \| MatchClock \| WeightClass | Bout score+AdvTime | InjTime \| DualScore \| InjTime | — (no team stats) | Clock red <30s, adv green ≥1:00 |
+| Baseball | Pitching \| Inning \| AtBat | Away/B-S-O/Home scores | Linescore (9-inning) | — (stats in cards) | — |
+| Softball | Pitching \| Inning \| AtBat | Away/B-S-O/Home scores | Linescore (7-inning) | — (stats in cards) | — |
+| Gymnastics | Rotation bar | Team scores+clock | Lineup cards | All-around leaders | — |
+| Debug | — | — | OES log \| TrackMan log | — | Errors red, data green |
+| Home | — | Sports grid (10+debug) | Data source manager | — | — |
+
 ## Recent Activity
+- 2026-02-19: Home page modernized — responsive sport cards with tag/name structure, styled data source management (primary/secondary buttons, action buttons), removed Bootstrap utilities, consistent dark UNC theme
+- 2026-02-19: Debug console modernized — side-by-side OES/TrackMan log panels with timestamps, color-coded JSON output, clear buttons, auto-scroll, 500 entry cap, custom scrollbar, removed innerHTML XSS usage
 - 2026-02-19: Wrestling TV-optimized layout — clock-dominant design (Period|MatchClock|WeightClass row, flush-joined bout score+advantage time cards, InjuryTime|DualMeetScore|InjuryTime situation row). Weight class in accent color. Dual meet score in H/A team colors. Match clock red <30s, advantage time green ≥1:00 (riding time point).
 - 2026-02-19: Volleyball TV-optimized layout — clock-dominant design (Set|GameClock|SetsWon row, flush-joined score+TOL cards with serve dots, set scores table with team-colored rows). Sets Won in clock row with H/A team colors. Set scores table with S1-S5 columns, home Carolina blue / away dynamic color. StatCrew template hooks wired (K, A, D, Blk, Hit%, Err), pending example XML for parser.
 - 2026-02-19: Football TV-optimized layout — clock-dominant design (Quarter|GameClock|PlayClock row, flush-joined score+TOL cards with possession dots, Down/ToGo/BallOn situation row). Play clock red <10s, game clock red <2min. StatCrew template hooks wired (1st Dn, Tot Yds, Rush, Pass, TO, Pen), pending example XML for parser.
