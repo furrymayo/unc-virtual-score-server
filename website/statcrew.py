@@ -298,8 +298,16 @@ def _parse_statcrew_xml(xml_text):
     root_tag = root.tag.lower()
     is_baseball = root_tag in ("bsgame",)
     is_basketball = root_tag in ("bbgame", "wbbgame")
+    is_lacrosse = root_tag in ("lcgame",)
     if is_basketball:
         parsed["basketball_gender"] = "W" if root_tag == "wbbgame" else "M"
+    if is_lacrosse:
+        # Detect gender from <show> element: faceoffs="1" = men's, dcs="1" = women's
+        show = root.find(".//show")
+        if show is not None and show.get("dcs", "0") == "1":
+            parsed["lacrosse_gender"] = "W"
+        else:
+            parsed["lacrosse_gender"] = "M"
 
     # Try to extract venue info
     venue = root.find(".//venue")
@@ -675,6 +683,68 @@ def _parse_statcrew_xml(xml_text):
                 key=lambda p: (not p["oncourt"], -int(p.get("pts", "0") or "0"))
             )
             parsed[f"{prefix}_players"] = oncourt
+
+    # --- Lacrosse: extract team stats from totals ---
+    if is_lacrosse:
+        for team in teams:
+            vh = team.get("vh", "").upper()
+            if vh not in ("V", "H"):
+                continue
+            prefix = "away" if vh == "V" else "home"
+            totals = team.find("totals")
+            if totals is None:
+                continue
+
+            shots_el = totals.find("shots")
+            misc_el = totals.find("misc")
+            goalie_el = totals.find("goalie")
+            clear_el = totals.find("clear")
+            penalty_el = totals.find("penalty")
+
+            s = dict(shots_el.attrib) if shots_el is not None else {}
+            m = dict(misc_el.attrib) if misc_el is not None else {}
+            g = dict(goalie_el.attrib) if goalie_el is not None else {}
+            c = dict(clear_el.attrib) if clear_el is not None else {}
+            pen = dict(penalty_el.attrib) if penalty_el is not None else {}
+
+            saves = int(g.get("saves", "0") or "0")
+            shots_faced = int(g.get("sf", "0") or "0")
+            save_pct = (
+                f"{saves / shots_faced * 100:.0f}%"
+                if shots_faced > 0
+                else "--"
+            )
+
+            facewon = int(m.get("facewon", "0") or "0")
+            facelost = int(m.get("facelost", "0") or "0")
+            fo_total = facewon + facelost
+            fo_display = (
+                f"{facewon}-{facelost}"
+                if fo_total > 0
+                else "0-0"
+            )
+
+            clearm = m.get("clearm", "") or c.get("clearm", "0")
+            cleara = m.get("cleara", "") or c.get("cleara", "0")
+
+            parsed[f"{prefix}_team_stats"] = {
+                "goals": s.get("g", "0"),
+                "assists": s.get("a", "0"),
+                "shots": s.get("sh", "0"),
+                "sog": s.get("sog", "0"),
+                "freepos": s.get("freepos", "0"),
+                "facewon": str(facewon),
+                "facelost": str(facelost),
+                "fo_display": fo_display,
+                "gb": m.get("gb", "0"),
+                "dc": m.get("dc", "0"),
+                "turnover": m.get("turnover", "0"),
+                "ct": m.get("ct", "0"),
+                "saves": str(saves),
+                "save_pct": save_pct,
+                "clears": f"{clearm}/{cleara}",
+                "fouls": pen.get("foul", "0"),
+            }
 
     # Generic fallback: try to extract all elements with text content
     if not parsed:

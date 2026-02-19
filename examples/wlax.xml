@@ -1,0 +1,938 @@
+<lcgame source="TAS For Lacrosse" version="1.16.01" generated="5/19/2022">
+  <venue gameid="WNC0519" visid="SBU" visname="Stony Brook" homeid="NC" homename="North Carolina" date="5/19/2022" location="Chapel Hill, N.C." stadium="Dorrance Field" start="7:32 pm" end="" duration="" attend="1052" schednote="" leaguegame="N" neutralgame="N" nitegame="Y" sbid="407823">
+    <officials>
+      <official name="Lynn Bowers">
+      </official>
+      <official name="Lisa Clark">
+      </official>
+      <official name="Liz Brush">
+      </official>
+      <official name="Ashlee Jaeggi">
+      </official>
+      <official name="David C. Lohse">
+      </official>
+    </officials>
+    <rules prds="4" minutes="15" minutesot="6" minminor="30" minmajor="60" minmatch="180" shootoutshot="0" shootoutteam="0">
+    </rules>
+    <show sog="1" turnovers="1" faceoffs="0" penalties="0" clears="1" todetails="0" fouls="1" dcs="1" fpas="1" nll="0" g2="0" reversemin="0">
+    </show>
+  </venue>
+  <status period="4" clock="08:39">
+  </status>
+  <team vh="V" id="SBU" name="Stony Brook" record="16-2" rank="7">
+    <linescore periods="4" line="1,3,1,0" score="5" shotline="5,6,7,1" shots="19">
+      <lineprd prd="1" score="1" shots="5" sog="3" saves="1" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="5" dc="2" fpg="0" fps="0" fpa="0" fouls="3" clearm="4" cleara="5" turnover="4" clockv="1" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+      <lineprd prd="2" score="3" shots="6" sog="5" saves="2" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="3" dc="2" fpg="0" fps="0" fpa="0" fouls="8" clearm="4" cleara="4" turnover="2" clockv="1" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+      <lineprd prd="3" score="1" shots="7" sog="5" saves="3" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="2" dc="2" fpg="0" fps="0" fpa="0" fouls="3" clearm="4" cleara="4" turnover="2" clockv="0" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+      <lineprd prd="4" score="0" shots="1" sog="0" saves="1" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="2" dc="0" fpg="0" fps="1" fpa="0" fouls="3" clearm="3" cleara="3" turnover="2" clockv="1" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+    </linescore>
+    <totals>
+      <shots g="5" a="1" sh="19" sog="13" freepos="1" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="4" fg="1" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="17" clockv="3" clockw="0" clockg="0" fviol="0">
+      </penalty>
+      <misc gb="12" dc="6" turnover="10" ct="11" minutes="612" seconds="252" dsave="0">
+      </misc>
+      <goalie minutes="51:21" ga="7" saves="7" sf="18" savebyprd="1,2,3,1" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0">
+      </goalie>
+      <powerplay ppg="0" ppopp="0">
+      </powerplay>
+      <clear clearm="15" cleara="16">
+      </clear>
+    </totals>
+    <player uni="0" name="REZNICK, Maggie" checkname="REZNICK,MAGGIE" class="SO" gp="0" code="0">
+    </player>
+    <player uni="1" name="ACCETTELLA, Kira" checkname="ACCETTELLA,KIRA" class="JR" gp="0" code="1">
+    </player>
+    <player uni="2" name="DELLECAVE, Caitlin" checkname="DELLECAVE,CAITLIN" class="SO" gp="0" code="2">
+    </player>
+    <player uni="3" name="JONES, Aaliyah" checkname="JONES,AALIYAH" class="FR" gp="0" code="3">
+    </player>
+    <player uni="4" name="ZAPOLSKI, Kyla" checkname="ZAPOLSKI,KYLA" class="SR" gp="1" gs="1" pos="m" code="4">
+      <shots g="0" a="1" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="2">
+      </penalty>
+      <misc gb="0" dc="0" turnover="1" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="5" name="SABELLA, Rayna" checkname="SABELLA,RAYNA" class="SR" gp="1" gs="1" pos="m" code="5">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="2">
+      </penalty>
+      <misc gb="0" dc="0" turnover="0" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="6" name="MURPHY, Giana" checkname="MURPHY,GIANA" class="FR" gp="0" code="6">
+    </player>
+    <player uni="7" name="LONIGRO, Kelsi" checkname="LONIGRO,KELSI" class="SR" gp="0" code="7">
+    </player>
+    <player uni="8" name="VENGILIO, Emily" checkname="VENGILIO,EMILY" class="SR" gp="1" gs="1" pos="d" code="8">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="1" dc="0" turnover="0" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="9" name="KENNY, Lauren" checkname="KENNY,LAUREN" class="SO" gp="0" code="9">
+    </player>
+    <player uni="10" name="WHITEHOUSE, Ella" checkname="WHITEHOUSE,ELLA" class="JR" gp="1" gs="1" pos="d" code="10">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="1" dc="0" turnover="0" ct="2" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="11" name="HAMPEL, Jaden" checkname="HAMPEL,JADEN" class="SO" gp="1" code="11">
+      <shots g="2" a="0" sh="2" sog="2" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="2" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="2">
+      </penalty>
+      <misc gb="1" dc="0" turnover="2" ct="1" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="12" name="MASERA, Ellie" checkname="MASERA,ELLIE" class="SO" gp="1" gs="1" pos="m" code="12">
+      <shots g="2" a="0" sh="10" sog="7" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="2" fg="1" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="0" dc="2" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="13" name="HINES, Avery" checkname="HINES,AVERY" class="FR" gp="0" code="13">
+    </player>
+    <player uni="14" name="HART, Kailyn" checkname="HART,KAILYN" class="JR" gp="1" gs="1" pos="a" code="14">
+      <shots g="0" a="0" sh="3" sog="1" freepos="1" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="1" dc="0" turnover="4" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="15" name="MITCHELL, Morgan" checkname="MITCHELL,MORGAN" class="JR" gp="1" gs="1" pos="a" code="15">
+      <shots g="0" a="0" sh="3" sog="2" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="16" name="RAFFERTY, Siobhan" checkname="RAFFERTY,SIOBHAN" class="SR" gp="1" gs="1" pos="m" code="16">
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="3" dc="0" turnover="0" ct="2" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="19" name="PULIS, Sarah" checkname="PULIS,SARAH" class="SR" gp="0" code="19">
+    </player>
+    <player uni="20" name="MACQUARRIE, Erin" checkname="MACQUARRIE,ERIN" class="JR" gp="0" code="20">
+    </player>
+    <player uni="22" name="MITCHELL, McKenzie" checkname="MITCHELL,MCKENZIE" class="JR" gp="0" code="22">
+    </player>
+    <player uni="23" name="DILLON, Haley" checkname="DILLON,HALEY" class="SR" gp="1" gs="1" pos="d" code="23">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="3">
+      </penalty>
+      <misc gb="1" dc="0" turnover="0" ct="2" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="24" name="DOYLE, Stephanie" checkname="DOYLE,STEPHANIE" class="FR" gp="0" code="24">
+    </player>
+    <player uni="25" name="FUSCO, Alexandra" checkname="FUSCO,ALEXANDRA" class="FR" gp="1" code="25">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="26" name="PORETSKY, Katie" checkname="PORETSKY,KATIE" class="SO" gp="0" code="26">
+    </player>
+    <player uni="27" name="RONGO, Lindsay" checkname="RONGO,LINDSAY" class="JR" gp="0" code="27">
+    </player>
+    <player uni="28" name="CORREIA, Lexie" checkname="CORREIA,LEXIE" class="JR" gp="0" code="28">
+    </player>
+    <player uni="29" name="ARLINE, Jesse" checkname="ARLINE,JESSE" class="SR" gp="1" code="29">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="31" name="FORTE, Jordan" checkname="FORTE,JORDAN" class="FR" gp="0" code="31">
+    </player>
+    <player uni="33" name="MACLAY, Courtney" checkname="MACLAY,COURTNEY" class="FR" gp="0" code="33">
+    </player>
+    <player uni="34" name="GEORGE, Kelly" checkname="GEORGE,KELLY" class="SR" gp="0" code="34">
+    </player>
+    <player uni="35" name="WILBOURN, Caleigh" checkname="WILBOURN,CALEIGH" class="SO" gp="0" code="35">
+    </player>
+    <player uni="40" name="SEEBACH, Jennifer" checkname="SEEBACH,JENNIFER" class="FR" gp="0" code="40">
+    </player>
+    <player uni="41" name="LAFORGE, Molly" checkname="LAFORGE,MOLLY" class="FR" gp="0" code="41">
+    </player>
+    <player uni="42" name="LEVY, Clare" checkname="LEVY,CLARE" class="SO" gp="1" gs="1" pos="m" code="42">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="2" dc="2" turnover="0" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="45" name="HALSALL, Kameron" checkname="HALSALL,KAMERON" class="SR" gp="0" code="45">
+    </player>
+    <player uni="50" name="LACHENMEYER, Hayden" checkname="LACHENMEYER,HAYDEN" class="SO" gp="0" code="50">
+    </player>
+    <player uni="55" name="COLBERT, Casy" checkname="COLBERT,CASY" class="FR" gp="0" code="55">
+    </player>
+    <player uni="57" name="CAMPBELL, Charlie" checkname="CAMPBELL,CHARLIE" class="SR" gp="1" gs="1" pos="gk" code="57">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="2" dc="0" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+      <goalie gp="1" gs="1" minutes="51:21" ga="7" saves="7" sf="18" savebyprd="1,2,3,1" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0">
+      </goalie>
+    </player>
+    <player uni="86" name="VERHULST, Charlotte" checkname="VERHULST,CHARLOTTE" class="JR" gp="1" gs="1" pos="m" code="86">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="3">
+      </penalty>
+      <misc gb="0" dc="2" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="99" name="WEISENBURGER, Deanna" checkname="WEISENBURGER,DEANNA" class="SR" gp="0" code="99">
+    </player>
+    <player uni="TM" name="TEAM" checkname="TEAM" class="" gp="1" code="TM">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="3" ct="0" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+  </team>
+  <team vh="H" id="NC" name="North Carolina" record="19-0" rank="1">
+    <linescore periods="4" line="2,1,3,1" score="7" shotline="3,6,6,3" shots="18">
+      <lineprd prd="1" score="2" shots="3" sog="3" saves="2" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="4" dc="2" fpg="1" fps="2" fpa="0" fouls="4" clearm="6" cleara="8" turnover="6" clockv="0" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+      <lineprd prd="2" score="1" shots="6" sog="3" saves="2" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="2" dc="3" fpg="1" fps="3" fpa="0" fouls="0" clearm="5" cleara="5" turnover="5" clockv="1" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+      <lineprd prd="3" score="3" shots="6" sog="6" saves="4" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="5" dc="2" fpg="1" fps="2" fpa="0" fouls="4" clearm="4" cleara="5" turnover="4" clockv="0" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+      <lineprd prd="4" score="1" shots="3" sog="2" saves="0" ppg="0" ppatt="0" fowon="0" pen="0" psec="0" gb="1" dc="2" fpg="0" fps="0" fpa="0" fouls="1" clearm="2" cleara="2" turnover="2" clockv="0" clockw="0" clockg="0" fviol="0">
+      </lineprd>
+    </linescore>
+    <totals>
+      <shots g="7" a="4" sh="18" sog="14" freepos="7" shootout="0">
+      </shots>
+      <goaltype gw="1" pp="0" sh="0" ua="3" fg="0" ot="0" en="0" gt="0" freepos="3" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="9" clockv="1" clockw="0" clockg="0" fviol="0">
+      </penalty>
+      <misc gb="12" dc="9" turnover="17" ct="6" minutes="612" seconds="252" dsave="0">
+      </misc>
+      <goalie minutes="51:21" ga="5" saves="8" sf="19" savebyprd="2,2,4,0" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0">
+      </goalie>
+      <powerplay ppg="0" ppopp="0">
+      </powerplay>
+      <clear clearm="17" cleara="20">
+      </clear>
+    </totals>
+    <player uni="0" name="Alecia Nicholas" checkname="NICHOLAS,ALECIA" class="FR" gp="0" code="0">
+    </player>
+    <player uni="1" name="Emily Nalls" checkname="NALLS,EMILY" class="JR" gp="1" gs="1" pos="d" code="1">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="2" dc="2" turnover="0" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="2" name="Bailey Horne" checkname="HORNE,BAILEY" class="JR" gp="0" code="2">
+    </player>
+    <player uni="3" name="Jamie Ortega" checkname="ORTEGA,JAMIE" class="SR" gp="1" gs="1" pos="a" code="3">
+      <shots g="0" a="1" sh="3" sog="3" freepos="1" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="4" dc="0" turnover="2" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="4" name="Julia Dorsey" checkname="DORSEY,JULIA" class="JR" gp="1" gs="1" pos="m" code="4">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="5" name="Gabi Hall" checkname="HALL,GABI" class="JR" gp="1" gs="1" pos="d" code="5">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="6" name="Adair Martin" checkname="MARTIN,ADAIR" class="FR" gp="0" code="6">
+    </player>
+    <player uni="7" name="Reilly Casey" checkname="CASEY,REILLY" class="SO" gp="0" code="7">
+    </player>
+    <player uni="8" name="Sam Forrest" checkname="FORREST,SAM" class="FR" gp="0" code="8">
+    </player>
+    <player uni="9" name="Nicole Humphrey" checkname="HUMPHREY,NICOLE" class="JR" gp="0" code="9">
+    </player>
+    <player uni="10" name="Alyssa Long" checkname="LONG,ALYSSA" class="SO" gp="0" code="10">
+    </player>
+    <player uni="11" name="Alexa Gentile" checkname="GENTILE,ALEXA" class="SO" gp="0" code="11">
+    </player>
+    <player uni="12" name="Ally Mastroianni" checkname="MASTROIANNI,ALLY" class="SR" gp="1" gs="1" pos="m" code="12">
+      <shots g="0" a="0" sh="2" sog="1" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="2">
+      </penalty>
+      <misc gb="0" dc="5" turnover="1" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="13" name="Caitlyn Wurzburger" checkname="WURZBURGER,CAITLYN" class="SO" gp="1" gs="1" pos="a" code="13">
+      <shots g="1" a="1" sh="2" sog="1" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="1" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="3" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="14" name="Livi Lawton" checkname="LAWTON,LIVI" class="JR" gp="1" code="14">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="1" turnover="0" ct="1" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="15" name="Scottie Rose Growney" checkname="GROWNEY,SCOTTIE ROSE" class="SR" gp="1" gs="1" pos="a" code="15">
+      <shots g="0" a="1" sh="1" sog="0" freepos="1" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="2">
+      </penalty>
+      <misc gb="0" dc="0" turnover="3" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="16" name="Amelia Sheehan" checkname="SHEEHAN,AMELIA" class="SO" gp="0" code="16">
+    </player>
+    <player uni="17" name="Maddie Hoffer" checkname="HOFFER,MADDIE" class="SR" gp="0" code="17">
+    </player>
+    <player uni="18" name="Mackenzie Rich" checkname="RICH,MACKENZIE" class="FR" gp="0" code="18">
+    </player>
+    <player uni="19" name="Briana Lantuh" checkname="LANTUH,BRIANA" class="SO" gp="0" code="19">
+    </player>
+    <player uni="20" name="Katherine Thompson" checkname="THOMPSON,KATHERINE" class="SO" gp="0" code="20">
+    </player>
+    <player uni="21" name="Elizabeth Hillman" checkname="HILLMAN,ELIZABETH" class="JR" gp="1" gs="1" pos="m" code="21">
+      <shots g="1" a="0" sh="2" sog="2" freepos="2" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="1" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="1" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="22" name="Tayler Warehime" checkname="WAREHIME,TAYLER" class="SR" gp="0" code="22">
+    </player>
+    <player uni="23" name="Emma Trenchard" checkname="TRENCHARD,EMMA" class="SR" gp="1" gs="1" pos="d" code="23">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="2" dc="0" turnover="0" ct="1" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="24" name="Amanda Fedor" checkname="FEDOR,AMANDA" class="SR" gp="0" code="24">
+    </player>
+    <player uni="25" name="Emily Magalotti" checkname="MAGALOTTI,EMILY" class="SO" gp="0" code="25">
+    </player>
+    <player uni="26" name="Mason Paradine" checkname="PARADINE,MASON" class="SO" gp="0" code="26">
+    </player>
+    <player uni="27" name="Olivia Dirks" checkname="DIRKS,OLIVIA" class="JR" gp="1" code="27">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="1">
+      </penalty>
+      <misc gb="1" dc="0" turnover="0" ct="1" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="28" name="Liv Pikiell" checkname="PIKIELL,LIV" class="FR" gp="0" code="28">
+    </player>
+    <player uni="29" name="Brooke Baker" checkname="BAKER,BROOKE" class="SO" gp="0" code="29">
+    </player>
+    <player uni="30" name="Taylor Moreno" checkname="MORENO,TAYLOR" class="SR" gp="1" gs="1" pos="gk" code="30">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="2" dc="0" turnover="2" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+      <goalie gp="1" gs="1" minutes="51:21" ga="5" saves="8" sf="19" savebyprd="2,2,4,0" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0">
+      </goalie>
+    </player>
+    <player uni="31" name="Andie Aldave" checkname="ALDAVE,ANDIE" class="SR" gp="1" gs="1" pos="a" code="31">
+      <shots g="2" a="1" sh="4" sog="3" freepos="2" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="1" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="2">
+      </penalty>
+      <misc gb="0" dc="0" turnover="4" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="32" name="Anna Barton" checkname="BARTON,ANNA" class="JR" gp="0" code="32">
+    </player>
+    <player uni="33" name="Ella Little" checkname="LITTLE,ELLA" class="SO" gp="0" code="33">
+    </player>
+    <player uni="34" name="LucyCatherine Olmert" checkname="OLMERT,LUCYCATHERINE" class="FR" gp="0" code="34">
+    </player>
+    <player uni="35" name="Brooklyn Neumen" checkname="NEUMEN,BROOKLYN" class="SR" gp="1" code="35">
+      <shots g="1" a="0" sh="1" sog="1" freepos="1" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="1" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="36" name="Sam Geiersbach" checkname="GEIERSBACH,SAM" class="SR" gp="1" code="36">
+      <shots g="2" a="0" sh="3" sog="3" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="37" name="McKenna Harden" checkname="HARDEN,MCKENNA" class="FR" gp="0" code="37">
+    </player>
+    <player uni="40" name="Stella Harrison" checkname="HARRISON,STELLA" class="FR" gp="0" code="40">
+    </player>
+    <player uni="45" name="BrooklynWalker-Welch" checkname="BROOKLYNWALKER-WELCH" class="FR" gp="1" gs="1" pos="d" code="45">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="51" seconds="21" dsave="0">
+      </misc>
+    </player>
+    <player uni="50" name="Melissa Sconone" checkname="SCONONE,MELISSA" class="JR" gp="0" code="50">
+    </player>
+    <player uni="TM" name="TEAM" checkname="TEAM" class="" gp="1" code="TM">
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0">
+      </shots>
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0">
+      </goaltype>
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0">
+      </penalty>
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0">
+      </misc>
+    </player>
+  </team>
+  <scores>
+    <score number="1" vh="V" id="SBU" prd="1" time="12:09" type="EV" name="MASERA, Ellie" seasong="66">
+    </score>
+    <score number="2" vh="H" id="NC" prd="1" time="06:38" type="EV" name="Brooklyn Neumen" seasong="9">
+    </score>
+    <score number="3" vh="H" id="NC" prd="1" time="04:47" type="EV" name="Sam Geiersbach" seasong="28" assist1="Scottie Rose Growney" seasona1="19">
+    </score>
+    <score number="4" vh="H" id="NC" prd="2" time="12:19" type="EV" name="Elizabeth Hillman" seasong="10">
+    </score>
+    <score number="5" vh="V" id="SBU" prd="2" time="07:20" type="EV" name="HAMPEL, Jaden" seasong="20">
+    </score>
+    <score number="6" vh="V" id="SBU" prd="2" time="06:08" type="EV" name="HAMPEL, Jaden" seasong="21">
+    </score>
+    <score number="7" vh="V" id="SBU" prd="2" time="00:28" type="EV" name="RAFFERTY, Siobhan" seasong="32" assist1="ZAPOLSKI, Kyla" seasona1="12">
+    </score>
+    <score number="8" vh="H" id="NC" prd="3" time="11:06" type="EV" name="Sam Geiersbach" seasong="29" assist1="Caitlyn Wurzburger" seasona1="43">
+    </score>
+    <score number="9" vh="V" id="SBU" prd="3" time="05:35" type="EV" name="MASERA, Ellie" seasong="67">
+    </score>
+    <score number="10" vh="H" id="NC" prd="3" time="02:18" type="EV" name="Andie Aldave" seasong="48">
+    </score>
+    <score number="11" vh="H" id="NC" prd="3" time="00:01" type="EV" name="Caitlyn Wurzburger" seasong="31" assist1="Andie Aldave" seasona1="10">
+    </score>
+    <score number="12" vh="H" id="NC" prd="4" time="11:58" type="EV" name="Andie Aldave" seasong="49" assist1="Jamie Ortega" seasona1="41">
+    </score>
+  </scores>
+  <penalties>
+  </penalties>
+  <goaliechanges>
+    <goaliechange vh="V" id="SBU" prd="1" time="15:00" uni="57" name="CAMPBELL, Charlie">
+    </goaliechange>
+    <goaliechange vh="H" id="NC" prd="1" time="15:00" uni="30" name="Taylor Moreno">
+    </goaliechange>
+  </goaliechanges>
+  <plays format="summary">
+    <period number="1">
+      <play number="0" vh="V" team="SBU" clock="15:00" action="GOALIE" text="CAMPBELL, Charlie at goalie for SBU.">
+      </play>
+      <play number="1" vh="H" team="NC" clock="15:00" action="GOALIE" text="Taylor Moreno at goalie for NC.">
+      </play>
+      <play number="2" vh="H" team="NC" action="DC" text="Draw control by NC Elizabeth Hillman.">
+      </play>
+      <play number="3" vh="V" team="SBU" action="FOUL" text="Foul on SBU ZAPOLSKI, Kyla.">
+      </play>
+      <play number="4" vh="H" team="NC" clock="13:28" action="FPS" text="Shot by NC Elizabeth Hillman, SAVE CAMPBELL, Charlie {free position shot}.">
+      </play>
+      <play number="5" vh="H" team="NC" clock="13:01" action="TURN" text="Turnover by NC Sam Geiersbach.">
+      </play>
+      <play number="6" vh="V" team="SBU" clock="12:09" action="SHOT" text="GOAL by SBU MASERA, Ellie (FIRST GOAL), goal number 66 for season.">
+      </play>
+      <currentscore vscore="1" hscore="0">
+      </currentscore>
+      <play number="7" vh="H" team="NC" action="DC" text="Draw control by NC Ally Mastroianni.">
+      </play>
+      <play number="8" vh="V" team="SBU" action="FOUL" text="Foul on SBU VERHULST, Charlotte.">
+      </play>
+      <play number="9" vh="H" team="NC" clock="10:50" action="TURN" text="Turnover by NC Ally Mastroianni.">
+      </play>
+      <play number="10" vh="V" team="SBU" clock="10:47" action="GB" text="Ground ball pickup by SBU RAFFERTY, Siobhan.">
+      </play>
+      <play number="11" vh="H" team="NC" action="FOUL" text="Foul on NC Scottie Rose Growney.">
+      </play>
+      <play number="12" vh="V" team="SBU" clock="10:42" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="13" vh="H" team="NC" action="FOUL" text="Foul on NC Emily Nalls.">
+      </play>
+      <play number="14" vh="V" team="SBU" clock="09:28" action="TURN" text="Turnover by SBU HART, Kailyn (caused by Ally Mastroianni).">
+      </play>
+      <play number="15" vh="H" team="NC" clock="09:25" action="GB" text="Ground ball pickup by NC Taylor Moreno.">
+      </play>
+      <play number="16" vh="H" team="NC" clock="09:21" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="17" vh="H" team="NC" clock="09:04" action="TURN" text="Turnover by NC Andie Aldave (caused by DILLON, Haley).">
+      </play>
+      <play number="18" vh="H" team="NC" action="FOUL" text="Foul on NC Andie Aldave.">
+      </play>
+      <play number="19" vh="H" team="NC" clock="09:04" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="20" vh="V" team="SBU" clock="09:04" action="CLOCKV" text="Shot clock violation by SBU.">
+      </play>
+      <play number="21" vh="H" team="NC" clock="09:04" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="22" vh="V" team="SBU" action="FOUL" text="Foul on SBU SABELLA, Rayna.">
+      </play>
+      <play number="23" vh="H" team="NC" clock="06:38" action="FPS" text="GOAL by NC Brooklyn Neumen (FPGOAL) {free position shot}, goal number 9 for season.">
+      </play>
+      <currentscore vscore="1" hscore="1">
+      </currentscore>
+      <play number="24" vh="H" team="NC" clock="06:38" action="TOUT" text="Media timeout.">
+      </play>
+      <play number="25" vh="V" team="SBU" action="DC" text="Draw control by SBU MASERA, Ellie.">
+      </play>
+      <play number="26" vh="V" team="SBU" clock="05:53" action="SHOT" text="Shot by SBU HART, Kailyn, SAVE Taylor Moreno.">
+      </play>
+      <play number="27" vh="H" team="NC" clock="05:42" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="28" vh="H" team="NC" clock="04:47" action="SHOT" text="GOAL by NC Sam Geiersbach, Assist by Scottie Rose Growney, goal number 28 for season.">
+      </play>
+      <currentscore vscore="1" hscore="2">
+      </currentscore>
+      <play number="29" vh="V" team="SBU" action="DC" text="Draw control by SBU VERHULST, Charlotte.">
+      </play>
+      <play number="30" vh="H" team="NC" action="FOUL" text="Foul on NC Scottie Rose Growney.">
+      </play>
+      <play number="31" vh="V" team="SBU" clock="04:18" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="32" vh="V" team="SBU" clock="03:36" action="SHOT" text="Shot by SBU MASERA, Ellie, SAVE Taylor Moreno.">
+      </play>
+      <play number="33" vh="H" team="NC" clock="03:31" action="GB" text="Ground ball pickup by NC Emily Nalls.">
+      </play>
+      <play number="34" vh="H" team="NC" clock="03:30" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="35" vh="H" team="NC" clock="02:54" action="TURN" text="Turnover by NC Caitlyn Wurzburger (caused by VENGILIO, Emily).">
+      </play>
+      <play number="36" vh="V" team="SBU" clock="02:52" action="GB" text="Ground ball pickup by SBU VENGILIO, Emily.">
+      </play>
+      <play number="37" vh="V" team="SBU" clock="02:49" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="38" vh="V" team="SBU" clock="02:05" action="TURN" text="Turnover by SBU ZAPOLSKI, Kyla (caused by Livi Lawton).">
+      </play>
+      <play number="39" vh="H" team="NC" clock="01:59" action="GB" text="Ground ball pickup by NC Taylor Moreno.">
+      </play>
+      <play number="40" vh="H" team="NC" clock="01:57" action="CLEAR" text="Clear attempt by NC failed.">
+      </play>
+      <play number="41" vh="H" team="NC" clock="01:51" action="TURN" text="Turnover by NC Taylor Moreno.">
+      </play>
+      <play number="42" vh="V" team="SBU" clock="01:47" action="GB" text="Ground ball pickup by SBU CAMPBELL, Charlie.">
+      </play>
+      <play number="43" vh="V" team="SBU" clock="01:42" action="CLEAR" text="Clear attempt by SBU failed.">
+      </play>
+      <play number="44" vh="V" team="SBU" clock="01:31" action="TURN" text="Turnover by SBU HAMPEL, Jaden (caused by Olivia Dirks).">
+      </play>
+      <play number="45" vh="H" team="NC" clock="01:28" action="GB" text="Ground ball pickup by NC Olivia Dirks.">
+      </play>
+      <play number="46" vh="H" team="NC" clock="01:24" action="CLEAR" text="Clear attempt by NC failed.">
+      </play>
+      <play number="47" vh="V" team="SBU" clock="01:11" action="SHOT" text="Shot by SBU MASERA, Ellie HIT POST.">
+      </play>
+      <play number="48" vh="H" team="NC" clock="01:07" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="49" vh="H" team="NC" clock="00:32" action="TURN" text="Turnover by NC Andie Aldave (caused by RAFFERTY, Siobhan).">
+      </play>
+      <play number="50" vh="V" team="SBU" clock="00:29" action="GB" text="Ground ball pickup by SBU RAFFERTY, Siobhan.">
+      </play>
+      <play number="51" vh="V" team="SBU" clock="00:27" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="52" vh="V" team="SBU" clock="00:04" action="GB" text="Ground ball pickup by SBU HART, Kailyn.">
+      </play>
+      <play number="53" vh="V" team="SBU" clock="00:00" action="SHOT" text="Shot by SBU MITCHELL, Morgan HIGH.">
+      </play>
+      <play number="54" clock="00:00" action="END-PRD" text="End-of-period.">
+      </play>
+    </period>
+    <period number="2">
+      <play number="55" clock="15:00" action="PRD" text="">
+      </play>
+      <play number="56" vh="V" team="SBU" action="DC" text="Draw control by SBU MASERA, Ellie.">
+      </play>
+      <play number="57" vh="V" team="SBU" clock="13:26" action="SHOT" text="Shot by SBU MASERA, Ellie WIDE.">
+      </play>
+      <play number="58" vh="V" team="SBU" clock="13:17" action="CLOCKV" text="Shot clock violation by SBU.">
+      </play>
+      <play number="59" vh="H" team="NC" clock="13:08" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="60" vh="H" team="NC" clock="13:04" action="SHOT" text="Shot by NC Ally Mastroianni HIT POST.">
+      </play>
+      <play number="61" vh="V" team="SBU" action="FOUL" text="Foul on SBU DILLON, Haley.">
+      </play>
+      <play number="62" vh="H" team="NC" clock="12:19" action="FPS" text="GOAL by NC Elizabeth Hillman (FPGOAL) {free position shot}, goal number 10 for season.">
+      </play>
+      <currentscore vscore="1" hscore="3">
+      </currentscore>
+      <play number="63" vh="H" team="NC" action="DC" text="Draw control by NC Ally Mastroianni.">
+      </play>
+      <play number="64" vh="V" team="SBU" action="FOUL" text="Foul on SBU VERHULST, Charlotte.">
+      </play>
+      <play number="65" vh="H" team="NC" clock="11:44" action="TURN" text="Turnover by NC Jamie Ortega (caused by LEVY, Clare).">
+      </play>
+      <play number="66" vh="V" team="SBU" clock="11:40" action="GB" text="Ground ball pickup by SBU LEVY, Clare.">
+      </play>
+      <play number="67" vh="V" team="SBU" clock="11:38" action="SHOT" text="Shot by SBU MITCHELL, Morgan, SAVE Taylor Moreno.">
+      </play>
+      <play number="68" vh="H" team="NC" clock="11:34" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="69" vh="V" team="SBU" action="FOUL" text="Foul on SBU ZAPOLSKI, Kyla.">
+      </play>
+      <play number="70" vh="H" team="NC" clock="10:58" action="FPS" text="Shot by NC Andie Aldave, SAVE CAMPBELL, Charlie {free position shot}.">
+      </play>
+      <play number="71" vh="H" team="NC" clock="10:51" action="GB" text="Ground ball pickup by NC Jamie Ortega.">
+      </play>
+      <play number="72" vh="H" team="NC" clock="10:06" action="TURN" text="Turnover by NC Scottie Rose Growney (caused by ZAPOLSKI, Kyla).">
+      </play>
+      <play number="73" vh="V" team="SBU" clock="10:02" action="GB" text="Ground ball pickup by SBU LEVY, Clare.">
+      </play>
+      <play number="74" vh="V" team="SBU" clock="10:00" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="75" vh="V" team="SBU" clock="09:14" action="TURN" text="Turnover by SBU HART, Kailyn.">
+      </play>
+      <play number="76" vh="V" team="SBU" action="FOUL" text="Foul on SBU HAMPEL, Jaden.">
+      </play>
+      <play number="77" vh="H" team="NC" clock="08:37" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="78" vh="H" team="NC" clock="08:07" action="TURN" text="Turnover by NC Scottie Rose Growney.">
+      </play>
+      <play number="79" vh="V" team="SBU" clock="08:00" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="80" vh="V" team="SBU" clock="07:20" action="SHOT" text="GOAL by SBU HAMPEL, Jaden, goal number 20 for season.">
+      </play>
+      <currentscore vscore="2" hscore="3">
+      </currentscore>
+      <play number="81" vh="H" team="NC" clock="07:20" action="TOUT" text="Media timeout.">
+      </play>
+      <play number="82" vh="V" team="SBU" action="DC" text="Draw control by SBU LEVY, Clare.">
+      </play>
+      <play number="83" vh="V" team="SBU" clock="07:03" action="TOUT" text="Timeout by SBU.">
+      </play>
+      <play number="84" vh="V" team="SBU" clock="06:08" action="SHOT" text="GOAL by SBU HAMPEL, Jaden, goal number 21 for season.">
+      </play>
+      <currentscore vscore="3" hscore="3">
+      </currentscore>
+      <play number="85" vh="H" team="NC" action="DC" text="Draw control by NC Livi Lawton.">
+      </play>
+      <play number="86" vh="H" team="NC" clock="05:47" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="87" vh="V" team="SBU" action="FOUL" text="Foul on SBU VENGILIO, Emily.">
+      </play>
+      <play number="88" vh="V" team="SBU" action="FOUL" text="Foul on SBU SABELLA, Rayna.">
+      </play>
+      <play number="89" vh="H" team="NC" clock="05:06" action="FPS" text="Shot by NC Scottie Rose Growney WIDE {free position shot}.">
+      </play>
+      <play number="90" vh="V" team="SBU" action="FOUL" text="Foul on SBU DILLON, Haley.">
+      </play>
+      <play number="91" vh="H" team="NC" clock="04:37" action="CLOCKV" text="Shot clock violation by NC.">
+      </play>
+      <play number="92" vh="V" team="SBU" clock="04:27" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="93" vh="V" team="SBU" clock="03:27" action="SHOT" text="Shot by SBU MASERA, Ellie, SAVE Taylor Moreno.">
+      </play>
+      <play number="94" vh="H" team="NC" clock="03:14" action="GB" text="Ground ball pickup by NC Gabi Hall.">
+      </play>
+      <play number="95" vh="V" team="SBU" action="FOUL" text="Foul on SBU ARLINE, Jesse.">
+      </play>
+      <play number="96" vh="H" team="NC" clock="03:08" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="97" vh="H" team="NC" clock="02:04" action="SHOT" text="Shot by NC Caitlyn Wurzburger WIDE.">
+      </play>
+      <play number="98" vh="H" team="NC" clock="01:52" action="SHOT" text="Shot by NC Jamie Ortega, SAVE CAMPBELL, Charlie.">
+      </play>
+      <play number="99" vh="V" team="SBU" clock="01:49" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="100" vh="V" team="SBU" clock="00:28" action="SHOT" text="GOAL by SBU RAFFERTY, Siobhan, Assist by ZAPOLSKI, Kyla, goal number 32 for season.">
+      </play>
+      <currentscore vscore="4" hscore="3">
+      </currentscore>
+      <play number="101" vh="H" team="NC" action="DC" text="Draw control by NC Emily Nalls.">
+      </play>
+      <play number="102" vh="H" team="NC" clock="00:02" action="TURN" text="Turnover by NC Caitlyn Wurzburger (caused by HAMPEL, Jaden).">
+      </play>
+      <play number="103" vh="V" team="SBU" clock="00:00" action="GB" text="Ground ball pickup by SBU HAMPEL, Jaden.">
+      </play>
+      <play number="104" clock="00:00" action="END-PRD" text="End-of-period.">
+      </play>
+    </period>
+    <period number="3">
+      <play number="105" clock="15:00" action="PRD" text="">
+      </play>
+      <play number="106" vh="H" team="NC" action="DC" text="Draw control by NC Ally Mastroianni.">
+      </play>
+      <play number="107" vh="V" team="SBU" action="FOUL" text="Foul on SBU VERHULST, Charlotte.">
+      </play>
+      <play number="108" vh="H" team="NC" clock="13:58" action="SHOT" text="Shot by NC Ally Mastroianni, SAVE CAMPBELL, Charlie.">
+      </play>
+      <play number="109" vh="V" team="SBU" clock="13:55" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="110" vh="V" team="SBU" clock="13:04" action="SHOT" text="Shot by SBU MASERA, Ellie WIDE.">
+      </play>
+      <play number="111" vh="V" team="SBU" clock="12:26" action="SHOT" text="Shot by SBU MASERA, Ellie, SAVE Taylor Moreno.">
+      </play>
+      <play number="112" vh="H" team="NC" clock="12:26" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="113" vh="V" team="SBU" action="FOUL" text="Foul on SBU WHITEHOUSE, Ella.">
+      </play>
+      <play number="114" vh="H" team="NC" clock="11:31" action="FPS" text="Shot by NC Jamie Ortega, SAVE CAMPBELL, Charlie {free position shot}.">
+      </play>
+      <play number="115" vh="H" team="NC" clock="11:31" action="GB" text="Ground ball pickup by NC Jamie Ortega.">
+      </play>
+      <play number="116" vh="H" team="NC" clock="11:31" action="SHOT" text="Shot by NC Jamie Ortega, SAVE CAMPBELL, Charlie.">
+      </play>
+      <play number="117" vh="H" team="NC" clock="11:31" action="GB" text="Ground ball pickup by NC Jamie Ortega.">
+      </play>
+      <play number="118" vh="H" team="NC" clock="11:06" action="SHOT" text="GOAL by NC Sam Geiersbach, Assist by Caitlyn Wurzburger, goal number 29 for season.">
+      </play>
+      <currentscore vscore="4" hscore="4">
+      </currentscore>
+      <play number="119" vh="V" team="SBU" action="DC" text="Draw control by SBU VERHULST, Charlotte.">
+      </play>
+      <play number="120" vh="H" team="NC" action="FOUL" text="Foul on NC Olivia Dirks.">
+      </play>
+      <play number="121" vh="V" team="SBU" clock="10:19" action="TURN" text="Turnover by SBU HART, Kailyn (caused by Emily Nalls).">
+      </play>
+      <play number="122" vh="H" team="NC" clock="10:13" action="GB" text="Ground ball pickup by NC Emily Nalls.">
+      </play>
+      <play number="123" vh="H" team="NC" clock="10:11" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="124" vh="H" team="NC" clock="09:18" action="TURN" text="Turnover by NC Caitlyn Wurzburger (caused by WHITEHOUSE, Ella).">
+      </play>
+      <play number="125" vh="V" team="SBU" clock="09:07" action="GB" text="Ground ball pickup by SBU WHITEHOUSE, Ella.">
+      </play>
+      <play number="126" vh="V" team="SBU" clock="09:05" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="127" vh="V" team="SBU" clock="08:04" action="SHOT" text="Shot by SBU MITCHELL, Morgan, SAVE Taylor Moreno.">
+      </play>
+      <play number="128" vh="H" team="NC" clock="07:57" action="GB" text="Ground ball pickup by NC Emma Trenchard.">
+      </play>
+      <play number="129" vh="H" team="NC" clock="07:54" action="CLEAR" text="Clear attempt by NC failed.">
+      </play>
+      <play number="130" vh="H" team="NC" clock="07:46" action="TURN" text="Turnover by NC Taylor Moreno.">
+      </play>
+      <play number="131" vh="V" team="SBU" clock="07:40" action="TURN" text="Turnover by SBU HAMPEL, Jaden (caused by Jamie Ortega).">
+      </play>
+      <play number="132" vh="H" team="NC" clock="07:36" action="GB" text="Ground ball pickup by NC Jamie Ortega.">
+      </play>
+      <play number="133" vh="H" team="NC" clock="06:42" action="TURN" text="Turnover by NC Andie Aldave (caused by RAFFERTY, Siobhan).">
+      </play>
+      <play number="134" vh="V" team="SBU" clock="06:39" action="GB" text="Ground ball pickup by SBU RAFFERTY, Siobhan.">
+      </play>
+      <play number="135" vh="V" team="SBU" clock="06:36" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="136" vh="H" team="NC" action="FOUL" text="Foul on NC Ally Mastroianni.">
+      </play>
+      <play number="137" vh="H" team="NC" action="FOUL" text="Foul on NC Ally Mastroianni.">
+      </play>
+      <play number="138" vh="V" team="SBU" clock="05:35" action="SHOT" text="GOAL by SBU MASERA, Ellie, goal number 67 for season.">
+      </play>
+      <currentscore vscore="5" hscore="4">
+      </currentscore>
+      <play number="139" vh="H" team="NC" clock="05:35" action="TOUT" text="Media timeout.">
+      </play>
+      <play number="140" vh="H" team="NC" action="DC" text="Draw control by NC Emily Nalls.">
+      </play>
+      <play number="141" vh="H" team="NC" clock="04:23" action="TURN" text="Turnover by NC Andie Aldave (caused by WHITEHOUSE, Ella).">
+      </play>
+      <play number="142" vh="H" team="NC" action="FOUL" text="Foul on NC Andie Aldave.">
+      </play>
+      <play number="143" vh="V" team="SBU" clock="04:23" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="144" vh="V" team="SBU" clock="03:25" action="SHOT" text="Shot by SBU HART, Kailyn HIGH.">
+      </play>
+      <play number="145" vh="V" team="SBU" clock="03:14" action="SHOT" text="Shot by SBU MASERA, Ellie, SAVE Taylor Moreno.">
+      </play>
+      <play number="146" vh="H" team="NC" clock="03:10" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="147" vh="V" team="SBU" action="FOUL" text="Foul on SBU DILLON, Haley.">
+      </play>
+      <play number="148" vh="H" team="NC" clock="02:18" action="FPS" text="GOAL by NC Andie Aldave (FPGOAL) {free position shot}, goal number 48 for season.">
+      </play>
+      <currentscore vscore="5" hscore="5">
+      </currentscore>
+      <play number="149" vh="V" team="SBU" action="DC" text="Draw control by SBU LEVY, Clare.">
+      </play>
+      <play number="150" vh="V" team="SBU" clock="01:13" action="SHOT" text="Shot by SBU MASERA, Ellie, SAVE Taylor Moreno.">
+      </play>
+      <play number="151" vh="H" team="NC" clock="01:11" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="152" vh="H" team="NC" clock="00:01" action="SHOT" text="GOAL by NC Caitlyn Wurzburger, Assist by Andie Aldave, goal number 31 for season.">
+      </play>
+      <currentscore vscore="5" hscore="6">
+      </currentscore>
+      <play number="153" clock="00:00" action="END-PRD" text="End-of-period.">
+      </play>
+    </period>
+    <period number="4">
+      <play number="154" clock="15:00" action="PRD" text="">
+      </play>
+      <play number="155" vh="H" team="NC" action="DC" text="Draw control by NC Ally Mastroianni.">
+      </play>
+      <play number="156" vh="V" team="SBU" action="FOUL" text="Foul on SBU HAMPEL, Jaden.">
+      </play>
+      <play number="157" vh="H" team="NC" clock="14:10" action="TURN" text="Turnover by NC Scottie Rose Growney (caused by SABELLA, Rayna).">
+      </play>
+      <play number="158" vh="V" team="SBU" clock="14:05" action="GB" text="Ground ball pickup by SBU CAMPBELL, Charlie.">
+      </play>
+      <play number="159" vh="V" team="SBU" clock="14:03" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="160" vh="H" team="NC" action="FOUL" text="Foul on NC Gabi Hall.">
+      </play>
+      <play number="161" vh="V" team="SBU" clock="12:45" action="FPS" text="Shot by SBU HART, Kailyn WIDE {free position shot}.">
+      </play>
+      <play number="162" vh="V" team="SBU" clock="12:43" action="CLOCKV" text="Shot clock violation by SBU.">
+      </play>
+      <play number="163" vh="H" team="NC" clock="12:38" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="164" vh="H" team="NC" clock="11:58" action="SHOT" text="GOAL by NC Andie Aldave, Assist by Jamie Ortega, goal number 49 for season.">
+      </play>
+      <currentscore vscore="5" hscore="7">
+      </currentscore>
+      <play number="165" vh="H" team="NC" action="DC" text="Draw control by NC Ally Mastroianni.">
+      </play>
+      <play number="166" vh="V" team="SBU" action="FOUL" text="Foul on SBU MASERA, Ellie.">
+      </play>
+      <play number="167" vh="V" team="SBU" action="FOUL" text="Foul on SBU FUSCO, Alexandra.">
+      </play>
+      <play number="168" vh="H" team="NC" clock="11:04" action="TURN" text="Turnover by NC Jamie Ortega (caused by DILLON, Haley).">
+      </play>
+      <play number="169" vh="V" team="SBU" clock="11:01" action="GB" text="Ground ball pickup by SBU DILLON, Haley.">
+      </play>
+      <play number="170" vh="V" team="SBU" clock="10:59" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <play number="171" vh="V" team="SBU" clock="10:23" action="TOUT" text="Timeout by SBU.">
+      </play>
+      <play number="172" vh="V" team="SBU" clock="09:49" action="TURN" text="Turnover by SBU HART, Kailyn (caused by Emma Trenchard).">
+      </play>
+      <play number="173" vh="H" team="NC" clock="09:46" action="GB" text="Ground ball pickup by NC Emma Trenchard.">
+      </play>
+      <play number="174" vh="H" team="NC" clock="09:43" action="CLEAR" text="Clear attempt by NC good.">
+      </play>
+      <play number="175" vh="H" team="NC" clock="08:55" action="SHOT" text="Shot by NC Andie Aldave WIDE.">
+      </play>
+      <play number="176" vh="H" team="NC" clock="08:43" action="SHOT" text="Shot by NC Sam Geiersbach, SAVE CAMPBELL, Charlie.">
+      </play>
+      <play number="177" vh="V" team="SBU" clock="08:39" action="CLEAR" text="Clear attempt by SBU good.">
+      </play>
+      <currentscore vscore="5" hscore="7">
+      </currentscore>
+    </period>
+  </plays>
+</lcgame>

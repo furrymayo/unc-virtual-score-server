@@ -3,75 +3,360 @@
 {% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell">
+<section class="scoreboard-shell lacrosse-scoreboard">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Lacrosse</div>
             <div class="scoreboard-subtitle" id="lax-venue-info">Live scoreboard feed</div>
         </div>
-        <div class="meta-row">
-            <div class="meta-chip">Clock <span id="lax-game-clock">--</span></div>
-            <div class="meta-chip">Period <span id="lax-period-chip">--</span></div>
-            <div class="meta-chip">Shot <span id="lax-shot-clock">--</span></div>
-        </div>
     </div>
 
-    <div class="score-grid">
-        <div class="team-card team-home">
-            <div class="team-label"><span id="lax-home-name">Home</span> <span id="lax-home-record" class="team-record"></span></div>
-            <div class="team-score" id="lax-home-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Timeouts</span><strong id="lax-home-tol">--</strong></div>
-                <div class="stat-line"><span>Shots</span><strong id="lax-home-shots">--</strong></div>
-            </div>
+    <!-- Row 1: Period + Game Clock + Shot Clock -->
+    <div class="lax-clock-row">
+        <div class="center-card lax-period-card">
+            <div class="center-label">Period</div>
+            <div class="lax-period-value" id="lax-period">--</div>
         </div>
         <div class="center-card">
-            <div class="center-label">Period</div>
-            <div class="center-value" id="lax-period">--</div>
-            <div class="center-label" style="margin-top: 8px;">Shot Clock</div>
-            <div class="center-value" id="lax-shot-clock-center">--</div>
+            <div class="center-label">Game Clock</div>
+            <div class="lax-clock-value" id="lax-game-clock">--</div>
         </div>
-        <div class="team-card team-away">
-            <div class="team-label"><span id="lax-visitor-name">Visitor</span> <span id="lax-visitor-record" class="team-record"></span></div>
-            <div class="team-score" id="lax-visitor-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Timeouts</span><strong id="lax-visitor-tol">--</strong></div>
-                <div class="stat-line"><span>Shots</span><strong id="lax-visitor-shots">--</strong></div>
+        <div class="center-card lax-shot-card">
+            <div class="center-label">Shot Clock</div>
+            <div class="lax-shot-clock" id="lax-shot-clock">--</div>
+        </div>
+    </div>
+
+    <!-- Row 2: Scores + Stats -->
+    <div class="lax-score-row">
+        <div class="lax-team-column lax-side-home">
+            <div class="lax-team-top">
+                <div class="lax-team-cell team-home">
+                    <div class="team-label is-home"><span id="lax-home-name">Home</span> <span id="lax-home-record" class="team-record"></span></div>
+                    <div class="team-score" id="lax-home-score">--</div>
+                </div>
+                <div class="lax-stat-card lax-stat-home">
+                    <div class="lax-stat-item"><span class="lax-stat-name">TOL</span><strong id="lax-home-tol">--</strong></div>
+                    <div class="lax-stat-item"><span class="lax-stat-name">Shots</span><strong id="lax-home-shots">--</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="lax-team-column lax-side-away">
+            <div class="lax-team-top">
+                <div class="lax-stat-card lax-stat-away">
+                    <div class="lax-stat-item"><span class="lax-stat-name">TOL</span><strong id="lax-visitor-tol">--</strong></div>
+                    <div class="lax-stat-item"><span class="lax-stat-name">Shots</span><strong id="lax-visitor-shots">--</strong></div>
+                </div>
+                <div class="lax-team-cell team-away">
+                    <div class="team-label is-visitor"><span id="lax-visitor-name">Visitor</span> <span id="lax-visitor-record" class="team-record"></span></div>
+                    <div class="team-score" id="lax-visitor-score">--</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="section-title">Penalties</div>
-    <div class="table-card">
-        <table class="table-grid">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Player</th>
-                    <th>Time</th>
-                    <th>Player</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="team-row-label">Home</td>
-                    <td id="lax-home-pen1-player">--</td>
-                    <td id="lax-home-pen1-time">--</td>
-                    <td id="lax-home-pen2-player">--</td>
-                    <td id="lax-home-pen2-time">--</td>
-                </tr>
-                <tr>
-                    <td class="team-row-label">Visitor</td>
-                    <td id="lax-visitor-pen1-player">--</td>
-                    <td id="lax-visitor-pen1-time">--</td>
-                    <td id="lax-visitor-pen2-player">--</td>
-                    <td id="lax-visitor-pen2-time">--</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Row 3: Penalties -->
+    <div class="lax-penalty-row">
+        <div class="lax-penalty-card lax-penalty-home">
+            <div class="lax-penalty-header">Home Penalties</div>
+            <div class="lax-penalty-slot">
+                <span class="lax-penalty-player" id="lax-home-pen1-player"></span>
+                <span class="lax-penalty-time" id="lax-home-pen1-time"></span>
+            </div>
+            <div class="lax-penalty-slot">
+                <span class="lax-penalty-player" id="lax-home-pen2-player"></span>
+                <span class="lax-penalty-time" id="lax-home-pen2-time"></span>
+            </div>
+        </div>
+        <div class="lax-penalty-card lax-penalty-away">
+            <div class="lax-penalty-header">Away Penalties</div>
+            <div class="lax-penalty-slot">
+                <span class="lax-penalty-player" id="lax-visitor-pen1-player"></span>
+                <span class="lax-penalty-time" id="lax-visitor-pen1-time"></span>
+            </div>
+            <div class="lax-penalty-slot">
+                <span class="lax-penalty-player" id="lax-visitor-pen2-player"></span>
+                <span class="lax-penalty-time" id="lax-visitor-pen2-time"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 4: Team Stats (from StatCrew) -->
+    <div class="lax-stats-row" id="lax-stats-row" style="display: none;">
+        <div class="lax-stats-card lax-stats-home">
+            <div class="lax-stats-header">Home Stats</div>
+            <div class="lax-stats-grid">
+                <div class="lax-stats-cell"><span class="lax-stats-label" id="lax-home-possession-label">FO</span><strong id="lax-home-possession-val">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">GB</span><strong id="lax-home-gb">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">TO</span><strong id="lax-home-to">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">CT</span><strong id="lax-home-ct">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">Clears</span><strong id="lax-home-clears">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">Save%</span><strong id="lax-home-save-pct">--</strong></div>
+            </div>
+        </div>
+        <div class="lax-stats-card lax-stats-away">
+            <div class="lax-stats-header">Away Stats</div>
+            <div class="lax-stats-grid">
+                <div class="lax-stats-cell"><span class="lax-stats-label" id="lax-away-possession-label">FO</span><strong id="lax-away-possession-val">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">GB</span><strong id="lax-away-gb">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">TO</span><strong id="lax-away-to">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">CT</span><strong id="lax-away-ct">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">Clears</span><strong id="lax-away-clears">--</strong></div>
+                <div class="lax-stats-cell"><span class="lax-stats-label">Save%</span><strong id="lax-away-save-pct">--</strong></div>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    /* Lacrosse TV-Optimized Layout */
+    .lacrosse-scoreboard {
+        gap: clamp(4px, 0.6vh, 8px);
+    }
+
+    /* Row 1: Period + Game Clock + Shot Clock */
+    .lax-clock-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
+        text-align: center;
+        padding: 0 clamp(30px, 6vw, 120px);
+    }
+
+    .lax-clock-row .center-card {
+        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .lax-clock-value {
+        font-size: clamp(4rem, 10vw, 11rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .lax-period-card {
+        min-width: 0;
+    }
+
+    .lax-period-value {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    .lax-shot-card {
+        min-width: 0;
+    }
+
+    .lax-shot-clock {
+        font-size: clamp(2rem, 3.2vw, 4.5rem);
+        font-weight: 800;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        line-height: 1.1;
+    }
+
+    /* Row 2: two team columns side by side */
+    .lax-score-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        align-items: start;
+    }
+
+    .lax-team-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Top row: score card + stat card joined flush */
+    .lax-team-top {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .lax-team-cell {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        padding: clamp(6px, 0.7vh, 12px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    /* Home side: score left (rounded left), stat right (rounded right) */
+    .lax-side-home .lax-team-cell {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .lax-side-home .lax-stat-card {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    /* Away side: stat left (rounded left), score right (rounded right) */
+    .lax-side-away .lax-stat-card {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .lax-side-away .lax-team-cell {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    /* Vertical stat cards (TOL/Shots) attached to team scores */
+    .lax-stat-card {
+        background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
+        padding: clamp(6px, 0.7vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(4px, 0.5vh, 8px);
+        flex: 0 0 auto;
+    }
+
+    .lax-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .lax-stat-name {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+    }
+
+    .lax-stat-item strong {
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 3: Penalty cards */
+    .lax-penalty-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .lax-penalty-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 16px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2px, 0.3vh, 6px);
+    }
+
+    .lax-penalty-header {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        text-align: center;
+    }
+
+    .lax-penalty-slot {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: clamp(6px, 1vw, 16px);
+        min-height: clamp(1.2rem, 2vw, 2.8rem);
+    }
+
+    .lax-penalty-player {
+        font-size: clamp(0.85rem, 1.3vw, 1.8rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--carolina);
+    }
+
+    .lax-penalty-away .lax-penalty-player {
+        color: var(--away-color, var(--accent));
+    }
+
+    .lax-penalty-time {
+        font-size: clamp(1.1rem, 1.7vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 4: Team stats from StatCrew */
+    .lax-stats-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .lax-stats-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+    }
+
+    .lax-stats-header {
+        font-size: clamp(0.55rem, 0.8vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        text-align: center;
+        margin-bottom: clamp(2px, 0.3vh, 4px);
+    }
+
+    .lax-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: clamp(4px, 0.5vw, 10px);
+        text-align: center;
+    }
+
+    .lax-stats-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .lax-stats-label {
+        font-size: clamp(0.55rem, 0.75vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+    }
+
+    .lax-stats-cell strong {
+        font-size: clamp(0.9rem, 1.3vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Conditional formatting */
+    .lax-warning-red {
+        color: #ff6b6b !important;
+    }
+</style>
 
 <details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
@@ -109,12 +394,35 @@
 <script>
     let statcrewData = {};
 
+    function normalizeClock(value) {
+        if (value === undefined || value === null) return value;
+        var text = String(value).trim();
+        if (!text) return value;
+        if (text.includes('.')) {
+            var parts = text.split('.');
+            var left = parts[0].replace(/^0+(?=\d)/, '');
+            var normalizedLeft = left === '' ? '0' : left;
+            return normalizedLeft + '.' + parts[1];
+        }
+        return text.replace(/^0+(?=\d)/, '');
+    }
+
+    function parseClockSeconds(value) {
+        if (value === undefined || value === null) return null;
+        var text = String(value);
+        var match = text.match(/\d+(?:\.\d+)?/);
+        if (!match) return null;
+        var parsed = parseFloat(match[0]);
+        return Number.isFinite(parsed) ? parsed : null;
+    }
+
     function renderLacrosse(data) {
-        setText('lax-game-clock', data.game_clock);
-        setText('lax-period-chip', data.period);
+        var gameClock = normalizeClock(data.game_clock);
+        var shotClock = normalizeClock(data.shot_clock);
+
+        setText('lax-game-clock', gameClock);
         setText('lax-period', data.period);
-        setText('lax-shot-clock', data.shot_clock);
-        setText('lax-shot-clock-center', data.shot_clock);
+        setText('lax-shot-clock', shotClock);
         setText('lax-home-score', data.home_score);
         setText('lax-visitor-score', data.visitor_score);
         setText('lax-home-tol', data.home_full_tol);
@@ -122,33 +430,98 @@
         setText('lax-home-shots', data.home_shots);
         setText('lax-visitor-shots', data.visitor_shots);
 
-        const homePens = Array.isArray(data.home_penalties) ? data.home_penalties : [];
-        const visitorPens = Array.isArray(data.visitor_penalties) ? data.visitor_penalties : [];
-        setText('lax-home-pen1-player', homePens[0] && homePens[0].player);
-        setText('lax-home-pen1-time', homePens[0] && homePens[0].time);
-        setText('lax-home-pen2-player', homePens[1] && homePens[1].player);
-        setText('lax-home-pen2-time', homePens[1] && homePens[1].time);
-        setText('lax-visitor-pen1-player', visitorPens[0] && visitorPens[0].player);
-        setText('lax-visitor-pen1-time', visitorPens[0] && visitorPens[0].time);
-        setText('lax-visitor-pen2-player', visitorPens[1] && visitorPens[1].player);
-        setText('lax-visitor-pen2-time', visitorPens[1] && visitorPens[1].time);
+        // Shot clock: red when under 10 seconds
+        var shotClockSecs = parseClockSeconds(shotClock);
+        var shotClockCritical = Number.isFinite(shotClockSecs) && shotClockSecs < 10;
+        document.getElementById('lax-shot-clock').classList.toggle('lax-warning-red', shotClockCritical);
+
+        // Penalties
+        var homePens = Array.isArray(data.home_penalties) ? data.home_penalties : [];
+        var visPens = Array.isArray(data.visitor_penalties) ? data.visitor_penalties : [];
+
+        renderPenalty('lax-home-pen1', homePens[0]);
+        renderPenalty('lax-home-pen2', homePens[1]);
+        renderPenalty('lax-visitor-pen1', visPens[0]);
+        renderPenalty('lax-visitor-pen2', visPens[1]);
+    }
+
+    function renderPenalty(prefix, pen) {
+        var playerEl = document.getElementById(prefix + '-player');
+        var timeEl = document.getElementById(prefix + '-time');
+        if (!playerEl || !timeEl) return;
+
+        var player = pen ? String(pen.player || '').trim() : '';
+        var time = pen ? String(pen.time || '').trim() : '';
+
+        // Show player number with # prefix, fall back to just #
+        if (player && player !== '--' && /\d/.test(player)) {
+            playerEl.textContent = '#' + player.replace(/^\s+/, '');
+        } else {
+            playerEl.textContent = '#';
+        }
+
+        // Always show time — fall back to 0:00 when no active penalty
+        if (time && /\d/.test(time)) {
+            timeEl.textContent = time.trim();
+        } else {
+            timeEl.textContent = '0:00';
+        }
     }
 
     function renderStatcrewLacrosse(data) {
         statcrewData = data || {};
-        const info = getStatcrewTeamInfo(statcrewData);
+        var info = getStatcrewTeamInfo(statcrewData);
         setText('lax-venue-info', info.venueText || 'Live scoreboard feed');
         setText('lax-home-name', info.homeName || 'Home');
         setText('lax-visitor-name', info.visitorName || 'Visitor');
         setText('lax-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
         setText('lax-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+
+        if (statcrewData.away_team_color) {
+            applyAwayTeamColor(statcrewData.away_team_color);
+        }
+
+        // Team stats from StatCrew
+        var homeStats = statcrewData.home_team_stats;
+        var awayStats = statcrewData.away_team_stats;
+        var statsRow = document.getElementById('lax-stats-row');
+
+        if (homeStats || awayStats) {
+            statsRow.style.display = '';
+
+            // Gender-aware label: FO (men's) vs DC (women's)
+            var isWomens = statcrewData.lacrosse_gender === 'W';
+            var possLabel = isWomens ? 'DC' : 'FO';
+            setText('lax-home-possession-label', possLabel);
+            setText('lax-away-possession-label', possLabel);
+
+            if (homeStats) {
+                setText('lax-home-possession-val', isWomens ? homeStats.dc : homeStats.fo_display);
+                setText('lax-home-gb', homeStats.gb);
+                setText('lax-home-to', homeStats.turnover);
+                setText('lax-home-ct', homeStats.ct);
+                setText('lax-home-clears', homeStats.clears);
+                setText('lax-home-save-pct', homeStats.save_pct);
+            }
+
+            if (awayStats) {
+                setText('lax-away-possession-val', isWomens ? awayStats.dc : awayStats.fo_display);
+                setText('lax-away-gb', awayStats.gb);
+                setText('lax-away-to', awayStats.turnover);
+                setText('lax-away-ct', awayStats.ct);
+                setText('lax-away-clears', awayStats.clears);
+                setText('lax-away-save-pct', awayStats.save_pct);
+            }
+        } else {
+            statsRow.style.display = 'none';
+        }
     }
 
     function fetchStatcrewLacrosseData() {
         fetch('/get_statcrew_data/Lacrosse')
-            .then(response => response.json())
-            .then(data => renderStatcrewLacrosse(data || {}))
-            .catch(() => renderStatcrewLacrosse({}));
+            .then(function(response) { return response.json(); })
+            .then(function(data) { renderStatcrewLacrosse(data || {}); })
+            .catch(function() { renderStatcrewLacrosse({}); });
     }
 
     function fetchLacrosseData() {

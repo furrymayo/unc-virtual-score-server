@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<lcgame source="PrestoSports" version="7.13.0" generated="02/15/2026"> 
+  <venue gameid="" visid="IONA" visname="Iona" homeid="NORTH CA" homename="North Carolina" date="2/15/2026" location="Chapel Hill, N.C. " stadium="Dorrance Field" start="12:00 PM" end="02:00 PM" duration="2:00" delay="" attend="543" schednote="" leaguegame="N" neutralgame="N"> 
+    <officials> 
+      <official name="James Blankner"></official>  
+      <official name=" John Radecsky"></official>  
+      <official name=" Kyle Wolf"></official>  
+      <official name="UNC"></official> 
+    </officials>  
+    <rules prds="4" minutes="15" minutesot="4" minminor="30" minmajor="60" minmatch="120" shootoutshot="0" shootoutteam="0"></rules>  
+    <show sog="1" turnovers="0" faceoffs="1" dcs="0" penalties="0" clears="0" todetails="0" fouls="0" fpas="0" nll="0" g2="0" reversemin="0"></show> 
+  </venue>  
+  <status period="4" clock="00:00" complete="Y"></status>  
+  <team vh="V" id="IONA" name="Iona" code="310" record="0-4"> 
+    <linescore periods="4" line="2,2,1,2" score="7" shotline="6,6,5,11" shots="28" sog="13"> 
+      <lineprd prd="1" score="2" shots="6" sog="3" saves="5" ppg="0" ppatt="1" fowon="1" pen="1" psec="0" gb="7" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="5" cleara="6" turnover="5" fviol="0"></lineprd>  
+      <lineprd prd="2" score="2" shots="6" sog="2" saves="2" ppg="0" ppatt="0" fowon="2" pen="0" psec="0" gb="8" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="3" cleara="4" turnover="4" fviol="0"></lineprd>  
+      <lineprd prd="3" score="1" shots="5" sog="2" saves="4" ppg="0" ppatt="1" fowon="3" pen="1" psec="0" gb="6" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="3" cleara="8" turnover="8" fviol="0"></lineprd>  
+      <lineprd prd="4" score="2" shots="11" sog="6" saves="3" ppg="0" ppatt="2" fowon="3" pen="0" psec="0" gb="3" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="4" cleara="4" turnover="2" fviol="1"></lineprd> 
+    </linescore>  
+    <totals> 
+      <shots g="7" a="2" sh="28" sog="13" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="5" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="2" seconds="90" minor="1" major="1" match="0" rc="0" yc="0" gc="0" foul="0" fviol="1" clockw="0" clockv="0"></penalty>  
+      <misc facewon="9" facelost="25" gb="24" dc="0" turnover="19" ct="5" minutes="600" seconds="0" dsave="0"></misc>  
+      <goalie minutes="60:00" ga="23" saves="14" sf="65" savebyprd="0,5,2,4" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie>  
+      <powerplay ppg="0" ppopp="4"></powerplay>  
+      <clear clearm="15" cleara="22"></clear> 
+    </totals>  
+    <player uni="0" name="Hall, Lleyton" checkname="HALL,LLEYTON" gp="0" code="0" playerId=""></player>  
+    <player uni="1" name="Bainbridge, Justin" checkname="BAINBRIDGE,JUSTIN" gp="1" code="1" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc facewon="3" facelost="4" gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="2" name="Foley, Beckett" checkname="FOLEY,BECKETT" gp="0" code="2" playerId=""></player>  
+    <player uni="3" name="Agwamba, Tochi" checkname="AGWAMBA,TOCHI" gp="1" gs="1" pos="d" code="3" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="4" name="Raynor, Llogan" checkname="RAYNOR,LLOGAN" gp="1" gs="1" pos="d" code="4" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="5" name="Turner, Cayden" checkname="TURNER,CAYDEN" gp="1" code="5" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="7" name="Windesheim, Bobby" checkname="WINDESHEIM,BOBBY" gp="1" code="7" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="8" name="Karstien, Richie" checkname="KARSTIEN,RICHIE" gp="1" code="8" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="9" name="Alexander, Caden" checkname="ALEXANDER,CADEN" gp="0" code="9" playerId=""></player>  
+    <player uni="10" name="Hardie, Kyle" checkname="HARDIE,KYLE" gp="1" gs="1" pos="a" code="10" playerId=""> 
+      <shots g="1" a="0" sh="4" sog="2" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="3" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="11" name="Lewis, Kaiden" checkname="LEWIS,KAIDEN" gp="1" code="11" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="12" name="Davis, Jaxson" checkname="DAVIS,JAXSON" gp="1" code="12" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="13" name="Jezewski, Bryson" checkname="JEZEWSKI,BRYSON" gp="0" code="13" playerId=""></player>  
+    <player uni="14" name="Pititto, Vincent" checkname="PITITTO,VINCENT" gp="0" code="14" playerId=""></player>  
+    <player uni="15" name="Colavecchio, Alex" checkname="COLAVECCHIO,ALEX" gp="1" code="15" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="16" name="Shivell, Gary" checkname="SHIVELL,GARY" gp="1" gs="1" pos="d" code="16" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="2" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="17" name="Summers, Slade" checkname="SUMMERS,SLADE" gp="0" code="17" playerId=""></player>  
+    <player uni="18" name="Raso, Francesco" checkname="RASO,FRANCESCO" gp="0" code="18" playerId=""></player>  
+    <player uni="19" name="Riglietti, Jake" checkname="RIGLIETTI,JAKE" gp="0" code="19" playerId=""></player>  
+    <player uni="20" name="Benn, Whyett" checkname="BENN,WHYETT" gp="0" code="20" playerId=""></player>  
+    <player uni="21" name="Sheehy, Kevin" checkname="SHEEHY,KEVIN" gp="1" code="21" playerId=""> 
+      <shots g="0" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="4" dc="0" turnover="0" ct="2" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="22" name="Kennedy, Jimmy" checkname="KENNEDY,JIMMY" gp="1" gs="1" pos="a" code="22" playerId=""> 
+      <shots g="1" a="0" sh="3" sog="3" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="2" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="23" name="Stielau, Cale" checkname="STIELAU,CALE" gp="1" code="23" playerId=""> 
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="24" name="Duffield, Deuce" checkname="DUFFIELD,DEUCE" gp="0" code="24" playerId=""></player>  
+    <player uni="25" name="Neary, Luke" checkname="NEARY,LUKE" gp="1" gs="1" pos="m" code="25" playerId=""> 
+      <shots g="2" a="0" sh="2" sog="2" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="1" seconds="30" minor="1" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="2" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="26" name="Martinez, Jack" checkname="MARTINEZ,JACK" gp="1" code="26" playerId=""> 
+      <shots g="0" a="1" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="2" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="27" name="Bitran, Ethan" checkname="BITRAN,ETHAN" gp="1" code="27" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="28" name="Culver-Andreoli, C." checkname="CULVER-ANDREOLI,C" gp="0" code="28" playerId=""></player>  
+    <player uni="29" name="Greenhut, James" checkname="GREENHUT,JAMES" gp="1" code="29" playerId=""> 
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="30" name="Lawry, Cullen" checkname="LAWRY,CULLEN" gp="1" gs="1" pos="a" code="30" playerId=""> 
+      <shots g="0" a="1" sh="11" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="2" ct="1" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="31" name="Lynch, Cullen" checkname="LYNCH,CULLEN" gp="0" code="31" playerId=""></player>  
+    <player uni="32" name="Curtin, Kolbe" checkname="CURTIN,KOLBE" gp="1" code="32" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="33" name="Gibstein, Cole" checkname="GIBSTEIN,COLE" gp="1" code="33" playerId=""> 
+      <shots g="0" a="0" sh="1" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc facewon="6" facelost="21" gb="2" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="34" name="Holmgren, Luke" checkname="HOLMGREN,LUKE" gp="1" code="34" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="36" name="Caputo, Franco" checkname="CAPUTO,FRANCO" gp="0" code="36" playerId=""></player>  
+    <player uni="37" name="Quinn, Charlie" checkname="QUINN,CHARLIE" gp="0" code="37" playerId=""></player>  
+    <player uni="38" name="Caputo, Sal" checkname="CAPUTO,SAL" gp="1" code="38" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="2" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc>  
+      <goalie gp="1" gs="0" minutes="15:00" ga="2" saves="3" sf="8" savebyprd="0,0,0,0" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie> 
+    </player>  
+    <player uni="39" name="Fourier, Kris" checkname="FOURIER,KRIS" gp="1" code="39" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="40" name="Towers, Nate" checkname="TOWERS,NATE" gp="1" code="40" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="1" seconds="60" minor="0" major="1" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="41" name="Caldwell II, David" checkname="CALDWELL II,DAVID" gp="1" code="41" playerId=""> 
+      <shots g="0" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="42" name="Healy, Ruse" checkname="HEALY,RUSE" gp="0" code="42" playerId=""></player>  
+    <player uni="43" name="Campbell, Reg" checkname="CAMPBELL,REG" gp="0" code="43" playerId=""></player>  
+    <player uni="44" name="Piekutowski, Denny" checkname="PIEKUTOWSKI,DENNY" gp="1" gs="1" pos="gk" code="44" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="1" ct="0" minutes="60" seconds="0" dsave="0"></misc>  
+      <goalie gp="1" gs="1" minutes="30:00" ga="12" saves="7" sf="35" savebyprd="0,5,2,0" loss="0-4" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie> 
+    </player>  
+    <player uni="45" name="Perea, Noah" checkname="PEREA,NOAH" gp="1" code="45" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="2" ct="0" minutes="0" seconds="0" dsave="0"></misc>  
+      <goalie gp="1" gs="0" minutes="15:00" ga="9" saves="4" sf="22" savebyprd="0,0,0,4" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie> 
+    </player>  
+    <player uni="46" name="Lynch, Ryan" checkname="LYNCH,RYAN" gp="0" code="46" playerId=""></player>  
+    <player uni="48" name="Myslinski, Brady" checkname="MYSLINSKI,BRADY" gp="0" code="48" playerId=""></player>  
+    <player uni="49" name="Stephenson, Marshall" checkname="STEPHENSON,MARSHALL" gp="0" code="49" playerId=""></player>  
+    <player uni="50" name="Turissini, Carson" checkname="TURISSINI,CARSON" gp="1" gs="1" pos="m" code="50" playerId=""> 
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="1" ct="1" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="77" name="Metz, Cooper" checkname="METZ,COOPER" gp="1" code="77" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="5" dc="0" turnover="0" ct="1" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="91" name="Dyszkiewicz, Matthew" checkname="DYSZKIEWICZ,MATTHEW" gp="1" gs="1" pos="m" code="91" playerId=""> 
+      <shots g="0" a="0" sh="2" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="99" name="Hickey, Owen" checkname="HICKEY,OWEN" gp="1" code="99" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="TM" name="Team" checkname="TEAM" gp="1" code="TM" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player> 
+  </team>  
+  <team vh="H" id="NORTH CA" name="North Carolina" code="457" record="3-0"> 
+    <linescore periods="4" line="4,8,9,2" score="23" shotline="16,19,22,8" shots="65" sog="37"> 
+      <lineprd prd="1" score="4" shots="16" sog="9" saves="1" ppg="1" ppatt="1" fowon="6" pen="1" psec="0" gb="14" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="4" cleara="5" turnover="3" fviol="0"></lineprd>  
+      <lineprd prd="2" score="8" shots="19" sog="10" saves="0" ppg="0" ppatt="0" fowon="9" pen="0" psec="0" gb="15" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="5" cleara="5" turnover="4" fviol="1"></lineprd>  
+      <lineprd prd="3" score="9" shots="22" sog="13" saves="1" ppg="1" ppatt="1" fowon="8" pen="1" psec="0" gb="14" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="2" cleara="3" turnover="3" fviol="0"></lineprd>  
+      <lineprd prd="4" score="2" shots="8" sog="5" saves="4" ppg="0" ppatt="0" fowon="2" pen="2" psec="0" gb="4" dc="0" fpg="0" fps="0" fpa="0" fouls="0" clockv="0" clockw="0" clearm="4" cleara="6" turnover="5" fviol="2"></lineprd> 
+    </linescore>  
+    <totals> 
+      <shots g="23" a="15" sh="65" sog="37" freepos="0" shootout="0"></shots>  
+      <goaltype gw="1" pp="2" sh="0" ua="8" fg="1" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="4" seconds="210" minor="1" major="3" match="0" rc="0" yc="0" gc="0" foul="0" fviol="3" clockw="0" clockv="0"></penalty>  
+      <misc facewon="25" facelost="9" gb="47" dc="0" turnover="15" ct="7" minutes="600" seconds="0" dsave="0"></misc>  
+      <goalie minutes="60:00" ga="7" saves="6" sf="28" savebyprd="0,1,0,1" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie>  
+      <powerplay ppg="2" ppopp="2"></powerplay>  
+      <clear clearm="15" cleara="19"></clear> 
+    </totals>  
+    <player uni="0" name="Jermaine Anderson" checkname="ANDERSON,JERMAINE" gp="1" code="0" playerId="f44acnttassglc48"> 
+      <shots g="0" a="0" sh="2" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="1" name="Mason Szewczyk" checkname="SZEWCZYK,MASON" gp="1" gs="1" pos="m" code="1" playerId="9sgk4j5i68yk1uxa"> 
+      <shots g="1" a="2" sh="4" sog="2" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="2" name="Kent Goode" checkname="GOODE,KENT" gp="1" code="2" playerId="9c8c1b1b8g483d6n"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc>  
+      <goalie gp="1" gs="0" minutes="14:19" ga="2" saves="3" sf="8" savebyprd="0,0,0,1" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie> 
+    </player>  
+    <player uni="3" name="Brevin Wilson" checkname="WILSON,BREVIN" gp="1" gs="1" pos="a" code="3" playerId="6pujtl5lsd7sat1p"> 
+      <shots g="2" a="0" sh="5" sog="3" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="3" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="4" name="Parker Hoffman" checkname="HOFFMAN,PARKER" gp="1" code="4" playerId="dmryscy3zamt8rgr"> 
+      <shots g="0" a="0" sh="2" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc facewon="2" facelost="2" gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="5" name="Peter Thomann" checkname="THOMANN,PETER" gp="1" code="5" playerId="r9b4oq8n1cgkgiqc"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="1" seconds="30" minor="1" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="2" dc="0" turnover="0" ct="2" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="6" name="Luke Bair" checkname="BAIR,LUKE" gp="1" code="6" playerId="e5d4iokuvlftr0g8"> 
+      <shots g="1" a="0" sh="4" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="1" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="7" name="James Matan" checkname="MATAN,JAMES" gp="1" gs="1" pos="m" code="7" playerId="omp1qvxhz349lyv1"> 
+      <shots g="0" a="0" sh="2" sog="2" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="8" name="Owen Duffy" checkname="DUFFY,OWEN" gp="1" gs="1" pos="a" code="8" playerId="2l4r59dl8rpzjohu"> 
+      <shots g="3" a="5" sh="7" sog="4" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="2" fg="1" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="2" ct="1" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="9" name="Anthony Raio" checkname="RAIO,ANTHONY" gp="1" code="9" playerId="bbxdmuvo152fzgi7"> 
+      <shots g="1" a="0" sh="5" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="11" name="Caden Harshbarger" checkname="HARSHBARGER,CADEN" gp="0" code="11" playerId="8v0403sm3uey5ky5"></player>  
+    <player uni="12" name="Alec Levy" checkname="LEVY,ALEC" gp="1" code="12" playerId="i7mxsszgiqmt2cb5"> 
+      <shots g="1" a="1" sh="2" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="15" name="Parker McDonald" checkname="MCDONALD,PARKER" gp="1" code="15" playerId="1nkwaucy3quvx8si"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="2" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="16" name="Gary Merrill" checkname="MERRILL,GARY" gp="1" code="16" playerId="1nxuw9wsyejyda65"> 
+      <shots g="2" a="1" sh="3" sog="3" freepos="0" shootout="0"></shots>  
+      <goaltype gw="1" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="17" name="Teddy Gabrielian" checkname="GABRIELIAN,TEDDY" gp="1" code="17" playerId="k4b78mx75z4a1dmb"> 
+      <shots g="0" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="18" name="Andrew Preis" checkname="PREIS,ANDREW" gp="1" code="18" playerId="or6nxunsu04v9209"> 
+      <shots g="1" a="3" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="1" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="19" name="Dean Scalamandre" checkname="SCALAMANDRE,DEAN" gp="1" code="19" playerId="97r8u4cej0aiu6wq"> 
+      <shots g="0" a="0" sh="1" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="20" name="Owen Dixon" checkname="DIXON,OWEN" gp="1" code="20" playerId="sislsy2fkez0aphf"> 
+      <shots g="2" a="0" sh="3" sog="3" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="21" name="Harrison Schline" checkname="SCHLINE,HARRISON" gp="0" code="21" playerId="w0esnr8432ewzj79"></player>  
+    <player uni="22" name="Brady Wambach" checkname="WAMBACH,BRADY" gp="1" code="22" playerId="3ux81xtneq2fgaf1"> 
+      <shots g="1" a="0" sh="2" sog="2" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc facewon="18" facelost="2" gb="17" dc="0" turnover="1" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="23" name="Ty English" checkname="ENGLISH,TY" gp="1" code="23" playerId="tjp6kzinct6vq532"> 
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="24" name="Jack Barton" checkname="BARTON,JACK" gp="0" code="24" playerId="75grzv2fr0ff290h"></player>  
+    <player uni="25" name="Tayden Bultman" checkname="BULTMAN,TAYDEN" gp="1" code="25" playerId="orwzdd1pxtssw373"> 
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="26" name="Cole Aasheim" checkname="AASHEIM,COLE" gp="1" gs="1" pos="d" code="26" playerId="fo4izl8fnicakusl"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="28" name="Caden Whaling" checkname="WHALING,CADEN" gp="1" code="28" playerId="y6fyd4lcptp65lry"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="29" name="Henry Casani" checkname="CASANI,HENRY" gp="0" code="29" playerId="7qnutmk3muicgye3"></player>  
+    <player uni="30" name="Leif Hagerup" checkname="HAGERUP,LEIF" gp="1" code="30" playerId="5ue0t475hudiwjzt"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="2" dc="0" turnover="0" ct="1" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="31" name="Caswell Friedman" checkname="FRIEDMAN,CASWELL" gp="1" code="31" playerId="3prn9e0zcqteg8at"> 
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="1" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="2" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="32" name="Luke Macaluso" checkname="MACALUSO,LUKE" gp="1" gs="1" pos="m" code="32" playerId="j8p4dpqx2w8zq2o6"> 
+      <shots g="1" a="1" sh="2" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="1" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="33" name="Kai Prohaszka" checkname="PROHASZKA,KAI" gp="1" gs="1" pos="d" code="33" playerId="vj28u2wvivds159y"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="34" name="Brett Koopman" checkname="KOOPMAN,BRETT" gp="1" code="34" playerId="vrcjg0bnx32yfhmk"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="2" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="35" name="Kelan Moore" checkname="MOORE,KELAN" gp="0" code="35" playerId="4pa9odvfuom9ez2h"></player>  
+    <player uni="36" name="Niko Karetsos" checkname="KARETSOS,NIKO" gp="1" code="36" playerId="p92cbodig3r66kku"> 
+      <shots g="0" a="0" sh="2" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="37" name="Matt Wrede" checkname="WREDE,MATT" gp="1" code="37" playerId="drkrpnlrmcoakslw"> 
+      <shots g="1" a="0" sh="2" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="4" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="39" name="Brooks Rodger" checkname="RODGER,BROOKS" gp="0" code="39" playerId="hctc2txcp3asowiy"></player>  
+    <player uni="40" name="Ben Fox" checkname="FOX,BEN" gp="1" code="40" playerId="i44qzsno5uiqvrz2"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="2" seconds="120" minor="0" major="2" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="43" name="Josh Marcus" checkname="MARCUS,JOSH" gp="1" gs="1" pos="gk" code="43" playerId="g13ios1jz0pn8o9j"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="3" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc>  
+      <goalie gp="1" gs="1" minutes="37:35" ga="4" saves="1" sf="13" savebyprd="0,1,0,0" win="3-0" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie> 
+    </player>  
+    <player uni="44" name="Luke Arrighi" checkname="ARRIGHI,LUKE" gp="0" code="44" playerId="ryel2lgonbyii542"></player>  
+    <player uni="45" name="Brayson Wilson" checkname="WILSON,BRAYSON" gp="1" code="45" playerId="owu7i0c9eufwrko5"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc>  
+      <goalie gp="1" gs="0" minutes="8:06" ga="1" saves="2" sf="7" savebyprd="0,0,0,0" sho="0" cbosho="0" ppg="0" shg="0" eng="0" sog="0"></goalie> 
+    </player>  
+    <player uni="48" name="Graham Riddle" checkname="RIDDLE,GRAHAM" gp="1" code="48" playerId="cbe9vxkgofqhepr2"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="49" name="Alec Riddle" checkname="RIDDLE,ALEC" gp="1" code="49" playerId="3k8rotz5j1j3hc3c"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="50" name="Brock Geraci" checkname="GERACI,BROCK" gp="1" code="50" playerId="lsz96s8w15wzbr85"> 
+      <shots g="2" a="0" sh="5" sog="4" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="2" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="51" name="Nate Sage" checkname="SAGE,NATE" gp="0" code="51" playerId="cmath3xfkc63utbn"></player>  
+    <player uni="54" name="Luke Macejka" checkname="MACEJKA,LUKE" gp="1" code="54" playerId="ip7arvz8snam8j7r"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="55" name="Grant Pierce" checkname="PIERCE,GRANT" gp="0" code="55" playerId="bb4xafnejxdcdeb0"></player>  
+    <player uni="66" name="Nick Pietramala" checkname="PIETRAMALA,NICK" gp="0" code="66" playerId="4dcn9sqxj718uylk"></player>  
+    <player uni="70" name="John Moore" checkname="MOORE,JOHN" gp="0" code="70" playerId="o46p30v4zyaw3rse"></player>  
+    <player uni="77" name="Dominic Pietramala" checkname="PIETRAMALA,DOMINIC" gp="1" gs="1" pos="a" code="77" playerId="atsd194x96t5dve0"> 
+      <shots g="0" a="2" sh="4" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="1" dc="0" turnover="0" ct="0" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="87" name="Charlie Pope" checkname="POPE,CHARLIE" gp="1" code="87" playerId="408q3a08cwikrdtl"> 
+      <shots g="0" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="88" name="Chase Cellucci" checkname="CELLUCCI,CHASE" gp="1" gs="1" pos="d" code="88" playerId="0h9sbaitusmeomoz"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="2" dc="0" turnover="1" ct="1" minutes="60" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="90" name="Trevor Havill" checkname="HAVILL,TREVOR" gp="1" code="90" playerId="9iay35vmie9e62ml"> 
+      <shots g="1" a="0" sh="1" sog="1" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="95" name="Ryan Hornyak" checkname="HORNYAK,RYAN" gp="0" code="95" playerId="q9cnadzum0c2ovax"></player>  
+    <player uni="98" name="Hayden Downs" checkname="DOWNS,HAYDEN" gp="1" code="98" playerId="5t8paqvepejuk84q"> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="1" seconds="60" minor="0" major="1" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="99" name="Colin Hannigan" checkname="HANNIGAN,COLIN" gp="1" code="99" playerId="spaif432xzzmln5u"> 
+      <shots g="0" a="0" sh="1" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc facewon="5" facelost="5" gb="3" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player>  
+    <player uni="TM" name="Team" checkname="TEAM" gp="1" code="TM" playerId=""> 
+      <shots g="0" a="0" sh="0" sog="0" freepos="0" shootout="0"></shots>  
+      <goaltype gw="0" pp="0" sh="0" ua="0" fg="0" ot="0" en="0" gt="0" freepos="0" shootout="0"></goaltype>  
+      <penalty count="0" seconds="0" minor="0" major="0" match="0" rc="0" yc="0" gc="0" foul="0"></penalty>  
+      <misc gb="0" dc="0" turnover="0" ct="0" minutes="0" seconds="0" dsave="0"></misc> 
+    </player> 
+  </team>  
+  <scores> 
+    <score number="1" vh="V" id="IONA" prd="1" time="13:56" type="EV" name="Neary, Luke"></score>  
+    <score number="2" vh="V" id="IONA" prd="1" time="12:19" type="EV" name="Stielau, Cale"></score>  
+    <score number="3" vh="H" id="NORTH CA" prd="1" time="11:26" type="EV" name="Owen Duffy"></score>  
+    <score number="4" vh="H" id="NORTH CA" prd="1" time="04:16" type="PP" name="Luke Bair" assist1="Owen Duffy"></score>  
+    <score number="5" vh="H" id="NORTH CA" prd="1" time="01:06" type="EV" name="Owen Duffy" assist1="Dominic Pietramala"></score>  
+    <score number="6" vh="H" id="NORTH CA" prd="1" time="00:13" type="EV" name="Luke Macaluso" assist1="Mason Szewczyk"></score>  
+    <score number="7" vh="H" id="NORTH CA" prd="2" time="14:10" type="EV" name="Brevin Wilson" assist1="Mason Szewczyk"></score>  
+    <score number="8" vh="H" id="NORTH CA" prd="2" time="13:04" type="EV" name="Gary Merrill" assist1="Dominic Pietramala"></score>  
+    <score number="9" vh="V" id="IONA" prd="2" time="11:58" type="EV" name="Hardie, Kyle"></score>  
+    <score number="10" vh="H" id="NORTH CA" prd="2" time="10:40" type="EV" name="Owen Duffy"></score>  
+    <score number="11" vh="H" id="NORTH CA" prd="2" time="09:49" type="EV" name="Gary Merrill"></score>  
+    <score number="12" vh="H" id="NORTH CA" prd="2" time="07:52" type="EV" name="Mason Szewczyk" assist1="Luke Macaluso"></score>  
+    <score number="13" vh="H" id="NORTH CA" prd="2" time="06:37" type="EV" name="Anthony Raio" assist1="Owen Duffy"></score>  
+    <score number="14" vh="H" id="NORTH CA" prd="2" time="03:55" type="EV" name="Brock Geraci" assist1="Gary Merrill"></score>  
+    <score number="15" vh="H" id="NORTH CA" prd="2" time="03:20" type="EV" name="Owen Dixon" assist1="Andrew Preis"></score>  
+    <score number="16" vh="V" id="IONA" prd="2" time="01:33" type="EV" name="Turissini, Carson"></score>  
+    <score number="17" vh="H" id="NORTH CA" prd="3" time="12:10" type="EV" name="Brevin Wilson"></score>  
+    <score number="18" vh="H" id="NORTH CA" prd="3" time="12:04" type="EV" name="Brady Wambach"></score>  
+    <score number="19" vh="H" id="NORTH CA" prd="3" time="11:34" type="EV" name="Ty English" assist1="Owen Duffy"></score>  
+    <score number="20" vh="H" id="NORTH CA" prd="3" time="10:30" type="EV" name="Matt Wrede" assist1="Owen Duffy"></score>  
+    <score number="21" vh="H" id="NORTH CA" prd="3" time="09:19" type="PP" name="Andrew Preis" assist1="Owen Duffy"></score>  
+    <score number="22" vh="H" id="NORTH CA" prd="3" time="07:25" type="EV" name="Caswell Friedman"></score>  
+    <score number="23" vh="H" id="NORTH CA" prd="3" time="04:34" type="EV" name="Owen Dixon" assist1="Andrew Preis"></score>  
+    <score number="24" vh="H" id="NORTH CA" prd="3" time="03:16" type="EV" name="Brock Geraci" assist1="Andrew Preis"></score>  
+    <score number="25" vh="H" id="NORTH CA" prd="3" time="02:29" type="EV" name="Tayden Bultman"></score>  
+    <score number="26" vh="V" id="IONA" prd="3" time="01:02" type="EV" name="Kennedy, Jimmy" assist1="Martinez, Jack"></score>  
+    <score number="27" vh="V" id="IONA" prd="4" time="12:31" type="EV" name="Greenhut, James"></score>  
+    <score number="28" vh="H" id="NORTH CA" prd="4" time="08:16" type="EV" name="Trevor Havill" assist1="Alec Levy"></score>  
+    <score number="29" vh="V" id="IONA" prd="4" time="04:01" type="EV" name="Neary, Luke" assist1="Lawry, Cullen"></score>  
+    <score number="30" vh="H" id="NORTH CA" prd="4" time="03:04" type="EV" name="Alec Levy"></score> 
+  </scores>  
+  <penalties> 
+    <pen number="1" vh="H" id="NORTH CA" prd="1" time="09:30" pp="Y" type="MINOR" seconds="30" name="Peter Thomann" abbrev="INT" desc="INTERFERENCE"></pen>  
+    <pen number="2" vh="V" id="IONA" prd="1" time="04:41" pp="Y" type="MINOR" seconds="30" name="Neary, Luke" abbrev="OFF" desc="OFFSIDE"></pen>  
+    <pen number="3" vh="V" id="IONA" prd="3" time="09:41" pp="Y" type="" seconds="60" name="Towers, Nate" abbrev="SL" desc="SLASHING"></pen>  
+    <pen number="4" vh="H" id="NORTH CA" prd="3" time="07:18" pp="Y" type="" seconds="60" name="Ben Fox" abbrev="CCHK" desc="CROSS-CHECK"></pen>  
+    <pen number="5" vh="H" id="NORTH CA" prd="4" time="12:31" pp="Y" type="" seconds="60" name="Ben Fox" abbrev="CCHK" desc="CROSS-CHECK"></pen>  
+    <pen number="6" vh="H" id="NORTH CA" prd="4" time="06:31" pp="Y" type="" seconds="60" name="Hayden Downs" abbrev="SL" desc="SLASHING"></pen> 
+  </penalties>  
+  <goaliechanges> 
+    <goaliechange vh="V" id="IONA" prd="1" time="15:00" uni="44" name="Piekutowski, Denny"></goaliechange>  
+    <goaliechange vh="H" id="NORTH CA" prd="1" time="15:00" uni="43" name="Josh Marcus"></goaliechange>  
+    <goaliechange vh="V" id="IONA" prd="3" time="15:00" uni="45" name="Perea, Noah"></goaliechange>  
+    <goaliechange vh="H" id="NORTH CA" prd="3" time="07:25" uni="2" name="Kent Goode"></goaliechange>  
+    <goaliechange vh="V" id="IONA" prd="4" time="15:00" uni="38" name="Caputo, Sal"></goaliechange>  
+    <goaliechange vh="H" id="NORTH CA" prd="4" time="08:06" uni="45" name="Brayson Wilson"></goaliechange> 
+  </goaliechanges>  
+  <plays format="summary"> 
+    <period number="1"> 
+      <play number="0" vh="V" team="IONA" clock="15:00" action="GOALIE" text="Piekutowski, Denny at goalie for IONA."></play>  
+      <play number="1" vh="H" team="NORTH CA" clock="15:00" action="GOALIE" text="Josh Marcus at goalie for NORTH CA."></play>  
+      <play number="2" vh="H" team="NORTH CA" clock="15:00" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [15:00] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="3" vh="H" team="NORTH CA" clock="14:55" action="SHOT" text="Shot by NORTH CA Brady Wambach, SAVE Piekutowski, Denny"></play>  
+      <play number="4" vh="V" team="IONA" clock="14:45" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="5" vh="V" team="IONA" clock="14:10" action="SHOT" text="Shot by IONA Dyszkiewicz, Matthew WIDE"></play>  
+      <play number="6" vh="V" team="IONA" clock="13:56" action="SHOT" text="GOAL by IONA Neary, Luke (FIRST GOAL)."></play>  
+      <currentscore vscore="1" hscore="0"></currentscore>  
+      <play number="7" vh="H" team="NORTH CA" clock="13:56" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [13:56] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="8" vh="H" team="NORTH CA" clock="13:06" action="SHOT" text="Shot by NORTH CA Mason Szewczyk WIDE"></play>  
+      <play number="9" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Luke Macaluso."></play>  
+      <play number="10" vh="V" team="IONA" clock="12:46" action="GB" text="Ground ball pickup by IONA Sheehy, Kevin."></play>  
+      <play number="11" vh="V" team="IONA" clock="12:19" action="SHOT" text="GOAL by IONA Stielau, Cale."></play>  
+      <currentscore vscore="2" hscore="0"></currentscore>  
+      <play number="12" vh="V" team="IONA" clock="12:19" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by IONA, [12:19] Ground ball pickup by IONA Lawry, Cullen."></play>  
+      <play number="13" vh="V" team="IONA" action="TURN" text="Turnover by IONA Lawry, Cullen (caused by Chase Cellucci)."></play>  
+      <play number="14" vh="H" team="NORTH CA" clock="12:02" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="15" vh="H" team="NORTH CA" clock="11:26" action="SHOT" text="GOAL by NORTH CA Owen Duffy."></play>  
+      <currentscore vscore="2" hscore="1"></currentscore>  
+      <play number="16" vh="H" team="NORTH CA" clock="11:26" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [11:26] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="17" vh="H" team="NORTH CA" clock="10:49" action="SHOT" text="Shot by NORTH CA Brevin Wilson HIT POST"></play>  
+      <play number="18" vh="H" team="NORTH CA" clock="10:45" action="GB" text="Ground ball pickup by NORTH CA Luke Bair."></play>  
+      <play number="19" vh="H" team="NORTH CA" clock="10:33" action="SHOT" text="Shot by NORTH CA Owen Duffy WIDE"></play>  
+      <play number="20" vh="H" team="NORTH CA" clock="10:30" action="GB" text="Ground ball pickup by NORTH CA Brevin Wilson."></play>  
+      <play number="21" vh="H" team="NORTH CA" clock="10:07" action="SHOT" text="Shot by NORTH CA Owen Duffy, SAVE Piekutowski, Denny"></play>  
+      <play number="22" vh="V" team="IONA" clock="10:05" action="GB" text="Ground ball pickup by IONA Davis, Jaxson."></play>  
+      <play number="23" vh="V" team="IONA" clock="10:02" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="24" vh="V" team="IONA" clock="09:33" action="SHOT" text="Shot by IONA Lawry, Cullen WIDE"></play>  
+      <play number="25" vh="H" team="NORTH CA" clock="09:30" action="PEN" text="Penalty on NORTH CA Peter Thomann (INTERFERENCE/0:30) Extra-man opportunity."></play>  
+      <play number="26" vh="V" team="IONA" clock="09:15" action="SHOT" text="Shot by IONA Kennedy, Jimmy, SAVE Josh Marcus"></play>  
+      <play number="27" vh="H" team="NORTH CA" clock="09:13" action="GB" text="Ground ball pickup by NORTH CA Josh Marcus."></play>  
+      <play number="28" vh="H" team="NORTH CA" clock="09:07" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="29" vh="H" team="NORTH CA" clock="08:14" action="SHOT" text="Shot by NORTH CA Owen Duffy HIGH"></play>  
+      <play number="30" vh="H" team="NORTH CA" clock="08:03" action="SHOT" text="Shot by NORTH CA James Matan, SAVE Piekutowski, Denny"></play>  
+      <play number="31" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Owen Duffy (caused by Metz, Cooper)."></play>  
+      <play number="32" vh="V" team="IONA" clock="07:36" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="33" vh="V" team="IONA" clock="07:33" action="GB" text="Ground ball pickup by IONA Martinez, Jack."></play>  
+      <play number="34" vh="V" team="IONA" clock="07:12" action="GB" text="Ground ball pickup by IONA Stielau, Cale."></play>  
+      <play number="35" vh="V" team="IONA" action="TURN" text="Turnover by IONA Neary, Luke (caused by Peter Thomann)."></play>  
+      <play number="36" vh="H" team="NORTH CA" clock="06:38" action="GB" text="Ground ball pickup by NORTH CA Josh Marcus."></play>  
+      <play number="37" vh="H" team="NORTH CA" clock="06:35" action="CLEAR" text="Clear attempt by NORTH CA failed."></play>  
+      <play number="38" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Luke Bair (caused by Turissini, Carson)."></play>  
+      <play number="39" vh="V" team="IONA" clock="06:21" action="GB" text="Ground ball pickup by IONA Metz, Cooper."></play>  
+      <play number="40" vh="V" team="IONA" clock="06:16" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="41" vh="V" team="IONA" clock="05:46" action="GB" text="Ground ball pickup by IONA Dyszkiewicz, Matthew."></play>  
+      <play number="42" vh="V" team="IONA" action="TURN" text="Turnover by IONA Turissini, Carson (caused by Leif Hagerup)."></play>  
+      <play number="43" vh="H" team="NORTH CA" clock="05:07" action="GB" text="Ground ball pickup by NORTH CA Chase Cellucci."></play>  
+      <play number="44" vh="H" team="NORTH CA" clock="04:59" action="GB" text="Ground ball pickup by NORTH CA Ty English."></play>  
+      <play number="45" vh="H" team="NORTH CA" clock="04:55" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="46" vh="V" team="IONA" clock="04:41" action="PEN" text="Penalty on IONA Neary, Luke (OFFSIDE/0:30) Extra-man opportunity."></play>  
+      <play number="47" vh="H" team="NORTH CA" clock="04:29" action="SHOT" text="Shot by NORTH CA Dominic Pietramala HIGH"></play>  
+      <play number="48" vh="H" team="NORTH CA" clock="04:16" action="SHOT" text="GOAL by NORTH CA Luke Bair (MAN-UP), Assist by Owen Duffy."></play>  
+      <currentscore vscore="2" hscore="2"></currentscore>  
+      <play number="49" vh="H" team="NORTH CA" clock="04:16" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [04:16] Ground ball pickup by NORTH CA Peter Thomann."></play>  
+      <play number="50" vh="H" team="NORTH CA" clock="04:13" action="GB" text="Ground ball pickup by NORTH CA Peter Thomann."></play>  
+      <play number="51" vh="H" team="NORTH CA" clock="03:39" action="SHOT" text="Shot by NORTH CA Dominic Pietramala, SAVE Piekutowski, Denny"></play>  
+      <play number="52" vh="V" team="IONA" clock="03:31" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="53" vh="V" team="IONA" clock="02:52" action="SHOT" text="Shot by IONA Lawry, Cullen WIDE"></play>  
+      <play number="54" vh="V" team="IONA" action="TURN" text="Turnover by IONA Hardie, Kyle."></play>  
+      <play number="55" vh="H" team="NORTH CA" clock="02:25" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="56" vh="H" team="NORTH CA" clock="01:56" action="SHOT" text="Shot by NORTH CA Dean Scalamandre WIDE"></play>  
+      <play number="57" vh="H" team="NORTH CA" clock="01:24" action="SHOT" text="Shot by NORTH CA Luke Bair HIT POST"></play>  
+      <play number="58" vh="V" team="IONA" clock="01:16" action="CLEAR" text="Clear attempt by IONA failed."></play>  
+      <play number="59" vh="V" team="IONA" action="TURN" text="Turnover by IONA Piekutowski, Denny."></play>  
+      <play number="60" vh="H" team="NORTH CA" clock="01:09" action="GB" text="Ground ball pickup by NORTH CA Dominic Pietramala."></play>  
+      <play number="61" vh="H" team="NORTH CA" clock="01:06" action="SHOT" text="GOAL by NORTH CA Owen Duffy, Assist by Dominic Pietramala."></play>  
+      <currentscore vscore="2" hscore="3"></currentscore>  
+      <play number="62" vh="H" team="NORTH CA" clock="01:06" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [01:06] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="63" vh="H" team="NORTH CA" clock="00:13" action="SHOT" text="GOAL by NORTH CA Luke Macaluso, Assist by Mason Szewczyk."></play>  
+      <currentscore vscore="2" hscore="4"></currentscore>  
+      <play number="64" vh="H" team="NORTH CA" clock="00:13" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [00:13] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="65" vh="H" team="NORTH CA" clock="00:07" action="SHOT" text="Shot by NORTH CA Brevin Wilson, SAVE Piekutowski, Denny"></play>  
+      <play number="66" clock="00:00" action="END-PRD" text="End-of-period."></play> 
+    </period>  
+    <period number="2"> 
+      <play number="67" clock="15:00" action="PRD" text=""></play>  
+      <play number="68" vh="H" team="NORTH CA" clock="15:00" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [15:00] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="69" vh="H" team="NORTH CA" clock="14:26" action="SHOT" text="Shot by NORTH CA Mason Szewczyk HIGH"></play>  
+      <play number="70" vh="H" team="NORTH CA" clock="14:10" action="SHOT" text="GOAL by NORTH CA Brevin Wilson, Assist by Mason Szewczyk."></play>  
+      <currentscore vscore="2" hscore="5"></currentscore>  
+      <play number="71" vh="H" team="NORTH CA" clock="14:10" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [14:10] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="72" vh="H" team="NORTH CA" clock="13:22" action="SHOT" text="Shot by NORTH CA Dominic Pietramala WIDE"></play>  
+      <play number="73" vh="H" team="NORTH CA" clock="13:04" action="SHOT" text="GOAL by NORTH CA Gary Merrill, Assist by Dominic Pietramala."></play>  
+      <currentscore vscore="2" hscore="6"></currentscore>  
+      <play number="74" vh="V" team="IONA" clock="13:04" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by IONA (on faceoff violation)."></play>  
+      <play number="75" vh="V" team="IONA" clock="12:43" action="SHOT" text="Shot by IONA Lawry, Cullen BLOCKED"></play>  
+      <play number="76" vh="V" team="IONA" clock="11:58" action="SHOT" text="GOAL by IONA Hardie, Kyle."></play>  
+      <currentscore vscore="3" hscore="6"></currentscore>  
+      <play number="77" vh="V" team="IONA" clock="11:58" action="FACE" text="Faceoff Gibstein, Cole vs Colin Hannigan won by IONA, [11:58] Ground ball pickup by IONA Gibstein, Cole."></play>  
+      <play number="78" vh="V" team="IONA" clock="11:51" action="GB" text="Ground ball pickup by IONA Metz, Cooper."></play>  
+      <play number="79" vh="V" team="IONA" clock="11:46" action="TOUT" text="Timeout by IONA."></play>  
+      <play number="80" vh="V" team="IONA" clock="11:40" action="SHOT" text="Shot by IONA Hardie, Kyle BLOCKED"></play>  
+      <play number="81" vh="H" team="NORTH CA" clock="11:37" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="82" vh="H" team="NORTH CA" clock="10:40" action="SHOT" text="GOAL by NORTH CA Owen Duffy."></play>  
+      <currentscore vscore="3" hscore="7"></currentscore>  
+      <play number="83" vh="H" team="NORTH CA" clock="10:40" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [10:40] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="84" vh="H" team="NORTH CA" clock="10:00" action="SHOT" text="Shot by NORTH CA Luke Bair WIDE"></play>  
+      <play number="85" vh="H" team="NORTH CA" clock="09:49" action="SHOT" text="GOAL by NORTH CA Gary Merrill."></play>  
+      <currentscore vscore="3" hscore="8"></currentscore>  
+      <play number="86" vh="H" team="NORTH CA" clock="09:49" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [09:49] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="87" vh="H" team="NORTH CA" clock="09:38" action="GB" text="Ground ball pickup by NORTH CA Matt Wrede."></play>  
+      <play number="88" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Matt Wrede (caused by Sheehy, Kevin)."></play>  
+      <play number="89" vh="V" team="IONA" clock="09:32" action="GB" text="Ground ball pickup by IONA Shivell, Gary."></play>  
+      <play number="90" vh="V" team="IONA" clock="09:29" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="91" vh="V" team="IONA" clock="09:27" action="SHOT" text="Shot by IONA Lawry, Cullen WIDE"></play>  
+      <play number="92" vh="V" team="IONA" action="TURN" text="Turnover by IONA Fourier, Kris."></play>  
+      <play number="93" vh="H" team="NORTH CA" clock="08:35" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="94" vh="H" team="NORTH CA" clock="07:52" action="SHOT" text="GOAL by NORTH CA Mason Szewczyk, Assist by Luke Macaluso."></play>  
+      <currentscore vscore="3" hscore="9"></currentscore>  
+      <play number="95" vh="H" team="NORTH CA" clock="07:52" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [07:52] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="96" vh="H" team="NORTH CA" clock="07:45" action="GB" text="Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="97" vh="H" team="NORTH CA" clock="07:13" action="SHOT" text="Shot by NORTH CA Anthony Raio HIGH"></play>  
+      <play number="98" vh="H" team="NORTH CA" clock="06:37" action="SHOT" text="GOAL by NORTH CA Anthony Raio, Assist by Owen Duffy."></play>  
+      <currentscore vscore="3" hscore="10"></currentscore>  
+      <play number="99" vh="H" team="NORTH CA" clock="06:37" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [06:37] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="100" vh="H" team="NORTH CA" clock="06:29" action="SHOT" text="Shot by NORTH CA Parker Hoffman WIDE"></play>  
+      <play number="101" vh="H" team="NORTH CA" clock="06:07" action="SHOT" text="Shot by NORTH CA James Matan, SAVE Piekutowski, Denny"></play>  
+      <play number="102" vh="V" team="IONA" clock="06:01" action="GB" text="Ground ball pickup by IONA Piekutowski, Denny."></play>  
+      <play number="103" vh="V" team="IONA" clock="05:59" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="104" vh="V" team="IONA" action="TURN" text="Turnover by IONA Lawry, Cullen (caused by Brett Koopman)."></play>  
+      <play number="105" vh="H" team="NORTH CA" clock="05:28" action="GB" text="Ground ball pickup by NORTH CA Josh Marcus."></play>  
+      <play number="106" vh="H" team="NORTH CA" clock="05:17" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="107" vh="H" team="NORTH CA" clock="05:13" action="GB" text="Ground ball pickup by NORTH CA Brock Geraci."></play>  
+      <play number="108" vh="H" team="NORTH CA" clock="04:49" action="SHOT" text="Shot by NORTH CA Gary Merrill, SAVE Piekutowski, Denny"></play>  
+      <play number="109" vh="V" team="IONA" clock="04:38" action="CLEAR" text="Clear attempt by IONA failed."></play>  
+      <play number="110" vh="V" team="IONA" action="TURN" text="Turnover by IONA Shivell, Gary."></play>  
+      <play number="111" vh="H" team="NORTH CA" clock="04:25" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="112" vh="H" team="NORTH CA" clock="04:02" action="SHOT" text="Shot by NORTH CA Anthony Raio WIDE"></play>  
+      <play number="113" vh="H" team="NORTH CA" clock="03:55" action="SHOT" text="GOAL by NORTH CA Brock Geraci, Assist by Gary Merrill."></play>  
+      <currentscore vscore="3" hscore="11"></currentscore>  
+      <play number="114" vh="H" team="NORTH CA" clock="03:55" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [03:55] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="115" vh="H" team="NORTH CA" clock="03:49" action="SHOT" text="Shot by NORTH CA Brock Geraci WIDE"></play>  
+      <play number="116" vh="H" team="NORTH CA" clock="03:20" action="SHOT" text="GOAL by NORTH CA Owen Dixon, Assist by Andrew Preis."></play>  
+      <currentscore vscore="3" hscore="12"></currentscore>  
+      <play number="117" vh="V" team="IONA" clock="03:20" action="TOUT" text="Timeout by IONA."></play>  
+      <play number="118" vh="H" team="NORTH CA" clock="03:20" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [03:20] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="119" vh="H" team="NORTH CA" clock="02:23" action="SHOT" text="Shot by NORTH CA Anthony Raio BLOCKED"></play>  
+      <play number="120" vh="H" team="NORTH CA" clock="02:05" action="SHOT" text="Shot by NORTH CA Owen Duffy WIDE"></play>  
+      <play number="121" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Owen Duffy."></play>  
+      <play number="122" vh="V" team="IONA" clock="01:45" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="123" vh="V" team="IONA" clock="01:34" action="GB" text="Ground ball pickup by IONA Turissini, Carson."></play>  
+      <play number="124" vh="V" team="IONA" clock="01:33" action="SHOT" text="GOAL by IONA Turissini, Carson."></play>  
+      <currentscore vscore="4" hscore="12"></currentscore>  
+      <play number="125" vh="H" team="NORTH CA" clock="01:33" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [01:33] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="126" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Brady Wambach."></play>  
+      <play number="127" vh="V" team="IONA" clock="01:27" action="GB" text="Ground ball pickup by IONA Raynor, Llogan."></play>  
+      <play number="128" vh="V" team="IONA" clock="01:21" action="GB" text="Ground ball pickup by IONA Metz, Cooper."></play>  
+      <play number="129" vh="V" team="IONA" clock="00:51" action="SHOT" text="Shot by IONA Lawry, Cullen WIDE"></play>  
+      <play number="130" vh="V" team="IONA" action="TURN" text="Turnover by IONA Neary, Luke (caused by Peter Thomann)."></play>  
+      <play number="131" vh="H" team="NORTH CA" clock="00:31" action="GB" text="Ground ball pickup by NORTH CA Leif Hagerup."></play>  
+      <play number="132" vh="H" team="NORTH CA" clock="00:28" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="133" vh="H" team="NORTH CA" clock="00:23" action="GB" text="Ground ball pickup by NORTH CA Brevin Wilson."></play>  
+      <play number="134" vh="H" team="NORTH CA" clock="00:17" action="TOUT" text="Timeout by NORTH CA."></play>  
+      <play number="135" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Gary Merrill (caused by Sheehy, Kevin)."></play>  
+      <play number="136" vh="V" team="IONA" clock="00:07" action="GB" text="Ground ball pickup by IONA Sheehy, Kevin."></play>  
+      <play number="137" clock="00:00" action="END-PRD" text="End-of-period."></play> 
+    </period>  
+    <period number="3"> 
+      <play number="138" clock="15:00" action="PRD" text=""></play>  
+      <play number="139" vh="V" team="IONA" clock="15:00" action="GOALIE" text="Perea, Noah at goalie for IONA."></play>  
+      <play number="140" vh="H" team="NORTH CA" clock="15:00" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [15:00] Ground ball pickup by NORTH CA Parker McDonald."></play>  
+      <play number="141" vh="H" team="NORTH CA" clock="14:02" action="SHOT" text="Shot by NORTH CA Luke Bair WIDE"></play>  
+      <play number="142" vh="H" team="NORTH CA" clock="13:44" action="SHOT" text="Shot by NORTH CA Anthony Raio WIDE"></play>  
+      <play number="143" vh="H" team="NORTH CA" clock="13:26" action="SHOT" text="Shot by NORTH CA Brevin Wilson WIDE"></play>  
+      <play number="144" vh="V" team="IONA" clock="13:13" action="CLEAR" text="Clear attempt by IONA failed."></play>  
+      <play number="145" vh="V" team="IONA" action="TURN" text="Turnover by IONA Perea, Noah."></play>  
+      <play number="146" vh="H" team="NORTH CA" clock="13:08" action="GB" text="Ground ball pickup by NORTH CA Cole Aasheim."></play>  
+      <play number="147" vh="H" team="NORTH CA" clock="13:01" action="GB" text="Ground ball pickup by NORTH CA Leif Hagerup."></play>  
+      <play number="148" vh="H" team="NORTH CA" clock="12:46" action="SHOT" text="Shot by NORTH CA Mason Szewczyk, SAVE Perea, Noah"></play>  
+      <play number="149" vh="V" team="IONA" clock="12:36" action="CLEAR" text="Clear attempt by IONA failed."></play>  
+      <play number="150" vh="V" team="IONA" action="TURN" text="Turnover by IONA Perea, Noah (caused by Owen Duffy)."></play>  
+      <play number="151" vh="H" team="NORTH CA" clock="12:29" action="GB" text="Ground ball pickup by NORTH CA Owen Duffy."></play>  
+      <play number="152" vh="H" team="NORTH CA" clock="12:15" action="SHOT" text="Shot by NORTH CA Dominic Pietramala WIDE"></play>  
+      <play number="153" vh="H" team="NORTH CA" clock="12:10" action="SHOT" text="GOAL by NORTH CA Brevin Wilson."></play>  
+      <currentscore vscore="4" hscore="13"></currentscore>  
+      <play number="154" vh="H" team="NORTH CA" clock="12:10" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [12:10] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="155" vh="H" team="NORTH CA" clock="12:04" action="SHOT" text="GOAL by NORTH CA Brady Wambach."></play>  
+      <currentscore vscore="4" hscore="14"></currentscore>  
+      <play number="156" vh="V" team="IONA" clock="12:04" action="FACE" text="Faceoff Gibstein, Cole vs Colin Hannigan won by IONA, [12:04] Ground ball pickup by IONA Metz, Cooper."></play>  
+      <play number="157" vh="V" team="IONA" clock="11:56" action="CLEAR" text="Clear attempt by IONA failed."></play>  
+      <play number="158" vh="V" team="IONA" action="TURN" text="Turnover by IONA Towers, Nate (caused by Brett Koopman)."></play>  
+      <play number="159" vh="H" team="NORTH CA" clock="11:41" action="GB" text="Ground ball pickup by NORTH CA Brevin Wilson."></play>  
+      <play number="160" vh="H" team="NORTH CA" clock="11:34" action="SHOT" text="GOAL by NORTH CA Ty English, Assist by Owen Duffy."></play>  
+      <currentscore vscore="4" hscore="15"></currentscore>  
+      <play number="161" vh="H" team="NORTH CA" clock="11:34" action="FACE" text="Faceoff Gibstein, Cole vs Colin Hannigan won by NORTH CA, [11:34] Ground ball pickup by NORTH CA Kai Prohaszka."></play>  
+      <play number="162" vh="H" team="NORTH CA" clock="11:33" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="163" vh="H" team="NORTH CA" clock="10:44" action="SHOT" text="Shot by NORTH CA Luke Macaluso HIGH"></play>  
+      <play number="164" vh="H" team="NORTH CA" clock="10:30" action="SHOT" text="GOAL by NORTH CA Matt Wrede, Assist by Owen Duffy."></play>  
+      <currentscore vscore="4" hscore="16"></currentscore>  
+      <play number="165" vh="H" team="NORTH CA" clock="10:30" action="FACE" text="Faceoff Gibstein, Cole vs Brady Wambach won by NORTH CA, [10:30] Ground ball pickup by NORTH CA Brady Wambach."></play>  
+      <play number="166" vh="H" team="NORTH CA" clock="10:21" action="SHOT" text="Shot by NORTH CA Jermaine Anderson WIDE"></play>  
+      <play number="167" vh="H" team="NORTH CA" clock="09:44" action="SHOT" text="Shot by NORTH CA Brock Geraci, SAVE Perea, Noah"></play>  
+      <play number="168" vh="V" team="IONA" clock="09:41" action="PEN" text="Penalty on IONA Towers, Nate (SLASHING/1:00) Extra-man opportunity."></play>  
+      <play number="169" vh="H" team="NORTH CA" clock="09:19" action="SHOT" text="GOAL by NORTH CA Andrew Preis (MAN-UP), Assist by Owen Duffy."></play>  
+      <currentscore vscore="4" hscore="17"></currentscore>  
+      <play number="170" vh="H" team="NORTH CA" clock="09:19" action="FACE" text="Faceoff Gibstein, Cole vs Colin Hannigan won by NORTH CA, [09:19] Ground ball pickup by NORTH CA Colin Hannigan."></play>  
+      <play number="171" vh="H" team="NORTH CA" clock="08:38" action="SHOT" text="Shot by NORTH CA Owen Dixon, SAVE Perea, Noah"></play>  
+      <play number="172" vh="V" team="IONA" clock="08:18" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="173" vh="V" team="IONA" clock="07:46" action="SHOT" text="Shot by IONA Lawry, Cullen WIDE"></play>  
+      <play number="174" vh="V" team="IONA" action="TURN" text="Turnover by IONA Kennedy, Jimmy."></play>  
+      <play number="175" vh="H" team="NORTH CA" clock="07:31" action="GB" text="Ground ball pickup by NORTH CA Parker McDonald."></play>  
+      <play number="176" vh="H" team="NORTH CA" clock="07:29" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="177" vh="H" team="NORTH CA" clock="07:25" action="SHOT" text="GOAL by NORTH CA Caswell Friedman."></play>  
+      <currentscore vscore="4" hscore="18"></currentscore>  
+      <play number="178" vh="H" team="NORTH CA" clock="07:25" action="GOALIE" text="Kent Goode at goalie for NORTH CA."></play>  
+      <play number="179" vh="V" team="IONA" clock="07:25" action="FACE" text="Faceoff Gibstein, Cole vs Colin Hannigan won by IONA, [07:25] Ground ball pickup by IONA Gibstein, Cole."></play>  
+      <play number="180" vh="V" team="IONA" clock="07:21" action="SHOT" text="Shot by IONA Gibstein, Cole BLOCKED"></play>  
+      <play number="181" vh="H" team="NORTH CA" clock="07:18" action="PEN" text="Penalty on NORTH CA Ben Fox (CROSS-CHECK/1:00) Extra-man opportunity."></play>  
+      <play number="182" vh="V" team="IONA" action="TURN" text="Turnover by IONA Hardie, Kyle."></play>  
+      <play number="183" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Matt Wrede."></play>  
+      <play number="184" vh="V" team="IONA" clock="05:34" action="GB" text="Ground ball pickup by IONA Sheehy, Kevin."></play>  
+      <play number="185" vh="V" team="IONA" clock="05:28" action="CLEAR" text="Clear attempt by IONA failed."></play>  
+      <play number="186" vh="V" team="IONA" action="TURN" text="Turnover by IONA Shivell, Gary."></play>  
+      <play number="187" vh="H" team="NORTH CA" clock="04:47" action="SHOT" text="Shot by NORTH CA Matt Wrede WIDE"></play>  
+      <play number="188" vh="H" team="NORTH CA" clock="04:34" action="SHOT" text="GOAL by NORTH CA Owen Dixon, Assist by Andrew Preis."></play>  
+      <currentscore vscore="4" hscore="19"></currentscore>  
+      <play number="189" vh="H" team="NORTH CA" clock="04:34" action="FACE" text="Faceoff Gibstein, Cole vs Colin Hannigan won by NORTH CA, [04:34] Ground ball pickup by NORTH CA Parker Hoffman."></play>  
+      <play number="190" vh="H" team="NORTH CA" clock="04:30" action="SHOT" text="Shot by NORTH CA Parker Hoffman WIDE"></play>  
+      <play number="191" vh="H" team="NORTH CA" clock="04:09" action="GB" text="Ground ball pickup by NORTH CA Brock Geraci."></play>  
+      <play number="192" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Matt Wrede."></play>  
+      <play number="193" vh="V" team="IONA" clock="03:44" action="CLEAR" text="Clear attempt by IONA failed."></play>  
+      <play number="194" vh="V" team="IONA" action="TURN" text="Turnover by IONA Greenhut, James."></play>  
+      <play number="195" vh="H" team="NORTH CA" clock="03:17" action="FACE" text="Faceoff Bainbridge, Justin vs Colin Hannigan won by NORTH CA, [03:17] Ground ball pickup by NORTH CA Colin Hannigan."></play>  
+      <play number="196" vh="H" team="NORTH CA" clock="03:16" action="SHOT" text="GOAL by NORTH CA Brock Geraci, Assist by Andrew Preis."></play>  
+      <currentscore vscore="4" hscore="20"></currentscore>  
+      <play number="197" vh="H" team="NORTH CA" clock="02:29" action="SHOT" text="GOAL by NORTH CA Tayden Bultman."></play>  
+      <currentscore vscore="4" hscore="21"></currentscore>  
+      <play number="198" vh="H" team="NORTH CA" clock="02:29" action="FACE" text="Faceoff Bainbridge, Justin vs Colin Hannigan won by NORTH CA, [02:29] Ground ball pickup by NORTH CA Colin Hannigan."></play>  
+      <play number="199" vh="H" team="NORTH CA" clock="02:26" action="SHOT" text="Shot by NORTH CA Colin Hannigan BLOCKED"></play>  
+      <play number="200" vh="H" team="NORTH CA" clock="01:48" action="SHOT" text="Shot by NORTH CA Charlie Pope, SAVE Perea, Noah"></play>  
+      <play number="201" vh="V" team="IONA" clock="01:43" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="202" vh="V" team="IONA" clock="01:16" action="SHOT" text="Shot by IONA Lawry, Cullen BLOCKED"></play>  
+      <play number="203" vh="V" team="IONA" clock="01:02" action="SHOT" text="GOAL by IONA Kennedy, Jimmy, Assist by Martinez, Jack."></play>  
+      <currentscore vscore="5" hscore="21"></currentscore>  
+      <play number="204" vh="V" team="IONA" clock="01:02" action="FACE" text="Faceoff Bainbridge, Justin vs Colin Hannigan won by IONA, [01:02] Ground ball pickup by IONA Lewis, Kaiden."></play>  
+      <play number="205" vh="V" team="IONA" clock="00:56" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="206" vh="V" team="IONA" action="TURN" text="Turnover by IONA Kennedy, Jimmy."></play>  
+      <play number="207" vh="H" team="NORTH CA" clock="00:21" action="CLEAR" text="Clear attempt by NORTH CA failed."></play>  
+      <play number="208" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Chase Cellucci (caused by Lawry, Cullen)."></play>  
+      <play number="209" vh="V" team="IONA" clock="00:21" action="GB" text="Ground ball pickup by IONA Martinez, Jack."></play>  
+      <play number="210" vh="V" team="IONA" clock="00:13" action="GB" text="Ground ball pickup by IONA Sheehy, Kevin."></play>  
+      <play number="211" vh="V" team="IONA" clock="00:11" action="SHOT" text="Shot by IONA Sheehy, Kevin, SAVE Kent Goode"></play>  
+      <play number="212" clock="00:00" action="END-PRD" text="End-of-period."></play> 
+    </period>  
+    <period number="4"> 
+      <play number="213" clock="15:00" action="PRD" text=""></play>  
+      <play number="214" vh="V" team="IONA" clock="15:00" action="GOALIE" text="Caputo, Sal at goalie for IONA."></play>  
+      <play number="215" vh="V" team="IONA" clock="15:00" action="FACE" text="Faceoff Bainbridge, Justin vs Parker Hoffman won by IONA (on faceoff violation)."></play>  
+      <play number="216" vh="V" team="IONA" clock="14:43" action="SHOT" text="Shot by IONA Hardie, Kyle WIDE"></play>  
+      <play number="217" vh="H" team="NORTH CA" clock="14:33" action="GB" text="Ground ball pickup by NORTH CA Chase Cellucci."></play>  
+      <play number="218" vh="H" team="NORTH CA" clock="14:22" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="219" vh="H" team="NORTH CA" clock="13:25" action="SHOT" text="Shot by NORTH CA Alec Levy HIT POST"></play>  
+      <play number="220" vh="H" team="NORTH CA" clock="12:58" action="SHOT" text="Shot by NORTH CA Brock Geraci, SAVE Caputo, Sal"></play>  
+      <play number="221" vh="V" team="IONA" clock="12:51" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="222" vh="V" team="IONA" clock="12:31" action="SHOT" text="GOAL by IONA Greenhut, James."></play>  
+      <currentscore vscore="6" hscore="21"></currentscore>  
+      <play number="223" vh="H" team="NORTH CA" clock="12:31" action="PEN" text="Penalty on NORTH CA Ben Fox (CROSS-CHECK/1:00) Extra-man opportunity."></play>  
+      <play number="224" vh="V" team="IONA" clock="12:31" action="FACE" text="Faceoff Bainbridge, Justin vs Colin Hannigan won by IONA, [12:31] Ground ball pickup by IONA Metz, Cooper."></play>  
+      <play number="225" vh="V" team="IONA" action="TURN" text="Turnover by IONA Hardie, Kyle."></play>  
+      <play number="226" vh="H" team="NORTH CA" clock="11:32" action="CLEAR" text="Clear attempt by NORTH CA failed."></play>  
+      <play number="227" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Caswell Friedman."></play>  
+      <play number="228" vh="V" team="IONA" clock="10:47" action="SHOT" text="Shot by IONA Dyszkiewicz, Matthew, SAVE Kent Goode"></play>  
+      <play number="229" vh="H" team="NORTH CA" clock="10:19" action="CLEAR" text="Clear attempt by NORTH CA failed."></play>  
+      <play number="230" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Caswell Friedman."></play>  
+      <play number="231" vh="V" team="IONA" clock="10:05" action="GB" text="Ground ball pickup by IONA Caputo, Sal."></play>  
+      <play number="232" vh="V" team="IONA" clock="09:29" action="SHOT" text="Shot by IONA Hardie, Kyle, SAVE Kent Goode"></play>  
+      <play number="233" vh="V" team="IONA" clock="09:22" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="234" vh="H" team="NORTH CA" clock="08:16" action="SHOT" text="GOAL by NORTH CA Trevor Havill, Assist by Alec Levy."></play>  
+      <currentscore vscore="6" hscore="22"></currentscore>  
+      <play number="235" vh="H" team="NORTH CA" clock="08:16" action="FACE" text="Faceoff Bainbridge, Justin vs Parker Hoffman won by NORTH CA, [08:16] Ground ball pickup by NORTH CA Teddy Gabrielian."></play>  
+      <play number="236" vh="H" team="NORTH CA" clock="08:13" action="SHOT" text="Shot by NORTH CA Teddy Gabrielian, SAVE Caputo, Sal"></play>  
+      <play number="237" vh="H" team="NORTH CA" clock="08:06" action="GOALIE" text="Brayson Wilson at goalie for NORTH CA."></play>  
+      <play number="238" vh="H" team="NORTH CA" clock="07:30" action="SHOT" text="Shot by NORTH CA Niko Karetsos WIDE"></play>  
+      <play number="239" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Matt Wrede."></play>  
+      <play number="240" vh="V" team="IONA" clock="06:32" action="SHOT" text="Shot by IONA Lawry, Cullen BLOCKED"></play>  
+      <play number="241" vh="H" team="NORTH CA" clock="06:31" action="PEN" text="Penalty on NORTH CA Hayden Downs (SLASHING/1:00) Extra-man opportunity."></play>  
+      <play number="242" vh="V" team="IONA" clock="06:19" action="SHOT" text="Shot by IONA Lawry, Cullen BLOCKED"></play>  
+      <play number="243" vh="H" team="NORTH CA" clock="06:16" action="GB" text="Ground ball pickup by NORTH CA Dean Scalamandre."></play>  
+      <play number="244" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Alec Levy."></play>  
+      <play number="245" vh="V" team="IONA" clock="06:03" action="GB" text="Ground ball pickup by IONA Caputo, Sal."></play>  
+      <play number="246" vh="V" team="IONA" clock="05:52" action="TOUT" text="Timeout by IONA."></play>  
+      <play number="247" vh="V" team="IONA" clock="05:39" action="SHOT" text="Shot by IONA Lawry, Cullen HIT POST"></play>  
+      <play number="248" vh="V" team="IONA" clock="05:26" action="SHOT" text="Shot by IONA Kennedy, Jimmy, SAVE Brayson Wilson"></play>  
+      <play number="249" vh="H" team="NORTH CA" clock="05:19" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="250" vh="H" team="NORTH CA" action="TURN" text="Turnover by NORTH CA Owen Dixon."></play>  
+      <play number="251" vh="V" team="IONA" clock="04:25" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="252" vh="V" team="IONA" clock="04:21" action="SHOT" text="Shot by IONA Lawry, Cullen WIDE"></play>  
+      <play number="253" vh="V" team="IONA" clock="04:01" action="SHOT" text="GOAL by IONA Neary, Luke, Assist by Lawry, Cullen."></play>  
+      <currentscore vscore="7" hscore="22"></currentscore>  
+      <play number="254" vh="H" team="NORTH CA" clock="04:01" action="FACE" text="Faceoff Bainbridge, Justin vs Parker Hoffman won by NORTH CA (on faceoff violation)."></play>  
+      <play number="255" vh="H" team="NORTH CA" clock="03:04" action="SHOT" text="GOAL by NORTH CA Alec Levy."></play>  
+      <currentscore vscore="7" hscore="23"></currentscore>  
+      <play number="256" vh="V" team="IONA" clock="03:04" action="FACE" text="Faceoff Gibstein, Cole vs Parker Hoffman won by IONA (on faceoff violation)."></play>  
+      <play number="257" vh="V" team="IONA" clock="02:43" action="SHOT" text="Shot by IONA Caldwell II, David, SAVE Brayson Wilson"></play>  
+      <play number="258" vh="H" team="NORTH CA" clock="02:40" action="GB" text="Ground ball pickup by NORTH CA Brayson Wilson."></play>  
+      <play number="259" vh="H" team="NORTH CA" clock="02:35" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="260" vh="H" team="NORTH CA" clock="02:30" action="SHOT" text="Shot by NORTH CA Jermaine Anderson BLOCKED"></play>  
+      <play number="261" vh="H" team="NORTH CA" clock="01:29" action="SHOT" text="Shot by NORTH CA Niko Karetsos, SAVE Caputo, Sal"></play>  
+      <play number="262" vh="V" team="IONA" clock="01:21" action="CLEAR" text="Clear attempt by IONA good."></play>  
+      <play number="263" vh="V" team="IONA" action="TURN" text="Turnover by IONA Curtin, Kolbe."></play>  
+      <play number="264" vh="H" team="NORTH CA" clock="00:52" action="CLEAR" text="Clear attempt by NORTH CA good."></play>  
+      <play number="265" clock="00:00" action="END-PRD" text="End-of-period."></play>  
+      <currentscore vscore="7" hscore="23"></currentscore> 
+    </period> 
+  </plays> 
+</lcgame>

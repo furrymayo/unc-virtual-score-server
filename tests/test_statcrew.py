@@ -482,3 +482,149 @@ class TestLookupAwayTeamColor:
         assert "away_team_color" in result
         assert result["away_team_color"] != "#d46a6a"
         assert _is_valid_away_color(result["away_team_color"])
+
+
+class TestLacrosseStatcrew:
+    MLAX_XML = """<?xml version="1.0"?>
+    <lcgame source="PrestoSports" version="7.13.0" generated="02/15/2026">
+      <venue date="2/15/2026" location="Chapel Hill, N.C." stadium="Dorrance Field"
+             attend="543" gameid="" start="12:00 PM">
+        <show sog="1" turnovers="0" faceoffs="1" dcs="0" penalties="0" clears="0"/>
+      </venue>
+      <status period="4" clock="00:00" complete="Y"/>
+      <team vh="V" id="IONA" name="Iona" code="310" record="0-4">
+        <totals>
+          <shots g="7" a="2" sh="28" sog="13" freepos="0"/>
+          <penalty count="2" seconds="90" foul="0"/>
+          <misc facewon="9" facelost="25" gb="24" dc="0" turnover="19" ct="5"/>
+          <goalie minutes="60:00" ga="23" saves="14" sf="65"/>
+          <clear clearm="15" cleara="22"/>
+        </totals>
+      </team>
+      <team vh="H" id="NORTH CA" name="North Carolina" code="457" record="3-0">
+        <totals>
+          <shots g="23" a="12" sh="50" sog="37" freepos="0"/>
+          <penalty count="2" seconds="60" foul="0"/>
+          <misc facewon="25" facelost="9" gb="47" dc="0" turnover="15" ct="7"/>
+          <goalie minutes="60:00" ga="7" saves="6" sf="28"/>
+          <clear clearm="15" cleara="19"/>
+        </totals>
+      </team>
+    </lcgame>"""
+
+    WLAX_XML = """<?xml version="1.0"?>
+    <lcgame source="TAS For Lacrosse" version="1.16.01" generated="5/19/2022">
+      <venue date="5/19/2022" location="Chapel Hill, N.C." stadium="Dorrance Field"
+             attend="1052" gameid="WNC0519" start="7:32 pm">
+        <show sog="1" turnovers="1" faceoffs="0" dcs="1" fpas="1" fouls="1" clears="1"/>
+      </venue>
+      <status period="4" clock="08:39"/>
+      <team vh="V" id="SBU" name="Stony Brook" record="16-2" rank="7">
+        <totals>
+          <shots g="5" a="1" sh="19" sog="13" freepos="1"/>
+          <penalty count="0" seconds="0" foul="17"/>
+          <misc gb="12" dc="6" turnover="10" ct="11"/>
+          <goalie minutes="51:21" ga="7" saves="7" sf="18"/>
+          <clear clearm="15" cleara="16"/>
+        </totals>
+      </team>
+      <team vh="H" id="NC" name="North Carolina" record="19-0" rank="1">
+        <totals>
+          <shots g="7" a="4" sh="18" sog="14" freepos="7"/>
+          <penalty count="0" seconds="0" foul="9"/>
+          <misc gb="12" dc="9" turnover="17" ct="6"/>
+          <goalie minutes="51:21" ga="5" saves="8" sf="19"/>
+          <clear clearm="17" cleara="20"/>
+        </totals>
+      </team>
+    </lcgame>"""
+
+    def test_mens_gender_detection(self):
+        result = _parse_statcrew_xml(self.MLAX_XML)
+        assert result["lacrosse_gender"] == "M"
+
+    def test_womens_gender_detection(self):
+        result = _parse_statcrew_xml(self.WLAX_XML)
+        assert result["lacrosse_gender"] == "W"
+
+    def test_mens_team_names(self):
+        result = _parse_statcrew_xml(self.MLAX_XML)
+        assert result["away_name"] == "Iona"
+        assert result["home_name"] == "North Carolina"
+        assert result["away_record"] == "0-4"
+        assert result["home_record"] == "3-0"
+
+    def test_womens_team_names(self):
+        result = _parse_statcrew_xml(self.WLAX_XML)
+        assert result["away_name"] == "Stony Brook"
+        assert result["home_name"] == "North Carolina"
+
+    def test_mens_away_team_color(self):
+        result = _parse_statcrew_xml(self.MLAX_XML)
+        assert "away_team_color" in result
+
+    def test_mens_home_team_stats(self):
+        result = _parse_statcrew_xml(self.MLAX_XML)
+        stats = result["home_team_stats"]
+        assert stats["goals"] == "23"
+        assert stats["sog"] == "37"
+        assert stats["facewon"] == "25"
+        assert stats["facelost"] == "9"
+        assert stats["fo_display"] == "25-9"
+        assert stats["gb"] == "47"
+        assert stats["turnover"] == "15"
+        assert stats["ct"] == "7"
+        assert stats["clears"] == "15/19"
+        # Save %: 6 saves / 28 shots faced = 21%
+        assert stats["save_pct"] == "21%"
+
+    def test_mens_away_team_stats(self):
+        result = _parse_statcrew_xml(self.MLAX_XML)
+        stats = result["away_team_stats"]
+        assert stats["facewon"] == "9"
+        assert stats["facelost"] == "25"
+        assert stats["fo_display"] == "9-25"
+        assert stats["gb"] == "24"
+        assert stats["turnover"] == "19"
+        # Save %: 14 saves / 65 shots faced = 22%
+        assert stats["save_pct"] == "22%"
+
+    def test_womens_home_team_stats(self):
+        result = _parse_statcrew_xml(self.WLAX_XML)
+        stats = result["home_team_stats"]
+        assert stats["dc"] == "9"
+        assert stats["gb"] == "12"
+        assert stats["turnover"] == "17"
+        assert stats["ct"] == "6"
+        assert stats["clears"] == "17/20"
+        assert stats["fouls"] == "9"
+        # Save %: 8 saves / 19 shots faced = 42%
+        assert stats["save_pct"] == "42%"
+
+    def test_womens_away_team_stats(self):
+        result = _parse_statcrew_xml(self.WLAX_XML)
+        stats = result["away_team_stats"]
+        assert stats["dc"] == "6"
+        assert stats["gb"] == "12"
+        assert stats["turnover"] == "10"
+        assert stats["ct"] == "11"
+        assert stats["fouls"] == "17"
+        # Save %: 7 saves / 18 shots faced = 39%
+        assert stats["save_pct"] == "39%"
+
+    def test_venue_parsed(self):
+        result = _parse_statcrew_xml(self.MLAX_XML)
+        assert result["venue"]["stadium"] == "Dorrance Field"
+        assert result["venue"]["attendance"] == "543"
+
+    def test_no_team_stats_without_totals(self):
+        xml = """<?xml version="1.0"?>
+        <lcgame>
+          <venue date="2026-01-01"><show faceoffs="1" dcs="0"/></venue>
+          <team vh="V" name="Away" code="A"/>
+          <team vh="H" name="Home" code="H"/>
+        </lcgame>"""
+        result = _parse_statcrew_xml(xml)
+        assert result["lacrosse_gender"] == "M"
+        assert "away_team_stats" not in result
+        assert "home_team_stats" not in result

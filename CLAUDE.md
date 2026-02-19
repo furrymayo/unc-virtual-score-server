@@ -1,6 +1,6 @@
 # Flask Virtual Scoreboard
 
-**Last Updated**: 2026-02-18
+**Last Updated**: 2026-02-19
 **Status**: Active
 **Primary OS**: Both (Windows + Linux)
 **Repo**: https://github.com/furrymayo/unc-virtual-score-server
@@ -33,7 +33,7 @@ Flask web application that displays real-time sports scoreboards by reading data
 - TrackMan values rounded to whole numbers (no decimal)
 - StatCrew network share mounted at `/mnt/stats` on Ubuntu server (CIFS, persistent)
 - StatCrew poll interval: 2s (file mtime check 0.3ms, full parse 10ms)
-- 131 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup), and API
+- 141 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup, lacrosse), and API
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
 - innerHTML XSS vulnerabilities fixed in Debug and home templates
@@ -45,6 +45,10 @@ Flask web application that displays real-time sports scoreboards by reading data
 - Softball layout mirrors Baseball: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, 7-inning linescore (no TrackMan)
 - Baseball layout: [Pitching|Inning|AtBat] top row, [Away|B/S/O|Home] score row, linescore in center column
 - Baseball strike zone uses correct 3:4 portrait aspect ratio (17"×24" real proportions)
+- TV-optimized Lacrosse layout: clock-dominant 3-row design (Period|GameClock|ShotClock top, flush-joined score+stat cards middle, penalty cards bottom), shot clock red <10s
+- Lacrosse StatCrew: `<lcgame>` XML parser with men's/women's gender detection (`<show faceoffs>` vs `<show dcs>`), team stats extraction (FO W-L, GB, TO, CT, Clears, Save%, DC, Fouls)
+- Lacrosse template Row 4 team stats bar: gender-aware labels (FO for men's, DC for women's), hidden until StatCrew data arrives
+- Lacrosse penalty cards: 2 slots per team with `#player` + countdown time, always-visible `0:00` placeholder
 - OES baseball batter_num 0x3A blank handling fixed in protocol.py
 
 ## Quick Reference
@@ -68,7 +72,7 @@ Flask web application that displays real-time sports scoreboards by reading data
 | `website/protocol.py` | Protocol constants, PacketStreamParser, decoders, 9 sport parsers, `identify_and_parse()` |
 | `website/ingestion.py` | Data store, serial/TCP/UDP readers, source management, cleanup thread |
 | `website/trackman.py` | TrackMan state, JSON parser, UDP listener, config management |
-| `website/statcrew.py` | StatCrew XML parser (baseball/softball/basketball), file watcher thread, config persistence, NCAA color lookup |
+| `website/statcrew.py` | StatCrew XML parser (baseball/softball/basketball/lacrosse), file watcher thread, config persistence, NCAA color lookup |
 | `website/ncaa_team_colors.json` | Static NCAA team colors data (347 teams) for away team color lookup |
 | `website/virtius.py` | Virtius live scoring API poller, session parser, config persistence |
 
@@ -111,7 +115,19 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 | `<player oncourt="Y/N">` | Active player on court flag |
 | `<stats tp="" treb="" ast="" stl="" blk="" pf="">` | Player game stats (total points, total rebounds, assists, steals, blocks, personal fouls) |
 
+## StatCrew Lacrosse XML Elements
+| Element | Purpose |
+|---------|---------|
+| `<lcgame>` | Root tag — both men's and women's lacrosse |
+| `<show faceoffs="1" dcs="0">` | Gender detection: `faceoffs="1"` = men's, `dcs="1"` = women's |
+| `<totals><shots g="" a="" sh="" sog="" freepos="">` | Team shot totals (goals, assists, shots, shots on goal, free position goals) |
+| `<totals><misc facewon="" facelost="" gb="" dc="" turnover="" ct="">` | Team misc stats (face-offs W/L, ground balls, draw controls, turnovers, caused turnovers) |
+| `<totals><goalie saves="" sf="">` | Goalie stats — saves and shots faced (for save % calculation) |
+| `<totals><clear clearm="" cleara="">` | Clears made / attempted |
+| `<totals><penalty foul="">` | Foul count (primarily women's card-based system) |
+
 ## Recent Activity
+- 2026-02-19: Lacrosse TV-optimized layout — clock-dominant design (Period|GameClock|ShotClock row, flush-joined score+stat cards, penalty cards with 2 slots per team, team stats bar from StatCrew). StatCrew `<lcgame>` parser with men's/women's gender detection via `<show>` element, team stats extraction (FO W-L, DC, GB, TO, CT, Clears, Save%, Fouls). Gender-aware stat labels (FO for men's, DC for women's). Shot clock red <10s. 10 new tests.
 - 2026-02-18: Basketball TV-optimized layout — clock-dominant 3-row design (Period|GameClock|ShotClock row, flush-joined score+stat cards with roster tables), StatCrew basketball player parsing (oncourt detection, full game stats, men's/women's gender), conditional formatting (clock red <10s, fouls green ≥6 men's, bonus green), fixed `bbgame` misclassification bug in statcrew parser
 - 2026-02-18: Live game enhancements — dynamic away team colors (NCAA JSON lookup, HSL validation, CSS variable theming), team tricode labels on Pitching/At Bat cards, linescore row styling (away color, home Carolina blue), base runners from `<status>` element, inning MID/END transitions with OES/StatCrew priority fix, at-bat "Today:"/"Season:" stat labels with HR, pitcher "Today:" prefix, TrackMan whole-number rounding
 - 2026-02-18: Softball rewrite — mirrors Baseball layout (Pitching/Inning/AtBat top row, Away/B-S-O/Home score row, 7-inning linescore), removed TrackMan elements, OES fallback for pitcher/batter. Cleaned up dead files (auth.py, models.py). Added `virtius_sources.json` for boot persistence.
