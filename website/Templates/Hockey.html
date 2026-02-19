@@ -1,85 +1,384 @@
 {% extends "base.html" %}
-{% block title %}Hockey Scoreboard{% endblock %}
+{% block title %}Field Hockey Scoreboard{% endblock %}
 {% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell">
+<section class="scoreboard-shell hockey-scoreboard">
     <div class="scoreboard-header">
         <div>
-            <div class="scoreboard-title">Hockey</div>
+            <div class="scoreboard-title">Field Hockey</div>
             <div class="scoreboard-subtitle" id="hk-venue-info">Live scoreboard feed</div>
         </div>
-        <div class="meta-row">
-            <div class="meta-chip">Clock <span id="hk-game-clock">--</span></div>
-            <div class="meta-chip">Period <span id="hk-period-chip">--</span></div>
-        </div>
     </div>
 
-    <div class="score-grid">
-        <div class="team-card team-home">
-            <div class="team-label"><span id="hk-home-name">Home</span> <span id="hk-home-record" class="team-record"></span></div>
-            <div class="team-score" id="hk-home-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Shots</span><strong id="hk-home-shots">--</strong></div>
-                <div class="stat-line"><span>Saves</span><strong id="hk-home-saves">--</strong></div>
-            </div>
+    <!-- Row 1: Period + Game Clock + Penalty Corners -->
+    <div class="hk-clock-row">
+        <div class="center-card hk-period-card">
+            <div class="center-label">Period</div>
+            <div class="hk-period-value" id="hk-period">--</div>
         </div>
         <div class="center-card">
-            <div class="center-label">Period</div>
-            <div class="center-value" id="hk-period">--</div>
+            <div class="center-label">Game Clock</div>
+            <div class="hk-clock-value" id="hk-game-clock">--</div>
         </div>
-        <div class="team-card team-away">
-            <div class="team-label"><span id="hk-visitor-name">Visitor</span> <span id="hk-visitor-record" class="team-record"></span></div>
-            <div class="team-score" id="hk-visitor-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Shots</span><strong id="hk-visitor-shots">--</strong></div>
-                <div class="stat-line"><span>Saves</span><strong id="hk-visitor-saves">--</strong></div>
+        <div class="center-card hk-corners-card">
+            <div class="center-label">Penalty Corners</div>
+            <div class="hk-corners-display">
+                <span class="hk-corners-side hk-corners-home"><span class="hk-corners-team">H</span><span class="hk-corners-val" id="hk-home-corners">0</span></span>
+                <span class="hk-corners-divider">|</span>
+                <span class="hk-corners-side hk-corners-away"><span class="hk-corners-val" id="hk-visitor-corners">0</span><span class="hk-corners-team">A</span></span>
             </div>
         </div>
     </div>
 
-    <div class="stat-grid">
-        <div class="stat-card">
-            <div class="stat-label">Home Corners</div>
-            <div class="stat-value" id="hk-home-corners">--</div>
+    <!-- Row 2: Scores + Stats -->
+    <div class="hk-score-row">
+        <div class="hk-team-column hk-side-home">
+            <div class="hk-team-top">
+                <div class="hk-team-cell team-home">
+                    <div class="team-label is-home"><span id="hk-home-name">Home</span> <span id="hk-home-record" class="team-record"></span></div>
+                    <div class="team-score" id="hk-home-score">--</div>
+                </div>
+                <div class="hk-stat-card hk-stat-home">
+                    <div class="hk-stat-item"><span class="hk-stat-name">Shots</span><strong id="hk-home-shots">--</strong></div>
+                    <div class="hk-stat-item"><span class="hk-stat-name">Saves</span><strong id="hk-home-saves">--</strong></div>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">Visitor Corners</div>
-            <div class="stat-value" id="hk-visitor-corners">--</div>
+        <div class="hk-team-column hk-side-away">
+            <div class="hk-team-top">
+                <div class="hk-stat-card hk-stat-away">
+                    <div class="hk-stat-item"><span class="hk-stat-name">Shots</span><strong id="hk-visitor-shots">--</strong></div>
+                    <div class="hk-stat-item"><span class="hk-stat-name">Saves</span><strong id="hk-visitor-saves">--</strong></div>
+                </div>
+                <div class="hk-team-cell team-away">
+                    <div class="team-label is-visitor"><span id="hk-visitor-name">Visitor</span> <span id="hk-visitor-record" class="team-record"></span></div>
+                    <div class="team-score" id="hk-visitor-score">--</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="section-title">Penalties</div>
-    <div class="table-card">
-        <table class="table-grid">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Player</th>
-                    <th>Time</th>
-                    <th>Player</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="team-row-label">Home</td>
-                    <td id="hk-home-pen1-player">--</td>
-                    <td id="hk-home-pen1-time">--</td>
-                    <td id="hk-home-pen2-player">--</td>
-                    <td id="hk-home-pen2-time">--</td>
-                </tr>
-                <tr>
-                    <td class="team-row-label">Visitor</td>
-                    <td id="hk-visitor-pen1-player">--</td>
-                    <td id="hk-visitor-pen1-time">--</td>
-                    <td id="hk-visitor-pen2-player">--</td>
-                    <td id="hk-visitor-pen2-time">--</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Row 3: Penalties -->
+    <div class="hk-penalty-row">
+        <div class="hk-penalty-card hk-penalty-home">
+            <div class="hk-penalty-header">Home Penalties</div>
+            <div class="hk-penalty-slot">
+                <span class="hk-penalty-player" id="hk-home-pen1-player"></span>
+                <span class="hk-penalty-time" id="hk-home-pen1-time"></span>
+            </div>
+            <div class="hk-penalty-slot">
+                <span class="hk-penalty-player" id="hk-home-pen2-player"></span>
+                <span class="hk-penalty-time" id="hk-home-pen2-time"></span>
+            </div>
+        </div>
+        <div class="hk-penalty-card hk-penalty-away">
+            <div class="hk-penalty-header">Away Penalties</div>
+            <div class="hk-penalty-slot">
+                <span class="hk-penalty-player" id="hk-visitor-pen1-player"></span>
+                <span class="hk-penalty-time" id="hk-visitor-pen1-time"></span>
+            </div>
+            <div class="hk-penalty-slot">
+                <span class="hk-penalty-player" id="hk-visitor-pen2-player"></span>
+                <span class="hk-penalty-time" id="hk-visitor-pen2-time"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 4: Team Stats (from StatCrew) -->
+    <div class="hk-stats-row" id="hk-stats-row" style="display: none;">
+        <div class="hk-stats-card hk-stats-home">
+            <div class="hk-stats-header">Home Stats</div>
+            <div class="hk-stats-grid">
+                <div class="hk-stats-cell"><span class="hk-stats-label">SOG</span><strong id="hk-home-sog">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">PC</span><strong id="hk-home-pc">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">Fouls</span><strong id="hk-home-fouls">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">DSv</span><strong id="hk-home-dsaves">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">Save%</span><strong id="hk-home-save-pct">--</strong></div>
+            </div>
+        </div>
+        <div class="hk-stats-card hk-stats-away">
+            <div class="hk-stats-header">Away Stats</div>
+            <div class="hk-stats-grid">
+                <div class="hk-stats-cell"><span class="hk-stats-label">SOG</span><strong id="hk-away-sog">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">PC</span><strong id="hk-away-pc">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">Fouls</span><strong id="hk-away-fouls">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">DSv</span><strong id="hk-away-dsaves">--</strong></div>
+                <div class="hk-stats-cell"><span class="hk-stats-label">Save%</span><strong id="hk-away-save-pct">--</strong></div>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    /* Field Hockey TV-Optimized Layout */
+    .hockey-scoreboard {
+        gap: clamp(4px, 0.6vh, 8px);
+    }
+
+    /* Row 1: Period + Game Clock + Penalty Corners */
+    .hk-clock-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
+        text-align: center;
+        padding: 0 clamp(30px, 6vw, 120px);
+    }
+
+    .hk-clock-row .center-card {
+        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hk-clock-value {
+        font-size: clamp(4rem, 10vw, 11rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .hk-period-card {
+        min-width: 0;
+    }
+
+    .hk-period-value {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    .hk-corners-card {
+        min-width: 0;
+    }
+
+    .hk-corners-display {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: clamp(6px, 1vw, 16px);
+    }
+
+    .hk-corners-side {
+        display: flex;
+        align-items: baseline;
+        gap: clamp(3px, 0.4vw, 8px);
+    }
+
+    .hk-corners-val {
+        font-size: clamp(2rem, 3.2vw, 4.5rem);
+        font-weight: 800;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        line-height: 1.1;
+    }
+
+    .hk-corners-team {
+        font-size: clamp(0.6rem, 0.9vw, 1.2rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+    }
+
+    .hk-corners-divider {
+        font-size: clamp(1.2rem, 2vw, 3rem);
+        color: var(--ink-soft);
+        font-weight: 300;
+    }
+
+    /* Row 2: two team columns side by side */
+    .hk-score-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        align-items: start;
+    }
+
+    .hk-team-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hk-team-top {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .hk-team-cell {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        padding: clamp(6px, 0.7vh, 12px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    /* Home side: score left, stat right */
+    .hk-side-home .hk-team-cell {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .hk-side-home .hk-stat-card {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    /* Away side: stat left, score right */
+    .hk-side-away .hk-stat-card {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .hk-side-away .hk-team-cell {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    .hk-stat-card {
+        background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
+        padding: clamp(6px, 0.7vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(4px, 0.5vh, 8px);
+        flex: 0 0 auto;
+    }
+
+    .hk-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .hk-stat-name {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+    }
+
+    .hk-stat-item strong {
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 3: Penalty cards */
+    .hk-penalty-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .hk-penalty-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 16px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2px, 0.3vh, 6px);
+    }
+
+    .hk-penalty-header {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        text-align: center;
+    }
+
+    .hk-penalty-slot {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: clamp(6px, 1vw, 16px);
+        min-height: clamp(1.2rem, 2vw, 2.8rem);
+    }
+
+    .hk-penalty-player {
+        font-size: clamp(0.85rem, 1.3vw, 1.8rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--carolina);
+    }
+
+    .hk-penalty-away .hk-penalty-player {
+        color: var(--away-color, var(--accent));
+    }
+
+    .hk-penalty-time {
+        font-size: clamp(1.1rem, 1.7vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 4: Team stats from StatCrew */
+    .hk-stats-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .hk-stats-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+    }
+
+    .hk-stats-header {
+        font-size: clamp(0.55rem, 0.8vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        text-align: center;
+        margin-bottom: clamp(2px, 0.3vh, 4px);
+    }
+
+    .hk-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: clamp(4px, 0.5vw, 10px);
+        text-align: center;
+    }
+
+    .hk-stats-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .hk-stats-label {
+        font-size: clamp(0.55rem, 0.75vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+    }
+
+    .hk-stats-cell strong {
+        font-size: clamp(0.9rem, 1.3vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+</style>
 
 <details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
@@ -117,9 +416,23 @@
 <script>
     let statcrewData = {};
 
+    function normalizeClock(value) {
+        if (value === undefined || value === null) return value;
+        var text = String(value).trim();
+        if (!text) return value;
+        if (text.includes('.')) {
+            var parts = text.split('.');
+            var left = parts[0].replace(/^0+(?=\d)/, '');
+            var normalizedLeft = left === '' ? '0' : left;
+            return normalizedLeft + '.' + parts[1];
+        }
+        return text.replace(/^0+(?=\d)/, '');
+    }
+
     function renderHockey(data) {
-        setText('hk-game-clock', data.game_clock);
-        setText('hk-period-chip', data.period);
+        var gameClock = normalizeClock(data.game_clock);
+
+        setText('hk-game-clock', gameClock);
         setText('hk-period', data.period);
         setText('hk-home-score', data.home_score);
         setText('hk-visitor-score', data.visitor_score);
@@ -130,33 +443,85 @@
         setText('hk-home-corners', data.home_corners);
         setText('hk-visitor-corners', data.visitor_corners);
 
-        const homePens = Array.isArray(data.home_penalties) ? data.home_penalties : [];
-        const visitorPens = Array.isArray(data.visitor_penalties) ? data.visitor_penalties : [];
-        setText('hk-home-pen1-player', homePens[0] && homePens[0].player);
-        setText('hk-home-pen1-time', homePens[0] && homePens[0].time);
-        setText('hk-home-pen2-player', homePens[1] && homePens[1].player);
-        setText('hk-home-pen2-time', homePens[1] && homePens[1].time);
-        setText('hk-visitor-pen1-player', visitorPens[0] && visitorPens[0].player);
-        setText('hk-visitor-pen1-time', visitorPens[0] && visitorPens[0].time);
-        setText('hk-visitor-pen2-player', visitorPens[1] && visitorPens[1].player);
-        setText('hk-visitor-pen2-time', visitorPens[1] && visitorPens[1].time);
+        // Penalties
+        var homePens = Array.isArray(data.home_penalties) ? data.home_penalties : [];
+        var visPens = Array.isArray(data.visitor_penalties) ? data.visitor_penalties : [];
+
+        renderPenalty('hk-home-pen1', homePens[0]);
+        renderPenalty('hk-home-pen2', homePens[1]);
+        renderPenalty('hk-visitor-pen1', visPens[0]);
+        renderPenalty('hk-visitor-pen2', visPens[1]);
+    }
+
+    function renderPenalty(prefix, pen) {
+        var playerEl = document.getElementById(prefix + '-player');
+        var timeEl = document.getElementById(prefix + '-time');
+        if (!playerEl || !timeEl) return;
+
+        var player = pen ? String(pen.player || '').trim() : '';
+        var time = pen ? String(pen.time || '').trim() : '';
+
+        // Show player number with # prefix, fall back to just #
+        if (player && player !== '--' && /\d/.test(player)) {
+            playerEl.textContent = '#' + player.replace(/^\s+/, '');
+        } else {
+            playerEl.textContent = '#';
+        }
+
+        // Always show time — fall back to 0:00 when no active penalty
+        if (time && /\d/.test(time)) {
+            timeEl.textContent = time.trim();
+        } else {
+            timeEl.textContent = '0:00';
+        }
     }
 
     function renderStatcrewHockey(data) {
         statcrewData = data || {};
-        const info = getStatcrewTeamInfo(statcrewData);
+        var info = getStatcrewTeamInfo(statcrewData);
         setText('hk-venue-info', info.venueText || 'Live scoreboard feed');
         setText('hk-home-name', info.homeName || 'Home');
         setText('hk-visitor-name', info.visitorName || 'Visitor');
         setText('hk-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
         setText('hk-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+
+        if (statcrewData.away_team_color) {
+            applyAwayTeamColor(statcrewData.away_team_color);
+        }
+
+        // Team stats from StatCrew
+        var homeStats = statcrewData.home_team_stats;
+        var awayStats = statcrewData.away_team_stats;
+        var statsRow = document.getElementById('hk-stats-row');
+
+        if (homeStats || awayStats) {
+            statsRow.style.display = '';
+
+            if (homeStats) {
+                setText('hk-home-sog', homeStats.sog);
+                setText('hk-home-pc', homeStats.corners);
+                setText('hk-home-fouls', homeStats.fouls);
+                setText('hk-home-dsaves', homeStats.dsaves);
+                setText('hk-home-save-pct', homeStats.save_pct);
+            }
+
+            if (awayStats) {
+                setText('hk-away-sog', awayStats.sog);
+                setText('hk-away-pc', awayStats.corners);
+                setText('hk-away-fouls', awayStats.fouls);
+                setText('hk-away-dsaves', awayStats.dsaves);
+                setText('hk-away-save-pct', awayStats.save_pct);
+            }
+        } else {
+            statsRow.style.display = 'none';
+        }
     }
 
     function fetchStatcrewHockeyData() {
         fetch('/get_statcrew_data/Hockey')
-            .then(response => response.json())
-            .then(data => renderStatcrewHockey(data || {}))
-            .catch(() => renderStatcrewHockey({}));
+            .then(function(response) { return response.json(); })
+            .then(function(data) { renderStatcrewHockey(data || {}); })
+            .catch(function() { renderStatcrewHockey({}); });
     }
 
     function fetchHockeyData() {

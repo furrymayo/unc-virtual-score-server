@@ -49,6 +49,10 @@ Flask web application that displays real-time sports scoreboards by reading data
 - Lacrosse StatCrew: `<lcgame>` XML parser with men's/women's gender detection (`<show faceoffs>` vs `<show dcs>`), team stats extraction (FO W-L, GB, TO, CT, Clears, Save%, DC, Fouls)
 - Lacrosse template Row 4 team stats bar: gender-aware labels (FO for men's, DC for women's), hidden until StatCrew data arrives
 - Lacrosse penalty cards: 2 slots per team with `#player` + countdown time, always-visible `0:00` placeholder
+- TV-optimized Field Hockey layout: clock-dominant design (Period|GameClock|PenaltyCorners top, flush-joined score+stat cards middle, penalty cards bottom), no shot clock
+- Field Hockey penalty corners prominently displayed in clock row (H/A split), penalty cards with green/yellow card timers
+- Field Hockey Row 4 team stats bar: SOG, PC, Fouls, DSv (defensive saves), Save% — hidden until StatCrew data arrives
+- Field Hockey StatCrew parser: pending example XML file (template hooks wired, needs `fhgame` root tag detection + team stats extraction)
 - OES baseball batter_num 0x3A blank handling fixed in protocol.py
 
 ## Quick Reference
@@ -57,7 +61,7 @@ Flask web application that displays real-time sports scoreboards by reading data
 | Entry point | `main.py` |
 | Default port | 5000 (Flask) |
 | Serial baud | 9600 |
-| Supported sports | Basketball, Hockey, Lacrosse, Football, Volleyball, Wrestling, Soccer, Softball, Baseball, Gymnastics |
+| Supported sports | Basketball, Field Hockey, Lacrosse, Football, Volleyball, Wrestling, Soccer, Softball, Baseball, Gymnastics |
 | Test command | `pytest tests/ -v` |
 | Deploy guide | `README.md` |
 
@@ -127,6 +131,7 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 | `<totals><penalty foul="">` | Foul count (primarily women's card-based system) |
 
 ## Recent Activity
+- 2026-02-19: Field Hockey TV-optimized layout — clock-dominant design (Period|GameClock|PenaltyCorners row, flush-joined score+stat cards with Shots/Saves, penalty cards with green/yellow card timers, team stats bar for StatCrew). Penalty corners replace shot clock in clock row (field hockey has no shot clock). StatCrew template hooks wired (SOG, PC, Fouls, DSv, Save%), pending example XML for parser.
 - 2026-02-19: Lacrosse TV-optimized layout — clock-dominant design (Period|GameClock|ShotClock row, flush-joined score+stat cards, penalty cards with 2 slots per team, team stats bar from StatCrew). StatCrew `<lcgame>` parser with men's/women's gender detection via `<show>` element, team stats extraction (FO W-L, DC, GB, TO, CT, Clears, Save%, Fouls). Gender-aware stat labels (FO for men's, DC for women's). Shot clock red <10s. 10 new tests.
 - 2026-02-18: Basketball TV-optimized layout — clock-dominant 3-row design (Period|GameClock|ShotClock row, flush-joined score+stat cards with roster tables), StatCrew basketball player parsing (oncourt detection, full game stats, men's/women's gender), conditional formatting (clock red <10s, fouls green ≥6 men's, bonus green), fixed `bbgame` misclassification bug in statcrew parser
 - 2026-02-18: Live game enhancements — dynamic away team colors (NCAA JSON lookup, HSL validation, CSS variable theming), team tricode labels on Pitching/At Bat cards, linescore row styling (away color, home Carolina blue), base runners from `<status>` element, inning MID/END transitions with OES/StatCrew priority fix, at-bat "Today:"/"Season:" stat labels with HR, pitcher "Today:" prefix, TrackMan whole-number rounding
