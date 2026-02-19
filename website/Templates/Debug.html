@@ -1,140 +1,315 @@
 {% extends "base.html" %}
-{% block title %}COM Port Data Reader{% endblock %}
+{% block title %}Debug Console{% endblock %}
+{% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
+<section class="scoreboard-shell debug-console">
+    <div class="scoreboard-header">
+        <div>
+            <div class="scoreboard-title">Debug Console</div>
+            <div class="scoreboard-subtitle">Raw data feed inspector</div>
+        </div>
+    </div>
+
+    <!-- Two panels side by side -->
+    <div class="dbg-panels">
+        <!-- OES Data Panel -->
+        <div class="dbg-panel">
+            <div class="dbg-panel-header">
+                <span class="dbg-panel-title">OES Data Feed</span>
+                <div class="dbg-controls">
+                    <select id="sport-select" class="dbg-select">
+                        <option value="Basketball">Basketball</option>
+                        <option value="Hockey">Hockey</option>
+                        <option value="Lacrosse">Lacrosse</option>
+                        <option value="Football">Football</option>
+                        <option value="Volleyball">Volleyball</option>
+                        <option value="Wrestling">Wrestling</option>
+                        <option value="Soccer">Soccer</option>
+                        <option value="Softball">Softball</option>
+                        <option value="Baseball">Baseball</option>
+                        <option value="Gymnastics">Gymnastics</option>
+                    </select>
+                    <button type="button" class="dbg-btn" onclick="clearLog('oes')">Clear</button>
+                </div>
+            </div>
+            <div class="dbg-log" id="oes-log"></div>
+            <div class="dbg-status"><span id="oes-count">0</span> entries</div>
+        </div>
+
+        <!-- TrackMan Panel -->
+        <div class="dbg-panel">
+            <div class="dbg-panel-header">
+                <span class="dbg-panel-title">TrackMan UDP Feed</span>
+                <div class="dbg-controls">
+                    <select id="trackman-sport-select" class="dbg-select">
+                        <option value="Baseball">Baseball</option>
+                        <option value="Softball">Softball</option>
+                    </select>
+                    <button type="button" class="dbg-btn" onclick="clearLog('trackman')">Clear</button>
+                </div>
+            </div>
+            <div class="dbg-trackman-status" id="trackman-status">--</div>
+            <div class="dbg-log" id="trackman-log"></div>
+            <div class="dbg-status"><span id="trackman-count">0</span> entries</div>
+        </div>
+    </div>
+</section>
+
 <style>
-    h1 {
-        text-align: center;
-        color: #77aacd;
+    .debug-console {
+        gap: clamp(4px, 0.6vh, 8px);
     }
 
-    body {
-        background-color: #1d2f4a; /* This sets the background color for the entire page */
+    .dbg-panels {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
     }
 
-    #debugWindow {
-        border: 4px solid #77aacd;
-        background-color: #343a40;
-        color: yellow;
-        padding: 20px;
-        height: 80vh;
+    .dbg-panel {
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        overflow: hidden;
+        min-height: 0;
+    }
+
+    .dbg-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: clamp(6px, 0.8vh, 12px) clamp(10px, 1.2vw, 18px);
+        border-bottom: 1px solid rgba(131, 198, 242, 0.1);
+        flex: 0 0 auto;
+    }
+
+    .dbg-panel-title {
+        font-size: clamp(0.75rem, 1vw, 1.2rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--carolina);
+    }
+
+    .dbg-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .dbg-select {
+        background: rgba(10, 20, 38, 0.6);
+        color: var(--ink);
+        border: 1px solid rgba(131, 198, 242, 0.2);
+        border-radius: 8px;
+        padding: 4px 8px;
+        font-size: clamp(0.65rem, 0.85vw, 1rem);
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+    .dbg-select:focus {
+        outline: none;
+        border-color: var(--carolina);
+    }
+
+    .dbg-btn {
+        background: rgba(131, 198, 242, 0.12);
+        color: var(--ink-soft);
+        border: 1px solid rgba(131, 198, 242, 0.2);
+        border-radius: 8px;
+        padding: 4px 12px;
+        font-size: clamp(0.6rem, 0.8vw, 0.95rem);
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+    }
+
+    .dbg-btn:hover {
+        background: rgba(131, 198, 242, 0.25);
+        color: var(--ink);
+    }
+
+    .dbg-trackman-status {
+        padding: 4px clamp(10px, 1.2vw, 18px);
+        font-size: clamp(0.6rem, 0.8vw, 0.95rem);
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink-soft);
+        border-bottom: 1px solid rgba(131, 198, 242, 0.06);
+        flex: 0 0 auto;
+    }
+
+    .dbg-log {
+        flex: 1 1 auto;
+        min-height: 0;
         overflow-y: auto;
+        padding: clamp(6px, 0.8vh, 12px) clamp(10px, 1.2vw, 18px);
+        font-family: "JetBrains Mono", monospace;
+        font-size: clamp(0.55rem, 0.75vw, 0.9rem);
+        line-height: 1.5;
+    }
+
+    .dbg-log::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .dbg-log::-webkit-scrollbar-track {
+        background: rgba(10, 20, 38, 0.3);
+    }
+
+    .dbg-log::-webkit-scrollbar-thumb {
+        background: rgba(131, 198, 242, 0.2);
+        border-radius: 3px;
+    }
+
+    .dbg-entry {
+        margin-bottom: 4px;
+        padding: 3px 0;
+        border-bottom: 1px solid rgba(131, 198, 242, 0.04);
+    }
+
+    .dbg-timestamp {
+        color: var(--ink-soft);
+        margin-right: 8px;
+    }
+
+    .dbg-data {
+        color: #51cf66;
+        word-break: break-all;
+    }
+
+    .dbg-error {
+        color: #ff6b6b;
+    }
+
+    .dbg-status {
+        padding: 3px clamp(10px, 1.2vw, 18px);
+        font-size: clamp(0.55rem, 0.7vw, 0.85rem);
+        color: var(--ink-soft);
+        border-top: 1px solid rgba(131, 198, 242, 0.08);
+        text-align: right;
+        flex: 0 0 auto;
     }
 </style>
 
-<h1>Scoreboard Debugging Window</h1>
-
-<div id="sportCode">
-    <label for="sport-select">Select Sport:</label>
-    <select id="sport-select">
-        <option value="Basketball">Basketball</option>
-        <option value="Hockey">Hockey</option>
-        <option value="Lacrosse">Lacrosse</option>
-        <option value="Football">Football</option>
-        <option value="Volleyball">Volleyball</option>
-        <option value="Wrestling">Wrestling</option>
-        <option value="Soccer">Soccer</option>
-        <option value="Softball">Softball</option>
-        <option value="Baseball">Baseball</option>
-        <option value="Gymnastics">Gymnastics</option>
-        <!-- Add more sports here -->
-    </select>
-</div>
-
-<div id="debugWindow">
-    <!-- Real-time data from selected COM port will be displayed here -->
-</div>
-
-<div id="trackmanSection" style="margin-top: 24px;">
-    <h2 style="color: #77aacd; text-align: center;">TrackMan UDP Debug</h2>
-    <div id="trackmanControls" style="margin-bottom: 12px;">
-        <label for="trackman-sport-select">Select Sport:</label>
-        <select id="trackman-sport-select">
-            <option value="Baseball">Baseball</option>
-            <option value="Softball">Softball</option>
-        </select>
-    </div>
-    <div id="trackmanStatus" style="margin-bottom: 8px; color: #77aacd;"></div>
-    <div id="trackmanWindow" style="border: 4px solid #77aacd; background-color: #1f2d40; color: #cfe8ff; padding: 20px; height: 40vh; overflow-y: auto;"></div>
-</div>
-
 <script>
-    // Function to update the debug window
-    function updateDebugWindow(data) {
-        const debugWindowDiv = document.getElementById('debugWindow');
-        const p = document.createElement('p');
-        if (data.error) {
-            p.style.color = 'red';
-            p.textContent = data.error;
-        } else {
-            p.textContent = JSON.stringify(data);
-        }
-        debugWindowDiv.appendChild(p);
+    var oesCounts = 0;
+    var trackmanCounts = 0;
+
+    function timestamp() {
+        var d = new Date();
+        var h = String(d.getHours()).padStart(2, '0');
+        var m = String(d.getMinutes()).padStart(2, '0');
+        var s = String(d.getSeconds()).padStart(2, '0');
+        var ms = String(d.getMilliseconds()).padStart(3, '0');
+        return h + ':' + m + ':' + s + '.' + ms;
     }
 
-    function updateTrackmanWindow(data) {
-        const trackmanWindowDiv = document.getElementById('trackmanWindow');
-        const p = document.createElement('p');
-        if (data.error) {
-            p.style.color = '#ff8f8f';
-            p.textContent = data.error;
-        } else {
-            p.textContent = JSON.stringify(data);
+    function appendEntry(logId, countId, text, isError) {
+        var log = document.getElementById(logId);
+        var entry = document.createElement('div');
+        entry.className = 'dbg-entry';
+
+        var ts = document.createElement('span');
+        ts.className = 'dbg-timestamp';
+        ts.textContent = timestamp();
+
+        var data = document.createElement('span');
+        data.className = isError ? 'dbg-error' : 'dbg-data';
+        data.textContent = text;
+
+        entry.appendChild(ts);
+        entry.appendChild(data);
+        log.appendChild(entry);
+
+        // Auto-scroll to bottom
+        log.scrollTop = log.scrollHeight;
+
+        // Update count
+        var countEl = document.getElementById(countId);
+        var count = parseInt(countEl.textContent, 10) + 1;
+        countEl.textContent = count;
+
+        // Cap entries at 500
+        while (log.children.length > 500) {
+            log.removeChild(log.firstChild);
         }
-        trackmanWindowDiv.appendChild(p);
     }
 
-    // Function to fetch COM port data
-    function fetchCOMPortData() {
-        const selectedSport = document.getElementById('sport-select').value;
+    function clearLog(type) {
+        if (type === 'oes') {
+            document.getElementById('oes-log').innerHTML = '';
+            document.getElementById('oes-count').textContent = '0';
+        } else {
+            document.getElementById('trackman-log').innerHTML = '';
+            document.getElementById('trackman-count').textContent = '0';
+        }
+    }
 
-        fetch(`/get_raw_data/${selectedSport}`)
-            .then(response => response.json())
-            .then(data => {
+    function formatJson(obj) {
+        try {
+            return JSON.stringify(obj, null, 2);
+        } catch (e) {
+            return String(obj);
+        }
+    }
+
+    function fetchOESData() {
+        var sport = document.getElementById('sport-select').value;
+        fetch('/get_raw_data/' + sport)
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
                 if (data.error) {
-                    updateDebugWindow({ error: data.error });
+                    appendEntry('oes-log', 'oes-count', data.error, true);
                 } else {
-                    updateDebugWindow(data);
-                }                
+                    appendEntry('oes-log', 'oes-count', formatJson(data), false);
+                }
             })
-            .catch(error => console.error('Error fetching COM port data:', error));
+            .catch(function(err) {
+                appendEntry('oes-log', 'oes-count', 'Fetch error: ' + err.message, true);
+            });
     }
 
     function fetchTrackmanData() {
-        const selectedSport = document.getElementById('trackman-sport-select').value;
+        var sport = document.getElementById('trackman-sport-select').value;
         Promise.all([
-            fetch(`/trackman_config/${selectedSport}`).then(response => response.json()),
-            fetch(`/get_trackman_debug/${selectedSport}`).then(response => response.json())
-        ]).then(([config, data]) => {
-            const status = config && (config.error ? `error: ${config.error}` : `${config.enabled ? 'enabled' : 'disabled'} · port ${config.port || 'n/a'} · ${config.feed_type || 'n/a'} · ${config.running ? 'listening' : 'idle'}`);
-            document.getElementById('trackmanStatus').textContent = status || 'n/a';
-            if (data && data.raw) {
-                updateTrackmanWindow({ raw: data.raw });
-            }
+            fetch('/trackman_config/' + sport).then(function(r) { return r.json(); }),
+            fetch('/get_trackman_debug/' + sport).then(function(r) { return r.json(); })
+        ]).then(function(results) {
+            var config = results[0];
+            var data = results[1];
+            var status = config && (config.error
+                ? 'error: ' + config.error
+                : (config.enabled ? 'enabled' : 'disabled') + ' · port ' + (config.port || 'n/a') + ' · ' + (config.feed_type || 'n/a') + ' · ' + (config.running ? 'listening' : 'idle'));
+            document.getElementById('trackman-status').textContent = status || 'n/a';
             if (data && data.error) {
-                updateTrackmanWindow({ error: data.error });
+                appendEntry('trackman-log', 'trackman-count', data.error, true);
             }
-            updateTrackmanWindow(data && data.parsed ? data.parsed : {});
-        }).catch(error => {
-            updateTrackmanWindow({ error: error.message || 'TrackMan fetch error' });
+            if (data && data.parsed) {
+                appendEntry('trackman-log', 'trackman-count', formatJson(data.parsed), false);
+            }
+        }).catch(function(err) {
+            appendEntry('trackman-log', 'trackman-count', 'Fetch error: ' + err.message, true);
         });
     }
 
-    // Fetch data when the page loads and set an interval to keep fetching
-    fetchCOMPortData();
-    setInterval(fetchCOMPortData, 1000);
+    fetchOESData();
+    setInterval(fetchOESData, 1000);
     fetchTrackmanData();
     setInterval(fetchTrackmanData, 1000);
 
-    // Update data when the user changes the sport or COM port
-    document.getElementById('sport-select').addEventListener('change', fetchCOMPortData);
-    document.getElementById('sport-select').addEventListener('change', fetchCOMPortData);
-    document.getElementById('trackman-sport-select').addEventListener('change', fetchTrackmanData);
-
-    // Update the UI when data is fetched
-    document.addEventListener('dataFetched', function (event) {
-        console.log("Data Fetched: ", event.detail); // Debugging Line
-        updateDebugWindow(event.detail);
+    document.getElementById('sport-select').addEventListener('change', function() {
+        clearLog('oes');
+        fetchOESData();
+    });
+    document.getElementById('trackman-sport-select').addEventListener('change', function() {
+        clearLog('trackman');
+        fetchTrackmanData();
     });
 </script>
 {% endblock %}
