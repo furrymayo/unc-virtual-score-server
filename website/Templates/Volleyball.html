@@ -3,75 +3,395 @@
 {% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell">
+<section class="scoreboard-shell volleyball-scoreboard">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Volleyball</div>
             <div class="scoreboard-subtitle" id="vb-venue-info">Live scoreboard feed</div>
         </div>
-        <div class="meta-row">
-            <div class="meta-chip">Clock <span id="vb-game-clock">--</span></div>
-            <div class="meta-chip">Set <span id="vb-period-chip">--</span></div>
-        </div>
     </div>
 
-    <div class="score-grid">
-        <div class="team-card team-home">
-            <div class="team-label"><span class="possession-dot" id="vb-poss-home"></span><span id="vb-home-name">Home</span> <span id="vb-home-record" class="team-record"></span></div>
-            <div class="team-score" id="vb-home-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Timeouts</span><strong id="vb-home-tol">--</strong></div>
-                <div class="stat-line"><span>Sets Won</span><strong id="vb-home-sets">--</strong></div>
-            </div>
+    <!-- Row 1: Set + Game Clock + Sets Won -->
+    <div class="vb-clock-row">
+        <div class="center-card vb-set-card">
+            <div class="center-label">Set</div>
+            <div class="vb-set-value" id="vb-set">--</div>
         </div>
         <div class="center-card">
-            <div class="center-label">Set</div>
-            <div class="center-value" id="vb-period">--</div>
+            <div class="center-label">Game Clock</div>
+            <div class="vb-clock-value" id="vb-game-clock">--</div>
         </div>
-        <div class="team-card team-away">
-            <div class="team-label"><span class="possession-dot" id="vb-poss-visitor"></span><span id="vb-visitor-name">Visitor</span> <span id="vb-visitor-record" class="team-record"></span></div>
-            <div class="team-score" id="vb-visitor-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Timeouts</span><strong id="vb-visitor-tol">--</strong></div>
-                <div class="stat-line"><span>Sets Won</span><strong id="vb-visitor-sets">--</strong></div>
+        <div class="center-card vb-sets-won-card">
+            <div class="center-label">Sets Won</div>
+            <div class="vb-sets-won-display">
+                <span class="vb-sets-won-side vb-sets-won-home">H <span id="vb-home-sets-won">-</span></span>
+                <span class="vb-sets-won-divider">|</span>
+                <span class="vb-sets-won-side vb-sets-won-away"><span id="vb-visitor-sets-won">-</span> A</span>
             </div>
         </div>
     </div>
 
-    <div class="section-title">Set Scores</div>
-    <div class="table-card">
-        <table class="table-grid">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Set 1</th>
-                    <th>Set 2</th>
-                    <th>Set 3</th>
-                    <th>Set 4</th>
-                    <th>Set 5</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="team-row-label">Home</td>
-                    <td id="vb-home-set-1">--</td>
-                    <td id="vb-home-set-2">--</td>
-                    <td id="vb-home-set-3">--</td>
-                    <td id="vb-home-set-4">--</td>
-                    <td id="vb-home-set-5">--</td>
-                </tr>
-                <tr>
-                    <td class="team-row-label">Visitor</td>
-                    <td id="vb-visitor-set-1">--</td>
-                    <td id="vb-visitor-set-2">--</td>
-                    <td id="vb-visitor-set-3">--</td>
-                    <td id="vb-visitor-set-4">--</td>
-                    <td id="vb-visitor-set-5">--</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Row 2: Scores + Stats -->
+    <div class="vb-score-row">
+        <div class="vb-team-column vb-side-home">
+            <div class="vb-team-top">
+                <div class="vb-team-cell team-home">
+                    <div class="team-label is-home"><span class="possession-dot" id="vb-poss-home"></span><span id="vb-home-name">Home</span> <span id="vb-home-record" class="team-record"></span></div>
+                    <div class="team-score" id="vb-home-score">--</div>
+                </div>
+                <div class="vb-stat-card vb-stat-home">
+                    <div class="vb-stat-item"><span class="vb-stat-name">TOL</span><strong id="vb-home-tol">--</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="vb-team-column vb-side-away">
+            <div class="vb-team-top">
+                <div class="vb-stat-card vb-stat-away">
+                    <div class="vb-stat-item"><span class="vb-stat-name">TOL</span><strong id="vb-visitor-tol">--</strong></div>
+                </div>
+                <div class="vb-team-cell team-away">
+                    <div class="team-label is-visitor"><span id="vb-visitor-name">Visitor</span> <span id="vb-visitor-record" class="team-record"></span><span class="possession-dot" id="vb-poss-visitor"></span></div>
+                    <div class="team-score" id="vb-visitor-score">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 3: Set Scores Table -->
+    <div class="vb-set-scores-row">
+        <div class="vb-set-scores-card">
+            <table class="vb-set-table">
+                <thead>
+                    <tr>
+                        <th class="vb-set-team-col"></th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>S4</th>
+                        <th>S5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="vb-set-row-home">
+                        <td class="vb-set-team-label" id="vb-set-home-label">Home</td>
+                        <td id="vb-home-set-1">--</td>
+                        <td id="vb-home-set-2">--</td>
+                        <td id="vb-home-set-3">--</td>
+                        <td id="vb-home-set-4">--</td>
+                        <td id="vb-home-set-5">--</td>
+                    </tr>
+                    <tr class="vb-set-row-away">
+                        <td class="vb-set-team-label" id="vb-set-away-label">Away</td>
+                        <td id="vb-visitor-set-1">--</td>
+                        <td id="vb-visitor-set-2">--</td>
+                        <td id="vb-visitor-set-3">--</td>
+                        <td id="vb-visitor-set-4">--</td>
+                        <td id="vb-visitor-set-5">--</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Row 4: Team Stats (from StatCrew) -->
+    <div class="vb-stats-row" id="vb-stats-row" style="display: none;">
+        <div class="vb-stats-card vb-stats-home">
+            <div class="vb-stats-header">Home Stats</div>
+            <div class="vb-stats-grid">
+                <div class="vb-stats-cell"><span class="vb-stats-label">K</span><strong id="vb-home-kills">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">A</span><strong id="vb-home-aces">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">D</span><strong id="vb-home-digs">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">Blk</span><strong id="vb-home-blocks">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">Hit%</span><strong id="vb-home-hit-pct">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">Err</span><strong id="vb-home-errors">--</strong></div>
+            </div>
+        </div>
+        <div class="vb-stats-card vb-stats-away">
+            <div class="vb-stats-header">Away Stats</div>
+            <div class="vb-stats-grid">
+                <div class="vb-stats-cell"><span class="vb-stats-label">K</span><strong id="vb-away-kills">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">A</span><strong id="vb-away-aces">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">D</span><strong id="vb-away-digs">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">Blk</span><strong id="vb-away-blocks">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">Hit%</span><strong id="vb-away-hit-pct">--</strong></div>
+                <div class="vb-stats-cell"><span class="vb-stats-label">Err</span><strong id="vb-away-errors">--</strong></div>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    /* Volleyball TV-Optimized Layout */
+    .volleyball-scoreboard {
+        gap: clamp(4px, 0.6vh, 8px);
+    }
+
+    /* Row 1: Set + Game Clock + Sets Won */
+    .vb-clock-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
+        text-align: center;
+        padding: 0 clamp(30px, 6vw, 120px);
+    }
+
+    .vb-clock-row .center-card {
+        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .vb-clock-value {
+        font-size: clamp(4rem, 10vw, 11rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .vb-set-card {
+        min-width: 0;
+    }
+
+    .vb-set-value {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    .vb-sets-won-card {
+        min-width: 0;
+    }
+
+    .vb-sets-won-display {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: clamp(6px, 0.8vw, 14px);
+    }
+
+    .vb-sets-won-side {
+        font-size: clamp(1.6rem, 2.5vw, 3.8rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1.1;
+    }
+
+    .vb-sets-won-home {
+        color: var(--carolina);
+    }
+
+    .vb-sets-won-away {
+        color: var(--away-color, var(--accent));
+    }
+
+    .vb-sets-won-divider {
+        font-size: clamp(1.2rem, 1.8vw, 2.8rem);
+        color: var(--ink-soft);
+        font-weight: 400;
+    }
+
+    /* Row 2: two team columns side by side */
+    .vb-score-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        align-items: start;
+    }
+
+    .vb-team-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .vb-team-top {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .vb-team-cell {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        padding: clamp(6px, 0.7vh, 12px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    .vb-side-home .vb-team-cell {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .vb-side-home .vb-stat-card {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    .vb-side-away .vb-stat-card {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .vb-side-away .vb-team-cell {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    .vb-stat-card {
+        background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
+        padding: clamp(6px, 0.7vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(4px, 0.5vh, 8px);
+        flex: 0 0 auto;
+    }
+
+    .vb-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .vb-stat-name {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+    }
+
+    .vb-stat-item strong {
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 3: Set Scores Table */
+    .vb-set-scores-row {
+        flex: 0 0 auto;
+    }
+
+    .vb-set-scores-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 16px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        overflow: hidden;
+    }
+
+    .vb-set-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    .vb-set-table thead th {
+        font-size: clamp(0.6rem, 0.85vw, 1.1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+        padding: clamp(2px, 0.3vh, 6px) clamp(4px, 0.6vw, 10px);
+        font-weight: 500;
+    }
+
+    .vb-set-table tbody td {
+        font-size: clamp(1.1rem, 1.8vw, 2.8rem);
+        font-weight: 700;
+        padding: clamp(3px, 0.4vh, 8px) clamp(4px, 0.6vw, 10px);
+    }
+
+    .vb-set-team-col {
+        width: clamp(60px, 10vw, 140px);
+    }
+
+    .vb-set-team-label {
+        font-size: clamp(0.7rem, 1vw, 1.3rem) !important;
+        font-weight: 600 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-align: left !important;
+        padding-left: clamp(8px, 1vw, 16px) !important;
+    }
+
+    .vb-set-row-home {
+        background: rgba(123, 175, 212, 0.12);
+    }
+
+    .vb-set-row-home td {
+        color: var(--carolina);
+    }
+
+    .vb-set-row-away {
+        background: rgba(var(--away-color-rgb, 131, 198, 242), 0.08);
+    }
+
+    .vb-set-row-away td {
+        color: var(--away-color, var(--accent));
+    }
+
+    /* Row 4: Team stats from StatCrew */
+    .vb-stats-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .vb-stats-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+    }
+
+    .vb-stats-header {
+        font-size: clamp(0.55rem, 0.8vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        text-align: center;
+        margin-bottom: clamp(2px, 0.3vh, 4px);
+    }
+
+    .vb-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: clamp(4px, 0.5vw, 10px);
+        text-align: center;
+    }
+
+    .vb-stats-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .vb-stats-label {
+        font-size: clamp(0.55rem, 0.75vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+    }
+
+    .vb-stats-cell strong {
+        font-size: clamp(0.9rem, 1.3vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+</style>
 
 <details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
@@ -107,24 +427,39 @@
 </details>
 
 <script>
-    let statcrewData = {};
+    var statcrewData = {};
+
+    function normalizeClock(value) {
+        if (value === undefined || value === null) return value;
+        var text = String(value).trim();
+        if (!text) return value;
+        if (text.includes('.')) {
+            var parts = text.split('.');
+            var left = parts[0].replace(/^0+(?=\d)/, '');
+            var normalizedLeft = left === '' ? '0' : left;
+            return normalizedLeft + '.' + parts[1];
+        }
+        return text.replace(/^0+(?=\d)/, '');
+    }
 
     function renderVolleyball(data) {
-        setText('vb-game-clock', data.game_clock);
-        setText('vb-period-chip', data.period);
-        setText('vb-period', data.period);
+        var gameClock = normalizeClock(data.game_clock);
+
+        setText('vb-game-clock', gameClock);
+        setText('vb-set', data.period);
         setText('vb-home-score', data.home_score);
         setText('vb-visitor-score', data.visitor_score);
         setText('vb-home-tol', data.home_full_tol);
         setText('vb-visitor-tol', data.visitor_full_tol);
-        setText('vb-home-sets', data.home_sets_won);
-        setText('vb-visitor-sets', data.visitor_sets_won);
+        setText('vb-home-sets-won', data.home_sets_won);
+        setText('vb-visitor-sets-won', data.visitor_sets_won);
 
-        const homeSets = Array.isArray(data.home_set_scores) ? data.home_set_scores : [];
-        const visitorSets = Array.isArray(data.visitor_set_scores) ? data.visitor_set_scores : [];
-        for (let i = 0; i < 5; i += 1) {
-            setText(`vb-home-set-${i + 1}`, homeSets[i]);
-            setText(`vb-visitor-set-${i + 1}`, visitorSets[i]);
+        // Set scores
+        var homeSets = Array.isArray(data.home_set_scores) ? data.home_set_scores : [];
+        var visSets = Array.isArray(data.visitor_set_scores) ? data.visitor_set_scores : [];
+        for (var i = 0; i < 5; i++) {
+            setText('vb-home-set-' + (i + 1), homeSets[i]);
+            setText('vb-visitor-set-' + (i + 1), visSets[i]);
         }
 
         setPossession('vb-poss-home', 'vb-poss-visitor', data.possession);
@@ -132,19 +467,56 @@
 
     function renderStatcrewVolleyball(data) {
         statcrewData = data || {};
-        const info = getStatcrewTeamInfo(statcrewData);
+        var info = getStatcrewTeamInfo(statcrewData);
         setText('vb-venue-info', info.venueText || 'Live scoreboard feed');
         setText('vb-home-name', info.homeName || 'Home');
         setText('vb-visitor-name', info.visitorName || 'Visitor');
         setText('vb-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
         setText('vb-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+
+        // Update set scores table team labels
+        setText('vb-set-home-label', info.homeName || 'Home');
+        setText('vb-set-away-label', info.visitorName || 'Away');
+
+        if (statcrewData.away_team_color) {
+            applyAwayTeamColor(statcrewData.away_team_color);
+        }
+
+        // Team stats from StatCrew
+        var homeStats = statcrewData.home_team_stats;
+        var awayStats = statcrewData.away_team_stats;
+        var statsRow = document.getElementById('vb-stats-row');
+
+        if (homeStats || awayStats) {
+            statsRow.style.display = '';
+
+            if (homeStats) {
+                setText('vb-home-kills', homeStats.kills);
+                setText('vb-home-aces', homeStats.aces);
+                setText('vb-home-digs', homeStats.digs);
+                setText('vb-home-blocks', homeStats.blocks);
+                setText('vb-home-hit-pct', homeStats.hit_pct);
+                setText('vb-home-errors', homeStats.errors);
+            }
+
+            if (awayStats) {
+                setText('vb-away-kills', awayStats.kills);
+                setText('vb-away-aces', awayStats.aces);
+                setText('vb-away-digs', awayStats.digs);
+                setText('vb-away-blocks', awayStats.blocks);
+                setText('vb-away-hit-pct', awayStats.hit_pct);
+                setText('vb-away-errors', awayStats.errors);
+            }
+        } else {
+            statsRow.style.display = 'none';
+        }
     }
 
     function fetchStatcrewVolleyballData() {
         fetch('/get_statcrew_data/Volleyball')
-            .then(response => response.json())
-            .then(data => renderStatcrewVolleyball(data || {}))
-            .catch(() => renderStatcrewVolleyball({}));
+            .then(function(response) { return response.json(); })
+            .then(function(data) { renderStatcrewVolleyball(data || {}); })
+            .catch(function() { renderStatcrewVolleyball({}); });
     }
 
     function fetchVolleyballData() {
@@ -162,7 +534,7 @@
         submitStatcrewConfig(e, 'Volleyball', 'vb');
     });
 
-    document.addEventListener('dataFetched', function (event) {
+    document.addEventListener('dataFetched', function(event) {
         renderVolleyball(event.detail || {});
     });
 </script>

@@ -63,6 +63,11 @@ Flask web application that displays real-time sports scoreboards by reading data
 - Football Down & Distance row: 3-column grid with large prominent values for Down, Yards To Go, Ball On
 - Football StatCrew template Row 4 stats bar: 1st Dn, Tot Yds, Rush, Pass, TO, Pen — hidden until StatCrew data arrives
 - Football StatCrew parser: pending example XML file (template hooks wired)
+- TV-optimized Volleyball layout: clock-dominant design (Set|GameClock|SetsWon top, flush-joined score+TOL cards with serve dots middle, set scores table bottom)
+- Volleyball Sets Won displayed prominently in clock row (H/A split with team colors), set scores table styled with home Carolina blue / away dynamic color rows
+- Volleyball set scores table: 5-column grid (S1-S5) with team name labels from StatCrew
+- Volleyball StatCrew template Row 4 stats bar: K, A, D, Blk, Hit%, Err — hidden until StatCrew data arrives
+- Volleyball StatCrew parser: pending example XML file (template hooks wired)
 - OES baseball batter_num 0x3A blank handling fixed in protocol.py
 
 ## Quick Reference
@@ -141,6 +146,7 @@ main.py          → website (create_app), ingestion, statcrew, virtius
 | `<totals><penalty foul="">` | Foul count (primarily women's card-based system) |
 
 ## Recent Activity
+- 2026-02-19: Volleyball TV-optimized layout — clock-dominant design (Set|GameClock|SetsWon row, flush-joined score+TOL cards with serve dots, set scores table with team-colored rows). Sets Won in clock row with H/A team colors. Set scores table with S1-S5 columns, home Carolina blue / away dynamic color. StatCrew template hooks wired (K, A, D, Blk, Hit%, Err), pending example XML for parser.
 - 2026-02-19: Football TV-optimized layout — clock-dominant design (Quarter|GameClock|PlayClock row, flush-joined score+TOL cards with possession dots, Down/ToGo/BallOn situation row). Play clock red <10s, game clock red <2min. StatCrew template hooks wired (1st Dn, Tot Yds, Rush, Pass, TO, Pen), pending example XML for parser.
 - 2026-02-19: Soccer TV-optimized layout — clock-dominant design (Half|GameClock|CornerKicks row, flush-joined score+stat cards with Shots/Saves/PKs, StatCrew team stats bar with SOG/Fouls/Offside/Save%/YC-RC). No penalty row (soccer uses cards not timed suspensions). Corner kicks in clock row slot. Works for both men's and women's. StatCrew template hooks wired, pending example XML for parser.
 - 2026-02-19: Field Hockey TV-optimized layout — clock-dominant design (Period|GameClock|PenaltyCorners row, flush-joined score+stat cards with Shots/Saves, penalty cards with green/yellow card timers, team stats bar for StatCrew). Penalty corners replace shot clock in clock row (field hockey has no shot clock). StatCrew template hooks wired (SOG, PC, Fouls, DSv, Save%), pending example XML for parser.
