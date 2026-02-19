@@ -3,61 +3,282 @@
 {% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell">
+<section class="scoreboard-shell wrestling-scoreboard">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Wrestling</div>
             <div class="scoreboard-subtitle" id="wr-venue-info">Live scoreboard feed</div>
         </div>
-        <div class="meta-row">
-            <div class="meta-chip">Clock <span id="wr-game-clock">--</span></div>
-            <div class="meta-chip">Period <span id="wr-period-chip">--</span></div>
-            <div class="meta-chip">Weight <span id="wr-weight-class">--</span></div>
-        </div>
     </div>
 
-    <div class="score-grid">
-        <div class="team-card team-home">
-            <div class="team-label"><span id="wr-home-name">Home</span> <span id="wr-home-record" class="team-record"></span></div>
-            <div class="team-score" id="wr-home-score">--</div>
+    <!-- Row 1: Period + Match Clock + Weight Class -->
+    <div class="wr-clock-row">
+        <div class="center-card wr-period-card">
+            <div class="center-label">Period</div>
+            <div class="wr-period-value" id="wr-period">--</div>
         </div>
         <div class="center-card">
-            <div class="center-label">Period</div>
-            <div class="center-value" id="wr-period">--</div>
+            <div class="center-label">Match Clock</div>
+            <div class="wr-clock-value" id="wr-game-clock">--</div>
         </div>
-        <div class="team-card team-away">
-            <div class="team-label"><span id="wr-visitor-name">Visitor</span> <span id="wr-visitor-record" class="team-record"></span></div>
-            <div class="team-score" id="wr-visitor-score">--</div>
+        <div class="center-card wr-weight-card">
+            <div class="center-label">Weight</div>
+            <div class="wr-weight-value" id="wr-weight-class">--</div>
         </div>
     </div>
 
-    <div class="stat-grid">
-        <div class="stat-card">
-            <div class="stat-label">Home Team Pts</div>
-            <div class="stat-value" id="wr-home-team-points">--</div>
+    <!-- Row 2: Individual Bout Scores + Advantage Time -->
+    <div class="wr-score-row">
+        <div class="wr-team-column wr-side-home">
+            <div class="wr-team-top">
+                <div class="wr-team-cell team-home">
+                    <div class="team-label is-home"><span id="wr-home-name">Home</span> <span id="wr-home-record" class="team-record"></span></div>
+                    <div class="team-score" id="wr-home-score">--</div>
+                </div>
+                <div class="wr-stat-card wr-stat-home">
+                    <div class="wr-stat-item"><span class="wr-stat-name">Adv</span><strong id="wr-home-adv-time" class="wr-adv-value">--</strong></div>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">Visitor Team Pts</div>
-            <div class="stat-value" id="wr-visitor-team-points">--</div>
+        <div class="wr-team-column wr-side-away">
+            <div class="wr-team-top">
+                <div class="wr-stat-card wr-stat-away">
+                    <div class="wr-stat-item"><span class="wr-stat-name">Adv</span><strong id="wr-visitor-adv-time" class="wr-adv-value">--</strong></div>
+                </div>
+                <div class="wr-team-cell team-away">
+                    <div class="team-label is-visitor"><span id="wr-visitor-name">Visitor</span> <span id="wr-visitor-record" class="team-record"></span></div>
+                    <div class="team-score" id="wr-visitor-score">--</div>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">Home Adv Time</div>
-            <div class="stat-value" id="wr-home-adv-time">--</div>
+    </div>
+
+    <!-- Row 3: Injury Time + Team Dual Score + Injury Time -->
+    <div class="wr-situation-row">
+        <div class="wr-situation-card">
+            <div class="center-label">Home Inj Time</div>
+            <div class="wr-inj-value" id="wr-home-inj-time">--</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">Visitor Adv Time</div>
-            <div class="stat-value" id="wr-visitor-adv-time">--</div>
+        <div class="wr-situation-card wr-dual-card">
+            <div class="center-label">Dual Meet Score</div>
+            <div class="wr-dual-display">
+                <span class="wr-dual-side wr-dual-home">H <span id="wr-home-team-points">-</span></span>
+                <span class="wr-dual-divider">|</span>
+                <span class="wr-dual-side wr-dual-away"><span id="wr-visitor-team-points">-</span> A</span>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">Home Inj Time</div>
-            <div class="stat-value" id="wr-home-inj-time">--</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Visitor Inj Time</div>
-            <div class="stat-value" id="wr-visitor-inj-time">--</div>
+        <div class="wr-situation-card">
+            <div class="center-label">Away Inj Time</div>
+            <div class="wr-inj-value" id="wr-visitor-inj-time">--</div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Wrestling TV-Optimized Layout */
+    .wrestling-scoreboard {
+        gap: clamp(4px, 0.6vh, 8px);
+    }
+
+    /* Row 1: Period + Match Clock + Weight Class */
+    .wr-clock-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
+        text-align: center;
+        padding: 0 clamp(30px, 6vw, 120px);
+    }
+
+    .wr-clock-row .center-card {
+        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .wr-clock-value {
+        font-size: clamp(4rem, 10vw, 11rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .wr-period-card {
+        min-width: 0;
+    }
+
+    .wr-period-value {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    .wr-weight-card {
+        min-width: 0;
+    }
+
+    .wr-weight-value {
+        font-size: clamp(2rem, 3.2vw, 4.5rem);
+        font-weight: 800;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--accent);
+        line-height: 1.1;
+    }
+
+    /* Row 2: two team columns side by side */
+    .wr-score-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        align-items: start;
+    }
+
+    .wr-team-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wr-team-top {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .wr-team-cell {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        padding: clamp(6px, 0.7vh, 12px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    .wr-side-home .wr-team-cell {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .wr-side-home .wr-stat-card {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    .wr-side-away .wr-stat-card {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .wr-side-away .wr-team-cell {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    .wr-stat-card {
+        background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
+        padding: clamp(6px, 0.7vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(4px, 0.5vh, 8px);
+        flex: 0 0 auto;
+    }
+
+    .wr-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .wr-stat-name {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+    }
+
+    .wr-stat-item strong {
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 3: Injury Time + Dual Meet Score + Injury Time */
+    .wr-situation-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        text-align: center;
+        align-items: stretch;
+    }
+
+    .wr-situation-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(6px, 0.7vh, 14px) clamp(8px, 1vw, 16px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wr-inj-value {
+        font-size: clamp(1.4rem, 2.2vw, 3.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        line-height: 1.1;
+    }
+
+    .wr-dual-card {
+        min-width: clamp(180px, 25vw, 400px);
+    }
+
+    .wr-dual-display {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .wr-dual-side {
+        font-size: clamp(2rem, 3.5vw, 5rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1.1;
+    }
+
+    .wr-dual-home {
+        color: var(--carolina);
+    }
+
+    .wr-dual-away {
+        color: var(--away-color, var(--accent));
+    }
+
+    .wr-dual-divider {
+        font-size: clamp(1.4rem, 2.2vw, 3.4rem);
+        color: var(--ink-soft);
+        font-weight: 400;
+    }
+
+    /* Conditional formatting */
+    .wr-warning-red {
+        color: #ff6b6b !important;
+    }
+
+    .wr-adv-green {
+        color: #51cf66 !important;
+    }
+</style>
 
 <details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
@@ -93,11 +314,36 @@
 </details>
 
 <script>
-    let statcrewData = {};
+    var statcrewData = {};
+
+    function normalizeClock(value) {
+        if (value === undefined || value === null) return value;
+        var text = String(value).trim();
+        if (!text) return value;
+        if (text.includes('.')) {
+            var parts = text.split('.');
+            var left = parts[0].replace(/^0+(?=\d)/, '');
+            var normalizedLeft = left === '' ? '0' : left;
+            return normalizedLeft + '.' + parts[1];
+        }
+        return text.replace(/^0+(?=\d)/, '');
+    }
+
+    function parseClockSeconds(value) {
+        if (value === undefined || value === null) return null;
+        var text = String(value);
+        var match = text.match(/(\d+):(\d+)/);
+        if (match) return parseInt(match[1], 10) * 60 + parseInt(match[2], 10);
+        match = text.match(/\d+(?:\.\d+)?/);
+        if (!match) return null;
+        var parsed = parseFloat(match[0]);
+        return Number.isFinite(parsed) ? parsed : null;
+    }
 
     function renderWrestling(data) {
-        setText('wr-game-clock', data.game_clock);
-        setText('wr-period-chip', data.period);
+        var gameClock = normalizeClock(data.game_clock);
+
+        setText('wr-game-clock', gameClock);
         setText('wr-period', data.period);
         setText('wr-weight-class', data.match_weight_class);
         setText('wr-home-score', data.home_score);
@@ -108,23 +354,40 @@
         setText('wr-visitor-adv-time', data.visitor_adv_time);
         setText('wr-home-inj-time', data.home_inj_time);
         setText('wr-visitor-inj-time', data.visitor_inj_time);
+
+        // Match clock: red when under 30 seconds
+        var gameClockSecs = parseClockSeconds(gameClock);
+        var gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 30;
+        document.getElementById('wr-game-clock').classList.toggle('wr-warning-red', gameClockCritical);
+
+        // Advantage time: green when >= 1:00 (riding time point earned)
+        var homeAdvEl = document.getElementById('wr-home-adv-time');
+        var visAdvEl = document.getElementById('wr-visitor-adv-time');
+        var homeAdvSecs = parseClockSeconds(data.home_adv_time);
+        var visAdvSecs = parseClockSeconds(data.visitor_adv_time);
+        homeAdvEl.classList.toggle('wr-adv-green', Number.isFinite(homeAdvSecs) && homeAdvSecs >= 60);
+        visAdvEl.classList.toggle('wr-adv-green', Number.isFinite(visAdvSecs) && visAdvSecs >= 60);
     }
 
     function renderStatcrewWrestling(data) {
         statcrewData = data || {};
-        const info = getStatcrewTeamInfo(statcrewData);
+        var info = getStatcrewTeamInfo(statcrewData);
         setText('wr-venue-info', info.venueText || 'Live scoreboard feed');
         setText('wr-home-name', info.homeName || 'Home');
         setText('wr-visitor-name', info.visitorName || 'Visitor');
         setText('wr-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
         setText('wr-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+
+        if (statcrewData.away_team_color) {
+            applyAwayTeamColor(statcrewData.away_team_color);
+        }
     }
 
     function fetchStatcrewWrestlingData() {
         fetch('/get_statcrew_data/Wrestling')
-            .then(response => response.json())
-            .then(data => renderStatcrewWrestling(data || {}))
-            .catch(() => renderStatcrewWrestling({}));
+            .then(function(response) { return response.json(); })
+            .then(function(data) { renderStatcrewWrestling(data || {}); })
+            .catch(function() { renderStatcrewWrestling({}); });
     }
 
     function fetchWrestlingData() {
@@ -142,7 +405,7 @@
         submitStatcrewConfig(e, 'Wrestling', 'wr');
     });
 
-    document.addEventListener('dataFetched', function (event) {
+    document.addEventListener('dataFetched', function(event) {
         renderWrestling(event.detail || {});
     });
 </script>
