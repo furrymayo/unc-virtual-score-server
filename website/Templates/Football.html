@@ -3,53 +3,324 @@
 {% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell">
+<section class="scoreboard-shell football-scoreboard">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Football</div>
             <div class="scoreboard-subtitle" id="fb-venue-info">Live scoreboard feed</div>
         </div>
-        <div class="meta-row">
-            <div class="meta-chip">Clock <span id="fb-game-clock">--</span></div>
-            <div class="meta-chip">Quarter <span id="fb-quarter-chip">--</span></div>
-            <div class="meta-chip">Play <span id="fb-play-clock">--</span></div>
-        </div>
     </div>
 
-    <div class="score-grid">
-        <div class="team-card team-home">
-            <div class="team-label"><span class="possession-dot" id="fb-poss-home"></span><span id="fb-home-name">Home</span> <span id="fb-home-record" class="team-record"></span></div>
-            <div class="team-score" id="fb-home-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Timeouts</span><strong id="fb-home-tol">--</strong></div>
-            </div>
+    <!-- Row 1: Quarter + Game Clock + Play Clock -->
+    <div class="fb-clock-row">
+        <div class="center-card fb-quarter-card">
+            <div class="center-label">Quarter</div>
+            <div class="fb-quarter-value" id="fb-quarter">--</div>
         </div>
         <div class="center-card">
-            <div class="center-label">Down</div>
-            <div class="center-value" id="fb-down">--</div>
-            <div class="center-label" style="margin-top: 8px;">To Go</div>
-            <div class="center-value" id="fb-ytg">--</div>
+            <div class="center-label">Game Clock</div>
+            <div class="fb-clock-value" id="fb-game-clock">--</div>
         </div>
-        <div class="team-card team-away">
-            <div class="team-label"><span class="possession-dot" id="fb-poss-visitor"></span><span id="fb-visitor-name">Visitor</span> <span id="fb-visitor-record" class="team-record"></span></div>
-            <div class="team-score" id="fb-visitor-score">--</div>
-            <div class="team-meta">
-                <div class="stat-line"><span>Timeouts</span><strong id="fb-visitor-tol">--</strong></div>
+        <div class="center-card fb-play-card">
+            <div class="center-label">Play Clock</div>
+            <div class="fb-play-clock" id="fb-play-clock">--</div>
+        </div>
+    </div>
+
+    <!-- Row 2: Scores + Stats -->
+    <div class="fb-score-row">
+        <div class="fb-team-column fb-side-home">
+            <div class="fb-team-top">
+                <div class="fb-team-cell team-home">
+                    <div class="team-label is-home"><span class="possession-dot" id="fb-poss-home"></span><span id="fb-home-name">Home</span> <span id="fb-home-record" class="team-record"></span></div>
+                    <div class="team-score" id="fb-home-score">--</div>
+                </div>
+                <div class="fb-stat-card fb-stat-home">
+                    <div class="fb-stat-item"><span class="fb-stat-name">TOL</span><strong id="fb-home-tol">--</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="fb-team-column fb-side-away">
+            <div class="fb-team-top">
+                <div class="fb-stat-card fb-stat-away">
+                    <div class="fb-stat-item"><span class="fb-stat-name">TOL</span><strong id="fb-visitor-tol">--</strong></div>
+                </div>
+                <div class="fb-team-cell team-away">
+                    <div class="team-label is-visitor"><span id="fb-visitor-name">Visitor</span> <span id="fb-visitor-record" class="team-record"></span><span class="possession-dot" id="fb-poss-visitor"></span></div>
+                    <div class="team-score" id="fb-visitor-score">--</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="stat-grid">
-        <div class="stat-card">
-            <div class="stat-label">Ball On</div>
-            <div class="stat-value" id="fb-ball-on">--</div>
+    <!-- Row 3: Down & Distance + Ball On -->
+    <div class="fb-situation-row">
+        <div class="fb-situation-card">
+            <div class="center-label">Down</div>
+            <div class="fb-situation-value" id="fb-down">--</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">Play Clock</div>
-            <div class="stat-value" id="fb-play-clock-card">--</div>
+        <div class="fb-situation-card">
+            <div class="center-label">To Go</div>
+            <div class="fb-situation-value" id="fb-ytg">--</div>
+        </div>
+        <div class="fb-situation-card">
+            <div class="center-label">Ball On</div>
+            <div class="fb-situation-value" id="fb-ball-on">--</div>
+        </div>
+    </div>
+
+    <!-- Row 4: Team Stats (from StatCrew) -->
+    <div class="fb-stats-row" id="fb-stats-row" style="display: none;">
+        <div class="fb-stats-card fb-stats-home">
+            <div class="fb-stats-header">Home Stats</div>
+            <div class="fb-stats-grid">
+                <div class="fb-stats-cell"><span class="fb-stats-label">1st Dn</span><strong id="fb-home-first-downs">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Tot Yds</span><strong id="fb-home-total-yds">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Rush</span><strong id="fb-home-rush-yds">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Pass</span><strong id="fb-home-pass-yds">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">TO</span><strong id="fb-home-turnovers">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Pen</span><strong id="fb-home-penalties">--</strong></div>
+            </div>
+        </div>
+        <div class="fb-stats-card fb-stats-away">
+            <div class="fb-stats-header">Away Stats</div>
+            <div class="fb-stats-grid">
+                <div class="fb-stats-cell"><span class="fb-stats-label">1st Dn</span><strong id="fb-away-first-downs">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Tot Yds</span><strong id="fb-away-total-yds">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Rush</span><strong id="fb-away-rush-yds">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Pass</span><strong id="fb-away-pass-yds">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">TO</span><strong id="fb-away-turnovers">--</strong></div>
+                <div class="fb-stats-cell"><span class="fb-stats-label">Pen</span><strong id="fb-away-penalties">--</strong></div>
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Football TV-Optimized Layout */
+    .football-scoreboard {
+        gap: clamp(4px, 0.6vh, 8px);
+    }
+
+    /* Row 1: Quarter + Game Clock + Play Clock */
+    .fb-clock-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
+        text-align: center;
+        padding: 0 clamp(30px, 6vw, 120px);
+    }
+
+    .fb-clock-row .center-card {
+        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .fb-clock-value {
+        font-size: clamp(4rem, 10vw, 11rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .fb-quarter-card {
+        min-width: 0;
+    }
+
+    .fb-quarter-value {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    .fb-play-card {
+        min-width: 0;
+    }
+
+    .fb-play-clock {
+        font-size: clamp(2rem, 3.2vw, 4.5rem);
+        font-weight: 800;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        line-height: 1.1;
+    }
+
+    /* Row 2: two team columns side by side */
+    .fb-score-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        align-items: start;
+    }
+
+    .fb-team-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Top row: score card + stat card joined flush */
+    .fb-team-top {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .fb-team-cell {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        padding: clamp(6px, 0.7vh, 12px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    /* Home side: score left (rounded left), stat right (rounded right) */
+    .fb-side-home .fb-team-cell {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .fb-side-home .fb-stat-card {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    /* Away side: stat left (rounded left), score right (rounded right) */
+    .fb-side-away .fb-stat-card {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .fb-side-away .fb-team-cell {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    /* Vertical stat cards (TOL) attached to team scores */
+    .fb-stat-card {
+        background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
+        padding: clamp(6px, 0.7vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(4px, 0.5vh, 8px);
+        flex: 0 0 auto;
+    }
+
+    .fb-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .fb-stat-name {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+    }
+
+    .fb-stat-item strong {
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 3: Down & Distance + Ball On */
+    .fb-situation-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        text-align: center;
+    }
+
+    .fb-situation-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(6px, 0.7vh, 14px) clamp(8px, 1vw, 16px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fb-situation-value {
+        font-size: clamp(2rem, 3.5vw, 5rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        line-height: 1.1;
+    }
+
+    /* Row 4: Team stats from StatCrew */
+    .fb-stats-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .fb-stats-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+    }
+
+    .fb-stats-header {
+        font-size: clamp(0.55rem, 0.8vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        text-align: center;
+        margin-bottom: clamp(2px, 0.3vh, 4px);
+    }
+
+    .fb-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: clamp(4px, 0.5vw, 10px);
+        text-align: center;
+    }
+
+    .fb-stats-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .fb-stats-label {
+        font-size: clamp(0.55rem, 0.75vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+    }
+
+    .fb-stats-cell strong {
+        font-size: clamp(0.9rem, 1.3vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Conditional formatting */
+    .fb-warning-red {
+        color: #ff6b6b !important;
+    }
+</style>
 
 <details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
@@ -87,36 +358,103 @@
 <script>
     let statcrewData = {};
 
+    function normalizeClock(value) {
+        if (value === undefined || value === null) return value;
+        var text = String(value).trim();
+        if (!text) return value;
+        if (text.includes('.')) {
+            var parts = text.split('.');
+            var left = parts[0].replace(/^0+(?=\d)/, '');
+            var normalizedLeft = left === '' ? '0' : left;
+            return normalizedLeft + '.' + parts[1];
+        }
+        return text.replace(/^0+(?=\d)/, '');
+    }
+
+    function parseClockSeconds(value) {
+        if (value === undefined || value === null) return null;
+        var text = String(value);
+        var match = text.match(/\d+(?:\.\d+)?/);
+        if (!match) return null;
+        var parsed = parseFloat(match[0]);
+        return Number.isFinite(parsed) ? parsed : null;
+    }
+
     function renderFootball(data) {
-        setText('fb-game-clock', data.game_clock);
-        setText('fb-quarter-chip', data.quarter);
-        setText('fb-play-clock', data.shot_clock);
-        setText('fb-play-clock-card', data.shot_clock);
-        setText('fb-down', data.down);
-        setText('fb-ytg', data.yards_to_go);
-        setText('fb-ball-on', data.ball_on);
+        var gameClock = normalizeClock(data.game_clock);
+        var playClock = normalizeClock(data.shot_clock);
+
+        setText('fb-game-clock', gameClock);
+        setText('fb-quarter', data.quarter);
+        setText('fb-play-clock', playClock);
         setText('fb-home-score', data.home_score);
         setText('fb-visitor-score', data.visitor_score);
         setText('fb-home-tol', data.home_full_tol);
         setText('fb-visitor-tol', data.visitor_full_tol);
+        setText('fb-down', data.down);
+        setText('fb-ytg', data.yards_to_go);
+        setText('fb-ball-on', data.ball_on);
         setPossession('fb-poss-home', 'fb-poss-visitor', data.possession);
+
+        // Play clock: red when under 10 seconds
+        var playClockSecs = parseClockSeconds(playClock);
+        var playClockCritical = Number.isFinite(playClockSecs) && playClockSecs < 10;
+        document.getElementById('fb-play-clock').classList.toggle('fb-warning-red', playClockCritical);
+
+        // Game clock: red when under 2 minutes (120 seconds)
+        var gameClockSecs = parseClockSeconds(gameClock);
+        var gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 120;
+        document.getElementById('fb-game-clock').classList.toggle('fb-warning-red', gameClockCritical);
     }
 
     function renderStatcrewFootball(data) {
         statcrewData = data || {};
-        const info = getStatcrewTeamInfo(statcrewData);
+        var info = getStatcrewTeamInfo(statcrewData);
         setText('fb-venue-info', info.venueText || 'Live scoreboard feed');
         setText('fb-home-name', info.homeName || 'Home');
         setText('fb-visitor-name', info.visitorName || 'Visitor');
         setText('fb-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
         setText('fb-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+
+        if (statcrewData.away_team_color) {
+            applyAwayTeamColor(statcrewData.away_team_color);
+        }
+
+        // Team stats from StatCrew
+        var homeStats = statcrewData.home_team_stats;
+        var awayStats = statcrewData.away_team_stats;
+        var statsRow = document.getElementById('fb-stats-row');
+
+        if (homeStats || awayStats) {
+            statsRow.style.display = '';
+
+            if (homeStats) {
+                setText('fb-home-first-downs', homeStats.first_downs);
+                setText('fb-home-total-yds', homeStats.total_yds);
+                setText('fb-home-rush-yds', homeStats.rush_yds);
+                setText('fb-home-pass-yds', homeStats.pass_yds);
+                setText('fb-home-turnovers', homeStats.turnovers);
+                setText('fb-home-penalties', homeStats.penalties);
+            }
+
+            if (awayStats) {
+                setText('fb-away-first-downs', awayStats.first_downs);
+                setText('fb-away-total-yds', awayStats.total_yds);
+                setText('fb-away-rush-yds', awayStats.rush_yds);
+                setText('fb-away-pass-yds', awayStats.pass_yds);
+                setText('fb-away-turnovers', awayStats.turnovers);
+                setText('fb-away-penalties', awayStats.penalties);
+            }
+        } else {
+            statsRow.style.display = 'none';
+        }
     }
 
     function fetchStatcrewFootballData() {
         fetch('/get_statcrew_data/Football')
-            .then(response => response.json())
-            .then(data => renderStatcrewFootball(data || {}))
-            .catch(() => renderStatcrewFootball({}));
+            .then(function(response) { return response.json(); })
+            .then(function(data) { renderStatcrewFootball(data || {}); })
+            .catch(function() { renderStatcrewFootball({}); });
     }
 
     function fetchFootballData() {
