@@ -3,68 +3,305 @@
 {% block container_class %}container-fluid{% endblock %}
 
 {% block content %}
-<section class="scoreboard-shell">
+<section class="scoreboard-shell soccer-scoreboard">
     <div class="scoreboard-header">
         <div>
             <div class="scoreboard-title">Soccer</div>
             <div class="scoreboard-subtitle" id="sc-venue-info">Live scoreboard feed</div>
         </div>
-        <div class="meta-row">
-            <div class="meta-chip">Clock <span id="sc-game-clock">--</span></div>
-            <div class="meta-chip">Period <span id="sc-period-chip">--</span></div>
-        </div>
     </div>
 
-    <div class="score-grid">
-        <div class="team-card team-home">
-            <div class="team-label"><span id="sc-home-name">Home</span> <span id="sc-home-record" class="team-record"></span></div>
-            <div class="team-score" id="sc-home-score">--</div>
+    <!-- Row 1: Half + Game Clock + Corner Kicks -->
+    <div class="sc-clock-row">
+        <div class="center-card sc-period-card">
+            <div class="center-label">Half</div>
+            <div class="sc-period-value" id="sc-period">--</div>
         </div>
         <div class="center-card">
-            <div class="center-label">Period</div>
-            <div class="center-value" id="sc-period">--</div>
+            <div class="center-label">Game Clock</div>
+            <div class="sc-clock-value" id="sc-game-clock">--</div>
         </div>
-        <div class="team-card team-away">
-            <div class="team-label"><span id="sc-visitor-name">Visitor</span> <span id="sc-visitor-record" class="team-record"></span></div>
-            <div class="team-score" id="sc-visitor-score">--</div>
+        <div class="center-card sc-corners-card">
+            <div class="center-label">Corner Kicks</div>
+            <div class="sc-corners-display">
+                <span class="sc-corners-side sc-corners-home"><span class="sc-corners-team">H</span><span class="sc-corners-val" id="sc-home-corners">0</span></span>
+                <span class="sc-corners-divider">|</span>
+                <span class="sc-corners-side sc-corners-away"><span class="sc-corners-val" id="sc-visitor-corners">0</span><span class="sc-corners-team">A</span></span>
+            </div>
         </div>
     </div>
 
-    <div class="section-title">Team Stats</div>
-    <div class="table-card">
-        <table class="table-grid">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Home</th>
-                    <th>Visitor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="team-row-label">Shots</td>
-                    <td id="sc-home-shots">--</td>
-                    <td id="sc-visitor-shots">--</td>
-                </tr>
-                <tr>
-                    <td class="team-row-label">Saves</td>
-                    <td id="sc-home-saves">--</td>
-                    <td id="sc-visitor-saves">--</td>
-                </tr>
-                <tr>
-                    <td class="team-row-label">Corners</td>
-                    <td id="sc-home-corners">--</td>
-                    <td id="sc-visitor-corners">--</td>
-                </tr>
-                <tr>
-                    <td class="team-row-label">Penalties</td>
-                    <td id="sc-home-penalties">--</td>
-                    <td id="sc-visitor-penalties">--</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Row 2: Scores + Stats -->
+    <div class="sc-score-row">
+        <div class="sc-team-column sc-side-home">
+            <div class="sc-team-top">
+                <div class="sc-team-cell team-home">
+                    <div class="team-label is-home"><span id="sc-home-name">Home</span> <span id="sc-home-record" class="team-record"></span></div>
+                    <div class="team-score" id="sc-home-score">--</div>
+                </div>
+                <div class="sc-stat-card sc-stat-home">
+                    <div class="sc-stat-item"><span class="sc-stat-name">Shots</span><strong id="sc-home-shots">--</strong></div>
+                    <div class="sc-stat-item"><span class="sc-stat-name">Saves</span><strong id="sc-home-saves">--</strong></div>
+                    <div class="sc-stat-item"><span class="sc-stat-name">PKs</span><strong id="sc-home-penalties">--</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="sc-team-column sc-side-away">
+            <div class="sc-team-top">
+                <div class="sc-stat-card sc-stat-away">
+                    <div class="sc-stat-item"><span class="sc-stat-name">Shots</span><strong id="sc-visitor-shots">--</strong></div>
+                    <div class="sc-stat-item"><span class="sc-stat-name">Saves</span><strong id="sc-visitor-saves">--</strong></div>
+                    <div class="sc-stat-item"><span class="sc-stat-name">PKs</span><strong id="sc-visitor-penalties">--</strong></div>
+                </div>
+                <div class="sc-team-cell team-away">
+                    <div class="team-label is-visitor"><span id="sc-visitor-name">Visitor</span> <span id="sc-visitor-record" class="team-record"></span></div>
+                    <div class="team-score" id="sc-visitor-score">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 3: Team Stats (from StatCrew) -->
+    <div class="sc-stats-row" id="sc-stats-row" style="display: none;">
+        <div class="sc-stats-card sc-stats-home">
+            <div class="sc-stats-header">Home Stats</div>
+            <div class="sc-stats-grid">
+                <div class="sc-stats-cell"><span class="sc-stats-label">SOG</span><strong id="sc-home-sog">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">Fouls</span><strong id="sc-home-fouls">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">Offside</span><strong id="sc-home-offsides">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">Save%</span><strong id="sc-home-save-pct">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">YC/RC</span><strong id="sc-home-cards">--</strong></div>
+            </div>
+        </div>
+        <div class="sc-stats-card sc-stats-away">
+            <div class="sc-stats-header">Away Stats</div>
+            <div class="sc-stats-grid">
+                <div class="sc-stats-cell"><span class="sc-stats-label">SOG</span><strong id="sc-away-sog">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">Fouls</span><strong id="sc-away-fouls">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">Offside</span><strong id="sc-away-offsides">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">Save%</span><strong id="sc-away-save-pct">--</strong></div>
+                <div class="sc-stats-cell"><span class="sc-stats-label">YC/RC</span><strong id="sc-away-cards">--</strong></div>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    /* Soccer TV-Optimized Layout */
+    .soccer-scoreboard {
+        gap: clamp(4px, 0.6vh, 8px);
+    }
+
+    /* Row 1: Half + Game Clock + Corner Kicks */
+    .sc-clock-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(6px, 0.8vw, 12px);
+        align-items: stretch;
+        text-align: center;
+        padding: 0 clamp(30px, 6vw, 120px);
+    }
+
+    .sc-clock-row .center-card {
+        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .sc-clock-value {
+        font-size: clamp(4rem, 10vw, 11rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .sc-period-card {
+        min-width: 0;
+    }
+
+    .sc-period-value {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    .sc-corners-card {
+        min-width: 0;
+    }
+
+    .sc-corners-display {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: clamp(6px, 1vw, 16px);
+    }
+
+    .sc-corners-side {
+        display: flex;
+        align-items: baseline;
+        gap: clamp(3px, 0.4vw, 8px);
+    }
+
+    .sc-corners-val {
+        font-size: clamp(2rem, 3.2vw, 4.5rem);
+        font-weight: 800;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        line-height: 1.1;
+    }
+
+    .sc-corners-team {
+        font-size: clamp(0.6rem, 0.9vw, 1.2rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+    }
+
+    .sc-corners-divider {
+        font-size: clamp(1.2rem, 2vw, 3rem);
+        color: var(--ink-soft);
+        font-weight: 300;
+    }
+
+    /* Row 2: two team columns side by side */
+    .sc-score-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+        align-items: start;
+    }
+
+    .sc-team-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sc-team-top {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .sc-team-cell {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        padding: clamp(6px, 0.7vh, 12px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    /* Home side: score left, stat right */
+    .sc-side-home .sc-team-cell {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .sc-side-home .sc-stat-card {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    /* Away side: stat left, score right */
+    .sc-side-away .sc-stat-card {
+        border-radius: 18px 0 0 18px;
+        border-right: none;
+    }
+    .sc-side-away .sc-team-cell {
+        border-radius: 0 18px 18px 0;
+        border-left: none;
+    }
+
+    .sc-stat-card {
+        background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
+        padding: clamp(6px, 0.7vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(4px, 0.5vh, 8px);
+        flex: 0 0 auto;
+    }
+
+    .sc-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .sc-stat-name {
+        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+    }
+
+    .sc-stat-item strong {
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Row 3: Team stats from StatCrew */
+    .sc-stats-row {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 1.2vw, 20px);
+    }
+
+    .sc-stats-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 14px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+    }
+
+    .sc-stats-header {
+        font-size: clamp(0.55rem, 0.8vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        text-align: center;
+        margin-bottom: clamp(2px, 0.3vh, 4px);
+    }
+
+    .sc-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: clamp(4px, 0.5vw, 10px);
+        text-align: center;
+    }
+
+    .sc-stats-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .sc-stats-label {
+        font-size: clamp(0.55rem, 0.75vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+    }
+
+    .sc-stats-cell strong {
+        font-size: clamp(0.9rem, 1.3vw, 2.2rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+</style>
 
 <details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
     <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
@@ -102,9 +339,23 @@
 <script>
     let statcrewData = {};
 
+    function normalizeClock(value) {
+        if (value === undefined || value === null) return value;
+        var text = String(value).trim();
+        if (!text) return value;
+        if (text.includes('.')) {
+            var parts = text.split('.');
+            var left = parts[0].replace(/^0+(?=\d)/, '');
+            var normalizedLeft = left === '' ? '0' : left;
+            return normalizedLeft + '.' + parts[1];
+        }
+        return text.replace(/^0+(?=\d)/, '');
+    }
+
     function renderSoccer(data) {
-        setText('sc-game-clock', data.game_clock);
-        setText('sc-period-chip', data.period);
+        var gameClock = normalizeClock(data.game_clock);
+
+        setText('sc-game-clock', gameClock);
         setText('sc-period', data.period);
         setText('sc-home-score', data.home_score);
         setText('sc-visitor-score', data.visitor_score);
@@ -120,19 +371,50 @@
 
     function renderStatcrewSoccer(data) {
         statcrewData = data || {};
-        const info = getStatcrewTeamInfo(statcrewData);
+        var info = getStatcrewTeamInfo(statcrewData);
         setText('sc-venue-info', info.venueText || 'Live scoreboard feed');
         setText('sc-home-name', info.homeName || 'Home');
         setText('sc-visitor-name', info.visitorName || 'Visitor');
         setText('sc-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
         setText('sc-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+
+        if (statcrewData.away_team_color) {
+            applyAwayTeamColor(statcrewData.away_team_color);
+        }
+
+        // Team stats from StatCrew
+        var homeStats = statcrewData.home_team_stats;
+        var awayStats = statcrewData.away_team_stats;
+        var statsRow = document.getElementById('sc-stats-row');
+
+        if (homeStats || awayStats) {
+            statsRow.style.display = '';
+
+            if (homeStats) {
+                setText('sc-home-sog', homeStats.sog);
+                setText('sc-home-fouls', homeStats.fouls);
+                setText('sc-home-offsides', homeStats.offsides);
+                setText('sc-home-save-pct', homeStats.save_pct);
+                setText('sc-home-cards', homeStats.yc + '/' + homeStats.rc);
+            }
+
+            if (awayStats) {
+                setText('sc-away-sog', awayStats.sog);
+                setText('sc-away-fouls', awayStats.fouls);
+                setText('sc-away-offsides', awayStats.offsides);
+                setText('sc-away-save-pct', awayStats.save_pct);
+                setText('sc-away-cards', awayStats.yc + '/' + awayStats.rc);
+            }
+        } else {
+            statsRow.style.display = 'none';
+        }
     }
 
     function fetchStatcrewSoccerData() {
         fetch('/get_statcrew_data/Soccer')
-            .then(response => response.json())
-            .then(data => renderStatcrewSoccer(data || {}))
-            .catch(() => renderStatcrewSoccer({}));
+            .then(function(response) { return response.json(); })
+            .then(function(data) { renderStatcrewSoccer(data || {}); })
+            .catch(function() { renderStatcrewSoccer({}); });
     }
 
     function fetchSoccerData() {
