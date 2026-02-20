@@ -1,6 +1,6 @@
 # Flask Virtual Scoreboard
 
-**Last Updated**: 2026-02-19
+**Last Updated**: 2026-02-20
 **Status**: Active
 **Primary OS**: Both (Windows + Linux)
 **Repo**: https://github.com/furrymayo/unc-virtual-score-server
@@ -126,7 +126,7 @@ All sport templates follow a consistent clock-dominant design. Row 1 is always t
 | Sport | Row 1 (Clock Row) | Row 2 (Score Row) | Row 3 (Sport-Specific) | Row 4 (StatCrew Stats) | Conditional Formatting |
 |-------|-------------------|-------------------|------------------------|------------------------|----------------------|
 | Basketball | Period \| GameClock \| ShotClock | Score+Fouls/TOL/Bonus | Roster tables (oncourt) | — (stats in roster) | Clock red <10s, fouls green ≥6 (men's), bonus green |
-| Lacrosse | Period \| GameClock \| ShotClock | Score+TOL/Shots | Penalty cards (2 slots) | FO/DC, GB, TO, CT, Clears, Save% | Shot clock red <10s |
+| Lacrosse | Period \| GameClock \| ShotClock | Score+TOL/Shots/SOG | Penalty cards (2 slots) | FO/DC, GB, TO, CT, Clears, Save% | Shot clock red <10s |
 | Field Hockey | Period \| GameClock \| PenaltyCorners | Score+Shots/Saves | Penalty cards (2 slots) | SOG, PC, Fouls, DSv, Save% | — |
 | Soccer | Half \| GameClock \| CornerKicks | Score+Shots/Saves/PKs | — (no penalties) | SOG, Fouls, Offside, Save%, YC/RC | — |
 | Football | Quarter \| GameClock \| PlayClock | Score+TOL (possession dots) | Down/ToGo/BallOn | 1stDn, TotYds, Rush, Pass, TO, Pen | Play clock red <10s, game clock red <2min |
@@ -139,6 +139,7 @@ All sport templates follow a consistent clock-dominant design. Row 1 is always t
 | Home | — | Sports grid (10+debug) | Data source manager | — | — |
 
 ## Recent Activity
+- 2026-02-20: Lacrosse Shots/SOG fix — StatCrew shots and SOG override OES when available (OES controller sends 0 for shots). Added SOG display to Row 2 stat cards alongside TOL and Shots.
 - 2026-02-19: Home page modernized — responsive sport cards with tag/name structure, styled data source management (primary/secondary buttons, action buttons), removed Bootstrap utilities, consistent dark UNC theme
 - 2026-02-19: Debug console modernized — side-by-side OES/TrackMan log panels with timestamps, color-coded JSON output, clear buttons, auto-scroll, 500 entry cap, custom scrollbar, removed innerHTML XSS usage
 - 2026-02-19: Wrestling TV-optimized layout — clock-dominant design (Period|MatchClock|WeightClass row, flush-joined bout score+advantage time cards, InjuryTime|DualMeetScore|InjuryTime situation row). Weight class in accent color. Dual meet score in H/A team colors. Match clock red <30s, advantage time green ≥1:00 (riding time point).
