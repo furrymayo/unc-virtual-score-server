@@ -1,6 +1,6 @@
 # Flask Virtual Scoreboard
 
-**Last Updated**: 2026-02-20
+**Last Updated**: 2026-02-21
 **Status**: Active
 **Primary OS**: Both (Windows + Linux)
 **Repo**: https://github.com/furrymayo/unc-virtual-score-server
@@ -33,14 +33,14 @@ Flask web application that displays real-time sports scoreboards by reading data
 - TrackMan values rounded to whole numbers (no decimal)
 - StatCrew network share mounted at `/mnt/stats` on Ubuntu server (CIFS, persistent)
 - StatCrew poll interval: 2s (file mtime check 0.3ms, full parse 10ms)
-- 141 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup, lacrosse), and API
+- 173 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup, lacrosse), virtius/gymnastics, and API
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
 - All 12 templates TV-optimized with consistent design language (see TV Layout Reference below)
 - Shared TV layout pattern: clock-dominant Row 1 (period|game clock|sport-specific), flush-joined score+stat cards Row 2, sport-specific Row 3, StatCrew stats Row 4 (hidden until data)
 - Responsive `clamp()` CSS sizing throughout all templates for TV/desktop readability
 - Conditional formatting: clock red warnings, basketball fouls green ≥6, wrestling advantage green ≥1:00
-- StatCrew XML parsers: baseball/softball/basketball/lacrosse implemented; field hockey/soccer/football/volleyball/wrestling hooks wired (pending example XML)
+- StatCrew XML parsers: baseball/softball/basketball/lacrosse/football/soccer/field hockey/volleyball fully implemented and tested; wrestling pending (no StatCrew XML available)
 - Debug console: side-by-side OES/TrackMan log panels with timestamps, color-coded JSON, clear buttons, auto-scroll (500 entry cap)
 - Home page: modernized hub with responsive sport cards, styled data source management panel
 - OES baseball batter_num 0x3A blank handling fixed in protocol.py
@@ -134,11 +134,13 @@ All sport templates follow a consistent clock-dominant design. Row 1 is always t
 | Wrestling | Period \| MatchClock \| WeightClass | Bout score+AdvTime | InjTime \| DualScore \| InjTime | — (no team stats) | Clock red <30s, adv green ≥1:00 |
 | Baseball | Pitching \| Inning \| AtBat | Away/B-S-O/Home scores | Linescore (9-inning) | — (stats in cards) | — |
 | Softball | Pitching \| Inning \| AtBat | Away/B-S-O/Home scores | Linescore (7-inning) | — (stats in cards) | — |
-| Gymnastics | Rotation bar | Team scores+clock | Lineup cards | All-around leaders | — |
+| Gymnastics (dual) | Rotation bar | Home\|Clock\|Away scores | Lineup cards (2-col) | All-around leaders | — |
+| Gymnastics (3/4) | Rotation bar + clock | N team score cards | Lineup cards (N-col) | All-around leaders (per-team colors) | Teams sorted by rank |
 | Debug | — | — | OES log \| TrackMan log | — | Errors red, data green |
 | Home | — | Sports grid (10+debug) | Data source manager | — | — |
 
 ## Recent Activity
+- 2026-02-21: Gymnastics multi-team meets — 3/4 team support (tri-meets, quad-meets). API returns `team_colors` dict for per-team NCAA color lookup. Frontend dual/multi branching: dual meets pixel-identical to previous, multi meets get N-column team cards sorted by rank (leader left), clock moves to rotation bar, per-team inline colors on score cards/lineup cards/AA leaders. Flicker prevention via `lastTeamCount` tracking. New CSS grid classes (`gym-grid-3/4`, `gym-lineup-3/4`). 5 new API tests. 173 total tests.
 - 2026-02-20: Lacrosse Shots/SOG fix — StatCrew shots and SOG override OES when available (OES controller sends 0 for shots). Added SOG display to Row 2 stat cards alongside TOL and Shots.
 - 2026-02-19: Home page modernized — responsive sport cards with tag/name structure, styled data source management (primary/secondary buttons, action buttons), removed Bootstrap utilities, consistent dark UNC theme
 - 2026-02-19: Debug console modernized — side-by-side OES/TrackMan log panels with timestamps, color-coded JSON output, clear buttons, auto-scroll, 500 entry cap, custom scrollbar, removed innerHTML XSS usage

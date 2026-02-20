@@ -1,0 +1,552 @@
+<sogame source="Soccer LiveStats In-Arena Tool" version="2.7.0" generated="12/15/2025">
+  <venue gameid="6489860" visid="UW" visname="Washington" homeid="NCSU" homename="NC State" date="12/15/2025" location="Cary, N.C." stadium="First Horizon Stadium at WakeMed Soccer Park" start="07:00" end="09:25" duration="02:25" attend="10316" leaguegame="N" neutralgame="Y" nitegame="N" postseason="N">
+    <officials>
+      <official title="Referee" name="Calin Radosav" />
+      <official title="Asst. Referee" name="Jeremy Smith" />
+      <official title="Asst. Referee" name="Peter Hanson" />
+      <official title="Alt. Official" name="Kyle Johnston" />
+    </officials>
+    <rules prds="2" minutes="45" minutesot="10" />
+    <show sog="1" goaldesc="1" offsides="1" fouls="1" fhk="0" />
+  </venue>
+  <stars />
+  <status period="3" clock="91:54" manualbox="N" />
+  <team vh="V" code="756" id="UW" name="Washington" record="16-6-2, 7-3-0">
+    <linescore periods="3" line="1,1,1" score="3" shotline="6,6,1" shots="13">
+      <lineprd prd="1" saves="2" corners="3" score="1" shots="6" offsides="0" fouls="3" />
+      <lineprd prd="2" saves="3" corners="2" score="1" shots="6" offsides="0" fouls="5" />
+      <lineprd prd="3" saves="0" corners="0" score="1" shots="1" offsides="0" fouls="0" />
+    </linescore>
+    <totals>
+      <shots g="3" a="2" pts="8" sh="13" ps="0" psatt="0" sog="9" />
+      <goaltype gw="1" ua="1" fg="1" ot="1" en="0" hat="0" gt="0" so="0" />
+      <penalty count="3" red="0" yellow="3" green="0" fouls="8" />
+      <misc minutes="1011" dsave="0" />
+      <goalie gp="0" gs="0" minutes="91:54" ga="2" saves="5" savebyprd="2,3,0" sf="17">
+        <savesbyprd saves="2" prd="1" />
+        <savesbyprd saves="3" prd="2" />
+        <savesbyprd saves="0" prd="3" />
+      </goalie>
+    </totals>
+    <player uni="0" code="0" name="Bieber, Levi" checkname="BIEBER,LEVI" gp="0" gs="0" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="00" code="00" name="Pierpoint, Kenny" checkname="PIERPOINT,KENNY" gp="0" gs="0" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="1" code="1" name="Bowton, Jadon" checkname="BOWTON,JADON" gp="1" gs="1" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+      <goalie minutes="91:54" saves="5" savebyprd="2,3,0" sf="17" ga="2" gs="1" gp="1" win="1-0-0">
+        <savesbyprd saves="2" prd="1" />
+        <savesbyprd saves="3" prd="2" />
+        <savesbyprd saves="0" prd="3" />
+      </goalie>
+    </player>
+    <player uni="30" code="30" name="Felton, Jaeger" checkname="FELTON,JAEGER" gp="0" gs="0" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="2" code="2" name="Kleemann, Philip" checkname="KLEEMANN,PHILIP" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="3" code="3" name="Bertos, Harrison" checkname="BERTOS,HARRISON" gp="1" gs="1" pos="def">
+      <shots g="1" a="0" pts="2" sh="1" ps="0" psatt="0" sog="1" />
+      <goaltype gw="1" ua="0" fg="0" ot="1" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="4" code="4" name="Akulov, Egor" checkname="AKULOV,EGOR" gp="1" gs="1" pos="def">
+      <shots g="0" a="1" pts="1" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="5" code="5" name="Hestad, Asher" checkname="HESTAD,ASHER" gp="1" gs="1" pos="def">
+      <shots g="0" a="0" pts="0" sh="2" ps="0" psatt="0" sog="1" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="6" code="6" name="Ramsey, Zach" checkname="RAMSEY,ZACH" gp="1" gs="1" pos="mid">
+      <shots g="1" a="0" pts="2" sh="3" ps="0" psatt="0" sog="2" />
+      <goaltype gw="0" ua="1" fg="1" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="1" />
+      <misc minutes="46" dsave="0" />
+    </player>
+    <player uni="7" code="7" name="Hall, Alex" checkname="HALL,ALEX" gp="1" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="2" ps="0" psatt="0" sog="2" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="1" red="0" yellow="1" green="0" fouls="1" />
+      <misc minutes="65" dsave="0" />
+    </player>
+    <player uni="8" code="8" name="Dollin, Clarens" checkname="DOLLIN,CLARENS" gp="0" gs="0" pos="">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="9" code="9" name="Kosakoff, Charlie" checkname="KOSAKOFF,CHARLIE" gp="1" gs="1" pos="fwd">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="3" />
+      <misc minutes="85" dsave="0" />
+    </player>
+    <player uni="10" code="10" name="Aman, Richie" checkname="AMAN,RICHIE" gp="1" gs="1" pos="mid">
+      <shots g="0" a="1" pts="1" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="1" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="11" code="11" name="O'Brien, Nick" checkname="O'BRIEN,NICK" gp="1" gs="0" pos="fwd">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="7" dsave="0" />
+    </player>
+    <player uni="12" code="12" name="Gay, Carter" checkname="GAY,CARTER" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="13" code="13" name="Hernandez, Kevin" checkname="HERNANDEZ,KEVIN" gp="1" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="1" />
+      <misc minutes="51" dsave="0" />
+    </player>
+    <player uni="14" code="14" name="Dale, Joe" checkname="DALE,JOE" gp="1" gs="1" pos="mid">
+      <shots g="1" a="0" pts="2" sh="2" ps="0" psatt="0" sog="2" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="1" />
+      <misc minutes="63" dsave="0" />
+    </player>
+    <player uni="15" code="15" name="Diop, Mani" checkname="DIOP,MANI" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="16" code="16" name="Meier, Zack" checkname="MEIER,ZACK" gp="1" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="11" dsave="0" />
+    </player>
+    <player uni="17" code="17" name="Cruz, Cameron" checkname="CRUZ,CAMERON" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="18" code="18" name="Deperro, Nani" checkname="DEPERRO,NANI" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="19" code="19" name="Sherlock, Mikey" checkname="SHERLOCK,MIKEY" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="21" code="21" name="Enabulele, Osato" checkname="ENABULELE,OSATO" gp="1" gs="1" pos="mid">
+      <shots g="0" a="0" pts="0" sh="1" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="1" red="0" yellow="1" green="0" fouls="0" />
+      <misc minutes="52" dsave="0" />
+    </player>
+    <player uni="22" code="22" name="Leber, Conner" checkname="LEBER,CONNER" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="23" code="23" name="Ganguly, Sheehan" checkname="GANGULY,SHEEHAN" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="26" code="26" name="Lofy, Connor" checkname="LOFY,CONNOR" gp="1" gs="1" pos="mid">
+      <shots g="0" a="0" pts="0" sh="2" ps="0" psatt="0" sog="1" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="90" dsave="0" />
+    </player>
+    <player uni="31" code="31" name="Bowers, Brecken" checkname="BOWERS,BRECKEN" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="33" code="33" name="Sovde, Chad" checkname="SOVDE,CHAD" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="44" code="44" name="Fernandez, Gabe" checkname="FERNANDEZ,GABE" gp="1" gs="1" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="81" dsave="0" />
+    </player>
+    <player uni="TM" code="TM" name="TEAM" checkname="TEAM" gp="1" gs="0" pos="">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="1" red="0" yellow="1" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+  </team>
+  <team vh="H" code="490" id="NCSU" name="NC State" record="16-3-4, 4-1-3">
+    <linescore periods="3" line="0,2,0" score="2" shotline="7,10,0" shots="17">
+      <lineprd prd="1" saves="2" corners="2" score="0" shots="7" offsides="0" fouls="8" />
+      <lineprd prd="2" saves="4" corners="8" score="2" shots="10" offsides="0" fouls="3" />
+      <lineprd prd="3" saves="0" corners="0" score="0" shots="0" offsides="0" fouls="0" />
+    </linescore>
+    <totals>
+      <shots g="2" a="3" pts="7" sh="17" ps="0" psatt="0" sog="7" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="1" so="0" />
+      <penalty count="1" red="0" yellow="1" green="0" fouls="11" />
+      <misc minutes="1012" dsave="0" />
+      <goalie gp="0" gs="0" minutes="91:54" ga="3" saves="6" savebyprd="2,4,0" sf="13">
+        <savesbyprd saves="2" prd="1" />
+        <savesbyprd saves="4" prd="2" />
+        <savesbyprd saves="0" prd="3" />
+      </goalie>
+    </totals>
+    <player uni="0" code="0" name="Herluf, Christian" checkname="HERLUF,CHRISTIAN" gp="0" gs="0" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="1" code="1" name="Erb, Logan" checkname="ERB,LOGAN" gp="1" gs="1" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+      <goalie minutes="91:54" saves="6" savebyprd="2,4,0" sf="13" ga="3" gs="1" gp="1" loss="0-1-0">
+        <savesbyprd saves="2" prd="1" />
+        <savesbyprd saves="4" prd="2" />
+        <savesbyprd saves="0" prd="3" />
+      </goalie>
+    </player>
+    <player uni="26" code="26" name="Terranova, Samuel" checkname="TERRANOVA,SAMUEL" gp="0" gs="0" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="30" code="30" name="Francis, Maddux" checkname="FRANCIS,MADDUX" gp="0" gs="0" pos="gk">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="2" code="2" name="Cruz, Ervin" checkname="CRUZ,ERVIN" gp="0" gs="0" pos="fwd">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="3" code="3" name="Moloney, Riley" checkname="MOLONEY,RILEY" gp="1" gs="1" pos="def">
+      <shots g="0" a="0" pts="0" sh="1" ps="0" psatt="0" sog="1" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="4" code="4" name="Santamaria, Carlos" checkname="SANTAMARIA,CARLOS" gp="1" gs="1" pos="mid">
+      <shots g="0" a="0" pts="0" sh="1" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="5" code="5" name="Lamaille, Thomas" checkname="LAMAILLE,THOMAS" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="6" code="6" name="Markovic, Nikola" checkname="MARKOVIC,NIKOLA" gp="1" gs="1" pos="def">
+      <shots g="0" a="1" pts="1" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="7" code="7" name="Phillip, Donavan" checkname="PHILLIP,DONAVAN" gp="1" gs="1" pos="fwd">
+      <shots g="1" a="0" pts="2" sh="5" ps="0" psatt="0" sog="2" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="76" dsave="0" />
+    </player>
+    <player uni="8" code="8" name="Mclean, Justin" checkname="MCLEAN,JUSTIN" gp="1" gs="1" pos="mid">
+      <shots g="0" a="1" pts="1" sh="4" ps="0" psatt="0" sog="2" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="3" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="9" code="9" name="Conde, Ibrahim" checkname="CONDE,IBRAHIM" gp="1" gs="1" pos="fwd">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="2" />
+      <misc minutes="83" dsave="0" />
+    </player>
+    <player uni="10" code="10" name="Healy, Taig" checkname="HEALY,TAIG" gp="1" gs="1" pos="mid">
+      <shots g="1" a="0" pts="2" sh="2" ps="0" psatt="0" sog="1" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="1" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="2" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="11" code="11" name="DeFrancesco, Frankie" checkname="DEFRANCESCO,FRANKIE" gp="1" gs="0" pos="fwd">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="16" dsave="0" />
+    </player>
+    <player uni="12" code="12" name="Caton, Tyler" checkname="CATON,TYLER" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="13" code="13" name="Tommy, Calem" checkname="TOMMY,CALEM" gp="1" gs="1" pos="def">
+      <shots g="0" a="1" pts="1" sh="1" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="1" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="14" code="14" name="Weber, Moritz" checkname="WEBER,MORITZ" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="15" code="15" name="Payne, Aidan" checkname="PAYNE,AIDAN" gp="1" gs="0" pos="fwd">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="25" dsave="0" />
+    </player>
+    <player uni="17" code="17" name="Tolentino, Caden" checkname="TOLENTINO,CADEN" gp="1" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="9" dsave="0" />
+    </player>
+    <player uni="18" code="18" name="Heffess, Isaac" checkname="HEFFESS,ISAAC" gp="1" gs="1" pos="def">
+      <shots g="0" a="0" pts="0" sh="1" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="2" />
+      <misc minutes="92" dsave="0" />
+    </player>
+    <player uni="19" code="19" name="Caeiro, Pedro" checkname="CAEIRO,PEDRO" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="21" code="21" name="Ogawa, Max" checkname="OGAWA,MAX" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="22" code="22" name="Lovelace, Drew" checkname="LOVELACE,DREW" gp="1" gs="1" pos="">
+      <shots g="0" a="0" pts="0" sh="2" ps="0" psatt="0" sog="1" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="1" />
+      <misc minutes="67" dsave="0" />
+    </player>
+    <player uni="23" code="23" name="Bush, Austin" checkname="BUSH,AUSTIN" gp="0" gs="0" pos="">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="24" code="24" name="Busenze, Isaac" checkname="BUSENZE,ISAAC" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="25" code="25" name="Abdouh, Adam" checkname="ABDOUH,ADAM" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="27" code="27" name="Antoine, Nakai" checkname="ANTOINE,NAKAI" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="28" code="28" name="Peeples, Brendan" checkname="PEEPLES,BRENDAN" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="31" code="31" name="Pottle, John" checkname="POTTLE,JOHN" gp="0" gs="0" pos="mid">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="32" code="32" name="Rosario, Gianni" checkname="ROSARIO,GIANNI" gp="0" gs="0" pos="def">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+    <player uni="TM" code="TM" name="TEAM" checkname="TEAM" gp="1" gs="0" pos="">
+      <shots g="0" a="0" pts="0" sh="0" ps="0" psatt="0" sog="0" />
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0" />
+      <penalty count="1" red="0" yellow="1" green="0" fouls="0" />
+      <misc minutes="0" dsave="0" />
+    </player>
+  </team>
+  <scores>
+    <score number="1" vh="V" id="UW" prd="1" time="43:48" uni="6" name="Zach Ramsey" checkname="RAMSEY,ZACH" seasong="8" desc="Off misplay by NC State GK; shot from outside penalty area into open goal" />
+    <score number="2" vh="V" id="UW" prd="2" time="61:37" uni="14" name="Joe Dale" checkname="DALE,JOE" seasong="2" assist1="Richie Aman" desc="Crossing pass from Dale into penalty area; Aman scores on low shot into middle of goal" />
+    <score number="3" vh="H" id="NCSU" prd="2" time="65:19" uni="7" name="Donavan Phillip" checkname="PHILLIP,DONAVAN" seasong="19" assist1="Nikola Markovic" desc="Rebound of shot blocked to Markovic, who heads ball to Phillip; Phillip scores on shot inside 6-yard box" />
+    <score number="4" vh="H" id="NCSU" prd="2" time="86:31" uni="10" name="Taig Healy" checkname="HEALY,TAIG" seasong="5" assist1="Justin Mclean" assist2="Calem Tommy" desc="Quick passes from Tommy &amp; Mclean just outside penalty area led to shot from top of penalty area by Healy" />
+    <score number="5" vh="V" id="UW" prd="3" time="91:54" uni="3" name="Harrison Bertos" checkname="BERTOS,HARRISON" seasong="5" assist1="Egor Akulov" />
+  </scores>
+  <penalties>
+    <pen number="1" vh="V" id="UW" prd="1" time="38:20" type="YELLOW" uni="21" name="Osato Enabulele" checkname="ENABULELE,OSATO" />
+    <pen number="2" vh="H" id="NCSU" prd="1" time="43:48" type="YELLOW" />
+    <pen number="3" vh="V" id="UW" prd="1" time="43:48" type="YELLOW" />
+    <pen number="4" vh="V" id="UW" prd="2" time="74:57" type="YELLOW" uni="7" name="Alex Hall" checkname="HALL,ALEX" />
+  </penalties>
+  <goaliechanges>
+    <goaliechange vh="H" id="NCSU" prd="1" time="00:00" uni="1" name="Erb, Logan" />
+    <goaliechange vh="V" id="UW" prd="1" time="00:00" uni="1" name="Bowton, Jadon" />
+  </goaliechanges>
+  <plays format="summary">
+    <period number="1">
+      <play number="0" vh="H" team="NCSU" clock="00:00" action="GOALIE" text="Erb, Logan at goalie for NC State" />
+      <play number="1" vh="V" team="UW" clock="00:00" action="GOALIE" text="Bowton, Jadon at goalie for Washington" />
+      <play number="2" vh="H" team="NCSU" clock="00:30" action="SHOT" text="Shot by NCSU Lovelace, Drew." />
+      <play number="3" vh="H" team="NCSU" clock="00:35" action="CORNER" text="Corner kick [00:35]." />
+      <play number="4" vh="H" team="NCSU" clock="02:17" action="FOUL" text="Foul on Tommy, Calem." />
+      <play number="5" vh="V" team="UW" clock="06:55" action="FOUL" text="Foul on Kosakoff, Charlie." />
+      <play number="6" vh="H" team="NCSU" clock="07:40" action="FOUL" text="Foul on Conde, Ibrahim." />
+      <play number="7" vh="V" team="UW" clock="09:53" action="SHOT" text="Shot by UW Ramsey, Zach, bottom center, saved by Erb, Logan." />
+      <play number="8" vh="H" team="NCSU" clock="11:18" action="FOUL" text="Foul on Mclean, Justin." />
+      <play number="9" vh="V" team="UW" clock="11:45" action="CORNER" text="Corner kick [11:45]." />
+      <play number="10" vh="H" team="NCSU" clock="13:24" action="FOUL" text="Foul on Mclean, Justin." />
+      <play number="11" vh="H" team="NCSU" clock="16:26" action="FOUL" text="Foul on Healy, Taig." />
+      <play number="12" vh="H" team="NCSU" clock="17:25" action="FOUL" text="Foul on Conde, Ibrahim." />
+      <play number="13" vh="H" team="NCSU" clock="18:48" action="SHOT" text="Shot by NCSU Mclean, Justin, top right, saved by Bowton, Jadon." />
+      <play number="14" vh="H" team="NCSU" clock="19:01" action="SHOT" text="Shot by NCSU Moloney, Riley, bottom center, saved by Bowton, Jadon." />
+      <play number="15" vh="V" team="UW" clock="19:25" action="SHOT" text="Shot by UW Lofy, Connor, bottom right, saved by Erb, Logan." />
+      <play number="16" vh="H" team="NCSU" clock="21:33" action="CORNER" text="Corner kick [21:33]." />
+      <play number="17" vh="H" team="NCSU" clock="23:27" action="SHOT" text="Shot by NCSU Phillip, Donavan, out top." />
+      <play number="18" vh="H" team="NCSU" clock="24:54" action="SHOT" text="Shot by NCSU Tommy, Calem." />
+      <play number="19" vh="V" team="UW" clock="25:24" action="SHOT" text="Shot by UW Ramsey, Zach." />
+      <play number="20" vh="V" team="UW" clock="25:31" action="CORNER" text="Corner kick [25:31]." />
+      <play number="21" vh="V" team="UW" clock="26:30" action="SUB" text="UW substitution: Hall, Alex for Dale, Joe." />
+      <play number="22" vh="V" team="UW" clock="27:39" action="FOUL" text="Foul on Kosakoff, Charlie." />
+      <play number="23" vh="H" team="NCSU" clock="29:30" action="SHOT" text="Shot by NCSU Mclean, Justin." />
+      <play number="24" vh="H" team="NCSU" clock="29:51" action="SHOT" text="Shot by NCSU Phillip, Donavan, out right." />
+      <play number="25" vh="H" team="NCSU" clock="31:55" action="FOUL" text="Foul on Mclean, Justin." />
+      <play number="26" vh="H" team="NCSU" clock="35:09" action="SUB" text="NCSU substitution: Payne, Aidan for Conde, Ibrahim." />
+      <play number="27" vh="H" team="NCSU" clock="35:09" action="SUB" text="NCSU substitution: Tolentino, Caden for Lovelace, Drew." />
+      <play number="28" vh="V" team="UW" clock="36:00" action="SHOT" text="Shot by UW Enabulele, Osato, out right." />
+      <play number="29" vh="V" team="UW" clock="36:40" action="FOUL" text="Foul on Hall, Alex." />
+      <play number="30" vh="V" team="UW" clock="38:20" action="YC" text="Yellow card on UW Enabulele, Osato." />
+      <play number="31" vh="V" team="UW" clock="39:59" action="CORNER" text="Corner kick [39:59]." />
+      <play number="32" vh="V" team="UW" clock="40:26" action="SHOT" text="Shot by UW Lofy, Connor, out top." />
+      <play number="33" vh="V" team="UW" clock="40:44" action="SUB" text="UW substitution: O'Brien, Nick for Kosakoff, Charlie." />
+      <play number="34" vh="V" team="UW" clock="40:44" action="SUB" text="UW substitution: Hernandez, Kevin for Enabulele, Osato." />
+      <play number="35" vh="V" team="UW" clock="43:48" action="GOAL" text="GOAL by UW Ramsey, Zach." hscore="0" vscore="1" />
+      <currentscore vscore="1" hscore="0" />
+      <play number="36" vh="H" team="NCSU" clock="43:48" action="YC" text="Yellow card on NCSU TEAM." />
+      <play number="37" vh="V" team="UW" clock="43:48" action="YC" text="Yellow card on UW TEAM." />
+      <play number="38" vh="H" clock="45:00" action="END-PRD" text="End of period [45:00]." />
+      <play number="39" vh="V" team="UW" clock="45:00" action="SUB" text="UW substitution: Kosakoff, Charlie for Ramsey, Zach." />
+    </period>
+    <period number="2">
+      <play number="40" vh="H" clock="45:00" action="PRD" text="Start of 2nd period [45:00]." />
+      <play number="41" vh="V" team="UW" clock="45:00" action="FOR" text="FOR UW: , #1 Bowton, Jadon, #3 Bertos, Harrison, #4 Akulov, Egor, #5 Hestad, Asher, #9 Kosakoff, Charlie, #14 Dale, Joe, #10 Aman, Richie, #7 Hall, Alex, #13 Hernandez, Kevin, #26 Lofy, Connor, #44 Fernandez, Gabe." />
+      <play number="42" vh="H" team="NCSU" clock="45:00" action="FOR" text="FOR NCSU: , #1 Erb, Logan, #3 Moloney, Riley, #4 Santamaria, Carlos, #6 Markovic, Nikola, #9 Conde, Ibrahim, #8 Mclean, Justin, #22 Lovelace, Drew, #10 Healy, Taig, #13 Tommy, Calem, #18 Heffess, Isaac, #11 DeFrancesco, Frankie." />
+      <play number="43" vh="H" team="NCSU" clock="45:00" action="SUB" text="NCSU substitution: Conde, Ibrahim for Phillip, Donavan." />
+      <play number="44" vh="H" team="NCSU" clock="45:00" action="SUB" text="NCSU substitution: Lovelace, Drew for Payne, Aidan." />
+      <play number="45" vh="H" team="NCSU" clock="45:00" action="SUB" text="NCSU substitution: DeFrancesco, Frankie for Tolentino, Caden." />
+      <play number="46" vh="V" team="UW" clock="45:00" action="SUB" text="UW substitution: Dale, Joe for O'Brien, Nick." />
+      <play number="47" vh="H" team="NCSU" clock="46:55" action="SHOT" text="Shot by NCSU Mclean, Justin." />
+      <play number="48" vh="H" team="NCSU" clock="47:38" action="CORNER" text="Corner kick [47:38]." />
+      <play number="49" vh="V" team="UW" clock="48:44" action="CORNER" text="Corner kick [48:44]." />
+      <play number="50" vh="V" team="UW" clock="49:09" action="FOUL" text="Foul on Kosakoff, Charlie." />
+      <play number="51" vh="V" team="UW" clock="49:47" action="FOUL" text="Foul on Hernandez, Kevin." />
+      <play number="52" vh="H" team="NCSU" clock="50:20" action="CORNER" text="Corner kick [50:20]." />
+      <play number="53" vh="H" team="NCSU" clock="51:03" action="SHOT" text="Shot by NCSU Healy, Taig." />
+      <play number="54" vh="H" team="NCSU" clock="53:37" action="CORNER" text="Corner kick [53:37]." />
+      <play number="55" vh="V" team="UW" clock="55:34" action="SHOT" text="Shot by UW Hall, Alex, bottom center, saved by Erb, Logan." />
+      <play number="56" vh="V" team="UW" clock="56:25" action="SHOT" text="Shot by UW Hestad, Asher, out top." />
+      <play number="57" vh="H" team="NCSU" clock="60:12" action="FOUL" text="Foul on Lovelace, Drew." />
+      <play number="58" vh="H" team="NCSU" clock="60:45" action="SUB" text="NCSU substitution: Phillip, Donavan for DeFrancesco, Frankie." />
+      <play number="59" vh="V" team="UW" clock="61:37" action="GOAL" text="GOAL by UW Dale, Joe Assist by Aman, Richie." hscore="0" vscore="2" />
+      <currentscore vscore="2" hscore="0" />
+      <play number="60" vh="V" team="UW" clock="62:02" action="FOUL" text="Foul on Aman, Richie." />
+      <play number="61" vh="H" team="NCSU" clock="62:41" action="CORNER" text="Corner kick [62:41]." />
+      <play number="62" vh="H" team="NCSU" clock="64:09" action="SHOT" text="Shot by NCSU Lovelace, Drew, top, saved by Bowton, Jadon." />
+      <play number="63" vh="H" team="NCSU" clock="65:14" action="SHOT" text="Shot by NCSU Santamaria, Carlos." />
+      <play number="64" vh="H" team="NCSU" clock="65:19" action="GOAL" text="GOAL by NCSU Phillip, Donavan Assist by Markovic, Nikola." hscore="1" vscore="2" />
+      <currentscore vscore="2" hscore="1" />
+      <play number="65" vh="H" team="NCSU" clock="66:22" action="SHOT" text="Shot by NCSU Mclean, Justin, bottom center, saved by Bowton, Jadon." />
+      <play number="66" vh="H" team="NCSU" clock="69:12" action="SHOT" text="Shot by NCSU Phillip, Donavan, bottom center, saved by Bowton, Jadon." />
+      <play number="67" vh="H" team="NCSU" clock="71:30" action="CORNER" text="Corner kick [71:30]." />
+      <play number="68" vh="V" team="UW" clock="73:17" action="CORNER" text="Corner kick [73:17]." />
+      <play number="69" vh="V" team="UW" clock="74:57" action="YC" text="Yellow card on UW Hall, Alex." />
+      <play number="70" vh="H" team="NCSU" clock="75:06" action="SUB" text="NCSU substitution: Payne, Aidan for Lovelace, Drew." />
+      <play number="71" vh="V" team="UW" clock="76:33" action="FOUL" text="Foul on Dale, Joe." />
+      <play number="72" vh="H" team="NCSU" clock="77:02" action="SHOT" text="Shot by NCSU Heffess, Isaac." />
+      <play number="73" vh="H" team="NCSU" clock="77:06" action="CORNER" text="Corner kick [77:06]." />
+      <play number="74" vh="H" team="NCSU" clock="77:42" action="SHOT" text="Shot by NCSU Phillip, Donavan, out right." />
+      <play number="75" vh="V" team="UW" clock="79:38" action="SHOT" text="Shot by UW Dale, Joe, bottom center, saved by Erb, Logan." />
+      <play number="76" vh="V" team="UW" clock="80:02" action="SUB" text="UW substitution: Meier, Zack for Dale, Joe." />
+      <play number="77" vh="V" team="UW" clock="80:02" action="SUB" text="UW substitution: Enabulele, Osato for Fernandez, Gabe." />
+      <play number="78" vh="H" team="NCSU" clock="80:37" action="CORNER" text="Corner kick [80:37]." />
+      <play number="79" vh="H" team="NCSU" clock="81:30" action="CORNER" text="Corner kick [81:30]." />
+      <play number="80" vh="H" team="NCSU" clock="82:10" action="FOUL" text="Foul on Heffess, Isaac." />
+      <play number="81" vh="V" team="UW" clock="85:55" action="FOUL" text="Foul on Ramsey, Zach." />
+      <play number="82" vh="H" team="NCSU" clock="86:31" action="GOAL" text="GOAL by NCSU Healy, Taig Assist by Mclean, Justin and Tommy, Calem." hscore="2" vscore="2" />
+      <currentscore vscore="2" hscore="2" />
+      <play number="83" vh="V" team="UW" clock="86:31" action="SUB" text="UW substitution: O'Brien, Nick for Kosakoff, Charlie." />
+      <play number="84" vh="V" team="UW" clock="86:37" action="SHOT" text="Shot by UW Hestad, Asher, bottom center, saved by Erb, Logan." />
+      <play number="85" vh="H" team="NCSU" clock="87:37" action="FOUL" text="Foul on Heffess, Isaac." />
+      <play number="86" vh="V" team="UW" clock="87:52" action="SHOT" text="Shot by UW Hall, Alex, bottom center, saved by Erb, Logan." />
+      <play number="87" vh="H" clock="90:00" action="END-PRD" text="End of period [90:00]." />
+    </period>
+    <period number="3">
+      <play number="88" vh="H" clock="90:00" action="PRD" text="Start of OT period [90:00]." />
+      <play number="89" vh="V" team="UW" clock="90:00" action="FOR" text="FOR UW: , #1 Bowton, Jadon, #3 Bertos, Harrison, #4 Akulov, Egor, #5 Hestad, Asher, #9 Kosakoff, Charlie, #16 Meier, Zack, #10 Aman, Richie, #7 Hall, Alex, #13 Hernandez, Kevin, #6 Ramsey, Zach, #21 Enabulele, Osato." />
+      <play number="90" vh="H" team="NCSU" clock="90:00" action="FOR" text="FOR NCSU: , #1 Erb, Logan, #3 Moloney, Riley, #4 Santamaria, Carlos, #6 Markovic, Nikola, #9 Conde, Ibrahim, #8 Mclean, Justin, #15 Payne, Aidan, #10 Healy, Taig, #13 Tommy, Calem, #18 Heffess, Isaac, #7 Phillip, Donavan." />
+      <play number="91" vh="V" team="UW" clock="90:00" action="SUB" text="UW substitution: Kosakoff, Charlie for O'Brien, Nick." />
+      <play number="92" vh="V" team="UW" clock="90:00" action="SUB" text="UW substitution: Ramsey, Zach for Lofy, Connor." />
+      <play number="93" vh="V" team="UW" clock="91:54" action="GOAL" text="GOAL by UW Bertos, Harrison Assist by Akulov, Egor." hscore="2" vscore="3" />
+      <currentscore vscore="3" hscore="2" />
+      <play number="94" vh="H" clock="91:54" action="END-PRD" text="End of period [91:54]." />
+      <currentscore vscore="3" hscore="2" />
+    </period>
+  </plays>
+</sogame>

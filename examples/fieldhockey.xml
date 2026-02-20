@@ -1,0 +1,778 @@
+<sogame source="TAS For Soccer" version="1.16.01" generated="10/23/2022">
+  <venue gameid="NC102322" visid="SJU" visname="Saint Joseph's" homeid="NC" homename="North Carolina" date="10/23/2022" location="Chapel Hill, N.C." stadium="Shelton Stadium" start="2 PM" end="3:37" duration="1:37" attend="477" schednote="" weather="68 degrees and sunny" leaguegame="N" neutralgame="N" sbid="421367">
+    <officials>
+      <official title="Referee" name="Stephanie Judefind">
+      </official>
+      <official title="Asst. Referee" name="Ameliet Rischen">
+      </official>
+      <official title="" name="Ridge Bair">
+      </official>
+      <official title="Timekeeper" name="Ted Summa">
+      </official>
+      <official title="Scorer" name="Dana Gelin">
+      </official>
+    </officials>
+    <rules prds="4" minutes="15" minutesot="10">
+    </rules>
+    <show sog="1" goaldesc="1" offsides="0" fouls="0" fhk="1">
+    </show>
+  </venue>
+  <stars>
+  </stars>
+  <status period="4" clock="60:00">
+  </status>
+  <team vh="V" id="SJU" name="Saint Joseph's" record="12-4" rank="9">
+    <linescore periods="4" line="0,0,0,0" score="0" shotline="1,0,5,1" shots="7">
+      <lineprd prd="1" score="0" shots="1" saves="1" fouls="0" corners="1" offsides="0">
+      </lineprd>
+      <lineprd prd="2" score="0" shots="0" saves="3" fouls="0" corners="0" offsides="0">
+      </lineprd>
+      <lineprd prd="3" score="0" shots="5" saves="3" fouls="0" corners="1" offsides="0">
+      </lineprd>
+      <lineprd prd="4" score="0" shots="1" saves="0" fouls="0" corners="0" offsides="0">
+      </lineprd>
+    </linescore>
+    <totals>
+      <shots g="0" a="0" sh="7" sog="5" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="639" dsave="0">
+      </misc>
+      <goalie minutes="60:00" ga="6" saves="7" sf="17" savebyprd="1,3,3,0">
+        <savesbyprd prd="1" saves="1">
+        </savesbyprd>
+        <savesbyprd prd="2" saves="3">
+        </savesbyprd>
+        <savesbyprd prd="3" saves="3">
+        </savesbyprd>
+        <savesbyprd prd="4" saves="0">
+        </savesbyprd>
+      </goalie>
+    </totals>
+    <player uni="0" code="0" name="DIRENZO, Leah" checkname="DIRENZO,LEAH" class="FR" gp="0">
+    </player>
+    <player uni="1" code="1" name="PATTON, Kacie" checkname="PATTON,KACIE" class="SR" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="0" dsave="0">
+      </misc>
+    </player>
+    <player uni="2" code="2" name="STEM, Lanie" checkname="STEM,LANIE" class="SO" gp="0">
+    </player>
+    <player uni="3" code="3" name="CUMMINS, Kaitlyn" checkname="CUMMINS,KAITLYN" class="JR" gp="0">
+    </player>
+    <player uni="4" code="4" name="VAN NIEUWLAND, Meike" checkname="VAN NIEUWLAND,MEIKE" class="FR" gp="1">
+      <shots g="0" a="0" sh="1" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="30" dsave="0">
+      </misc>
+    </player>
+    <player uni="5" code="5" name="BORENSZTEIN, Sol" checkname="BORENSZTEIN,SOL" class="FR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="60" dsave="0">
+      </misc>
+    </player>
+    <player uni="6" code="6" name="JAMES, Leigh" checkname="JAMES,LEIGH" class="SR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="1" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="53" dsave="0">
+      </misc>
+    </player>
+    <player uni="7" code="7" name="DURBIN, Ciara" checkname="DURBIN,CIARA" class="FR" gp="0">
+    </player>
+    <player uni="8" code="8" name="DRABICK, Aiden" checkname="DRABICK,AIDEN" class="SO" gp="0">
+    </player>
+    <player uni="9" code="9" name="CRIST, Kate" checkname="CRIST,KATE" class="JR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="41" dsave="0">
+      </misc>
+    </player>
+    <player uni="10" code="10" name="HESHMAT, Natalie" checkname="HESHMAT,NATALIE" class="SO" gp="0">
+    </player>
+    <player uni="11" code="11" name="SMITS, Celeste" checkname="SMITS,CELESTE" class="JR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="28" dsave="0">
+      </misc>
+    </player>
+    <player uni="12" code="12" name="COCCO, Katelyn" checkname="COCCO,KATELYN" class="SO" gp="1">
+      <shots g="0" a="0" sh="1" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="7" dsave="0">
+      </misc>
+    </player>
+    <player uni="13" code="13" name="NICHOLLS, Caitlin" checkname="NICHOLLS,CAITLIN" class="FR" gp="0">
+    </player>
+    <player uni="14" code="14" name="SMYTH, Julianna" checkname="SMYTH,JULIANNA" class="SR" gp="0">
+    </player>
+    <player uni="15" code="15" name="BITTERS, Hailey" checkname="BITTERS,HAILEY" class="SR" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="33" dsave="0">
+      </misc>
+    </player>
+    <player uni="16" code="16" name="QUAILE, Mo" checkname="QUAILE,MO" class="FR" gp="0">
+    </player>
+    <player uni="17" code="17" name="BRICKLEY, Caroline" checkname="BRICKLEY,CAROLINE" class="FR" gp="0">
+    </player>
+    <player uni="18" code="18" name="WINTHER, Emma" checkname="WINTHER,EMMA" class="FR" gp="0">
+    </player>
+    <player uni="19" code="19" name="BUFFINGTON, Alison" checkname="BUFFINGTON,ALISON" class="FR" gp="0">
+    </player>
+    <player uni="20" code="20" name="BENTON, Katy" checkname="BENTON,KATY" class="SR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="53" dsave="0">
+      </misc>
+    </player>
+    <player uni="21" code="21" name="GHIGLIOTTI, Manu" checkname="GHIGLIOTTI,MANU" class="JR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="1" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="34" dsave="0">
+      </misc>
+    </player>
+    <player uni="22" code="22" name="WELLS, Takoda" checkname="WELLS,TAKODA" class="FR" gp="0">
+    </player>
+    <player uni="23" code="23" name="SANTI, Lily" checkname="SANTI,LILY" class="JR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="13" dsave="0">
+      </misc>
+    </player>
+    <player uni="24" code="24" name="GORISSEN, Maaike" checkname="GORISSEN,MAAIKE" class="FR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="60" dsave="0">
+      </misc>
+    </player>
+    <player uni="25" code="25" name="VAN TILBURG, Freke" checkname="VAN TILBURG,FREKE" class="SR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="1" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="60" dsave="0">
+      </misc>
+    </player>
+    <player uni="26" code="26" name="WEBB, Caroline" checkname="WEBB,CAROLINE" class="SR" gp="0">
+    </player>
+    <player uni="27" code="27" name="SCHURINGA, Noa" checkname="SCHURINGA,NOA" class="FR" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="47" dsave="0">
+      </misc>
+    </player>
+    <player uni="33" code="33" name="MILLER, Anna" checkname="MILLER,ANNA" class="SR" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="2" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="60" dsave="0">
+      </misc>
+    </player>
+    <player uni="98" code="98" name="WARD, Janelle" checkname="WARD,JANELLE" class="SR" gp="0">
+    </player>
+    <player uni="99" code="99" name="BLEEKEMOLEN, Robin" checkname="BLEEKEMOLEN,ROBIN" class="SR" gp="1" gs="1" pos="gk">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="60" dsave="0">
+      </misc>
+      <goalie gp="1" gs="1" minutes="60:00" ga="6" saves="7" sf="17" savebyprd="1,3,3,0" loss="9-4">
+        <savesbyprd prd="1" saves="1">
+        </savesbyprd>
+        <savesbyprd prd="2" saves="3">
+        </savesbyprd>
+        <savesbyprd prd="3" saves="3">
+        </savesbyprd>
+        <savesbyprd prd="4" saves="0">
+        </savesbyprd>
+      </goalie>
+    </player>
+    <player uni="TM" code="TM" name="TEAM" checkname="TEAM" class="" gp="0">
+    </player>
+  </team>
+  <team vh="H" id="NC" name="North Carolina" record="14-0" rank="1">
+    <linescore periods="4" line="3,1,1,1" score="6" shotline="4,7,5,1" shots="17">
+      <lineprd prd="1" score="3" shots="4" saves="1" fouls="0" corners="0" offsides="0">
+      </lineprd>
+      <lineprd prd="2" score="1" shots="7" saves="0" fouls="0" corners="4" offsides="0">
+      </lineprd>
+      <lineprd prd="3" score="1" shots="5" saves="3" fouls="0" corners="2" offsides="0">
+      </lineprd>
+      <lineprd prd="4" score="1" shots="1" saves="1" fouls="0" corners="0" offsides="0">
+      </lineprd>
+    </linescore>
+    <totals>
+      <shots g="6" a="4" sh="17" sog="13" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="1" ua="2" fg="1" ot="0" en="0" hat="1" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="2" green="1" fouls="0">
+      </penalty>
+      <misc minutes="707" dsave="1">
+      </misc>
+      <goalie minutes="60:00" ga="0" saves="5" sf="7" savebyprd="1,0,3,1" shutout="1" cbosho="2">
+        <savesbyprd prd="1" saves="1">
+        </savesbyprd>
+        <savesbyprd prd="2" saves="0">
+        </savesbyprd>
+        <savesbyprd prd="3" saves="3">
+        </savesbyprd>
+        <savesbyprd prd="4" saves="1">
+        </savesbyprd>
+      </goalie>
+    </totals>
+    <player uni="1" code="1" name="Erin Matson" checkname="MATSON,ERIN" class="" gp="1" gs="1" pos="">
+      <shots g="1" a="3" sh="3" sog="3" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="1" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="51" dsave="0">
+      </misc>
+    </player>
+    <player uni="2" code="2" name="Meredith Sholder" checkname="SHOLDER,MEREDITH" class="" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="47" dsave="0">
+      </misc>
+    </player>
+    <player uni="3" code="3" name="Ashley Sessa" checkname="SESSA,ASHLEY" class="" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="1" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="12" dsave="0">
+      </misc>
+    </player>
+    <player uni="4" code="4" name="Molly Catchpole" checkname="CATCHPOLE,MOLLY" class="" gp="0">
+    </player>
+    <player uni="5" code="5" name="Madison Orobono" checkname="OROBONO,MADISON" class="" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="60" dsave="1">
+      </misc>
+    </player>
+    <player uni="6" code="6" name="Kelly Smith" checkname="SMITH,KELLY" class="" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="47" dsave="0">
+      </misc>
+    </player>
+    <player uni="8" code="8" name="Ciana Riccardo" checkname="RICCARDO,CIANA" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="47" dsave="0">
+      </misc>
+    </player>
+    <player uni="10" code="10" name="Paityn Wirth" checkname="WIRTH,PAITYN" class="" gp="1" gs="1" pos="">
+      <shots g="1" a="0" sh="3" sog="2" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="13" dsave="0">
+      </misc>
+    </player>
+    <player uni="11" code="11" name="Romea Riccardo" checkname="RICCARDO,ROMEA" class="" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="57" dsave="0">
+      </misc>
+    </player>
+    <player uni="12" code="12" name="Ryleigh Heck" checkname="HECK,RYLEIGH" class="" gp="1" gs="1" pos="">
+      <shots g="3" a="0" sh="6" sog="5" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="1" ua="1" fg="1" ot="0" en="0" hat="1" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="29" dsave="0">
+      </misc>
+    </player>
+    <player uni="14" code="14" name="Katie Dixon" checkname="DIXON,KATIE" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="1" fouls="0">
+      </penalty>
+      <misc minutes="48" dsave="0">
+      </misc>
+    </player>
+    <player uni="15" code="15" name="Steph Weber" checkname="WEBER,STEPH" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="1" green="0" fouls="0">
+      </penalty>
+      <misc minutes="14" dsave="0">
+      </misc>
+    </player>
+    <player uni="16" code="16" name="Grace Pottebaum" checkname="POTTEBAUM,GRACE" class="" gp="0">
+    </player>
+    <player uni="17" code="17" name="Sietske Bruning" checkname="BRUNING,SIETSKE" class="" gp="1" gs="1" pos="">
+      <shots g="0" a="0" sh="3" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="30" dsave="0">
+      </misc>
+    </player>
+    <player uni="18" code="18" name="Alli Meehan" checkname="MEEHAN,ALLI" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="5" dsave="0">
+      </misc>
+    </player>
+    <player uni="19" code="19" name="Lisa Slinkert" checkname="SLINKERT,LISA" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="47" dsave="0">
+      </misc>
+    </player>
+    <player uni="21" code="21" name="Cassidy Thibodeau" checkname="THIBODEAU,CASSIDY" class="" gp="0">
+    </player>
+    <player uni="22" code="22" name="Jasmina Smolenaars" checkname="SMOLENAARS,JASMINA" class="" gp="1" gs="1" pos="">
+      <shots g="0" a="1" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="12" dsave="0">
+      </misc>
+    </player>
+    <player uni="24" code="24" name="Brooke Behan" checkname="BEHAN,BROOKE" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="14" dsave="0">
+      </misc>
+    </player>
+    <player uni="28" code="28" name="Ava Borkowski" checkname="BORKOWSKI,AVA" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="3" dsave="0">
+      </misc>
+    </player>
+    <player uni="29" code="29" name="Dorrit Eisenbeis" checkname="EISENBEIS,DORRIT" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="1" green="0" fouls="0">
+      </penalty>
+      <misc minutes="9" dsave="0">
+      </misc>
+    </player>
+    <player uni="31" code="31" name="Ashton Odiorne" checkname="ODIORNE,ASHTON" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="3" dsave="0">
+      </misc>
+    </player>
+    <player uni="33" code="33" name="Mia Leonhardt" checkname="LEONHARDT,MIA" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="4" dsave="0">
+      </misc>
+    </player>
+    <player uni="35" code="35" name="Kiersten Thomassey" checkname="THOMASSEY,KIERSTEN" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="48" dsave="0">
+      </misc>
+    </player>
+    <player uni="36" code="36" name="Kennedy Cliggett" checkname="CLIGGETT,KENNEDY" class="" gp="1">
+      <shots g="1" a="0" sh="1" sog="1" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="47" dsave="0">
+      </misc>
+    </player>
+    <player uni="81" code="81" name="Kylie Walbert" checkname="WALBERT,KYLIE" class="" gp="1" gs="1" pos="gk">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="30" dsave="0">
+      </misc>
+      <goalie gp="1" gs="1" minutes="30:00" ga="0" saves="1" sf="1" savebyprd="1,0,0,0" win="6-0" cbosho="1">
+        <savesbyprd prd="1" saves="1">
+        </savesbyprd>
+        <savesbyprd prd="2" saves="0">
+        </savesbyprd>
+        <savesbyprd prd="3" saves="0">
+        </savesbyprd>
+        <savesbyprd prd="4" saves="0">
+        </savesbyprd>
+      </goalie>
+    </player>
+    <player uni="82" code="82" name="Abigail Taylor" checkname="TAYLOR,ABIGAIL" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="30" dsave="0">
+      </misc>
+      <goalie gp="1" gs="0" minutes="30:00" ga="0" saves="3" sf="6" savebyprd="0,0,2,1" cbosho="1">
+        <savesbyprd prd="1" saves="0">
+        </savesbyprd>
+        <savesbyprd prd="2" saves="0">
+        </savesbyprd>
+        <savesbyprd prd="3" saves="2">
+        </savesbyprd>
+        <savesbyprd prd="4" saves="1">
+        </savesbyprd>
+      </goalie>
+    </player>
+    <player uni="TM" code="TM" name="TEAM" checkname="TEAM" class="" gp="1">
+      <shots g="0" a="0" sh="0" sog="0" ps="0" psatt="0">
+      </shots>
+      <goaltype gw="0" ua="0" fg="0" ot="0" en="0" hat="0" gt="0" so="0">
+      </goaltype>
+      <penalty count="0" red="0" yellow="0" green="0" fouls="0">
+      </penalty>
+      <misc minutes="0" dsave="0">
+      </misc>
+      <goalie gp="1" gs="0" minutes="0:00" ga="0" saves="1" sf="0" savebyprd="0,0,1,0" shutout="1">
+        <savesbyprd prd="1" saves="0">
+        </savesbyprd>
+        <savesbyprd prd="2" saves="0">
+        </savesbyprd>
+        <savesbyprd prd="3" saves="1">
+        </savesbyprd>
+        <savesbyprd prd="4" saves="0">
+        </savesbyprd>
+      </goalie>
+    </player>
+  </team>
+  <scores>
+    <score number="1" vh="H" id="NC" prd="1" time="2:55" uni="12" name="Ryleigh Heck" checkname="HECK,RYLEIGH" seasong="11" unassisted="1" desc="Dribbled in and lifted shot over the GK">
+    </score>
+    <score number="2" vh="H" id="NC" prd="1" time="7:50" uni="1" name="Erin Matson" checkname="MATSON,ERIN" seasong="20" unassisted="1" desc="On rebound after GK save">
+    </score>
+    <score number="3" vh="H" id="NC" prd="1" time="12:26" uni="36" name="Kennedy Cliggett" checkname="CLIGGETT,KENNEDY" seasong="4" assist1="Erin Matson" desc="Pass to tap in at post">
+    </score>
+    <score number="4" vh="H" id="NC" prd="2" time="17:56" uni="10" name="Paityn Wirth" checkname="WIRTH,PAITYN" seasong="3" assist1="Jasmina Smolenaars" desc="Penalty corner">
+    </score>
+    <score number="5" vh="H" id="NC" prd="3" time="34:55" uni="12" name="Ryleigh Heck" checkname="HECK,RYLEIGH" seasong="12" assist1="Erin Matson" desc="On the break, pass to front of cage">
+    </score>
+    <score number="6" vh="H" id="NC" prd="4" time="45:50" uni="12" name="Ryleigh Heck" checkname="HECK,RYLEIGH" seasong="13" assist1="Erin Matson" desc="Pass to front of cage for deflection">
+    </score>
+  </scores>
+  <penalties>
+    <pen number="1" vh="H" id="NC" prd="3" time="41:47" type="GREEN" uni="14" name="Katie Dixon" checkname="DIXON,KATIE">
+    </pen>
+    <pen number="2" vh="H" id="NC" prd="4" time="53:52" type="YELLOW" uni="29" name="Dorrit Eisenbeis" checkname="EISENBEIS,DORRIT">
+    </pen>
+    <pen number="3" vh="H" id="NC" prd="4" time="56:53" type="YELLOW" uni="15" name="Steph Weber" checkname="WEBER,STEPH">
+    </pen>
+  </penalties>
+  <goaliechanges>
+    <goaliechange vh="V" id="SJU" prd="1" time="00:00" uni="99" name="BLEEKEMOLEN, Robin">
+    </goaliechange>
+    <goaliechange vh="H" id="NC" prd="1" time="00:00" uni="81" name="Kylie Walbert">
+    </goaliechange>
+    <goaliechange vh="H" id="NC" prd="3" time="30:00" uni="82" name="Abigail Taylor">
+    </goaliechange>
+  </goaliechanges>
+  <plays format="summary">
+    <period number="1">
+      <play number="0" vh="V" team="SJU" clock="00:00" action="GOALIE" text="BLEEKEMOLEN, Robin at goalie for Saint Joseph's.">
+      </play>
+      <play number="1" vh="H" team="NC" clock="00:00" action="GOALIE" text="Kylie Walbert at goalie for North Carolina.">
+      </play>
+      <play number="2" vh="H" team="NC" clock="02:55" action="GOAL" vscore="0" hscore="1" text="GOAL by NC Ryleigh Heck (FIRST GOAL), goal number 11 for season.">
+      </play>
+      <currentscore vscore="0" hscore="1">
+      </currentscore>
+      <play number="3" vh="H" team="NC" action="GOALMSG" text="*Dribbled in and lifted shot over the GK">
+      </play>
+      <play number="4" vh="H" team="NC" clock="07:50" action="SHOT" text="Shot by NC Ryleigh Heck, SAVE BLEEKEMOLEN, Robin.">
+      </play>
+      <play number="5" vh="H" team="NC" clock="07:50" action="GOAL" vscore="0" hscore="2" text="GOAL by NC Erin Matson, goal number 20 for season.">
+      </play>
+      <currentscore vscore="0" hscore="2">
+      </currentscore>
+      <play number="6" vh="H" team="NC" action="GOALMSG" text="*On rebound after GK save">
+      </play>
+      <play number="7" vh="V" team="SJU" clock="10:03" action="CORNER" text="Penalty corner by SJU SANTI, Lily [10:03].">
+      </play>
+      <play number="8" vh="V" team="SJU" clock="11:08" action="SHOT" text="Shot by SJU VAN TILBURG, Freke, SAVE Kylie Walbert.">
+      </play>
+      <play number="9" vh="H" team="NC" clock="12:06" action="SUB" text="NC substitution: Katie Dixon for Jasmina Smolenaars.">
+      </play>
+      <play number="10" vh="H" team="NC" clock="12:06" action="SUB" text="NC substitution: Kiersten Thomassey for Ashley Sessa.">
+      </play>
+      <play number="11" vh="H" team="NC" clock="12:43" action="SUB" text="NC substitution: Kennedy Cliggett for Paityn Wirth.">
+      </play>
+      <play number="12" vh="H" team="NC" clock="12:43" action="SUB" text="NC substitution: Lisa Slinkert for Ryleigh Heck.">
+      </play>
+      <play number="13" vh="H" team="NC" clock="12:43" action="SUB" text="NC substitution: Ciana Riccardo for Sietske Bruning.">
+      </play>
+      <play number="14" vh="V" team="SJU" clock="12:43" action="SUB" text="SJU substitution: SCHURINGA, Noa for SANTI, Lily.">
+      </play>
+      <play number="15" vh="H" team="NC" clock="12:26" action="GOAL" vscore="0" hscore="3" text="GOAL by NC Kennedy Cliggett, Assist by Erin Matson, goal number 4 for season.">
+      </play>
+      <currentscore vscore="0" hscore="3">
+      </currentscore>
+      <play number="16" vh="H" team="NC" action="GOALMSG" text="*Pass to tap in at post">
+      </play>
+      <play number="17" clock="15:00" action="END-PRD" text="End of period [15:00].">
+      </play>
+    </period>
+    <period number="2">
+      <play number="18" clock="15:00" action="PRD" text="Start of 2nd period [15:00].">
+      </play>
+      <play number="19" vh="H" team="NC" clock="17:36" action="SHOT" text="Shot by NC Erin Matson, SAVE BLEEKEMOLEN, Robin.">
+      </play>
+      <play number="20" vh="H" team="NC" clock="17:36" action="CORNER" text="Penalty corner by NC Ashley Sessa [17:36].">
+      </play>
+      <play number="21" vh="H" team="NC" clock="17:36" action="SHOT" text="Shot by NC Erin Matson, SAVE BLEEKEMOLEN, Robin.">
+      </play>
+      <play number="22" vh="H" team="NC" clock="17:43" action="CORNER" text="Penalty corner by NC Ashley Sessa [17:43].">
+      </play>
+      <play number="23" vh="H" team="NC" clock="17:43" action="SHOT" text="Shot by NC Sietske Bruning BLOCKED.">
+      </play>
+      <play number="24" vh="H" team="NC" clock="17:43" action="SHOT" text="Shot by NC Ryleigh Heck, SAVE BLEEKEMOLEN, Robin.">
+      </play>
+      <play number="25" vh="H" team="NC" clock="17:43" action="CORNER" text="Penalty corner by NC Ashley Sessa [17:43].">
+      </play>
+      <play number="26" vh="H" team="NC" clock="17:56" action="GOAL" vscore="0" hscore="4" text="GOAL by NC Paityn Wirth, Assist by Jasmina Smolenaars, goal number 3 for season.">
+      </play>
+      <currentscore vscore="0" hscore="4">
+      </currentscore>
+      <play number="27" vh="H" team="NC" action="GOALMSG" text="*Penalty corner">
+      </play>
+      <play number="28" vh="V" team="SJU" clock="26:57" action="SUB" text="SJU substitution: BITTERS, Hailey for GHIGLIOTTI, Manu.">
+      </play>
+      <play number="29" vh="V" team="SJU" clock="27:55" action="SUB" text="SJU substitution: BORENSZTEIN, Sol for SMITS, Celeste.">
+      </play>
+      <play number="30" vh="V" team="SJU" clock="30:00" action="SUB" text="SJU substitution: VAN NIEUWLAND, Meike for SANTI, Lily.">
+      </play>
+      <play number="31" vh="H" team="NC" clock="27:31" action="SUB" text="NC substitution: Ryleigh Heck for Ashley Sessa.">
+      </play>
+      <play number="32" vh="H" team="NC" clock="30:00" action="SHOT" text="Shot by NC Ryleigh Heck WIDE.">
+      </play>
+      <play number="33" vh="H" team="NC" clock="29:35" action="CORNER" text="Penalty corner by NC Paityn Wirth [29:35].">
+      </play>
+      <play number="34" vh="H" team="NC" clock="29:35" action="SHOT" text="Shot by NC Sietske Bruning BLOCKED.">
+      </play>
+      <play number="35" clock="30:00" action="END-PRD" text="End of period [30:00].">
+      </play>
+    </period>
+    <period number="3">
+      <play number="36" clock="30:00" action="PRD" text="Start of 3rd period [30:00].">
+      </play>
+      <play number="37" vh="H" team="NC" clock="30:00" action="GOALIE" text="Abigail Taylor at goalie for North Carolina.">
+      </play>
+      <play number="38" vh="V" team="SJU" clock="30:00" action="SHOT" text="Shot by SJU MILLER, Anna BLOCKED.">
+      </play>
+      <play number="39" vh="H" team="NC" clock="30:23" action="SHOT" text="Shot by NC Ashley Sessa, SAVE BLEEKEMOLEN, Robin.">
+      </play>
+      <play number="40" vh="H" team="NC" clock="32:52" action="SHOT" text="Shot by NC Paityn Wirth, SAVE BLEEKEMOLEN, Robin.">
+      </play>
+      <play number="41" vh="H" team="NC" clock="34:21" action="SHOT" text="Shot by NC Paityn Wirth WIDE.">
+      </play>
+      <play number="42" vh="H" team="NC" clock="34:55" action="GOAL" vscore="0" hscore="5" text="GOAL by NC Ryleigh Heck, Assist by Erin Matson, goal number 12 for season.">
+      </play>
+      <currentscore vscore="0" hscore="5">
+      </currentscore>
+      <play number="43" vh="H" team="NC" action="GOALMSG" text="*On the break, pass to front of cage">
+      </play>
+      <play number="44" vh="V" team="SJU" clock="35:34" action="SHOT" text="Shot by SJU JAMES, Leigh, SAVE Abigail Taylor.">
+      </play>
+      <play number="45" vh="V" team="SJU" clock="41:19" action="SUB" text="SJU substitution: VAN NIEUWLAND, Meike for CRIST, Kate.">
+      </play>
+      <play number="46" vh="H" team="NC" clock="41:47" action="GC" text="Green card on NC Katie Dixon.">
+      </play>
+      <play number="47" vh="H" team="NC" clock="42:27" action="SUB" text="NC substitution: Sietske Bruning for Kelly Smith.">
+      </play>
+      <play number="48" vh="H" team="NC" clock="42:58" action="CORNER" text="Penalty corner by NC Ashley Sessa [42:58].">
+      </play>
+      <play number="49" vh="H" team="NC" clock="42:58" action="SHOT" text="Shot by NC Sietske Bruning, SAVE BLEEKEMOLEN, Robin.">
+      </play>
+      <play number="50" vh="H" team="NC" clock="43:09" action="CORNER" text="Penalty corner by NC Ashley Sessa [43:09].">
+      </play>
+      <play number="51" vh="V" team="SJU" clock="43:23" action="SHOT" text="Shot by SJU GHIGLIOTTI, Manu BLOCKED.">
+      </play>
+      <play number="52" vh="V" team="SJU" clock="44:35" action="SHOT" text="Shot by SJU VAN NIEUWLAND, Meike, SAVE Abigail Taylor.">
+      </play>
+      <play number="53" vh="V" team="SJU" clock="44:55" action="CORNER" text="Penalty corner by SJU SANTI, Lily [44:55].">
+      </play>
+      <play number="54" vh="V" team="SJU" clock="44:55" action="SHOT" text="Shot by SJU MILLER, Anna DEFENSIVE SAVE by Madison Orobono.">
+      </play>
+      <play number="55" clock="45:00" action="END-PRD" text="End of period [45:00].">
+      </play>
+    </period>
+    <period number="4">
+      <play number="56" clock="45:00" action="PRD" text="Start of 4th period [45:00].">
+      </play>
+      <play number="57" vh="H" team="NC" clock="45:50" action="GOAL" vscore="0" hscore="6" text="GOAL by NC Ryleigh Heck, Assist by Erin Matson, goal number 13 for season.">
+      </play>
+      <currentscore vscore="0" hscore="6">
+      </currentscore>
+      <play number="58" vh="H" team="NC" action="GOALMSG" text="*Pass to front of cage for deflection">
+      </play>
+      <play number="59" vh="H" team="NC" clock="46:01" action="SUB" text="NC substitution: Steph Weber for Ryleigh Heck.">
+      </play>
+      <play number="60" vh="H" team="NC" clock="46:01" action="SUB" text="NC substitution: Brooke Behan for Paityn Wirth.">
+      </play>
+      <play number="61" vh="H" team="NC" clock="46:45" action="SUB" text="NC substitution: Ciana Riccardo for Meredith Sholder.">
+      </play>
+      <play number="62" vh="H" team="NC" clock="50:49" action="SUB" text="NC substitution: Alli Meehan for Erin Matson.">
+      </play>
+      <play number="63" vh="H" team="NC" clock="51:18" action="SUB" text="NC substitution: Dorrit Eisenbeis for Kelly Smith.">
+      </play>
+      <play number="64" vh="H" team="NC" clock="52:53" action="SUB" text="NC substitution: Mia Leonhardt for Jasmina Smolenaars.">
+      </play>
+      <play number="65" vh="V" team="SJU" clock="52:53" action="SUB" text="SJU substitution: COCCO, Katelyn for BENTON, Katy.">
+      </play>
+      <play number="66" vh="V" team="SJU" clock="53:19" action="SUB" text="SJU substitution: GHIGLIOTTI, Manu for JAMES, Leigh.">
+      </play>
+      <play number="67" vh="H" team="NC" clock="53:52" action="YC" text="Yellow card on NC Dorrit Eisenbeis.">
+      </play>
+      <play number="68" vh="H" team="NC" clock="55:28" action="SUB" text="NC substitution: Kelly Smith for Alli Meehan.">
+      </play>
+      <play number="69" vh="V" team="SJU" clock="57:01" action="SHOT" text="Shot by SJU COCCO, Katelyn, SAVE Abigail Taylor.">
+      </play>
+      <play number="70" vh="H" team="NC" clock="56:53" action="YC" text="Yellow card on NC Steph Weber.">
+      </play>
+      <play number="71" vh="H" team="NC" clock="57:05" action="SUB" text="NC substitution: Ava Borkowski for Mia Leonhardt.">
+      </play>
+      <play number="72" vh="H" team="NC" clock="57:05" action="SUB" text="NC substitution: Ashton Odiorne for Romea Riccardo.">
+      </play>
+      <play number="73" clock="60:00" action="END-PRD" text="End of period [60:00].">
+      </play>
+      <currentscore vscore="0" hscore="6">
+      </currentscore>
+    </period>
+  </plays>
+</sogame>
