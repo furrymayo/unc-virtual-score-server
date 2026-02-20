@@ -113,21 +113,31 @@
 <style>
     /* Base class overrides for lacrosse */
     .lacrosse-scoreboard .center-label {
-        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-size: clamp(0.85rem, 1.2vw, 1.8rem);
     }
     .lacrosse-scoreboard .team-score {
         font-size: clamp(4rem, 7vw, 10rem);
     }
     .lacrosse-scoreboard .team-label {
-        font-size: clamp(1.4rem, 2.2vw, 3.2rem);
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
     }
     .lacrosse-scoreboard .team-record {
-        font-size: clamp(0.9rem, 1.3vw, 1.8rem);
+        font-size: clamp(0.8rem, 1.1vw, 1.5rem);
+    }
+    .lacrosse-scoreboard .scoreboard-header {
+        margin-bottom: clamp(2px, 0.4vh, 8px);
+    }
+    .lacrosse-scoreboard .scoreboard-title {
+        font-size: clamp(1rem, 1.6vw, 2rem);
+    }
+    .lacrosse-scoreboard .scoreboard-subtitle {
+        font-size: clamp(0.65rem, 0.9vw, 1.1rem);
     }
 
     /* Lacrosse TV-Optimized Layout */
     .lacrosse-scoreboard {
-        gap: clamp(4px, 0.6vh, 8px);
+        gap: clamp(2px, 0.4vh, 6px);
+        padding: 10px 16px;
     }
 
     /* Row 1: Period + Game Clock + Shot Clock */
@@ -142,7 +152,7 @@
     }
 
     .lax-clock-row .center-card {
-        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        padding: clamp(2px, 0.3vh, 6px) clamp(6px, 1vw, 14px);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -201,7 +211,7 @@
 
     .lax-team-cell {
         background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
-        padding: clamp(6px, 0.7vh, 12px);
+        padding: clamp(4px, 0.5vh, 8px);
         border: 1px solid rgba(131, 198, 242, 0.14);
         box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
         text-align: center;
@@ -231,13 +241,13 @@
     /* Vertical stat cards (TOL/Shots) attached to team scores */
     .lax-stat-card {
         background: linear-gradient(135deg, rgba(14, 32, 55, 0.95), rgba(16, 42, 68, 0.9));
-        padding: clamp(6px, 0.7vh, 10px) clamp(8px, 1vw, 14px);
+        padding: clamp(4px, 0.5vh, 8px) clamp(6px, 0.8vw, 12px);
         border: 1px solid rgba(131, 198, 242, 0.14);
         box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: clamp(4px, 0.5vh, 8px);
+        gap: clamp(2px, 0.3vh, 6px);
         flex: 0 0 auto;
     }
 
@@ -273,16 +283,16 @@
     .lax-penalty-card {
         background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
         border-radius: 18px;
-        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 16px);
+        padding: clamp(2px, 0.3vh, 6px) clamp(6px, 0.8vw, 12px);
         border: 1px solid rgba(131, 198, 242, 0.14);
         box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
         display: flex;
         flex-direction: column;
-        gap: clamp(2px, 0.3vh, 6px);
+        gap: clamp(1px, 0.2vh, 4px);
     }
 
     .lax-penalty-header {
-        font-size: clamp(0.85rem, 1.2vw, 1.6rem);
+        font-size: clamp(0.7rem, 1vw, 1.3rem);
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--ink-soft);
@@ -326,18 +336,18 @@
     .lax-stats-card {
         background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
         border-radius: 18px;
-        padding: clamp(4px, 0.5vh, 10px) clamp(8px, 1vw, 14px);
+        padding: clamp(2px, 0.3vh, 6px) clamp(6px, 0.8vw, 12px);
         border: 1px solid rgba(131, 198, 242, 0.14);
         box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
     }
 
     .lax-stats-header {
-        font-size: clamp(0.75rem, 1.1vw, 1.4rem);
+        font-size: clamp(0.6rem, 0.85vw, 1.1rem);
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--ink-soft);
         text-align: center;
-        margin-bottom: clamp(2px, 0.3vh, 4px);
+        margin-bottom: clamp(1px, 0.2vh, 3px);
     }
 
     .lax-stats-grid {
