@@ -76,23 +76,24 @@ def update_config(sport, payload):
 
     enabled = bool(enabled)
 
-    if enabled:
-        for other_sport, other_port in trackman_ports.items():
-            if other_sport != sport and other_port == port:
-                return {"error": "port already in use"}, 409
-        start_trackman_listener(sport, port)
-    else:
-        stop_trackman_listener(sport)
-
     with trackman_lock:
+        if enabled:
+            for other_sport, other_port in trackman_ports.items():
+                if other_sport != sport and other_port == port:
+                    return {"error": "port already in use"}, 409
         trackman_config[sport] = {
             "enabled": enabled,
             "port": port,
             "feed_type": feed_type,
         }
         updated = dict(trackman_config[sport])
-    updated["running"] = sport in trackman_threads
 
+    if enabled:
+        start_trackman_listener(sport, port)
+    else:
+        stop_trackman_listener(sport)
+
+    updated["running"] = sport in trackman_threads
     return updated, 200
 
 

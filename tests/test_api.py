@@ -185,6 +185,13 @@ class TestDataSourcesCRUD:
 
 
 class TestBrowseFiles:
+    @pytest.fixture(autouse=True)
+    def _allow_browse_roots(self, monkeypatch):
+        """Allow cwd and /tmp for browse_files tests."""
+        from website import api as api_mod
+
+        monkeypatch.setattr(api_mod, "_BROWSE_ROOTS", [os.getcwd(), "/tmp"])
+
     def test_browse_default_cwd(self, client):
         """Default (no path) returns cwd with entries."""
         resp = client.get("/browse_files")
@@ -253,6 +260,13 @@ class TestBrowseFiles:
         data = resp.get_json()
         # On Linux, __drives__ is not a real path, so it falls back to cwd
         assert data["current_path"] == os.getcwd()
+
+    def test_browse_rejects_outside_roots(self, client):
+        """Paths outside allowed roots are rejected with 403."""
+        resp = client.get("/browse_files?path=/etc/passwd")
+        assert resp.status_code == 403
+        data = resp.get_json()
+        assert "outside" in data["error"]
 
 
 class TestGymnasticsData:

@@ -49,12 +49,20 @@ _STALE_TTL = 3600  # 1 hour
 # TOP/BOT.  Instead we track outs transitions:
 #   TOP  ──outs==3──▸ MID  ──outs<3──▸ BOT  ──outs==3──▸ END  ──outs<3──▸ TOP(+1)
 
-_baseball_state = {
-    "half": "TOP",
-    "inning": 1,
-    "prev_outs": None,
-    "initialized": False,
-}
+_baseball_states = {}
+
+
+def _get_baseball_state(source_id):
+    """Return (creating if needed) the baseball state for a given source."""
+    key = source_id or "__default__"
+    if key not in _baseball_states:
+        _baseball_states[key] = {
+            "half": "TOP",
+            "inning": 1,
+            "prev_outs": None,
+            "initialized": False,
+        }
+    return _baseball_states[key]
 
 
 def _ordinal(n):
@@ -86,22 +94,23 @@ def _bootstrap_baseball_state(parsed):
     return {"half": half, "inning": inning, "prev_outs": outs, "initialized": True}
 
 
-def _update_baseball_inning(parsed):
+def _update_baseball_inning(parsed, source_id):
     """Advance the baseball inning state machine.
 
     Must be called under parsed_data_lock.
     Returns (half, inning) where half is TOP/MID/BOT/END.
     """
-    global _baseball_state
+    state = _get_baseball_state(source_id)
 
     outs_raw = str(parsed.get("outs", "")).strip()
     outs = int(outs_raw) if outs_raw.isdigit() else None
 
-    if not _baseball_state["initialized"]:
-        _baseball_state = _bootstrap_baseball_state(parsed)
+    if not state["initialized"]:
+        bootstrapped = _bootstrap_baseball_state(parsed)
+        state.update(bootstrapped)
     elif outs is not None:
-        half = _baseball_state["half"]
-        inning = _baseball_state["inning"]
+        half = state["half"]
+        inning = state["inning"]
 
         if outs == 3:
             # Half-inning just ended
@@ -117,23 +126,23 @@ def _update_baseball_inning(parsed):
                 half = "TOP"
                 inning += 1
 
-        _baseball_state["half"] = half
-        _baseball_state["inning"] = inning
-        _baseball_state["prev_outs"] = outs
+        state["half"] = half
+        state["inning"] = inning
+        state["prev_outs"] = outs
 
-    return _baseball_state["half"], _baseball_state["inning"]
+    return state["half"], state["inning"]
 
 
-def reset_baseball_state():
-    """Reset the inning state machine (e.g. new game)."""
-    global _baseball_state
+def reset_baseball_state(source_id=None):
+    """Reset the inning state machine (e.g. new game).
+
+    If source_id given, reset that one source; if None, clear all.
+    """
     with parsed_data_lock:
-        _baseball_state = {
-            "half": "TOP",
-            "inning": 1,
-            "prev_outs": None,
-            "initialized": False,
-        }
+        if source_id is not None:
+            _baseball_states.pop(source_id or "__default__", None)
+        else:
+            _baseball_states.clear()
 
 
 def record_packet(sport, parsed, source_id):
@@ -147,7 +156,7 @@ def record_packet(sport, parsed, source_id):
             parsed_data[sport] = {}
         # Baseball inning enrichment
         if sport == "Baseball":
-            half, inning = _update_baseball_inning(parsed)
+            half, inning = _update_baseball_inning(parsed, source_id)
             parsed = {
                 **parsed,
                 "inning": inning,
@@ -268,6 +277,7 @@ def stop_serial_reader():
 
 tcp_client_threads = {}
 tcp_client_events = {}
+tcp_clients_lock = threading.Lock()
 
 
 def tcp_client_worker(source):
@@ -313,31 +323,31 @@ def tcp_client_worker(source):
         if stop_event.is_set():
             break
 
-        time.sleep(backoff)
+        if stop_event.wait(backoff):
+            break
         backoff = min(backoff * 2, 10.0)
 
 
 def start_tcp_client(source):
     source_id = source["id"]
-    if source_id in tcp_client_threads:
-        return
-
-    stop_event = threading.Event()
-    tcp_client_events[source_id] = stop_event
-    thread = threading.Thread(target=tcp_client_worker, args=(source,), daemon=True)
-    tcp_client_threads[source_id] = thread
-    thread.start()
+    with tcp_clients_lock:
+        if source_id in tcp_client_threads:
+            return
+        stop_event = threading.Event()
+        tcp_client_events[source_id] = stop_event
+        thread = threading.Thread(target=tcp_client_worker, args=(source,), daemon=True)
+        tcp_client_threads[source_id] = thread
+        thread.start()
 
 
 def stop_tcp_client(source_id):
-    event = tcp_client_events.get(source_id)
+    with tcp_clients_lock:
+        event = tcp_client_events.pop(source_id, None)
+        thread = tcp_client_threads.pop(source_id, None)
     if event:
         event.set()
-    thread = tcp_client_threads.get(source_id)
     if thread:
         thread.join(timeout=2)
-    tcp_client_events.pop(source_id, None)
-    tcp_client_threads.pop(source_id, None)
 
 
 # --- Network listeners (inbound TCP server + UDP) ---
@@ -444,6 +454,12 @@ def tcp_listener(port, stop_event):
 def start_network_listeners(tcp_port, udp_port, mode):
     global _tcp_thread, _udp_thread
     _network_stop_event.clear()
+
+    if mode in {"tcp", "auto"}:
+        _tcp_thread = threading.Thread(
+            target=tcp_listener, args=(tcp_port, _network_stop_event), daemon=True
+        )
+        _tcp_thread.start()
 
     if mode in {"udp", "auto"}:
         _udp_thread = threading.Thread(

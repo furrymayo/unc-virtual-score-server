@@ -1,10 +1,12 @@
 import os
+import secrets
+
 from flask import Flask
 
 
 def create_app():
     app = Flask(__name__, template_folder="Templates", static_folder="static")
-    app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "dev-fallback-key")
+    app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY") or secrets.token_hex(32)
 
     from .views import views
     from .sports import sports

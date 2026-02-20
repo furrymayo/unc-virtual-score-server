@@ -8,6 +8,23 @@ from . import ingestion, statcrew, trackman, virtius
 
 api = Blueprint("api", __name__)
 
+# --- Path traversal guard for browse_files ---
+_BROWSE_ROOTS = [
+    r for r in os.environ.get("BROWSE_ROOTS", "/mnt/stats").split(":") if r
+] or [os.getcwd()]
+
+
+def _path_allowed(path):
+    """Return True if path is under one of the allowed browse roots (Linux only)."""
+    if platform.system() == "Windows":
+        return True
+    abs_path = os.path.abspath(path)
+    return any(
+        abs_path == os.path.abspath(root)
+        or abs_path.startswith(os.path.abspath(root) + os.sep)
+        for root in _BROWSE_ROOTS
+    )
+
 
 @api.route("/update_server_config", methods=["POST"])
 def update_server_config():
@@ -341,6 +358,9 @@ def browse_files():
     except Exception:
         return jsonify({"error": "invalid path"}), 400
 
+    if not _path_allowed(path):
+        return jsonify({"error": "path outside allowed directories"}), 403
+
     if os.path.isfile(path):
         path = os.path.dirname(path)
 
@@ -350,6 +370,9 @@ def browse_files():
             path = parent
         else:
             path = os.getcwd()
+
+    if not _path_allowed(path):
+        return jsonify({"error": "path outside allowed directories"}), 403
 
     parent_path = os.path.dirname(path)
     if parent_path == path:

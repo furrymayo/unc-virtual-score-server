@@ -49,6 +49,8 @@ dist/
 
 # Runtime data
 data_sources.json
+statcrew_sources.json
+virtius_sources.json
 
 # Claude Code
 .claude/

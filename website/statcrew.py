@@ -53,6 +53,8 @@ _init_config()
 
 _AWAY_COLOR_FALLBACK = "#d46a6a"
 _ncaa_teams = []
+_ncaa_by_norm_name = {}
+_ncaa_by_slug = {}
 
 
 def _load_ncaa_colors():
@@ -65,6 +67,21 @@ def _load_ncaa_colors():
     except Exception as exc:
         print(f"Failed to load NCAA team colors: {exc}")
         _ncaa_teams = []
+    _build_ncaa_index()
+
+
+def _build_ncaa_index():
+    """Build O(1) lookup dicts from the loaded team list."""
+    global _ncaa_by_norm_name, _ncaa_by_slug
+    _ncaa_by_norm_name = {}
+    _ncaa_by_slug = {}
+    for team in _ncaa_teams:
+        norm = _normalize_name(team.get("name", ""))
+        if norm and norm not in _ncaa_by_norm_name:
+            _ncaa_by_norm_name[norm] = team
+        slug = team.get("slug", "")
+        if slug and slug not in _ncaa_by_slug:
+            _ncaa_by_slug[slug] = team
 
 
 def _hex_to_hsl(hex_color):
@@ -106,23 +123,27 @@ def _find_ncaa_team(away_name, away_code):
     norm_name = _normalize_name(away_name) if away_name else ""
     norm_code = (away_code or "").lower().strip()
 
-    # Pass 1: exact normalized name match
-    for team in _ncaa_teams:
-        if norm_name and _normalize_name(team["name"]) == norm_name:
-            return team
+    # Pass 1: exact normalized name match (O(1))
+    if norm_name:
+        match = _ncaa_by_norm_name.get(norm_name)
+        if match:
+            return match
 
-    # Pass 2: StatCrew name is prefix of JSON name (word boundary)
+    # Pass 2: StatCrew name is prefix of JSON name (word boundary) — O(n) fallback
     if norm_name:
         for team in _ncaa_teams:
             json_name = _normalize_name(team["name"])
-            if json_name.startswith(norm_name + " ") or json_name == norm_name:
+            if json_name.startswith(norm_name + " "):
                 return team
 
-    # Pass 3: code matches slug prefix
+    # Pass 3: code matches slug (O(1)) or slug prefix (O(n) fallback)
     if norm_code:
+        match = _ncaa_by_slug.get(norm_code)
+        if match:
+            return match
         for team in _ncaa_teams:
             slug = team.get("slug", "")
-            if slug.startswith(norm_code + "_") or slug == norm_code:
+            if slug.startswith(norm_code + "_"):
                 return team
 
     return None
