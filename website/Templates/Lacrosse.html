@@ -393,6 +393,7 @@
 
 <script>
     let statcrewData = {};
+    let statcrewShots = { home: null, away: null };
 
     function normalizeClock(value) {
         if (value === undefined || value === null) return value;
@@ -427,8 +428,9 @@
         setText('lax-visitor-score', data.visitor_score);
         setText('lax-home-tol', data.home_full_tol);
         setText('lax-visitor-tol', data.visitor_full_tol);
-        setText('lax-home-shots', data.home_shots);
-        setText('lax-visitor-shots', data.visitor_shots);
+        // Prefer StatCrew shots over OES when available
+        if (statcrewShots.home === null) setText('lax-home-shots', data.home_shots);
+        if (statcrewShots.away === null) setText('lax-visitor-shots', data.visitor_shots);
 
         // Shot clock: red when under 10 seconds
         var shotClockSecs = parseClockSeconds(shotClock);
@@ -502,6 +504,8 @@
                 setText('lax-home-ct', homeStats.ct);
                 setText('lax-home-clears', homeStats.clears);
                 setText('lax-home-save-pct', homeStats.save_pct);
+                statcrewShots.home = homeStats.shots;
+                setText('lax-home-shots', homeStats.shots);
             }
 
             if (awayStats) {
@@ -511,6 +515,8 @@
                 setText('lax-away-ct', awayStats.ct);
                 setText('lax-away-clears', awayStats.clears);
                 setText('lax-away-save-pct', awayStats.save_pct);
+                statcrewShots.away = awayStats.shots;
+                setText('lax-visitor-shots', awayStats.shots);
             }
         } else {
             statsRow.style.display = 'none';
