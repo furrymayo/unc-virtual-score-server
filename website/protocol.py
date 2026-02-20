@@ -457,6 +457,8 @@ def parse_wrestling_data(packet):
             packet[2] & 0x7F, packet[3] & 0x7F, packet[4] & 0x7F, packet[5]
         )
         period = chr(packet[6])
+        if period.isdigit() and int(period) > 3:
+            period = "OT"
         home_score = _decode_score(packet[7], packet[8])
         visitor_score = _decode_score(packet[9], packet[10])
 

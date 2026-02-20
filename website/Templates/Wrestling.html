@@ -72,12 +72,34 @@
             <div class="wr-inj-value" id="wr-visitor-inj-time">--</div>
         </div>
     </div>
+
+    <!-- Row 4: Bout Result (auto-hide after 10s) -->
+    <div class="wr-result-row" id="wr-result-row" style="display: none;">
+        <div class="wr-result-card">
+            <span class="wr-result-winner" id="wr-result-winner"></span>
+            <span class="wr-result-type" id="wr-result-type"></span>
+            <span class="wr-result-score" id="wr-result-score"></span>
+        </div>
+    </div>
+
+    <!-- Dual Meet Scorecard (hidden when empty) -->
+    <div class="wr-scorecard-row" id="wr-scorecard-row"></div>
 </section>
 
 <style>
+    /* Base class overrides for TV readability */
+    .wrestling-scoreboard .center-label { font-size: clamp(1rem, 1.5vw, 2.2rem); }
+    .wrestling-scoreboard .team-score { font-size: clamp(4rem, 7vw, 10rem); }
+    .wrestling-scoreboard .team-label { font-size: clamp(1.4rem, 2.2vw, 3.2rem); }
+    .wrestling-scoreboard .team-record { font-size: clamp(0.9rem, 1.3vw, 1.8rem); }
+    .wrestling-scoreboard .scoreboard-header { margin-bottom: clamp(2px, 0.4vh, 8px); }
+    .wrestling-scoreboard .scoreboard-title { font-size: clamp(1rem, 1.6vw, 2rem); }
+    .wrestling-scoreboard .scoreboard-subtitle { font-size: clamp(0.65rem, 0.9vw, 1.1rem); }
+
     /* Wrestling TV-Optimized Layout */
     .wrestling-scoreboard {
-        gap: clamp(4px, 0.6vh, 8px);
+        gap: clamp(2px, 0.4vh, 6px);
+        padding: 10px 16px;
     }
 
     /* Row 1: Period + Match Clock + Weight Class */
@@ -92,14 +114,14 @@
     }
 
     .wr-clock-row .center-card {
-        padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1.2vw, 18px);
+        padding: clamp(2px, 0.3vh, 6px) clamp(6px, 1vw, 14px);
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
     .wr-clock-value {
-        font-size: clamp(4rem, 10vw, 11rem);
+        font-size: clamp(5rem, 12vw, 14rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         line-height: 1;
@@ -111,7 +133,7 @@
     }
 
     .wr-period-value {
-        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-size: clamp(1.6rem, 2.5vw, 3.5rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
@@ -122,7 +144,7 @@
     }
 
     .wr-weight-value {
-        font-size: clamp(2rem, 3.2vw, 4.5rem);
+        font-size: clamp(2.5rem, 4vw, 6rem);
         font-weight: 800;
         font-family: "JetBrains Mono", monospace;
         color: var(--accent);
@@ -150,7 +172,7 @@
 
     .wr-team-cell {
         background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
-        padding: clamp(6px, 0.7vh, 12px);
+        padding: clamp(4px, 0.5vh, 8px);
         border: 1px solid rgba(131, 198, 242, 0.14);
         box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
         text-align: center;
@@ -195,14 +217,14 @@
     }
 
     .wr-stat-name {
-        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        font-size: clamp(0.85rem, 1.2vw, 1.6rem);
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--ink-soft);
     }
 
     .wr-stat-item strong {
-        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-size: clamp(1.4rem, 2vw, 3rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
@@ -221,7 +243,7 @@
     .wr-situation-card {
         background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
         border-radius: 18px;
-        padding: clamp(6px, 0.7vh, 14px) clamp(8px, 1vw, 16px);
+        padding: clamp(4px, 0.5vh, 10px) clamp(6px, 0.8vw, 14px);
         border: 1px solid rgba(131, 198, 242, 0.14);
         box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
         display: flex;
@@ -231,7 +253,7 @@
     }
 
     .wr-inj-value {
-        font-size: clamp(1.4rem, 2.2vw, 3.2rem);
+        font-size: clamp(1.8rem, 2.8vw, 4rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
@@ -250,7 +272,7 @@
     }
 
     .wr-dual-side {
-        font-size: clamp(2rem, 3.5vw, 5rem);
+        font-size: clamp(2.5rem, 4.5vw, 6.5rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         line-height: 1.1;
@@ -265,7 +287,7 @@
     }
 
     .wr-dual-divider {
-        font-size: clamp(1.4rem, 2.2vw, 3.4rem);
+        font-size: clamp(1.8rem, 2.8vw, 4.2rem);
         color: var(--ink-soft);
         font-weight: 400;
     }
@@ -278,43 +300,89 @@
     .wr-adv-green {
         color: #51cf66 !important;
     }
+
+    /* Injury time active indicator */
+    .wr-inj-active {
+        color: #fcc419 !important;
+        text-shadow: 0 0 8px rgba(252, 196, 25, 0.3);
+    }
+
+    /* Row 4: Bout Result */
+    .wr-result-row {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .wr-result-card {
+        background: linear-gradient(135deg, rgba(18, 39, 66, 0.95), rgba(20, 52, 82, 0.9));
+        border-radius: 18px;
+        padding: clamp(6px, 0.6vh, 12px) clamp(16px, 2vw, 32px);
+        border: 1px solid rgba(131, 198, 242, 0.14);
+        box-shadow: 0 10px 24px rgba(4, 12, 24, 0.3);
+        display: flex;
+        align-items: baseline;
+        gap: clamp(10px, 1.5vw, 24px);
+    }
+
+    .wr-result-winner {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+    }
+
+    .wr-result-winner.wr-home-winner { color: var(--carolina); }
+    .wr-result-winner.wr-away-winner { color: var(--away-color, var(--accent)); }
+
+    .wr-result-type {
+        font-size: clamp(1.4rem, 2vw, 3rem);
+        font-weight: 800;
+        color: var(--accent);
+    }
+
+    .wr-result-score {
+        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+    }
+
+    /* Dual Meet Scorecard */
+    .wr-scorecard-row:empty { display: none; }
+
+    .wr-scorecard-row {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .wr-scorecard-table {
+        border-collapse: collapse;
+        max-height: clamp(120px, 15vh, 200px);
+        overflow-y: auto;
+        font-size: clamp(0.7rem, 1vw, 1.2rem);
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    .wr-scorecard-table th {
+        padding: clamp(2px, 0.3vh, 6px) clamp(6px, 0.8vw, 12px);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+        font-weight: 600;
+        border-bottom: 1px solid rgba(131, 198, 242, 0.2);
+    }
+
+    .wr-scorecard-table td {
+        padding: clamp(2px, 0.3vh, 4px) clamp(6px, 0.8vw, 12px);
+        text-align: center;
+        border-bottom: 1px solid rgba(131, 198, 242, 0.08);
+    }
+
+    .wr-scorecard-table tr.wr-sc-home td { color: var(--carolina); }
+    .wr-scorecard-table tr.wr-sc-away td { color: var(--away-color, var(--accent)); }
 </style>
 
-<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
-    <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
-        <div style="display: flex; align-items: center;">
-            <span class="dropdown-indicator"></span>
-            <div class="scoreboard-subtitle">Additional Data Sources</div>
-        </div>
-        <div class="meta-row">
-            <div class="meta-chip">StatCrew <span id="wr-sc-status">n/a</span></div>
-        </div>
-    </summary>
-
-    <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">StatCrew XML</div>
-    <form id="wr-statcrew-form" class="config-grid">
-        <div style="grid-column: span 2;">
-            <label for="wr-statcrew-path">StatCrew XML File Path</label>
-            <div class="path-input-group">
-                <input id="wr-statcrew-path" type="text" placeholder="/path/to/statcrew.xml" />
-                <button type="button" class="btn-browse" onclick="openFileBrowser('wr-statcrew-path')">Browse</button>
-            </div>
-        </div>
-        <div>
-            <label for="wr-statcrew-enabled">Enabled</label>
-            <select id="wr-statcrew-enabled">
-                <option value="true">Enabled</option>
-                <option value="false">Disabled</option>
-            </select>
-        </div>
-        <div class="d-flex align-items-end">
-            <button type="submit" class="btn-config w-100">Save StatCrew</button>
-        </div>
-    </form>
-</details>
-
 <script>
-    var statcrewData = {};
 
     function normalizeClock(value) {
         if (value === undefined || value === null) return value;
@@ -340,12 +408,87 @@
         return Number.isFinite(parsed) ? parsed : null;
     }
 
+    // State for bout result detection (Item 5)
+    var prevWeightClass = null;
+    var prevHomeScore = null;
+    var prevVisitorScore = null;
+    var prevHomeTeamPts = null;
+    var prevVisitorTeamPts = null;
+    var resultTimer = null;
+
+    // State for injury time indicator (Item 7)
+    var previousHomeInjTime = null;
+    var previousVisitorInjTime = null;
+
+    // Bout history for scorecard (Item 6)
+    var boutHistory = [];
+
+    function classifyBoutResult(scoreDiff, teamPtsAwarded) {
+        if (teamPtsAwarded === 6) return 'WIN';
+        if (teamPtsAwarded === 5 || scoreDiff >= 15) return 'TF';
+        if (teamPtsAwarded === 4 || (scoreDiff >= 8 && scoreDiff <= 14)) return 'MD';
+        if (teamPtsAwarded === 3 || (scoreDiff >= 1 && scoreDiff <= 7)) return 'DEC';
+        return 'WIN';
+    }
+
+    function showBoutResult(winnerSide, resultType, winScore, loseScore, weightClass) {
+        var row = document.getElementById('wr-result-row');
+        var winnerEl = document.getElementById('wr-result-winner');
+        var typeEl = document.getElementById('wr-result-type');
+        var scoreEl = document.getElementById('wr-result-score');
+
+        winnerEl.textContent = winnerSide === 'home' ? 'HOME' : 'AWAY';
+        winnerEl.className = 'wr-result-winner ' + (winnerSide === 'home' ? 'wr-home-winner' : 'wr-away-winner');
+        typeEl.textContent = resultType;
+        scoreEl.textContent = winScore + '-' + loseScore;
+
+        row.style.display = '';
+        if (resultTimer) clearTimeout(resultTimer);
+        resultTimer = setTimeout(function() { row.style.display = 'none'; }, 10000);
+    }
+
+    function addBoutToHistory(weightClass, winnerSide, winScore, loseScore, resultType, teamPts) {
+        boutHistory.push({
+            weight: weightClass,
+            winner: winnerSide,
+            winScore: winScore,
+            loseScore: loseScore,
+            result: resultType,
+            pts: teamPts
+        });
+        renderScorecard();
+    }
+
+    function renderScorecard() {
+        var container = document.getElementById('wr-scorecard-row');
+        if (boutHistory.length === 0) { container.innerHTML = ''; return; }
+        var html = '<table class="wr-scorecard-table"><thead><tr><th>Wt</th><th>Winner</th><th>Score</th><th>Result</th><th>Pts</th></tr></thead><tbody>';
+        for (var i = 0; i < boutHistory.length; i++) {
+            var b = boutHistory[i];
+            var rowClass = b.winner === 'home' ? 'wr-sc-home' : 'wr-sc-away';
+            html += '<tr class="' + rowClass + '">';
+            html += '<td>' + b.weight + '</td>';
+            html += '<td>' + (b.winner === 'home' ? 'HOME' : 'AWAY') + '</td>';
+            html += '<td>' + b.winScore + '-' + b.loseScore + '</td>';
+            html += '<td>' + b.result + '</td>';
+            html += '<td>' + b.pts + '</td>';
+            html += '</tr>';
+        }
+        html += '</tbody></table>';
+        container.innerHTML = html;
+    }
+
     function renderWrestling(data) {
         var gameClock = normalizeClock(data.game_clock);
 
         setText('wr-game-clock', gameClock);
         setText('wr-period', data.period);
-        setText('wr-weight-class', data.match_weight_class);
+
+        // Item 4: HWT for 285
+        var weightClass = (data.match_weight_class || '').trim();
+        if (weightClass === '285') weightClass = 'HWT';
+        setText('wr-weight-class', weightClass);
+
         setText('wr-home-score', data.home_score);
         setText('wr-visitor-score', data.visitor_score);
         setText('wr-home-team-points', data.home_team_points);
@@ -367,27 +510,52 @@
         var visAdvSecs = parseClockSeconds(data.visitor_adv_time);
         homeAdvEl.classList.toggle('wr-adv-green', Number.isFinite(homeAdvSecs) && homeAdvSecs >= 60);
         visAdvEl.classList.toggle('wr-adv-green', Number.isFinite(visAdvSecs) && visAdvSecs >= 60);
-    }
 
-    function renderStatcrewWrestling(data) {
-        statcrewData = data || {};
-        var info = getStatcrewTeamInfo(statcrewData);
-        setText('wr-venue-info', info.venueText || 'Live scoreboard feed');
-        setText('wr-home-name', info.homeName || 'Home');
-        setText('wr-visitor-name', info.visitorName || 'Visitor');
-        setText('wr-home-record', info.homeRecord ? '(' + info.homeRecord + ')' : '', '');
-        setText('wr-visitor-record', info.visitorRecord ? '(' + info.visitorRecord + ')' : '', '');
+        // Item 7: Injury time active indicator
+        var homeInjEl = document.getElementById('wr-home-inj-time');
+        var visInjEl = document.getElementById('wr-visitor-inj-time');
+        var curHomeInj = data.home_inj_time;
+        var curVisInj = data.visitor_inj_time;
+        var homeInjSecs = parseClockSeconds(curHomeInj);
+        var visInjSecs = parseClockSeconds(curVisInj);
+        var homeInjActive = previousHomeInjTime !== null && curHomeInj !== previousHomeInjTime && Number.isFinite(homeInjSecs) && homeInjSecs > 0;
+        var visInjActive = previousVisitorInjTime !== null && curVisInj !== previousVisitorInjTime && Number.isFinite(visInjSecs) && visInjSecs > 0;
+        homeInjEl.classList.toggle('wr-inj-active', homeInjActive);
+        visInjEl.classList.toggle('wr-inj-active', visInjActive);
+        previousHomeInjTime = curHomeInj;
+        previousVisitorInjTime = curVisInj;
 
-        if (statcrewData.away_team_color) {
-            applyAwayTeamColor(statcrewData.away_team_color);
+        // Item 5: Bout result detection — weight class change with non-zero prior scores
+        var curWeight = (data.match_weight_class || '').trim();
+        var curHomeScore = parseInt(String(data.home_score).trim(), 10) || 0;
+        var curVisScore = parseInt(String(data.visitor_score).trim(), 10) || 0;
+        var curHomeTp = parseInt(String(data.home_team_points).trim(), 10) || 0;
+        var curVisTp = parseInt(String(data.visitor_team_points).trim(), 10) || 0;
+
+        if (prevWeightClass !== null && curWeight !== '' && curWeight !== prevWeightClass && (prevHomeScore > 0 || prevVisitorScore > 0)) {
+            var scoreDiff = Math.abs(prevHomeScore - prevVisitorScore);
+            var winnerSide, winScore, loseScore, teamPtsAwarded;
+            if (prevHomeScore >= prevVisitorScore) {
+                winnerSide = 'home';
+                winScore = prevHomeScore;
+                loseScore = prevVisitorScore;
+                teamPtsAwarded = curHomeTp - (prevHomeTeamPts || 0);
+            } else {
+                winnerSide = 'visitor';
+                winScore = prevVisitorScore;
+                loseScore = prevHomeScore;
+                teamPtsAwarded = curVisTp - (prevVisitorTeamPts || 0);
+            }
+            var resultType = classifyBoutResult(scoreDiff, teamPtsAwarded);
+            showBoutResult(winnerSide, resultType, winScore, loseScore, prevWeightClass);
+            addBoutToHistory(prevWeightClass, winnerSide, winScore, loseScore, resultType, teamPtsAwarded);
         }
-    }
 
-    function fetchStatcrewWrestlingData() {
-        fetch('/get_statcrew_data/Wrestling')
-            .then(function(response) { return response.json(); })
-            .then(function(data) { renderStatcrewWrestling(data || {}); })
-            .catch(function() { renderStatcrewWrestling({}); });
+        prevWeightClass = curWeight;
+        prevHomeScore = curHomeScore;
+        prevVisitorScore = curVisScore;
+        prevHomeTeamPts = curHomeTp;
+        prevVisitorTeamPts = curVisTp;
     }
 
     function fetchWrestlingData() {
@@ -396,14 +564,6 @@
 
     fetchWrestlingData();
     setInterval(fetchWrestlingData, 150);
-
-    loadStatcrewConfig('Wrestling', 'wr');
-    fetchStatcrewWrestlingData();
-    setInterval(fetchStatcrewWrestlingData, 5000);
-
-    document.getElementById('wr-statcrew-form').addEventListener('submit', function(e) {
-        submitStatcrewConfig(e, 'Wrestling', 'wr');
-    });
 
     document.addEventListener('dataFetched', function(event) {
         renderWrestling(event.detail || {});

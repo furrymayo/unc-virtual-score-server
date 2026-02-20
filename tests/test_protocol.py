@@ -1,11 +1,12 @@
 from website.protocol import (
     PacketStreamParser,
     STX, CR,
-    TP_BBALL_BASE_SOFT, TP_FOOTBALL, TP_VOLLEYBALL,
+    TP_BBALL_BASE_SOFT, TP_FOOTBALL, TP_VOLLEYBALL, TP_WRESTLING,
     BBALL_LEN,
     _decode_score, _decode_clock,
     identify_and_parse,
     parse_basketball_data, parse_volleyball_data, parse_football_data,
+    parse_wrestling_data,
 )
 
 
@@ -182,3 +183,37 @@ class TestIdentifyAndParse:
         sport, parsed = identify_and_parse([STX, 0x01, 0x30, CR])
         assert sport is None
         assert parsed is None
+
+
+class TestWrestlingParser:
+    def _build_wrestling_packet(self, period_char="1"):
+        """Build a minimal wrestling packet (42 bytes)."""
+        pkt = [0x30] * 42
+        pkt[0] = STX
+        pkt[1] = TP_WRESTLING
+        pkt[2] = ord("0") | 0x80  # clock
+        pkt[3] = ord("2") | 0x80
+        pkt[4] = ord("0") | 0x80
+        pkt[5] = ord("0")
+        pkt[6] = ord(period_char)
+        pkt[7] = 0x3A  # home score tens (blank)
+        pkt[8] = ord("5")
+        pkt[9] = 0x3A  # visitor score tens (blank)
+        pkt[10] = ord("3")
+        pkt[22] = ord("1")  # weight class
+        pkt[23] = ord("4")
+        pkt[24] = ord("1")
+        pkt[-1] = CR
+        return pkt
+
+    def test_wrestling_period_3_stays(self):
+        pkt = self._build_wrestling_packet("3")
+        result = parse_wrestling_data(pkt)
+        assert "error" not in result
+        assert result["period"] == "3"
+
+    def test_wrestling_period_4_becomes_ot(self):
+        pkt = self._build_wrestling_packet("4")
+        result = parse_wrestling_data(pkt)
+        assert "error" not in result
+        assert result["period"] == "OT"
