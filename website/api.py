@@ -280,14 +280,23 @@ def get_gymnastics_data():
     oes = ingestion.get_sport_data("Gymnastics", source_id)
     virtius_data = virtius.get_data("Gymnastics")
 
-    # Look up away team color from Virtius team name
-    away_team_color = None
+    # Look up color for every non-home team
     teams = virtius_data.get("teams") or []
-    away = next((t for t in teams if not t.get("home")), None)
-    if away:
-        away_team_color = statcrew.lookup_away_team_color(
-            away.get("name", ""), away.get("tricode", "")
+    team_colors = {}
+    for t in teams:
+        if t.get("home"):
+            continue
+        key = t.get("tricode") or t.get("name") or "Team"
+        team_colors[key] = statcrew.lookup_away_team_color(
+            t.get("name", ""), t.get("tricode", "")
         )
+
+    # Keep away_team_color for backwards compat (first non-home team)
+    away_team_color = None
+    first_away = next((t for t in teams if not t.get("home")), None)
+    if first_away:
+        key = first_away.get("tricode") or first_away.get("name") or "Team"
+        away_team_color = team_colors.get(key)
 
     return jsonify(
         {
@@ -295,6 +304,7 @@ def get_gymnastics_data():
             "oes": oes,
             "virtius": virtius_data,
             "away_team_color": away_team_color,
+            "team_colors": team_colors,
         }
     )
 

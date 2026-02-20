@@ -9,60 +9,14 @@
     <div class="gym-rotation-bar">
         <span class="gym-rotation-label" id="gym-rotation-label">ROTATION --</span>
         <span class="gym-rotation-events-inline" id="gym-rotation-events-inline"></span>
+        <span class="gym-rotation-clock" id="gym-rotation-clock">--</span>
     </div>
 
-    <!-- ROW 2: Teams + Clock -->
-    <div class="gym-main-grid">
-        <!-- Home team -->
-        <div class="team-card gym-team-card gym-home">
-            <div class="team-label"><span id="gym-home-name">Home</span></div>
-            <div class="team-score gym-team-total" id="gym-home-score">--</div>
-            <div class="gym-event-scores">
-                <div class="gym-evt"><span>Vault</span><strong id="gym-home-vault">--</strong></div>
-                <div class="gym-evt"><span>Bars</span><strong id="gym-home-bars">--</strong></div>
-                <div class="gym-evt"><span>Beam</span><strong id="gym-home-beam">--</strong></div>
-                <div class="gym-evt"><span>Floor</span><strong id="gym-home-floor">--</strong></div>
-            </div>
-        </div>
+    <!-- ROW 2: Teams + Clock (JS populates) -->
+    <div class="gym-main-grid" id="gym-main-grid"></div>
 
-        <!-- Center clock -->
-        <div class="center-card gym-clock-card">
-            <div class="gym-clock-value" id="gym-center-clock">--</div>
-            <div class="gym-clock-label">CLOCK</div>
-        </div>
-
-        <!-- Away team -->
-        <div class="team-card gym-team-card gym-away">
-            <div class="team-label"><span id="gym-away-name">Away</span></div>
-            <div class="team-score gym-team-total" id="gym-away-score">--</div>
-            <div class="gym-event-scores">
-                <div class="gym-evt"><span>Vault</span><strong id="gym-away-vault">--</strong></div>
-                <div class="gym-evt"><span>Bars</span><strong id="gym-away-bars">--</strong></div>
-                <div class="gym-evt"><span>Beam</span><strong id="gym-away-beam">--</strong></div>
-                <div class="gym-evt"><span>Floor</span><strong id="gym-away-floor">--</strong></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ROW 3: Current event lineups -->
-    <div class="gym-lineup-grid">
-        <div class="gym-lineup-card gym-home">
-            <div class="gym-lineup-header">
-                <span class="gym-lineup-team" id="gym-home-lineup-team">Home</span>
-                <span class="gym-lineup-dash">&mdash;</span>
-                <span class="gym-lineup-event" id="gym-home-lineup-event">--</span>
-            </div>
-            <div class="gym-lineup-table" id="gym-home-lineup-list"></div>
-        </div>
-        <div class="gym-lineup-card gym-away">
-            <div class="gym-lineup-header">
-                <span class="gym-lineup-team" id="gym-away-lineup-team">Away</span>
-                <span class="gym-lineup-dash">&mdash;</span>
-                <span class="gym-lineup-event" id="gym-away-lineup-event">--</span>
-            </div>
-            <div class="gym-lineup-table" id="gym-away-lineup-list"></div>
-        </div>
-    </div>
+    <!-- ROW 3: Current event lineups (JS populates) -->
+    <div class="gym-lineup-grid" id="gym-lineup-grid"></div>
 
     <!-- ROW 4: All-around leaders -->
     <div class="gym-aa-section" id="gym-allaround">
@@ -176,7 +130,18 @@
         margin-left: 4px;
     }
 
-    /* --- Main grid: Home | Clock | Away --- */
+    .gym-rotation-clock {
+        display: none;
+        margin-left: auto;
+        font-size: clamp(1.4rem, 2.4vw, 3.5rem);
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+    }
+
+    /* --- Main grid: Home | Clock | Away (dual default) --- */
     .gym-main-grid {
         display: grid;
         grid-template-columns: 1fr minmax(360px, 540px) 1fr;
@@ -248,7 +213,7 @@
         margin-top: 4px;
     }
 
-    /* --- Team-specific colors --- */
+    /* --- Team-specific colors (dual meet) --- */
     .gym-home .team-label {
         color: var(--carolina-soft);
     }
@@ -464,19 +429,56 @@
         border-right-color: rgba(131, 198, 242, 0.08);
     }
 
+    /* --- Multi-team grid overrides --- */
+    .gym-main-grid.gym-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gym-main-grid.gym-grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .gym-lineup-grid.gym-lineup-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gym-lineup-grid.gym-lineup-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .gym-grid-4 .gym-event-scores {
+        grid-template-columns: 1fr;
+    }
+
+    .gym-grid-4 .gym-team-total {
+        font-size: clamp(1.8rem, 3vw, 4rem);
+    }
+
     /* --- Responsive --- */
     @media (max-width: 1200px) {
         .gym-aa-grid {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        .gym-main-grid.gym-grid-4 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gym-lineup-grid.gym-lineup-4 {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (max-width: 768px) {
-        .gym-main-grid {
+        .gym-main-grid,
+        .gym-main-grid.gym-grid-3,
+        .gym-main-grid.gym-grid-4 {
             grid-template-columns: 1fr;
         }
 
-        .gym-lineup-grid {
+        .gym-lineup-grid,
+        .gym-lineup-grid.gym-lineup-3,
+        .gym-lineup-grid.gym-lineup-4 {
             grid-template-columns: 1fr;
         }
 
@@ -498,6 +500,14 @@
         ALL_AROUND: 'All-Around'
     };
 
+    /* --- Module-level state --- */
+    var lastTeamCount = 0;
+    var teamColorMap = {};
+    var multiTeamCards = [];
+    var multiLineupCards = [];
+    var multiLineupLists = [];
+
+    /* --- Utility --- */
     function formatGymEventLabel(code) {
         return GYM_EVENT_LABELS[code] || code || '--';
     }
@@ -509,46 +519,345 @@
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
 
-    function renderRotationBar(data, home, away) {
-        const rotation = data.current_rotation;
-        setText('gym-rotation-label', rotation ? `ROTATION ${rotation}` : 'ROTATION --');
+    function getTeamColor(team) {
+        if (team.home) return 'var(--carolina-soft)';
+        var key = team.tricode || team.name || 'Team';
+        return teamColorMap[key] || '#d46a6a';
+    }
 
-        const container = document.getElementById('gym-rotation-events-inline');
+    function sortTeamsByPlace(teams) {
+        return teams.slice().sort(function(a, b) {
+            return (a.place || 999) - (b.place || 999);
+        });
+    }
+
+    /* --- Dual-meet DOM builders --- */
+    function buildDualMainGrid() {
+        var grid = document.getElementById('gym-main-grid');
+        if (!grid) return;
+        grid.textContent = '';
+        grid.className = 'gym-main-grid';
+
+        // Home card
+        var homeCard = document.createElement('div');
+        homeCard.className = 'team-card gym-team-card gym-home';
+
+        var homeLabel = document.createElement('div');
+        homeLabel.className = 'team-label';
+        var homeName = document.createElement('span');
+        homeName.id = 'gym-home-name';
+        homeName.textContent = 'Home';
+        homeLabel.appendChild(homeName);
+        homeCard.appendChild(homeLabel);
+
+        var homeScore = document.createElement('div');
+        homeScore.className = 'team-score gym-team-total';
+        homeScore.id = 'gym-home-score';
+        homeScore.textContent = '--';
+        homeCard.appendChild(homeScore);
+
+        var homeEvts = document.createElement('div');
+        homeEvts.className = 'gym-event-scores';
+        ['vault', 'bars', 'beam', 'floor'].forEach(function(evt) {
+            var evtDiv = document.createElement('div');
+            evtDiv.className = 'gym-evt';
+            var span = document.createElement('span');
+            span.textContent = evt.charAt(0).toUpperCase() + evt.slice(1);
+            var strong = document.createElement('strong');
+            strong.id = 'gym-home-' + evt;
+            strong.textContent = '--';
+            evtDiv.appendChild(span);
+            evtDiv.appendChild(strong);
+            homeEvts.appendChild(evtDiv);
+        });
+        homeCard.appendChild(homeEvts);
+        grid.appendChild(homeCard);
+
+        // Clock card
+        var clockCard = document.createElement('div');
+        clockCard.className = 'center-card gym-clock-card';
+        var clockVal = document.createElement('div');
+        clockVal.className = 'gym-clock-value';
+        clockVal.id = 'gym-center-clock';
+        clockVal.textContent = '--';
+        var clockLabel = document.createElement('div');
+        clockLabel.className = 'gym-clock-label';
+        clockLabel.textContent = 'CLOCK';
+        clockCard.appendChild(clockVal);
+        clockCard.appendChild(clockLabel);
+        grid.appendChild(clockCard);
+
+        // Away card
+        var awayCard = document.createElement('div');
+        awayCard.className = 'team-card gym-team-card gym-away';
+
+        var awayLabel = document.createElement('div');
+        awayLabel.className = 'team-label';
+        var awayName = document.createElement('span');
+        awayName.id = 'gym-away-name';
+        awayName.textContent = 'Away';
+        awayLabel.appendChild(awayName);
+        awayCard.appendChild(awayLabel);
+
+        var awayScore = document.createElement('div');
+        awayScore.className = 'team-score gym-team-total';
+        awayScore.id = 'gym-away-score';
+        awayScore.textContent = '--';
+        awayCard.appendChild(awayScore);
+
+        var awayEvts = document.createElement('div');
+        awayEvts.className = 'gym-event-scores';
+        ['vault', 'bars', 'beam', 'floor'].forEach(function(evt) {
+            var evtDiv = document.createElement('div');
+            evtDiv.className = 'gym-evt';
+            var span = document.createElement('span');
+            span.textContent = evt.charAt(0).toUpperCase() + evt.slice(1);
+            var strong = document.createElement('strong');
+            strong.id = 'gym-away-' + evt;
+            strong.textContent = '--';
+            evtDiv.appendChild(span);
+            evtDiv.appendChild(strong);
+            awayEvts.appendChild(evtDiv);
+        });
+        awayCard.appendChild(awayEvts);
+        grid.appendChild(awayCard);
+    }
+
+    function buildDualLineupGrid() {
+        var grid = document.getElementById('gym-lineup-grid');
+        if (!grid) return;
+        grid.textContent = '';
+        grid.className = 'gym-lineup-grid';
+
+        // Home lineup card
+        var homeCard = document.createElement('div');
+        homeCard.className = 'gym-lineup-card gym-home';
+
+        var homeHeader = document.createElement('div');
+        homeHeader.className = 'gym-lineup-header';
+        var homeTeam = document.createElement('span');
+        homeTeam.className = 'gym-lineup-team';
+        homeTeam.id = 'gym-home-lineup-team';
+        homeTeam.textContent = 'Home';
+        var homeDash = document.createElement('span');
+        homeDash.className = 'gym-lineup-dash';
+        homeDash.textContent = '\u2014';
+        var homeEvt = document.createElement('span');
+        homeEvt.className = 'gym-lineup-event';
+        homeEvt.id = 'gym-home-lineup-event';
+        homeEvt.textContent = '--';
+        homeHeader.appendChild(homeTeam);
+        homeHeader.appendChild(homeDash);
+        homeHeader.appendChild(homeEvt);
+        homeCard.appendChild(homeHeader);
+
+        var homeList = document.createElement('div');
+        homeList.className = 'gym-lineup-table';
+        homeList.id = 'gym-home-lineup-list';
+        homeCard.appendChild(homeList);
+        grid.appendChild(homeCard);
+
+        // Away lineup card
+        var awayCard = document.createElement('div');
+        awayCard.className = 'gym-lineup-card gym-away';
+
+        var awayHeader = document.createElement('div');
+        awayHeader.className = 'gym-lineup-header';
+        var awayTeam = document.createElement('span');
+        awayTeam.className = 'gym-lineup-team';
+        awayTeam.id = 'gym-away-lineup-team';
+        awayTeam.textContent = 'Away';
+        var awayDash = document.createElement('span');
+        awayDash.className = 'gym-lineup-dash';
+        awayDash.textContent = '\u2014';
+        var awayEvt = document.createElement('span');
+        awayEvt.className = 'gym-lineup-event';
+        awayEvt.id = 'gym-away-lineup-event';
+        awayEvt.textContent = '--';
+        awayHeader.appendChild(awayTeam);
+        awayHeader.appendChild(awayDash);
+        awayHeader.appendChild(awayEvt);
+        awayCard.appendChild(awayHeader);
+
+        var awayList = document.createElement('div');
+        awayList.className = 'gym-lineup-table';
+        awayList.id = 'gym-away-lineup-list';
+        awayCard.appendChild(awayList);
+        grid.appendChild(awayCard);
+    }
+
+    /* --- Multi-team DOM builders --- */
+    function buildMultiMainGrid(count) {
+        var grid = document.getElementById('gym-main-grid');
+        if (!grid) return;
+        grid.textContent = '';
+        grid.className = 'gym-main-grid gym-grid-' + count;
+
+        multiTeamCards = [];
+        for (var i = 0; i < count; i++) {
+            var card = document.createElement('div');
+            card.className = 'team-card gym-team-card';
+
+            var label = document.createElement('div');
+            label.className = 'team-label';
+            var nameSpan = document.createElement('span');
+            nameSpan.className = 'gym-team-name';
+            nameSpan.textContent = 'Team';
+            label.appendChild(nameSpan);
+            card.appendChild(label);
+
+            var scoreDiv = document.createElement('div');
+            scoreDiv.className = 'team-score gym-team-total';
+            scoreDiv.textContent = '--';
+            card.appendChild(scoreDiv);
+
+            var evtGrid = document.createElement('div');
+            evtGrid.className = 'gym-event-scores';
+            GYM_EVENT_KEYS.forEach(function(key) {
+                var evt = document.createElement('div');
+                evt.className = 'gym-evt';
+                var span = document.createElement('span');
+                span.textContent = GYM_EVENT_LABELS[key] || key;
+                var strong = document.createElement('strong');
+                strong.textContent = '--';
+                evt.appendChild(span);
+                evt.appendChild(strong);
+                evtGrid.appendChild(evt);
+            });
+            card.appendChild(evtGrid);
+
+            grid.appendChild(card);
+            multiTeamCards.push(card);
+        }
+    }
+
+    function buildMultiLineupGrid(count) {
+        var grid = document.getElementById('gym-lineup-grid');
+        if (!grid) return;
+        grid.textContent = '';
+        grid.className = 'gym-lineup-grid gym-lineup-' + count;
+
+        multiLineupCards = [];
+        multiLineupLists = [];
+        for (var i = 0; i < count; i++) {
+            var card = document.createElement('div');
+            card.className = 'gym-lineup-card';
+
+            var header = document.createElement('div');
+            header.className = 'gym-lineup-header';
+            var teamSpan = document.createElement('span');
+            teamSpan.className = 'gym-lineup-team';
+            teamSpan.textContent = 'Team';
+            var dash = document.createElement('span');
+            dash.className = 'gym-lineup-dash';
+            dash.textContent = '\u2014';
+            var eventSpan = document.createElement('span');
+            eventSpan.className = 'gym-lineup-event';
+            eventSpan.textContent = '--';
+            header.appendChild(teamSpan);
+            header.appendChild(dash);
+            header.appendChild(eventSpan);
+            card.appendChild(header);
+
+            var list = document.createElement('div');
+            list.className = 'gym-lineup-table';
+            card.appendChild(list);
+
+            grid.appendChild(card);
+            multiLineupCards.push(card);
+            multiLineupLists.push(list);
+        }
+    }
+
+    /* --- Rendering functions --- */
+    function renderRotationBar(data, teams, isMulti) {
+        var rotation = data.current_rotation;
+        setText('gym-rotation-label', rotation ? 'ROTATION ' + rotation : 'ROTATION --');
+
+        var container = document.getElementById('gym-rotation-events-inline');
         if (!container) return;
         container.textContent = '';
 
-        const map = (data.rotation_events || {})[String(rotation || '')] || {};
-        const homeKey = home.tricode || home.name;
-        const awayKey = away.tricode || away.name;
+        var map = (data.rotation_events || {})[String(rotation || '')] || {};
 
-        const pairs = [];
-        if (homeKey && map[homeKey]) pairs.push({ team: home.name || 'Home', event: formatGymEventLabel(map[homeKey]), isHome: true });
-        if (awayKey && map[awayKey]) pairs.push({ team: away.name || 'Away', event: formatGymEventLabel(map[awayKey]), isHome: false });
+        teams.forEach(function(team) {
+            var key = team.tricode || team.name;
+            if (!key || !map[key]) return;
 
-        pairs.forEach(function(p) {
-            const span = document.createElement('span');
-            span.className = 'gym-rotation-evt ' + (p.isHome ? 'gym-rotation-home' : 'gym-rotation-away');
-            span.textContent = p.team + ' ';
-            const strong = document.createElement('strong');
-            strong.textContent = p.event;
+            var span = document.createElement('span');
+            span.className = 'gym-rotation-evt ' + (team.home ? 'gym-rotation-home' : 'gym-rotation-away');
+            if (!team.home && isMulti) {
+                var color = getTeamColor(team);
+                span.style.color = color;
+                span.style.borderColor = color;
+            }
+            span.textContent = (team.name || 'Team') + ' ';
+            var strong = document.createElement('strong');
+            strong.textContent = formatGymEventLabel(map[key]);
             span.appendChild(strong);
             container.appendChild(span);
         });
+
+        // Show/hide rotation bar clock
+        var clockEl = document.getElementById('gym-rotation-clock');
+        if (clockEl) clockEl.style.display = isMulti ? '' : 'none';
     }
 
     function renderTeam(prefix, team) {
         setText('gym-' + prefix + '-name', team.name || (prefix === 'home' ? 'Home' : 'Away'));
         setText('gym-' + prefix + '-score', team.score || '--');
 
-        const events = team.event_scores || {};
+        var events = team.event_scores || {};
         setText('gym-' + prefix + '-vault', events.VAULT || '--');
         setText('gym-' + prefix + '-bars', events.BARS || '--');
         setText('gym-' + prefix + '-beam', events.BEAM || '--');
         setText('gym-' + prefix + '-floor', events.FLOOR || '--');
     }
 
-    function renderLineup(containerId, lineup) {
-        const container = document.getElementById(containerId);
+    function updateMultiTeamCard(card, team) {
+        var color = getTeamColor(team);
+        var nameSpan = card.querySelector('.gym-team-name');
+        var scoreDiv = card.querySelector('.gym-team-total');
+        var strongs = card.querySelectorAll('.gym-evt strong');
+
+        if (nameSpan) {
+            nameSpan.textContent = team.name || 'Team';
+            nameSpan.style.color = color;
+        }
+        if (scoreDiv) {
+            scoreDiv.textContent = team.score || '--';
+            scoreDiv.style.color = color;
+        }
+
+        var events = team.event_scores || {};
+        GYM_EVENT_KEYS.forEach(function(key, idx) {
+            if (strongs[idx]) strongs[idx].textContent = events[key] || '--';
+        });
+    }
+
+    function updateMultiLineupCard(card, listEl, team) {
+        var color = getTeamColor(team);
+        card.style.borderLeftWidth = '3px';
+        card.style.borderLeftStyle = 'solid';
+        card.style.borderLeftColor = color;
+
+        var teamSpan = card.querySelector('.gym-lineup-team');
+        var eventSpan = card.querySelector('.gym-lineup-event');
+
+        if (teamSpan) {
+            teamSpan.textContent = team.name || 'Team';
+            teamSpan.style.color = color;
+        }
+        if (eventSpan) {
+            eventSpan.textContent = formatGymEventLabel(team.current_event);
+            eventSpan.style.color = color;
+        }
+
+        renderLineup(listEl, team.current_lineup || []);
+    }
+
+    function renderLineup(target, lineup) {
+        var container = typeof target === 'string' ? document.getElementById(target) : target;
         if (!container) return;
         container.textContent = '';
 
@@ -600,7 +909,7 @@
         }
     }
 
-    function renderAALeaders(containerId, leaders, homeName) {
+    function renderAALeaders(containerId, leaders, teams) {
         var container = document.getElementById(containerId);
         if (!container) return;
         container.textContent = '';
@@ -616,6 +925,9 @@
         container.style.color = '';
         container.style.fontStyle = '';
 
+        var homeName = '';
+        teams.forEach(function(t) { if (t.home) homeName = t.name || ''; });
+
         items.forEach(function(leader, index) {
             var row = document.createElement('div');
             row.className = 'gym-aa-row';
@@ -630,7 +942,22 @@
 
             var score = document.createElement('span');
             var isHome = homeName && leader.team && leader.team === homeName;
-            score.className = 'gym-aa-score' + (isHome ? ' gym-aa-score-home' : ' gym-aa-score-away');
+            if (isHome) {
+                score.className = 'gym-aa-score gym-aa-score-home';
+            } else {
+                score.className = 'gym-aa-score';
+                var leaderTeam = leader.team || '';
+                var matched = false;
+                teams.forEach(function(t) {
+                    if (!t.home && !matched && (t.name === leaderTeam || t.tricode === leaderTeam)) {
+                        score.style.color = getTeamColor(t);
+                        matched = true;
+                    }
+                });
+                if (!matched) {
+                    score.classList.add('gym-aa-score-away');
+                }
+            }
             score.textContent = leader.score || '--';
 
             row.appendChild(name);
@@ -661,37 +988,83 @@
         }
     }
 
-    function renderVirtiusGymnastics(data) {
-        var teams = Array.isArray(data.teams) ? data.teams : [];
+    /* --- Meet orchestrators --- */
+    function renderDualMeet(data, teams, clock) {
+        if (lastTeamCount !== 2) {
+            buildDualMainGrid();
+            buildDualLineupGrid();
+            lastTeamCount = 2;
+        }
+
         var home = teams.find(function(t) { return t.home; }) || teams[0] || {};
         var away = teams.find(function(t) { return !t.home; }) || teams[1] || {};
 
-        renderRotationBar(data, home, away);
+        setText('gym-center-clock', clock || '--');
+        renderRotationBar(data, teams, false);
         renderTeam('home', home);
         renderTeam('away', away);
 
-        var homeEvent = formatGymEventLabel(home.current_event);
-        var awayEvent = formatGymEventLabel(away.current_event);
         setText('gym-home-lineup-team', home.name || 'Home');
         setText('gym-away-lineup-team', away.name || 'Away');
-        setText('gym-home-lineup-event', homeEvent);
-        setText('gym-away-lineup-event', awayEvent);
+        setText('gym-home-lineup-event', formatGymEventLabel(home.current_event));
+        setText('gym-away-lineup-event', formatGymEventLabel(away.current_event));
 
         renderLineup('gym-home-lineup-list', home.current_lineup || []);
         renderLineup('gym-away-lineup-list', away.current_lineup || []);
 
         var allAround = (data.leaders || {}).ALL_AROUND || [];
-        renderAALeaders('gym-leaders-aa', allAround, home.name || '');
+        renderAALeaders('gym-leaders-aa', allAround, teams);
+    }
+
+    function renderMultiMeet(data, teams, clock) {
+        var count = teams.length;
+        if (lastTeamCount !== count) {
+            buildMultiMainGrid(count);
+            buildMultiLineupGrid(count);
+            lastTeamCount = count;
+        }
+
+        // Sort by place (leader on left)
+        var sorted = sortTeamsByPlace(teams);
+
+        // Update rotation bar with clock
+        renderRotationBar(data, teams, true);
+        var clockEl = document.getElementById('gym-rotation-clock');
+        if (clockEl) clockEl.textContent = clock || '--';
+
+        // Update team cards
+        sorted.forEach(function(team, idx) {
+            if (multiTeamCards[idx]) updateMultiTeamCard(multiTeamCards[idx], team);
+            if (multiLineupCards[idx]) updateMultiLineupCard(multiLineupCards[idx], multiLineupLists[idx], team);
+        });
+
+        var allAround = (data.leaders || {}).ALL_AROUND || [];
+        renderAALeaders('gym-leaders-aa', allAround, teams);
+    }
+
+    /* --- Top-level render --- */
+    function renderVirtiusGymnastics(data, clock) {
+        var teams = Array.isArray(data.teams) ? data.teams : [];
 
         var updated = data.updated_at || (data._meta && data._meta.fetched_at);
         setText('gym-updated', updated ? formatUpdatedTime(updated) : '--');
+
+        if (teams.length > 2) {
+            renderMultiMeet(data, teams, clock);
+        } else {
+            renderDualMeet(data, teams, clock);
+        }
     }
 
     function renderGymnastics(payload) {
         var clock = payload.clock || (payload.oes && payload.oes.game_clock);
-        setText('gym-center-clock', clock || '--');
-        renderVirtiusGymnastics(payload.virtius || {});
 
+        // Store team colors for use by all rendering functions
+        teamColorMap = payload.team_colors || {};
+
+        renderVirtiusGymnastics(payload.virtius || {}, clock);
+
+        // Apply first away team color to CSS variable (backwards compat for dual meets)
         if (payload.away_team_color && typeof applyAwayTeamColor === 'function') {
             applyAwayTeamColor(payload.away_team_color);
         }
@@ -704,6 +1077,7 @@
             .catch(function() { renderGymnastics({}); });
     }
 
+    /* --- Config panel (unchanged) --- */
     function renderVirtiusConfig(config) {
         var status = config.error
             ? 'error'
@@ -752,6 +1126,11 @@
             .then(function(data) { renderVirtiusConfig(data || {}); })
             .catch(function(error) { renderVirtiusConfig({ enabled: false, error: error.error || 'error' }); });
     }
+
+    /* --- Initialize --- */
+    buildDualMainGrid();
+    buildDualLineupGrid();
+    lastTeamCount = 2;
 
     fetchGymnasticsData();
     setInterval(fetchGymnasticsData, 1000);

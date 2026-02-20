@@ -253,3 +253,96 @@ class TestBrowseFiles:
         data = resp.get_json()
         # On Linux, __drives__ is not a real path, so it falls back to cwd
         assert data["current_path"] == os.getcwd()
+
+
+class TestGymnasticsData:
+    """Tests for /get_gymnastics_data team_colors and away_team_color."""
+
+    def _mock_virtius(self, monkeypatch, teams):
+        """Inject fake Virtius data with the given team list."""
+        from website import virtius
+
+        fake = {"teams": teams}
+        monkeypatch.setattr(virtius, "get_data", lambda sport: dict(fake))
+
+    def _mock_color_lookup(self, monkeypatch, mapping):
+        """Mock statcrew.lookup_away_team_color to return from a dict."""
+        from website import statcrew
+
+        def _lookup(name, code):
+            return mapping.get(code, mapping.get(name, "#d46a6a"))
+
+        monkeypatch.setattr(statcrew, "lookup_away_team_color", _lookup)
+
+    def test_empty_virtius_returns_empty_team_colors(self, client, monkeypatch):
+        self._mock_virtius(monkeypatch, [])
+        resp = client.get("/get_gymnastics_data")
+        data = resp.get_json()
+        assert data["team_colors"] == {}
+        assert data["away_team_color"] is None
+
+    def test_dual_meet_team_colors(self, client, monkeypatch):
+        teams = [
+            {"name": "North Carolina", "tricode": "UNC", "home": True},
+            {"name": "NC State", "tricode": "NCST", "home": False},
+        ]
+        self._mock_virtius(monkeypatch, teams)
+        self._mock_color_lookup(monkeypatch, {"NCST": "#cc0000"})
+
+        resp = client.get("/get_gymnastics_data")
+        data = resp.get_json()
+        assert data["team_colors"] == {"NCST": "#cc0000"}
+        assert data["away_team_color"] == "#cc0000"
+
+    def test_tri_meet_team_colors(self, client, monkeypatch):
+        teams = [
+            {"name": "North Carolina", "tricode": "UNC", "home": True},
+            {"name": "NC State", "tricode": "NCST", "home": False},
+            {"name": "Duke", "tricode": "DUKE", "home": False},
+        ]
+        self._mock_virtius(monkeypatch, teams)
+        self._mock_color_lookup(
+            monkeypatch, {"NCST": "#cc0000", "DUKE": "#003366"}
+        )
+
+        resp = client.get("/get_gymnastics_data")
+        data = resp.get_json()
+        assert len(data["team_colors"]) == 2
+        assert data["team_colors"]["NCST"] == "#cc0000"
+        assert data["team_colors"]["DUKE"] == "#003366"
+        # away_team_color = first non-home team (NC State)
+        assert data["away_team_color"] == "#cc0000"
+
+    def test_quad_meet_team_colors(self, client, monkeypatch):
+        teams = [
+            {"name": "North Carolina", "tricode": "UNC", "home": True},
+            {"name": "NC State", "tricode": "NCST", "home": False},
+            {"name": "Duke", "tricode": "DUKE", "home": False},
+            {"name": "Wake Forest", "tricode": "WAKE", "home": False},
+        ]
+        self._mock_virtius(monkeypatch, teams)
+        self._mock_color_lookup(
+            monkeypatch,
+            {"NCST": "#cc0000", "DUKE": "#003366", "WAKE": "#9e7e38"},
+        )
+
+        resp = client.get("/get_gymnastics_data")
+        data = resp.get_json()
+        assert len(data["team_colors"]) == 3
+        assert data["team_colors"]["NCST"] == "#cc0000"
+        assert data["team_colors"]["DUKE"] == "#003366"
+        assert data["team_colors"]["WAKE"] == "#9e7e38"
+        assert data["away_team_color"] == "#cc0000"
+
+    def test_team_colors_uses_name_when_no_tricode(self, client, monkeypatch):
+        teams = [
+            {"name": "North Carolina", "tricode": "UNC", "home": True},
+            {"name": "Guest Team", "tricode": "", "home": False},
+        ]
+        self._mock_virtius(monkeypatch, teams)
+        self._mock_color_lookup(monkeypatch, {"Guest Team": "#888888"})
+
+        resp = client.get("/get_gymnastics_data")
+        data = resp.get_json()
+        assert data["team_colors"] == {"Guest Team": "#888888"}
+        assert data["away_team_color"] == "#888888"
