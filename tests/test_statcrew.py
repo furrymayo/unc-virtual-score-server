@@ -628,3 +628,378 @@ class TestLacrosseStatcrew:
         assert result["lacrosse_gender"] == "M"
         assert "away_team_stats" not in result
         assert "home_team_stats" not in result
+
+
+class TestFootballStatcrew:
+    FB_XML = """<?xml version="1.0"?>
+    <fbgame source="NCAA In-Arena Utility" version="1.3.2" generated="11/22/2025">
+      <venue date="11/22/2025" location="Chapel Hill, N.C." stadium="Kenan Stadium"
+             attend="50000" gameid="FB1122"/>
+      <team vh="V" code="193" id="DU" name="Duke" record="6-5">
+        <linescore prds="4" line="7,10,7,8" score="32">
+          <lineprd prd="1" score="7"/>
+          <lineprd prd="2" score="10"/>
+          <lineprd prd="3" score="7"/>
+          <lineprd prd="4" score="8"/>
+        </linescore>
+        <totals totoff_plays="76" totoff_yards="352" totoff_avg="4.6">
+          <firstdowns no="24" rush="9" pass="10" penalty="5"/>
+          <penalties no="3" yds="27"/>
+          <rush att="43" yds="177" td="3" long="29"/>
+          <pass comp="20" att="33" int="0" yds="175" td="1" long="27"/>
+          <fumbles no="1" lost="0"/>
+        </totals>
+      </team>
+      <team vh="H" code="457" id="UNC" name="North Carolina" record="4-7">
+        <linescore prds="4" line="14,7,0,7" score="28">
+          <lineprd prd="1" score="14"/>
+          <lineprd prd="2" score="7"/>
+          <lineprd prd="3" score="0"/>
+          <lineprd prd="4" score="7"/>
+        </linescore>
+        <totals totoff_plays="60" totoff_yards="280" totoff_avg="4.7">
+          <firstdowns no="18" rush="6" pass="9" penalty="3"/>
+          <penalties no="5" yds="45"/>
+          <rush att="30" yds="120" td="2" long="22"/>
+          <pass comp="15" att="25" int="2" yds="160" td="1" long="35"/>
+          <fumbles no="2" lost="1"/>
+        </totals>
+      </team>
+    </fbgame>"""
+
+    def test_sport_detection(self):
+        result = _parse_statcrew_xml(self.FB_XML)
+        # Football should populate team stats (not basketball/lacrosse fields)
+        assert "away_team_stats" in result
+        assert "home_team_stats" in result
+        assert "lacrosse_gender" not in result
+        assert "basketball_gender" not in result
+
+    def test_team_names(self):
+        result = _parse_statcrew_xml(self.FB_XML)
+        assert result["away_name"] == "Duke"
+        assert result["home_name"] == "North Carolina"
+
+    def test_away_team_color(self):
+        result = _parse_statcrew_xml(self.FB_XML)
+        assert "away_team_color" in result
+
+    def test_away_team_stats(self):
+        result = _parse_statcrew_xml(self.FB_XML)
+        stats = result["away_team_stats"]
+        assert stats["first_downs"] == "24"
+        assert stats["total_yds"] == "352"
+        assert stats["rush_yds"] == "177"
+        assert stats["pass_yds"] == "175"
+        assert stats["turnovers"] == "0"  # 0 fumbles lost + 0 interceptions
+        assert stats["penalties"] == "3-27"
+
+    def test_home_team_stats(self):
+        result = _parse_statcrew_xml(self.FB_XML)
+        stats = result["home_team_stats"]
+        assert stats["first_downs"] == "18"
+        assert stats["total_yds"] == "280"
+        assert stats["rush_yds"] == "120"
+        assert stats["pass_yds"] == "160"
+        assert stats["turnovers"] == "3"  # 1 fumble lost + 2 interceptions
+        assert stats["penalties"] == "5-45"
+
+    def test_no_stats_without_totals(self):
+        xml = """<?xml version="1.0"?>
+        <fbgame>
+          <team vh="V" name="Away"/>
+          <team vh="H" name="Home"/>
+        </fbgame>"""
+        result = _parse_statcrew_xml(xml)
+        assert "away_team_stats" not in result
+        assert "home_team_stats" not in result
+
+
+class TestSoccerStatcrew:
+    SOC_XML = """<?xml version="1.0"?>
+    <sogame source="Soccer LiveStats In-Arena Tool" version="2.7.0" generated="12/15/2025">
+      <venue date="12/15/2025" location="Chapel Hill, N.C." stadium="Dorrance Field"
+             attend="3500" gameid="SOC1215">
+        <show sog="1" goaldesc="1" offsides="1" fouls="1" fhk="0"/>
+      </venue>
+      <status period="3" clock="91:54"/>
+      <team vh="V" code="756" id="UW" name="Washington" record="16-6-2">
+        <linescore periods="3" line="1,1,1" score="3" shots="13">
+          <lineprd prd="1" score="1" shots="6" saves="2" corners="3" offsides="0" fouls="3"/>
+          <lineprd prd="2" score="1" shots="6" saves="3" corners="2" offsides="0" fouls="5"/>
+          <lineprd prd="3" score="1" shots="1" saves="0" corners="0" offsides="0" fouls="0"/>
+        </linescore>
+        <totals>
+          <shots g="3" a="2" sh="13" sog="9"/>
+          <penalty count="3" red="0" yellow="3" green="0" fouls="8"/>
+          <misc minutes="1011" dsave="0"/>
+          <goalie minutes="91:54" ga="2" saves="5" sf="17"/>
+        </totals>
+      </team>
+      <team vh="H" code="490" id="NCSU" name="NC State" record="16-3-4">
+        <linescore periods="3" line="0,2,0" score="2" shots="10">
+          <lineprd prd="1" score="0" shots="4" saves="3" corners="1" offsides="2" fouls="4"/>
+          <lineprd prd="2" score="2" shots="5" saves="1" corners="3" offsides="1" fouls="3"/>
+          <lineprd prd="3" score="0" shots="1" saves="0" corners="0" offsides="0" fouls="1"/>
+        </linescore>
+        <totals>
+          <shots g="2" a="1" sh="10" sog="7"/>
+          <penalty count="1" red="0" yellow="1" green="0" fouls="8"/>
+          <misc minutes="990" dsave="1"/>
+          <goalie minutes="91:54" ga="3" saves="6" sf="12"/>
+        </totals>
+      </team>
+    </sogame>"""
+
+    def test_sport_detection(self):
+        result = _parse_statcrew_xml(self.SOC_XML)
+        assert "away_team_stats" in result
+        assert "home_team_stats" in result
+        assert "lacrosse_gender" not in result
+
+    def test_team_names(self):
+        result = _parse_statcrew_xml(self.SOC_XML)
+        assert result["away_name"] == "Washington"
+        assert result["home_name"] == "NC State"
+
+    def test_away_team_color(self):
+        result = _parse_statcrew_xml(self.SOC_XML)
+        assert "away_team_color" in result
+
+    def test_away_team_stats(self):
+        result = _parse_statcrew_xml(self.SOC_XML)
+        stats = result["away_team_stats"]
+        assert stats["sog"] == "9"
+        assert stats["fouls"] == "8"
+        assert stats["offsides"] == "0"  # 0+0+0
+        assert stats["save_pct"] == "29%"  # 5/17 = 29%
+        assert stats["yc"] == "3"
+        assert stats["rc"] == "0"
+
+    def test_home_team_stats(self):
+        result = _parse_statcrew_xml(self.SOC_XML)
+        stats = result["home_team_stats"]
+        assert stats["sog"] == "7"
+        assert stats["fouls"] == "8"
+        assert stats["offsides"] == "3"  # 2+1+0
+        assert stats["save_pct"] == "50%"  # 6/12 = 50%
+        assert stats["yc"] == "1"
+        assert stats["rc"] == "0"
+
+    def test_not_field_hockey(self):
+        """fhk=0 should NOT produce field hockey stats (corners/dsaves)."""
+        result = _parse_statcrew_xml(self.SOC_XML)
+        stats = result["away_team_stats"]
+        assert "corners" not in stats
+        assert "dsaves" not in stats
+
+    def test_no_stats_without_totals(self):
+        xml = """<?xml version="1.0"?>
+        <sogame>
+          <venue><show fhk="0"/></venue>
+          <team vh="V" name="Away"/>
+          <team vh="H" name="Home"/>
+        </sogame>"""
+        result = _parse_statcrew_xml(xml)
+        assert "away_team_stats" not in result
+        assert "home_team_stats" not in result
+
+
+class TestFieldHockeyStatcrew:
+    FH_XML = """<?xml version="1.0"?>
+    <sogame source="TAS For Soccer" version="1.16.01" generated="10/23/2022">
+      <venue date="10/23/2022" location="Chapel Hill, N.C." stadium="Karen Shelton"
+             attend="1200" gameid="FH1023">
+        <show sog="1" goaldesc="1" offsides="0" fouls="0" fhk="1"/>
+      </venue>
+      <status period="4" clock="60:00"/>
+      <team vh="V" id="SJU" name="Saint Joseph's" record="12-4" rank="9">
+        <linescore periods="4" line="0,0,0,0" score="0" shots="7">
+          <lineprd prd="1" score="0" shots="1" saves="1" fouls="0" corners="1" offsides="0"/>
+          <lineprd prd="2" score="0" shots="0" saves="3" fouls="0" corners="0" offsides="0"/>
+          <lineprd prd="3" score="0" shots="5" saves="3" fouls="0" corners="1" offsides="0"/>
+          <lineprd prd="4" score="0" shots="1" saves="0" fouls="0" corners="0" offsides="0"/>
+        </linescore>
+        <totals>
+          <shots g="0" a="0" sh="7" sog="5"/>
+          <penalty count="0" red="0" yellow="0" green="0" fouls="0"/>
+          <misc minutes="639" dsave="0"/>
+          <goalie minutes="60:00" ga="6" saves="7" sf="17"/>
+        </totals>
+      </team>
+      <team vh="H" id="NC" name="North Carolina" record="14-0" rank="1">
+        <linescore periods="4" line="2,1,2,1" score="6" shots="25">
+          <lineprd prd="1" score="2" shots="6" saves="0" fouls="0" corners="3" offsides="0"/>
+          <lineprd prd="2" score="1" shots="7" saves="0" fouls="0" corners="2" offsides="0"/>
+          <lineprd prd="3" score="2" shots="8" saves="1" fouls="0" corners="4" offsides="0"/>
+          <lineprd prd="4" score="1" shots="4" saves="1" fouls="0" corners="1" offsides="0"/>
+        </linescore>
+        <totals>
+          <shots g="6" a="4" sh="25" sog="18"/>
+          <penalty count="0" red="0" yellow="0" green="0" fouls="0"/>
+          <misc minutes="720" dsave="2"/>
+          <goalie minutes="60:00" ga="0" saves="5" sf="7"/>
+        </totals>
+      </team>
+    </sogame>"""
+
+    def test_sport_detection_fhk(self):
+        """fhk=1 should be detected as field hockey, not soccer."""
+        result = _parse_statcrew_xml(self.FH_XML)
+        assert "away_team_stats" in result
+        stats = result["away_team_stats"]
+        # Field hockey has corners and dsaves, not offsides/yc/rc
+        assert "corners" in stats
+        assert "dsaves" in stats
+        assert "offsides" not in stats
+        assert "yc" not in stats
+
+    def test_team_names(self):
+        result = _parse_statcrew_xml(self.FH_XML)
+        assert result["away_name"] == "Saint Joseph's"
+        assert result["home_name"] == "North Carolina"
+
+    def test_away_team_color(self):
+        result = _parse_statcrew_xml(self.FH_XML)
+        assert "away_team_color" in result
+
+    def test_away_team_stats(self):
+        result = _parse_statcrew_xml(self.FH_XML)
+        stats = result["away_team_stats"]
+        assert stats["sog"] == "5"
+        assert stats["corners"] == "2"  # 1+0+1+0
+        assert stats["fouls"] == "0"
+        assert stats["dsaves"] == "0"
+        assert stats["save_pct"] == "41%"  # 7/17 = 41%
+
+    def test_home_team_stats(self):
+        result = _parse_statcrew_xml(self.FH_XML)
+        stats = result["home_team_stats"]
+        assert stats["sog"] == "18"
+        assert stats["corners"] == "10"  # 3+2+4+1
+        assert stats["fouls"] == "0"
+        assert stats["dsaves"] == "2"
+        assert stats["save_pct"] == "71%"  # 5/7 = 71%
+
+    def test_no_stats_without_totals(self):
+        xml = """<?xml version="1.0"?>
+        <sogame>
+          <venue><show fhk="1"/></venue>
+          <team vh="V" name="Away"/>
+          <team vh="H" name="Home"/>
+        </sogame>"""
+        result = _parse_statcrew_xml(xml)
+        assert "away_team_stats" not in result
+        assert "home_team_stats" not in result
+
+
+class TestVolleyballStatcrew:
+    VB_XML = """<?xml version="1.0"?>
+    <vbgame source="Volleyball LiveStats In-Arena Tool" version="1.1.2" generated="Nov 29, 2025">
+      <venue date="11/29/2025" location="Chapel Hill, N.C." stadium="Carmichael Arena"
+             attend="4200" gameid="VB1129"/>
+      <status complete="Y" vscore="3" hscore="2" game="5"/>
+      <team vh="V" code="415" id="MIA" name="Miami (FL)" record="25-5">
+        <linescore line="20,23,25,25,15" score="3">
+          <linegame game="1" points="20"/>
+          <linegame game="2" points="23"/>
+          <linegame game="3" points="25"/>
+          <linegame game="4" points="25"/>
+          <linegame game="5" points="15"/>
+        </linescore>
+        <totals>
+          <attack k="68" e="40" ta="186" pct=".151"/>
+          <set a="66" e="0" ta="184"/>
+          <serve sa="7" se="10" ta="107"/>
+          <defense dig="77" re="4" ta="97"/>
+          <block bs="2" ba="22" be="2" tb="13.0"/>
+        </totals>
+      </team>
+      <team vh="H" code="457" id="UNC" name="North Carolina" record="21-7">
+        <linescore line="25,25,22,16,10" score="2">
+          <linegame game="1" points="25"/>
+          <linegame game="2" points="25"/>
+          <linegame game="3" points="22"/>
+          <linegame game="4" points="16"/>
+          <linegame game="5" points="10"/>
+        </linescore>
+        <totals>
+          <attack k="55" e="35" ta="170" pct=".118"/>
+          <set a="52" e="1" ta="160"/>
+          <serve sa="4" se="8" ta="95"/>
+          <defense dig="65" re="7" ta="85"/>
+          <block bs="5" ba="18" be="3" tb="14.0"/>
+        </totals>
+      </team>
+    </vbgame>"""
+
+    def test_sport_detection(self):
+        result = _parse_statcrew_xml(self.VB_XML)
+        assert "away_team_stats" in result
+        assert "home_team_stats" in result
+        assert "lacrosse_gender" not in result
+        assert "basketball_gender" not in result
+
+    def test_team_names(self):
+        result = _parse_statcrew_xml(self.VB_XML)
+        assert result["away_name"] == "Miami (FL)"
+        assert result["home_name"] == "North Carolina"
+
+    def test_away_team_color(self):
+        result = _parse_statcrew_xml(self.VB_XML)
+        assert "away_team_color" in result
+
+    def test_away_team_stats(self):
+        result = _parse_statcrew_xml(self.VB_XML)
+        stats = result["away_team_stats"]
+        assert stats["kills"] == "68"
+        assert stats["aces"] == "7"
+        assert stats["digs"] == "77"
+        assert stats["blocks"] == "13.0"
+        assert stats["hit_pct"] == "15.1%"  # .151 * 100
+        assert stats["errors"] == "40"
+
+    def test_home_team_stats(self):
+        result = _parse_statcrew_xml(self.VB_XML)
+        stats = result["home_team_stats"]
+        assert stats["kills"] == "55"
+        assert stats["aces"] == "4"
+        assert stats["digs"] == "65"
+        assert stats["blocks"] == "14.0"
+        assert stats["hit_pct"] == "11.8%"  # .118 * 100
+        assert stats["errors"] == "35"
+
+    def test_negative_hit_pct(self):
+        """Negative hitting percentage should display correctly."""
+        xml = """<?xml version="1.0"?>
+        <vbgame>
+          <team vh="V" name="Away">
+            <totals>
+              <attack k="5" e="10" ta="30" pct="-.167"/>
+              <serve sa="0" se="0" ta="0"/>
+              <defense dig="0" re="0" ta="0"/>
+              <block bs="0" ba="0" be="0" tb="0"/>
+            </totals>
+          </team>
+          <team vh="H" name="Home">
+            <totals>
+              <attack k="10" e="5" ta="30" pct=".167"/>
+              <serve sa="1" se="0" ta="10"/>
+              <defense dig="5" re="0" ta="10"/>
+              <block bs="1" ba="2" be="0" tb="2.0"/>
+            </totals>
+          </team>
+        </vbgame>"""
+        result = _parse_statcrew_xml(xml)
+        assert result["away_team_stats"]["hit_pct"] == "-16.7%"
+        assert result["home_team_stats"]["hit_pct"] == "16.7%"
+
+    def test_no_stats_without_totals(self):
+        xml = """<?xml version="1.0"?>
+        <vbgame>
+          <team vh="V" name="Away"/>
+          <team vh="H" name="Home"/>
+        </vbgame>"""
+        result = _parse_statcrew_xml(xml)
+        assert "away_team_stats" not in result
+        assert "home_team_stats" not in result

@@ -299,6 +299,18 @@ def _parse_statcrew_xml(xml_text):
     is_baseball = root_tag in ("bsgame",)
     is_basketball = root_tag in ("bbgame", "wbbgame")
     is_lacrosse = root_tag in ("lcgame",)
+    is_football = root_tag in ("fbgame",)
+    is_soccer_fh = root_tag in ("sogame",)
+    is_volleyball = root_tag in ("vbgame",)
+
+    # Soccer and Field Hockey share <sogame> — differentiate via <show fhk="1">
+    is_soccer = False
+    is_field_hockey = False
+    if is_soccer_fh:
+        show = root.find(".//show")
+        is_field_hockey = show is not None and show.get("fhk", "0") == "1"
+        is_soccer = not is_field_hockey
+
     if is_basketball:
         parsed["basketball_gender"] = "W" if root_tag == "wbbgame" else "M"
     if is_lacrosse:
@@ -744,6 +756,169 @@ def _parse_statcrew_xml(xml_text):
                 "save_pct": save_pct,
                 "clears": f"{clearm}/{cleara}",
                 "fouls": pen.get("foul", "0"),
+            }
+
+    # --- Football: extract team stats from totals ---
+    if is_football:
+        for team in teams:
+            vh = team.get("vh", "").upper()
+            if vh not in ("V", "H"):
+                continue
+            prefix = "away" if vh == "V" else "home"
+            totals = team.find("totals")
+            if totals is None:
+                continue
+
+            fd_el = totals.find("firstdowns")
+            rush_el = totals.find("rush")
+            pass_el = totals.find("pass")
+            pen_el = totals.find("penalties")
+            fum_el = totals.find("fumbles")
+
+            fd = dict(fd_el.attrib) if fd_el is not None else {}
+            ru = dict(rush_el.attrib) if rush_el is not None else {}
+            pa = dict(pass_el.attrib) if pass_el is not None else {}
+            pe = dict(pen_el.attrib) if pen_el is not None else {}
+            fu = dict(fum_el.attrib) if fum_el is not None else {}
+
+            fum_lost = int(fu.get("lost", "0") or "0")
+            pass_int = int(pa.get("int", "0") or "0")
+            turnovers = fum_lost + pass_int
+
+            pen_no = pe.get("no", "0")
+            pen_yds = pe.get("yds", "0")
+
+            parsed[f"{prefix}_team_stats"] = {
+                "first_downs": fd.get("no", "0"),
+                "total_yds": totals.get("totoff_yards", "0"),
+                "rush_yds": ru.get("yds", "0"),
+                "pass_yds": pa.get("yds", "0"),
+                "turnovers": str(turnovers),
+                "penalties": f"{pen_no}-{pen_yds}",
+            }
+
+    # --- Soccer: extract team stats from totals + lineprd ---
+    if is_soccer:
+        for team in teams:
+            vh = team.get("vh", "").upper()
+            if vh not in ("V", "H"):
+                continue
+            prefix = "away" if vh == "V" else "home"
+            totals = team.find("totals")
+            if totals is None:
+                continue
+
+            shots_el = totals.find("shots")
+            penalty_el = totals.find("penalty")
+            goalie_el = totals.find("goalie")
+
+            s = dict(shots_el.attrib) if shots_el is not None else {}
+            pen = dict(penalty_el.attrib) if penalty_el is not None else {}
+            g = dict(goalie_el.attrib) if goalie_el is not None else {}
+
+            saves = int(g.get("saves", "0") or "0")
+            shots_faced = int(g.get("sf", "0") or "0")
+            save_pct = (
+                f"{saves / shots_faced * 100:.0f}%"
+                if shots_faced > 0
+                else "--"
+            )
+
+            # Sum offsides across all lineprd elements
+            linescore = team.find("linescore")
+            offsides = 0
+            if linescore is not None:
+                for lp in linescore.findall("lineprd"):
+                    offsides += int(lp.get("offsides", "0") or "0")
+
+            parsed[f"{prefix}_team_stats"] = {
+                "sog": s.get("sog", "0"),
+                "fouls": pen.get("fouls", "0"),
+                "offsides": str(offsides),
+                "save_pct": save_pct,
+                "yc": pen.get("yellow", "0"),
+                "rc": pen.get("red", "0"),
+            }
+
+    # --- Field Hockey: extract team stats from totals + lineprd ---
+    if is_field_hockey:
+        for team in teams:
+            vh = team.get("vh", "").upper()
+            if vh not in ("V", "H"):
+                continue
+            prefix = "away" if vh == "V" else "home"
+            totals = team.find("totals")
+            if totals is None:
+                continue
+
+            shots_el = totals.find("shots")
+            penalty_el = totals.find("penalty")
+            misc_el = totals.find("misc")
+            goalie_el = totals.find("goalie")
+
+            s = dict(shots_el.attrib) if shots_el is not None else {}
+            pen = dict(penalty_el.attrib) if penalty_el is not None else {}
+            mi = dict(misc_el.attrib) if misc_el is not None else {}
+            g = dict(goalie_el.attrib) if goalie_el is not None else {}
+
+            saves = int(g.get("saves", "0") or "0")
+            shots_faced = int(g.get("sf", "0") or "0")
+            save_pct = (
+                f"{saves / shots_faced * 100:.0f}%"
+                if shots_faced > 0
+                else "--"
+            )
+
+            # Sum corners (penalty corners) across all lineprd elements
+            linescore = team.find("linescore")
+            corners = 0
+            if linescore is not None:
+                for lp in linescore.findall("lineprd"):
+                    corners += int(lp.get("corners", "0") or "0")
+
+            parsed[f"{prefix}_team_stats"] = {
+                "sog": s.get("sog", "0"),
+                "corners": str(corners),
+                "fouls": pen.get("fouls", "0"),
+                "dsaves": mi.get("dsave", "0"),
+                "save_pct": save_pct,
+            }
+
+    # --- Volleyball: extract team stats from totals ---
+    if is_volleyball:
+        for team in teams:
+            vh = team.get("vh", "").upper()
+            if vh not in ("V", "H"):
+                continue
+            prefix = "away" if vh == "V" else "home"
+            totals = team.find("totals")
+            if totals is None:
+                continue
+
+            attack_el = totals.find("attack")
+            serve_el = totals.find("serve")
+            defense_el = totals.find("defense")
+            block_el = totals.find("block")
+
+            a = dict(attack_el.attrib) if attack_el is not None else {}
+            sv = dict(serve_el.attrib) if serve_el is not None else {}
+            d = dict(defense_el.attrib) if defense_el is not None else {}
+            b = dict(block_el.attrib) if block_el is not None else {}
+
+            # Format hit_pct: ".151" → "15.1%" or "-.047" → "-4.7%"
+            raw_pct = a.get("pct", "")
+            try:
+                hit_pct = f"{float(raw_pct) * 100:.1f}%"
+            except (ValueError, TypeError):
+                hit_pct = "--"
+
+            parsed[f"{prefix}_team_stats"] = {
+                "kills": a.get("k", "0"),
+                "aces": sv.get("sa", "0"),
+                "digs": d.get("dig", "0"),
+                "blocks": b.get("tb", "0"),
+                "hit_pct": hit_pct,
+                "errors": a.get("e", "0"),
             }
 
     # Generic fallback: try to extract all elements with text content
