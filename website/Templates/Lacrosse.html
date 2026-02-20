@@ -111,6 +111,20 @@
 </section>
 
 <style>
+    /* Base class overrides for lacrosse */
+    .lacrosse-scoreboard .center-label {
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+    }
+    .lacrosse-scoreboard .team-score {
+        font-size: clamp(4rem, 7vw, 10rem);
+    }
+    .lacrosse-scoreboard .team-label {
+        font-size: clamp(1.4rem, 2.2vw, 3.2rem);
+    }
+    .lacrosse-scoreboard .team-record {
+        font-size: clamp(0.9rem, 1.3vw, 1.8rem);
+    }
+
     /* Lacrosse TV-Optimized Layout */
     .lacrosse-scoreboard {
         gap: clamp(4px, 0.6vh, 8px);
@@ -135,7 +149,7 @@
     }
 
     .lax-clock-value {
-        font-size: clamp(4rem, 10vw, 11rem);
+        font-size: clamp(5rem, 12vw, 14rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         line-height: 1;
@@ -147,7 +161,7 @@
     }
 
     .lax-period-value {
-        font-size: clamp(1.2rem, 1.8vw, 2.6rem);
+        font-size: clamp(1.6rem, 2.5vw, 3.5rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
@@ -158,7 +172,7 @@
     }
 
     .lax-shot-clock {
-        font-size: clamp(2rem, 3.2vw, 4.5rem);
+        font-size: clamp(2.5rem, 4vw, 6rem);
         font-weight: 800;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
@@ -235,14 +249,14 @@
     }
 
     .lax-stat-name {
-        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        font-size: clamp(0.85rem, 1.2vw, 1.6rem);
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--ink-soft);
     }
 
     .lax-stat-item strong {
-        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        font-size: clamp(1.4rem, 2vw, 3rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
@@ -268,7 +282,7 @@
     }
 
     .lax-penalty-header {
-        font-size: clamp(0.65rem, 0.9vw, 1.2rem);
+        font-size: clamp(0.85rem, 1.2vw, 1.6rem);
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--ink-soft);
@@ -284,7 +298,7 @@
     }
 
     .lax-penalty-player {
-        font-size: clamp(0.85rem, 1.3vw, 1.8rem);
+        font-size: clamp(1.1rem, 1.7vw, 2.4rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--carolina);
@@ -295,7 +309,7 @@
     }
 
     .lax-penalty-time {
-        font-size: clamp(1.1rem, 1.7vw, 2.6rem);
+        font-size: clamp(1.4rem, 2.2vw, 3.2rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
@@ -318,7 +332,7 @@
     }
 
     .lax-stats-header {
-        font-size: clamp(0.55rem, 0.8vw, 1rem);
+        font-size: clamp(0.75rem, 1.1vw, 1.4rem);
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--ink-soft);
@@ -341,14 +355,14 @@
     }
 
     .lax-stats-label {
-        font-size: clamp(0.55rem, 0.75vw, 1rem);
+        font-size: clamp(0.75rem, 1vw, 1.4rem);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         color: var(--ink-soft);
     }
 
     .lax-stats-cell strong {
-        font-size: clamp(0.9rem, 1.3vw, 2.2rem);
+        font-size: clamp(1.2rem, 1.8vw, 2.8rem);
         font-weight: 700;
         font-family: "JetBrains Mono", monospace;
         color: var(--ink);
