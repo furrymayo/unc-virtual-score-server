@@ -38,6 +38,7 @@
                 <div class="lax-stat-card lax-stat-home">
                     <div class="lax-stat-item"><span class="lax-stat-name">TOL</span><strong id="lax-home-tol">--</strong></div>
                     <div class="lax-stat-item"><span class="lax-stat-name">Shots</span><strong id="lax-home-shots">--</strong></div>
+                    <div class="lax-stat-item"><span class="lax-stat-name">SOG</span><strong id="lax-home-sog">--</strong></div>
                 </div>
             </div>
         </div>
@@ -46,6 +47,7 @@
                 <div class="lax-stat-card lax-stat-away">
                     <div class="lax-stat-item"><span class="lax-stat-name">TOL</span><strong id="lax-visitor-tol">--</strong></div>
                     <div class="lax-stat-item"><span class="lax-stat-name">Shots</span><strong id="lax-visitor-shots">--</strong></div>
+                    <div class="lax-stat-item"><span class="lax-stat-name">SOG</span><strong id="lax-visitor-sog">--</strong></div>
                 </div>
                 <div class="lax-team-cell team-away">
                     <div class="team-label is-visitor"><span id="lax-visitor-name">Visitor</span> <span id="lax-visitor-record" class="team-record"></span></div>
@@ -393,7 +395,7 @@
 
 <script>
     let statcrewData = {};
-    let statcrewShots = { home: null, away: null };
+    let statcrewShots = { home: null, away: null, homeSog: null, awaySog: null };
 
     function normalizeClock(value) {
         if (value === undefined || value === null) return value;
@@ -505,7 +507,9 @@
                 setText('lax-home-clears', homeStats.clears);
                 setText('lax-home-save-pct', homeStats.save_pct);
                 statcrewShots.home = homeStats.shots;
+                statcrewShots.homeSog = homeStats.sog;
                 setText('lax-home-shots', homeStats.shots);
+                setText('lax-home-sog', homeStats.sog);
             }
 
             if (awayStats) {
@@ -516,7 +520,9 @@
                 setText('lax-away-clears', awayStats.clears);
                 setText('lax-away-save-pct', awayStats.save_pct);
                 statcrewShots.away = awayStats.shots;
+                statcrewShots.awaySog = awayStats.sog;
                 setText('lax-visitor-shots', awayStats.shots);
+                setText('lax-visitor-sog', awayStats.sog);
             }
         } else {
             statsRow.style.display = 'none';
