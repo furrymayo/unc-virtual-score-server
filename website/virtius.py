@@ -8,7 +8,8 @@ import urllib.request
 
 _SUPPORTED_SPORTS = {"Gymnastics"}
 _CONFIG_FILE = "virtius_sources.json"
-_DEFAULT_POLL_INTERVAL = 2.0
+_DEFAULT_POLL_INTERVAL = 5.0
+_MEET_COMPLETE_GRACE = 3  # consecutive complete polls before auto-stop
 _LEADER_LIMIT = 6
 
 virtius_config = {}
@@ -154,8 +155,8 @@ def update_config(sport, payload):
     except (TypeError, ValueError):
         poll_interval = _DEFAULT_POLL_INTERVAL
 
-    if poll_interval < 1.0:
-        poll_interval = 1.0
+    if poll_interval < 5.0:
+        poll_interval = 5.0
     if poll_interval > 60.0:
         poll_interval = 60.0
 
@@ -414,6 +415,29 @@ def _compute_all_around_leaders(teams, limit):
     return results[:limit]
 
 
+def _meet_is_complete(teams_raw):
+    """Return True if every gymnast in every event has a final score."""
+    gymnast_count = 0
+    for team in teams_raw:
+        if not isinstance(team, dict):
+            continue
+        for event in team.get("events", []):
+            if not isinstance(event, dict):
+                continue
+            event_code = _normalize_event_name(event.get("event_name"))
+            if not event_code or event_code == "ALL_AROUND":
+                continue
+            for gymnast in event.get("gymnasts", []):
+                if not isinstance(gymnast, dict):
+                    continue
+                gymnast_count += 1
+                score = gymnast.get("final_score")
+                if score is None or str(score).strip() == "":
+                    return False
+    # Need at least some gymnasts to declare complete (avoid false positive on empty data)
+    return gymnast_count > 0
+
+
 def _parse_virtius_json(payload):
     if not isinstance(payload, dict):
         return {}
@@ -546,7 +570,8 @@ def _fetch_session_json(session_key):
 
 
 def virtius_watcher(sport, session_key, poll_interval, stop_event):
-    print(f"Virtius watcher started for {sport}: {session_key}")
+    print(f"Virtius watcher started for {sport}: {session_key} (interval={poll_interval}s)")
+    complete_count = 0
 
     while not stop_event.is_set():
         try:
@@ -559,6 +584,20 @@ def virtius_watcher(sport, session_key, poll_interval, stop_event):
                 }
                 with virtius_lock:
                     virtius_data[sport] = parsed
+
+                # Check if the meet is over
+                meet = raw.get("meet", {}) if isinstance(raw, dict) else {}
+                teams_raw = meet.get("teams", []) if isinstance(meet, dict) else []
+                if _meet_is_complete(teams_raw):
+                    complete_count += 1
+                    if complete_count >= _MEET_COMPLETE_GRACE:
+                        print(f"Virtius: meet complete for {sport}, auto-stopping watcher")
+                        with virtius_lock:
+                            virtius_config[sport]["enabled"] = False
+                        _save_config()
+                        break
+                else:
+                    complete_count = 0
         except Exception as exc:
             with virtius_lock:
                 current = dict(virtius_data.get(sport, {}))
@@ -567,6 +606,8 @@ def virtius_watcher(sport, session_key, poll_interval, stop_event):
                 meta["error_at"] = time.time()
                 current["_meta"] = meta
                 virtius_data[sport] = current
+            # Don't count errors toward completion
+            complete_count = 0
 
         stop_event.wait(poll_interval)
 

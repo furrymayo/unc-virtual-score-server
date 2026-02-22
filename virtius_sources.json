@@ -1,8 +1,8 @@
 {
   "Gymnastics": {
-    "enabled": true,
+    "enabled": false,
     "session_url": "https://virti.us/session?s=flencA2-tY",
     "session_key": "flencA2-tY",
-    "poll_interval": 2.0
+    "poll_interval": 5.0
   }
 }
