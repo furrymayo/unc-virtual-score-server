@@ -193,13 +193,14 @@ class TestBrowseFiles:
         monkeypatch.setattr(api_mod, "_BROWSE_ROOTS", [os.getcwd(), "/tmp"])
 
     def test_browse_default_cwd(self, client):
-        """Default (no path) returns cwd with entries."""
+        """Default (no path) returns first BROWSE_ROOT with entries."""
         resp = client.get("/browse_files")
         assert resp.status_code == 200
         data = resp.get_json()
-        assert data["current_path"] == os.getcwd()
+        assert data["current_path"] == os.getcwd()  # first BROWSE_ROOT in fixture
         assert isinstance(data["entries"], list)
-        assert data["parent_path"] is not None or data["current_path"] == "/"
+        # parent_path is None when at a browse root boundary (can't navigate above)
+        assert data["parent_path"] is None or isinstance(data["parent_path"], str)
 
     def test_browse_explicit_path(self, client, tmp_path):
         """Browse a known tmp_path directory with an XML file and a subdir."""

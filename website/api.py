@@ -351,7 +351,7 @@ def browse_files():
         )
 
     if not path:
-        path = os.getcwd()
+        path = _BROWSE_ROOTS[0]
 
     try:
         path = os.path.abspath(path)
@@ -366,17 +366,17 @@ def browse_files():
 
     if not os.path.exists(path):
         parent = os.path.dirname(path)
-        if os.path.exists(parent):
+        if os.path.exists(parent) and _path_allowed(parent):
             path = parent
         else:
-            path = os.getcwd()
+            path = _BROWSE_ROOTS[0]
 
     if not _path_allowed(path):
         return jsonify({"error": "path outside allowed directories"}), 403
 
     parent_path = os.path.dirname(path)
-    if parent_path == path:
-        # At filesystem root — on Windows, go to drive list; on Linux/Mac, stay at root
+    if parent_path == path or not _path_allowed(parent_path):
+        # At browse root boundary or filesystem root
         if platform.system() == "Windows":
             parent_path = "__drives__"
         else:
