@@ -1,17 +1,35 @@
 import os
 import platform
 import string
+from functools import wraps
 
 from flask import Blueprint, jsonify, request
 
 from . import ingestion, statcrew, trackman, virtius
+from .config import CONFIG
 
 api = Blueprint("api", __name__)
 
 # --- Path traversal guard for browse_files ---
 _BROWSE_ROOTS = [
-    r for r in os.environ.get("BROWSE_ROOTS", "/mnt/stats").split(":") if r
+    r for r in CONFIG.browse_roots if r
 ] or [os.getcwd()]
+
+
+def require_auth(f):
+    """Decorator to require authentication for API routes."""
+
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not (
+            auth.username == CONFIG.admin_user and auth.password == CONFIG.admin_pass
+        ):
+            return jsonify({"error": "Authentication required"}), 401
+        return f(*args, **kwargs)
+
+    return decorated_function
+
 
 
 def _path_allowed(path):
@@ -27,6 +45,7 @@ def _path_allowed(path):
 
 
 @api.route("/update_server_config", methods=["POST"])
+@require_auth
 def update_server_config():
     config = request.json or {}
 
@@ -58,6 +77,7 @@ def update_server_config():
 
 
 @api.route("/trackman_config/<sport>", methods=["GET", "POST"])
+@require_auth
 def trackman_config_endpoint(sport):
     sport_name = trackman.normalize_sport(sport)
     if not sport_name:
@@ -72,6 +92,7 @@ def trackman_config_endpoint(sport):
 
 
 @api.route("/data_sources", methods=["GET", "POST"])
+@require_auth
 def data_sources_endpoint():
     if request.method == "GET":
         with ingestion.data_sources_lock:
@@ -112,6 +133,7 @@ def data_sources_endpoint():
 
 
 @api.route("/data_sources/<source_id>", methods=["DELETE", "PATCH"])
+@require_auth
 def data_source_item(source_id):
     source_id = source_id.strip()
     if not source_id:
@@ -154,6 +176,8 @@ def data_source_item(source_id):
     # Determine whether host or port is changing
     host_port_changed = False
     new_source_id = None
+    effective_host = None
+    effective_port = None
     if new_host is not None or new_port is not None:
         # Need the current source to compute the effective host/port
         with ingestion.data_sources_lock:
@@ -243,6 +267,7 @@ def get_trackman_debug(sport):
 
 
 @api.route("/virtius_config/<sport>", methods=["GET", "POST"])
+@require_auth
 def virtius_config_endpoint(sport):
     sport_name = virtius.normalize_sport(sport)
     if not sport_name:
@@ -270,6 +295,7 @@ def get_sources():
 
 
 @api.route("/statcrew_config/<sport>", methods=["GET", "POST"])
+@require_auth
 def statcrew_config_endpoint(sport):
     sport_name = statcrew.normalize_sport(sport)
     if not sport_name:

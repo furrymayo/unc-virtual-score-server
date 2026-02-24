@@ -1,12 +1,11 @@
-import os
-import secrets
-
 from flask import Flask
+
+from .config import CONFIG
 
 
 def create_app():
     app = Flask(__name__, template_folder="Templates", static_folder="static")
-    app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY") or secrets.token_hex(32)
+    app.config["SECRET_KEY"] = CONFIG.flask_secret_key
 
     from .views import views
     from .sports import sports

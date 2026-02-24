@@ -7,13 +7,14 @@ import time
 import serial
 import serial.tools.list_ports
 
+from .config import CONFIG
 from .protocol import PacketStreamParser, identify_and_parse
 
 # --- Environment config ---
 
-DEFAULT_TCP_PORT = int(os.environ.get("SCOREBOARD_TCP_PORT", "5001"))
-DEFAULT_UDP_PORT = int(os.environ.get("SCOREBOARD_UDP_PORT", "5002"))
-DATA_SOURCES_FILE = os.environ.get("SCOREBOARD_SOURCES_FILE", "data_sources.json")
+DEFAULT_TCP_PORT = CONFIG.scoreboard_tcp_port
+DEFAULT_UDP_PORT = CONFIG.scoreboard_udp_port
+DATA_SOURCES_FILE = CONFIG.scoreboard_sources_file
 
 # --- Shared state ---
 
