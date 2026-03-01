@@ -37,6 +37,18 @@ class TestGetEndpoints:
         data = resp.get_json()
         assert data["sources"] == []
 
+    def test_get_sources_includes_name(self, client):
+        with ingestion.data_sources_lock:
+            ingestion.data_sources.append(
+                {"id": "tcp:10.0.0.1:3000", "name": "Boshamer", "host": "10.0.0.1", "port": 3000, "enabled": True, "sport_overrides": {}}
+            )
+        ingestion.record_packet("Baseball", {"home_score": "2"}, "tcp:10.0.0.1:3000")
+        resp = client.get("/get_sources")
+        data = resp.get_json()
+        assert len(data["sources"]) == 1
+        assert data["sources"][0]["name"] == "Boshamer"
+        assert data["sources"][0]["source"] == "tcp:10.0.0.1:3000"
+
     def test_get_trackman_data_unknown_sport(self, client):
         resp = client.get("/get_trackman_data/Tennis")
         assert resp.status_code == 404

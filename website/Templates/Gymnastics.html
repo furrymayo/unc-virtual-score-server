@@ -39,6 +39,13 @@
         </div>
     </summary>
 
+    <div class="oes-source-selector">
+        <label for="oes-source-select">OES Data Source</label>
+        <select id="oes-source-select">
+            <option value="">Auto (latest)</option>
+        </select>
+    </div>
+
     <p style="margin: 0 0 8px; color: var(--ink-soft); font-size: 0.8rem;">
         OES clock source is configured on the <a href="/" style="color: var(--carolina-soft);">Home page</a> under Data Sources (Sport Override: Lacrosse &gt; Gymnastics).
     </p>
@@ -1071,7 +1078,9 @@
     }
 
     function fetchGymnasticsData() {
-        fetch('/get_gymnastics_data', { cache: 'no-store' })
+        var url = '/get_gymnastics_data';
+        if (selectedSourceId) url += '?source=' + encodeURIComponent(selectedSourceId);
+        fetch(url, { cache: 'no-store' })
             .then(function(response) { return response.json(); })
             .then(function(data) { renderGymnastics(data || {}); })
             .catch(function() { renderGymnastics({}); });
@@ -1134,6 +1143,7 @@
 
     fetchGymnasticsData();
     setInterval(fetchGymnasticsData, 1000);
+    initSourceSelector('Gymnastics');
 
     loadVirtiusConfig();
     document.getElementById('gym-virtius-form').addEventListener('submit', submitVirtiusConfig);

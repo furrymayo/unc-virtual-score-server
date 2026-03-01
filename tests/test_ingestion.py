@@ -49,6 +49,24 @@ class TestRecordAndRetrieve:
         assert sources[0]["source"] == "src:X"
         assert "Hockey" in sources[0]["sports"]
 
+    def test_get_sources_snapshot_name_fallback(self):
+        """Sources without a configured name fall back to source_id."""
+        ingestion.record_packet("Hockey", {"home_score": "3"}, "udp:10.0.0.1:5000")
+        sources = ingestion.get_sources_snapshot()
+        assert len(sources) == 1
+        assert sources[0]["name"] == "udp:10.0.0.1:5000"
+
+    def test_get_sources_snapshot_name_from_config(self):
+        """Sources with a configured name show the friendly name."""
+        with ingestion.data_sources_lock:
+            ingestion.data_sources.append(
+                {"id": "tcp:10.0.0.1:4000", "name": "Kenan Stadium", "host": "10.0.0.1", "port": 4000, "enabled": True, "sport_overrides": {}}
+            )
+        ingestion.record_packet("Football", {"home_score": "7"}, "tcp:10.0.0.1:4000")
+        sources = ingestion.get_sources_snapshot()
+        assert len(sources) == 1
+        assert sources[0]["name"] == "Kenan Stadium"
+
 
 class TestPurgeStale:
     def setup_method(self):

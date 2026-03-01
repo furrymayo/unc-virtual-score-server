@@ -1047,16 +1047,82 @@
                 transform: none;
             }
         }
+
+        .oes-source-selector {
+            padding: 8px 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(131, 198, 242, 0.12);
+        }
+
+        .oes-source-selector label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+            display: block;
+            color: var(--ink-soft);
+        }
+
+        .oes-source-selector select {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(131, 198, 242, 0.25);
+            background: rgba(8, 18, 34, 0.7);
+            color: var(--ink);
+            padding: 6px 8px;
+            font-size: 0.9rem;
+        }
     </style>
     <script>
+        var selectedSourceId = null;
+
         function fetchData(sport) {
-            fetch(`/get_raw_data/${sport}`, { cache: "no-store" })
+            var url = `/get_raw_data/${sport}`;
+            if (selectedSourceId) url += `?source=${encodeURIComponent(selectedSourceId)}`;
+            fetch(url, { cache: "no-store" })
                 .then(response => response.json())
                 .then(data => {
                     const event = new CustomEvent('dataFetched', { detail: data });
                     document.dispatchEvent(event);
                 })
                 .catch(error => console.error('Error:', error));
+        }
+
+        function updateSourceDropdown(select, sources) {
+            var prev = select.value;
+            var opts = '<option value="">Auto (latest)</option>';
+            sources.forEach(function(s) {
+                var label = s.name !== s.source ? s.name + ' (' + s.source + ')' : s.source;
+                opts += '<option value="' + s.source.replace(/"/g, '&quot;') + '">'
+                    + label.replace(/</g, '&lt;') + '</option>';
+            });
+            select.innerHTML = opts;
+            // Preserve previous selection if source still exists
+            var stillExists = sources.some(function(s) { return s.source === prev; });
+            select.value = stillExists ? prev : '';
+            selectedSourceId = select.value || null;
+        }
+
+        function initSourceSelector(sport) {
+            var select = document.getElementById('oes-source-select');
+            if (!select) return;
+            select.addEventListener('change', function() {
+                selectedSourceId = this.value || null;
+            });
+            function refreshSources() {
+                fetch('/get_sources', { cache: 'no-store' })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        var all = data.sources || [];
+                        var filtered = all.filter(function(s) {
+                            return s.sports && s.sports.indexOf(sport) !== -1;
+                        });
+                        updateSourceDropdown(select, filtered);
+                    })
+                    .catch(function() {});
+            }
+            refreshSources();
+            setInterval(refreshSources, 10000);
         }
 
         function formatValue(value, fallback) {

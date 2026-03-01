@@ -382,6 +382,22 @@
     .wr-scorecard-table tr.wr-sc-away td { color: var(--away-color, var(--accent)); }
 </style>
 
+<details class="trackman-shell trackman-config-compact data-sources-panel" style="margin-top: 16px;">
+    <summary class="scoreboard-header" style="margin-bottom: 10px; cursor: pointer;">
+        <div style="display: flex; align-items: center;">
+            <span class="dropdown-indicator"></span>
+            <div class="scoreboard-subtitle">Additional Data Sources</div>
+        </div>
+    </summary>
+
+    <div class="oes-source-selector">
+        <label for="oes-source-select">OES Data Source</label>
+        <select id="oes-source-select">
+            <option value="">Auto (latest)</option>
+        </select>
+    </div>
+</details>
+
 <script>
 
     function normalizeClock(value) {
@@ -564,6 +580,7 @@
 
     fetchWrestlingData();
     setInterval(fetchWrestlingData, 150);
+    initSourceSelector('Wrestling');
 
     document.addEventListener('dataFetched', function(event) {
         renderWrestling(event.detail || {});

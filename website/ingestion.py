@@ -187,12 +187,21 @@ def get_sport_data(sport, source_id=None):
 
 
 def get_sources_snapshot():
-    """Thread-safe: return list of source info dicts."""
+    """Thread-safe: return list of source info dicts.
+
+    Includes a friendly ``name`` for each source by cross-referencing the
+    configured ``data_sources`` list.  Lock ordering: ``data_sources_lock``
+    first, then ``parsed_data_lock`` (no existing code acquires them in
+    reverse order).
+    """
     now = time.time()
+    with data_sources_lock:
+        name_by_id = {s["id"]: s.get("name", s["id"]) for s in data_sources}
     with parsed_data_lock:
         return [
             {
                 "source": source_id,
+                "name": name_by_id.get(source_id, source_id),
                 "last_seen": last_seen,
                 "age_seconds": round(now - last_seen, 3),
                 "sports": list(parsed_data_by_source.get(source_id, {}).keys()),

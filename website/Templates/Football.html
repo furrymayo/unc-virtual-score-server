@@ -333,6 +333,13 @@
         </div>
     </summary>
 
+    <div class="oes-source-selector">
+        <label for="oes-source-select">OES Data Source</label>
+        <select id="oes-source-select">
+            <option value="">Auto (latest)</option>
+        </select>
+    </div>
+
     <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">StatCrew XML</div>
     <form id="fb-statcrew-form" class="config-grid">
         <div style="grid-column: span 2;">
@@ -464,6 +471,7 @@
     fetchFootballData();
     setInterval(fetchFootballData, 150);
 
+    initSourceSelector('Football');
     loadStatcrewConfig('Football', 'fb');
     fetchStatcrewFootballData();
     setInterval(fetchStatcrewFootballData, 5000);

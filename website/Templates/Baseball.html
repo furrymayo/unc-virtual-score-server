@@ -345,6 +345,13 @@
         </div>
     </summary>
 
+    <div class="oes-source-selector">
+        <label for="oes-source-select">OES Data Source</label>
+        <select id="oes-source-select">
+            <option value="">Auto (latest)</option>
+        </select>
+    </div>
+
     <div class="section-title" style="margin-top: 8px; margin-bottom: 8px;">TrackMan UDP</div>
     <form id="bs-trackman-form" class="config-grid">
         <div>
@@ -707,6 +714,7 @@
 
     fetchBaseballData();
     setInterval(fetchBaseballData, 1000);
+    initSourceSelector('Baseball');
     loadTrackmanBaseballConfig();
     fetchTrackmanBaseballData();
     setInterval(fetchTrackmanBaseballData, 1000);
