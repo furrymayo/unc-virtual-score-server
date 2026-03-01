@@ -1,6 +1,6 @@
 # Flask Virtual Scoreboard
 
-**Last Updated**: 2026-02-21
+**Last Updated**: 2026-02-28
 **Status**: Active
 **Primary OS**: Both (Windows + Linux)
 **Repo**: https://github.com/furrymayo/unc-virtual-score-server
@@ -33,7 +33,8 @@ Flask web application that displays real-time sports scoreboards by reading data
 - TrackMan values rounded to whole numbers (no decimal)
 - StatCrew network share mounted at `/mnt/stats` on Ubuntu server (CIFS, persistent)
 - StatCrew poll interval: 2s (file mtime check 0.3ms, full parse 10ms)
-- 173 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup, lacrosse), virtius/gymnastics, and API
+- OES data source selector dropdown on all 11 sport pages — operator picks which source to display when multiple venues broadcast the same sport
+- 179 pytest tests covering protocol, ingestion, trackman, statcrew (incl. color lookup, lacrosse), virtius/gymnastics, and API
 - systemd deployment config for Ubuntu server
 - Stale source cleanup thread (1hr TTL, 5min interval)
 - All 12 templates TV-optimized with consistent design language (see TV Layout Reference below)
@@ -44,6 +45,16 @@ Flask web application that displays real-time sports scoreboards by reading data
 - Debug console: side-by-side OES/TrackMan log panels with timestamps, color-coded JSON, clear buttons, auto-scroll (500 entry cap)
 - Home page: modernized hub with responsive sport cards, styled data source management panel
 - OES baseball batter_num 0x3A blank handling fixed in protocol.py
+- FLASK_DEBUG defaults to `0` (production-safe); dev machines set `FLASK_DEBUG=1` in `.env`
+- Secret key uses `secrets.token_hex(32)` fallback when `FLASK_SECRET_KEY` env var unset
+- `browse_files()` path traversal guard: `BROWSE_ROOTS` env var (default `/mnt/stats`), rejects paths outside allowed roots on Linux
+- Per-source baseball inning state (multiple concurrent games supported)
+- Thread-safe TCP client management (`tcp_clients_lock`)
+- TCP listener started in `start_network_listeners()` for `tcp`/`auto` modes
+- Responsive TCP client shutdown (`stop_event.wait` replaces `time.sleep`)
+- TrackMan port conflict check inside `trackman_lock` (race condition fix)
+- NCAA team color lookup uses O(1) dict index (normalized name + slug)
+- Removed unused CDN scripts: jQuery, Popper.js, Bootstrap JS, Font Awesome CSS (Bootstrap CSS retained)
 
 ## Quick Reference
 | Item | Value |
@@ -62,7 +73,7 @@ Flask web application that displays real-time sports scoreboards by reading data
 | `website/__init__.py` | App factory, registers 3 blueprints (views, sports, api) |
 | `website/views.py` | Home page route |
 | `website/sports.py` | Sport page routes (renders templates) |
-| `website/api.py` | 14 API routes (Blueprint), calls ingestion/trackman/statcrew/virtius accessors |
+| `website/api.py` | 14 API routes (Blueprint), calls ingestion/trackman/statcrew/virtius accessors, BROWSE_ROOTS path guard |
 | `website/protocol.py` | Protocol constants, PacketStreamParser, decoders, 9 sport parsers, `identify_and_parse()` |
 | `website/ingestion.py` | Data store, serial/TCP/UDP readers, source management, cleanup thread |
 | `website/trackman.py` | TrackMan state, JSON parser, UDP listener, config management |
@@ -140,6 +151,8 @@ All sport templates follow a consistent clock-dominant design. Row 1 is always t
 | Home | — | Sports grid (10+debug) | Data source manager | — | — |
 
 ## Recent Activity
+- 2026-02-28: OES data source selector — Dropdown in each sport page's "Additional Data Sources" panel lets operators pick which OES source to display when multiple venues broadcast the same sport. Backend: `get_sources_snapshot()` includes friendly `name` from configured `data_sources` (safe lock ordering: `data_sources_lock` → `parsed_data_lock`). Frontend: shared `initSourceSelector()` in base.html fetches `/get_sources`, filters by sport, populates `<select>`, refreshes every 10s, passes `?source=` to `fetchData()` and `fetchGymnasticsData()`. Wrestling gets a new Additional Data Sources panel. Default "Auto (latest)" preserves existing behavior. 3 new tests. 179 total tests.
+- 2026-02-22: Codebase audit fix (Tiers 1-3) — Security: FLASK_DEBUG default 0, secrets.token_hex secret key, BROWSE_ROOTS path traversal guard on browse_files. Bugs: TCP listener in start_network_listeners, per-source baseball inning state, tcp_clients_lock thread safety, stop_event.wait responsive shutdown. Quality: trackman port conflict race fix, NCAA color O(1) lookup index, removed unused CDN scripts (jQuery/Popper/Bootstrap JS/Font Awesome), .gitignore runtime configs, deleted copyPasta.html. 176 total tests.
 - 2026-02-21: Gymnastics multi-team meets — 3/4 team support (tri-meets, quad-meets). API returns `team_colors` dict for per-team NCAA color lookup. Frontend dual/multi branching: dual meets pixel-identical to previous, multi meets get N-column team cards sorted by rank (leader left), clock moves to rotation bar, per-team inline colors on score cards/lineup cards/AA leaders. Flicker prevention via `lastTeamCount` tracking. New CSS grid classes (`gym-grid-3/4`, `gym-lineup-3/4`). 5 new API tests. 173 total tests.
 - 2026-02-20: Lacrosse Shots/SOG fix — StatCrew shots and SOG override OES when available (OES controller sends 0 for shots). Added SOG display to Row 2 stat cards alongside TOL and Shots.
 - 2026-02-19: Home page modernized — responsive sport cards with tag/name structure, styled data source management (primary/secondary buttons, action buttons), removed Bootstrap utilities, consistent dark UNC theme
