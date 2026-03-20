@@ -413,6 +413,10 @@
     }
 
     function renderBaseball(data) {
+        // If OES data is empty, skip overwriting — StatCrew handles display
+        const hasOES = data && Object.keys(data).length > 0 && data.balls !== undefined;
+        if (!hasOES) return;
+
         setText('bs-balls', data.balls);
         setText('bs-strikes', data.strikes);
         setText('bs-outs', data.outs);
