@@ -436,11 +436,14 @@
         return text.replace(/^0+(?=\d)/, '');
     }
 
-    function renderHockey(data) {
+    function renderHockeyClock(data) {
         var gameClock = normalizeClock(data.game_clock);
-
         setText('hk-game-clock', gameClock);
         setText('hk-period', data.period);
+    }
+
+    function renderHockey(data) {
+        renderHockeyClock(data);
         setText('hk-home-score', data.home_score);
         setText('hk-visitor-score', data.visitor_score);
         setText('hk-home-shots', data.home_shots);
@@ -536,9 +539,10 @@
     }
 
     fetchHockeyData();
-    setInterval(fetchHockeyData, 150);
+    setInterval(fetchHockeyData, 500);
 
     initSourceSelector('Hockey');
+    initClockSSE('Hockey', renderHockeyClock);
     loadStatcrewConfig('Hockey', 'hk');
     fetchStatcrewHockeyData();
     setInterval(fetchStatcrewHockeyData, 5000);

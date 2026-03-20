@@ -387,21 +387,13 @@
         return Number.isFinite(parsed) ? parsed : null;
     }
 
-    function renderFootball(data) {
+    function renderFootballClock(data) {
         var gameClock = normalizeClock(data.game_clock);
         var playClock = normalizeClock(data.shot_clock);
 
         setText('fb-game-clock', gameClock);
         setText('fb-quarter', data.quarter);
         setText('fb-play-clock', playClock);
-        setText('fb-home-score', data.home_score);
-        setText('fb-visitor-score', data.visitor_score);
-        setText('fb-home-tol', data.home_full_tol);
-        setText('fb-visitor-tol', data.visitor_full_tol);
-        setText('fb-down', data.down);
-        setText('fb-ytg', data.yards_to_go);
-        setText('fb-ball-on', data.ball_on);
-        setPossession('fb-poss-home', 'fb-poss-visitor', data.possession);
 
         // Play clock: red when under 10 seconds
         var playClockSecs = parseClockSeconds(playClock);
@@ -412,6 +404,18 @@
         var gameClockSecs = parseClockSeconds(gameClock);
         var gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 120;
         document.getElementById('fb-game-clock').classList.toggle('fb-warning-red', gameClockCritical);
+    }
+
+    function renderFootball(data) {
+        renderFootballClock(data);
+        setText('fb-home-score', data.home_score);
+        setText('fb-visitor-score', data.visitor_score);
+        setText('fb-home-tol', data.home_full_tol);
+        setText('fb-visitor-tol', data.visitor_full_tol);
+        setText('fb-down', data.down);
+        setText('fb-ytg', data.yards_to_go);
+        setText('fb-ball-on', data.ball_on);
+        setPossession('fb-poss-home', 'fb-poss-visitor', data.possession);
     }
 
     function renderStatcrewFootball(data) {
@@ -469,9 +473,10 @@
     }
 
     fetchFootballData();
-    setInterval(fetchFootballData, 150);
+    setInterval(fetchFootballData, 500);
 
     initSourceSelector('Football');
+    initClockSSE('Football', renderFootballClock);
     loadStatcrewConfig('Football', 'fb');
     fetchStatcrewFootballData();
     setInterval(fetchStatcrewFootballData, 5000);

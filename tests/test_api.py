@@ -14,8 +14,12 @@ def _reset_state():
             ingestion.parsed_data[key] = {}
         ingestion.parsed_data_by_source.clear()
         ingestion.last_seen_by_source.clear()
+        ingestion._clock_snapshots.clear()
+        ingestion._clock_seq = 0
     with ingestion.data_sources_lock:
         ingestion.data_sources.clear()
+    with ingestion._sse_connection_lock:
+        ingestion._sse_connection_count = 0
     yield
 
 
@@ -55,6 +59,21 @@ class TestGetEndpoints:
 
     def test_get_trackman_debug_unknown_sport(self, client):
         resp = client.get("/get_trackman_debug/Tennis")
+        assert resp.status_code == 404
+
+
+class TestSSEEndpoint:
+    def test_sse_returns_event_stream_for_clock_sport(self, client):
+        resp = client.get("/sse/clock/Basketball")
+        assert resp.status_code == 200
+        assert resp.content_type.startswith("text/event-stream")
+
+    def test_sse_returns_404_for_baseball(self, client):
+        resp = client.get("/sse/clock/Baseball")
+        assert resp.status_code == 404
+
+    def test_sse_returns_404_for_invalid_sport(self, client):
+        resp = client.get("/sse/clock/Tennis")
         assert resp.status_code == 404
 
 

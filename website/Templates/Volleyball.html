@@ -449,11 +449,14 @@
         return text.replace(/^0+(?=\d)/, '');
     }
 
-    function renderVolleyball(data) {
+    function renderVolleyballClock(data) {
         var gameClock = normalizeClock(data.game_clock);
-
         setText('vb-game-clock', gameClock);
         setText('vb-set', data.period);
+    }
+
+    function renderVolleyball(data) {
+        renderVolleyballClock(data);
         setText('vb-home-score', data.home_score);
         setText('vb-visitor-score', data.visitor_score);
         setText('vb-home-tol', data.home_full_tol);
@@ -531,9 +534,10 @@
     }
 
     fetchVolleyballData();
-    setInterval(fetchVolleyballData, 150);
+    setInterval(fetchVolleyballData, 500);
 
     initSourceSelector('Volleyball');
+    initClockSSE('Volleyball', renderVolleyballClock);
     loadStatcrewConfig('Volleyball', 'vb');
     fetchStatcrewVolleyballData();
     setInterval(fetchStatcrewVolleyballData, 5000);

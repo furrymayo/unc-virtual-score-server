@@ -382,12 +382,26 @@
         return Number.isFinite(plain) ? plain : null;
     }
 
-    function renderBasketball(data) {
+    function renderBasketballClock(data) {
         const gameClock = normalizeClock(data.game_clock);
         const shotClock = normalizeClock(data.shot_clock);
         setText('bb-game-clock', gameClock);
         setText('bb-period', data.period);
         setText('bb-shot-clock-center', shotClock);
+
+        // Game clock: red when under 10 seconds
+        const gameClockSecs = parseGameClockTotalSeconds(gameClock);
+        const gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 10;
+        document.getElementById('bb-game-clock').classList.toggle('bb-warning-red', gameClockCritical);
+
+        // Shot clock: red when under 10 seconds
+        const shotClockValue = parseClockSeconds(shotClock);
+        const shotClockCritical = Number.isFinite(shotClockValue) && shotClockValue < 10;
+        document.getElementById('bb-shot-clock-center').classList.toggle('bb-warning-red', shotClockCritical);
+    }
+
+    function renderBasketball(data) {
+        renderBasketballClock(data);
         setText('bb-home-score', data.home_score);
         setText('bb-visitor-score', data.visitor_score);
         setText('bb-home-fouls', data.home_fouls);
@@ -399,16 +413,6 @@
         setText('bb-home-bonus', homeBonus);
         setText('bb-visitor-bonus', visitorBonus);
         setPossession('bb-poss-home', 'bb-poss-visitor', data.possession);
-
-        // Game clock: red when under 10 seconds
-        const gameClockSecs = parseGameClockTotalSeconds(gameClock);
-        const gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 10;
-        document.getElementById('bb-game-clock').classList.toggle('bb-warning-red', gameClockCritical);
-
-        // Shot clock: red when under 10 seconds
-        const shotClockValue = parseClockSeconds(shotClock);
-        const shotClockCritical = Number.isFinite(shotClockValue) && shotClockValue < 10;
-        document.getElementById('bb-shot-clock-center').classList.toggle('bb-warning-red', shotClockCritical);
 
         // Fouls: green at 6+ for men's basketball only
         var isMens = statcrewData.basketball_gender === 'M';
@@ -483,9 +487,10 @@
     }
 
     fetchBasketballData();
-    setInterval(fetchBasketballData, 150);
+    setInterval(fetchBasketballData, 500);
 
     initSourceSelector('Basketball');
+    initClockSSE('Basketball', renderBasketballClock);
     loadStatcrewConfig('Basketball', 'bb');
     fetchStatcrewBasketballData();
     setInterval(fetchStatcrewBasketballData, 5000);

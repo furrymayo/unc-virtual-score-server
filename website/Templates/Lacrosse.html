@@ -450,13 +450,22 @@
         return Number.isFinite(parsed) ? parsed : null;
     }
 
-    function renderLacrosse(data) {
+    function renderLacrosseClock(data) {
         var gameClock = normalizeClock(data.game_clock);
         var shotClock = normalizeClock(data.shot_clock);
 
         setText('lax-game-clock', gameClock);
         setText('lax-period', data.period);
         setText('lax-shot-clock', shotClock);
+
+        // Shot clock: red when under 10 seconds
+        var shotClockSecs = parseClockSeconds(shotClock);
+        var shotClockCritical = Number.isFinite(shotClockSecs) && shotClockSecs < 10;
+        document.getElementById('lax-shot-clock').classList.toggle('lax-warning-red', shotClockCritical);
+    }
+
+    function renderLacrosse(data) {
+        renderLacrosseClock(data);
         setText('lax-home-score', data.home_score);
         setText('lax-visitor-score', data.visitor_score);
         setText('lax-home-tol', data.home_full_tol);
@@ -464,11 +473,6 @@
         // Prefer StatCrew shots over OES when available
         if (statcrewShots.home === null) setText('lax-home-shots', data.home_shots);
         if (statcrewShots.away === null) setText('lax-visitor-shots', data.visitor_shots);
-
-        // Shot clock: red when under 10 seconds
-        var shotClockSecs = parseClockSeconds(shotClock);
-        var shotClockCritical = Number.isFinite(shotClockSecs) && shotClockSecs < 10;
-        document.getElementById('lax-shot-clock').classList.toggle('lax-warning-red', shotClockCritical);
 
         // Penalties
         var homePens = Array.isArray(data.home_penalties) ? data.home_penalties : [];
@@ -572,9 +576,10 @@
     }
 
     fetchLacrosseData();
-    setInterval(fetchLacrosseData, 150);
+    setInterval(fetchLacrosseData, 500);
 
     initSourceSelector('Lacrosse');
+    initClockSSE('Lacrosse', renderLacrosseClock);
     loadStatcrewConfig('Lacrosse', 'lax');
     fetchStatcrewLacrosseData();
     setInterval(fetchStatcrewLacrosseData, 5000);

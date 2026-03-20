@@ -1134,6 +1134,46 @@
             setInterval(refreshSources, 10000);
         }
 
+        var _clockEventSource = null;
+
+        function initClockSSE(sport, renderClockFn) {
+            function connect() {
+                if (_clockEventSource) {
+                    _clockEventSource.close();
+                    _clockEventSource = null;
+                }
+                var url = '/sse/clock/' + sport;
+                if (selectedSourceId) {
+                    url += '?source=' + encodeURIComponent(selectedSourceId);
+                }
+                var evtSource = new EventSource(url);
+                _clockEventSource = evtSource;
+
+                evtSource.addEventListener('clock', function(e) {
+                    try {
+                        var data = JSON.parse(e.data);
+                        renderClockFn(data);
+                    } catch (err) {
+                        console.error('SSE clock parse error:', err);
+                    }
+                });
+
+                evtSource.onerror = function() {
+                    // EventSource auto-reconnects with retry interval from server (1s)
+                };
+            }
+
+            connect();
+
+            // Reconnect SSE when source selector changes
+            var select = document.getElementById('oes-source-select');
+            if (select) {
+                select.addEventListener('change', function() {
+                    setTimeout(connect, 50);  // let selectedSourceId update first
+                });
+            }
+        }
+
         function formatValue(value, fallback) {
             if (fallback === undefined) {
                 fallback = "n/a";

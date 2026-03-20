@@ -1,9 +1,10 @@
+import json
 import os
 import platform
 import string
 from functools import wraps
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, Response, jsonify, request, stream_with_context
 
 from . import ingestion, statcrew, trackman, virtius
 from .config import CONFIG
@@ -292,6 +293,50 @@ def get_virtius_data(sport):
 @api.route("/get_sources", methods=["GET"])
 def get_sources():
     return jsonify({"sources": ingestion.get_sources_snapshot()})
+
+
+@api.route("/sse/clock/<sport>")
+def sse_clock(sport):
+    if sport not in ingestion.CLOCK_FIELDS:
+        return jsonify({"error": "SSE not available for this sport"}), 404
+
+    source_id = request.args.get("source") or None
+
+    if not ingestion.sse_connection_acquire():
+        return jsonify({"error": "Too many SSE connections"}), 503
+
+    def generate():
+        try:
+            last_seq = 0
+            # Send retry interval on first message (1s reconnect)
+            yield "retry: 1000\n\n"
+            while True:
+                new_seq = ingestion.wait_for_clock_update(last_seq, timeout=15.0)
+                if new_seq == last_seq:
+                    yield ": keepalive\n\n"
+                    continue
+                last_seq = new_seq
+                snapshot = ingestion.get_clock_snapshot(sport)
+                if snapshot is None:
+                    continue
+                # In specific-source mode, skip if snapshot is from different source
+                if source_id and snapshot.get("_source") != source_id:
+                    continue
+                yield f"event: clock\ndata: {json.dumps(snapshot)}\n\n"
+        except GeneratorExit:
+            pass
+        finally:
+            ingestion.sse_connection_release()
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+            "Connection": "keep-alive",
+        },
+    )
 
 
 @api.route("/statcrew_config/<sport>", methods=["GET", "POST"])

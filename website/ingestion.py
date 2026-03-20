@@ -45,6 +45,26 @@ _AUTO_STICKY_TTL = 10  # seconds before a sticky source is considered stale
 
 SUPPORTED_SPORTS = set(parsed_data.keys())
 
+# --- Clock SSE pub/sub ---
+CLOCK_FIELDS = {
+    "Basketball": ["game_clock", "shot_clock", "period"],
+    "Lacrosse":   ["game_clock", "shot_clock", "period"],
+    "Football":   ["game_clock", "shot_clock", "quarter"],
+    "Wrestling":  ["game_clock", "period", "match_weight_class",
+                   "home_adv_time", "visitor_adv_time",
+                   "home_inj_time", "visitor_inj_time"],
+    "Hockey":     ["game_clock", "period"],
+    "Soccer":     ["game_clock", "period"],
+    "Volleyball": ["game_clock", "period"],
+}
+
+_clock_seq = 0
+_clock_condition = threading.Condition()
+_clock_snapshots = {}   # sport -> {field: val, ..., "_seq": N, "_source": source_id}
+_sse_connection_count = 0
+_sse_connection_lock = threading.Lock()
+SSE_MAX_CONNECTIONS = 50
+
 # --- Accessor functions ---
 
 _STALE_TTL = 3600  # 1 hour
@@ -159,6 +179,7 @@ def record_packet(sport, parsed, source_id):
     if source_id is None:
         source_id = "unknown"
 
+    should_notify = False
     with parsed_data_lock:
         if sport not in parsed_data:
             parsed_data[sport] = {}
@@ -183,6 +204,26 @@ def record_packet(sport, parsed, source_id):
         parsed_data[sport] = parsed_with_meta
         parsed_data_by_source.setdefault(source_id, {})[sport] = parsed_with_meta
         last_seen_by_source[source_id] = received_at
+
+        # Clock SSE notification
+        clock_keys = CLOCK_FIELDS.get(sport)
+        if clock_keys:
+            new_clock = {k: parsed_with_meta.get(k) for k in clock_keys}
+            new_clock["_source"] = source_id
+            old_clock = _clock_snapshots.get(sport)
+            if old_clock is None or any(
+                new_clock.get(k) != old_clock.get(k) for k in clock_keys
+            ):
+                global _clock_seq
+                _clock_seq += 1
+                new_clock["_seq"] = _clock_seq
+                _clock_snapshots[sport] = new_clock
+                should_notify = True
+
+    # Notify outside parsed_data_lock to avoid nested lock acquisition
+    if should_notify:
+        with _clock_condition:
+            _clock_condition.notify_all()
 
 
 def get_sport_data(sport, source_id=None):
@@ -251,6 +292,40 @@ def get_sources_snapshot():
             }
             for source_id, last_seen in last_seen_by_source.items()
         ]
+
+
+def get_clock_snapshot(sport):
+    """Return latest clock snapshot for a sport (or None)."""
+    snap = _clock_snapshots.get(sport)
+    return dict(snap) if snap else None
+
+
+def get_clock_seq():
+    return _clock_seq
+
+
+def wait_for_clock_update(last_seq, timeout=15.0):
+    """Block until clock seq advances past last_seq, or timeout (for keepalive)."""
+    with _clock_condition:
+        while _clock_seq <= last_seq:
+            if not _clock_condition.wait(timeout=timeout):
+                break  # timeout -> send keepalive
+        return _clock_seq
+
+
+def sse_connection_acquire():
+    global _sse_connection_count
+    with _sse_connection_lock:
+        if _sse_connection_count >= SSE_MAX_CONNECTIONS:
+            return False
+        _sse_connection_count += 1
+        return True
+
+
+def sse_connection_release():
+    global _sse_connection_count
+    with _sse_connection_lock:
+        _sse_connection_count = max(0, _sse_connection_count - 1)
 
 
 def purge_stale_sources():

@@ -494,7 +494,7 @@
         container.innerHTML = html;
     }
 
-    function renderWrestling(data) {
+    function renderWrestlingClock(data) {
         var gameClock = normalizeClock(data.game_clock);
 
         setText('wr-game-clock', gameClock);
@@ -505,41 +505,41 @@
         if (weightClass === '285') weightClass = 'HWT';
         setText('wr-weight-class', weightClass);
 
-        setText('wr-home-score', data.home_score);
-        setText('wr-visitor-score', data.visitor_score);
-        setText('wr-home-team-points', data.home_team_points);
-        setText('wr-visitor-team-points', data.visitor_team_points);
+        // Advantage time: display + green when >= 1:00 (riding time point earned)
         setText('wr-home-adv-time', data.home_adv_time);
         setText('wr-visitor-adv-time', data.visitor_adv_time);
-        setText('wr-home-inj-time', data.home_inj_time);
-        setText('wr-visitor-inj-time', data.visitor_inj_time);
-
-        // Match clock: red when under 30 seconds
-        var gameClockSecs = parseClockSeconds(gameClock);
-        var gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 30;
-        document.getElementById('wr-game-clock').classList.toggle('wr-warning-red', gameClockCritical);
-
-        // Advantage time: green when >= 1:00 (riding time point earned)
-        var homeAdvEl = document.getElementById('wr-home-adv-time');
-        var visAdvEl = document.getElementById('wr-visitor-adv-time');
         var homeAdvSecs = parseClockSeconds(data.home_adv_time);
         var visAdvSecs = parseClockSeconds(data.visitor_adv_time);
-        homeAdvEl.classList.toggle('wr-adv-green', Number.isFinite(homeAdvSecs) && homeAdvSecs >= 60);
-        visAdvEl.classList.toggle('wr-adv-green', Number.isFinite(visAdvSecs) && visAdvSecs >= 60);
+        document.getElementById('wr-home-adv-time').classList.toggle('wr-adv-green', Number.isFinite(homeAdvSecs) && homeAdvSecs >= 60);
+        document.getElementById('wr-visitor-adv-time').classList.toggle('wr-adv-green', Number.isFinite(visAdvSecs) && visAdvSecs >= 60);
 
-        // Item 7: Injury time active indicator
-        var homeInjEl = document.getElementById('wr-home-inj-time');
-        var visInjEl = document.getElementById('wr-visitor-inj-time');
+        // Injury time: display values and active indicator
+        setText('wr-home-inj-time', data.home_inj_time);
+        setText('wr-visitor-inj-time', data.visitor_inj_time);
         var curHomeInj = data.home_inj_time;
         var curVisInj = data.visitor_inj_time;
         var homeInjSecs = parseClockSeconds(curHomeInj);
         var visInjSecs = parseClockSeconds(curVisInj);
         var homeInjActive = previousHomeInjTime !== null && curHomeInj !== previousHomeInjTime && Number.isFinite(homeInjSecs) && homeInjSecs > 0;
         var visInjActive = previousVisitorInjTime !== null && curVisInj !== previousVisitorInjTime && Number.isFinite(visInjSecs) && visInjSecs > 0;
-        homeInjEl.classList.toggle('wr-inj-active', homeInjActive);
-        visInjEl.classList.toggle('wr-inj-active', visInjActive);
+        document.getElementById('wr-home-inj-time').classList.toggle('wr-inj-active', homeInjActive);
+        document.getElementById('wr-visitor-inj-time').classList.toggle('wr-inj-active', visInjActive);
         previousHomeInjTime = curHomeInj;
         previousVisitorInjTime = curVisInj;
+
+        // Match clock: red when under 30 seconds
+        var gameClockSecs = parseClockSeconds(gameClock);
+        var gameClockCritical = Number.isFinite(gameClockSecs) && gameClockSecs < 30;
+        document.getElementById('wr-game-clock').classList.toggle('wr-warning-red', gameClockCritical);
+    }
+
+    function renderWrestling(data) {
+        renderWrestlingClock(data);
+
+        setText('wr-home-score', data.home_score);
+        setText('wr-visitor-score', data.visitor_score);
+        setText('wr-home-team-points', data.home_team_points);
+        setText('wr-visitor-team-points', data.visitor_team_points);
 
         // Item 5: Bout result detection — weight class change with non-zero prior scores
         var curWeight = (data.match_weight_class || '').trim();
@@ -579,8 +579,9 @@
     }
 
     fetchWrestlingData();
-    setInterval(fetchWrestlingData, 150);
+    setInterval(fetchWrestlingData, 500);
     initSourceSelector('Wrestling');
+    initClockSSE('Wrestling', renderWrestlingClock);
 
     document.addEventListener('dataFetched', function(event) {
         renderWrestling(event.detail || {});

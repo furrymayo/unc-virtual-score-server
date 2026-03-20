@@ -20,9 +20,13 @@ def _reset_ingestion_state():
         ingestion.parsed_data_by_source.clear()
         ingestion.last_seen_by_source.clear()
         ingestion._auto_sticky_source.clear()
+        ingestion._clock_snapshots.clear()
+        ingestion._clock_seq = 0
     ingestion.reset_baseball_state()
     with ingestion.data_sources_lock:
         ingestion.data_sources.clear()
+    with ingestion._sse_connection_lock:
+        ingestion._sse_connection_count = 0
 
 
 class TestRecordAndRetrieve:
@@ -383,3 +387,64 @@ class TestOrdinal:
         assert ingestion._ordinal(12) == "12th"
         assert ingestion._ordinal(13) == "13th"
         assert ingestion._ordinal(21) == "21st"
+
+
+class TestClockPubSub:
+    def setup_method(self):
+        _reset_ingestion_state()
+
+    def test_clock_snapshot_created_for_basketball(self):
+        """record_packet creates a clock snapshot for clock sports."""
+        ingestion.record_packet(
+            "Basketball", {"game_clock": "12:00", "shot_clock": "30", "period": "1", "home_score": "10"}, "t"
+        )
+        snap = ingestion.get_clock_snapshot("Basketball")
+        assert snap is not None
+        assert snap["game_clock"] == "12:00"
+        assert snap["shot_clock"] == "30"
+        assert snap["period"] == "1"
+        # Non-clock fields should not be in snapshot
+        assert "home_score" not in snap
+
+    def test_no_clock_snapshot_for_baseball(self):
+        """record_packet does NOT create clock snapshot for non-clock sports."""
+        ingestion.record_packet("Baseball", _base_baseball(outs="0"), "t")
+        snap = ingestion.get_clock_snapshot("Baseball")
+        assert snap is None
+
+    def test_clock_seq_increments_on_change(self):
+        """_clock_seq increments when clock data changes."""
+        ingestion.record_packet(
+            "Basketball", {"game_clock": "12:00", "shot_clock": "30", "period": "1"}, "t"
+        )
+        seq1 = ingestion.get_clock_seq()
+        assert seq1 > 0
+
+        ingestion.record_packet(
+            "Basketball", {"game_clock": "11:59", "shot_clock": "29", "period": "1"}, "t"
+        )
+        seq2 = ingestion.get_clock_seq()
+        assert seq2 > seq1
+
+    def test_clock_seq_no_increment_on_identical(self):
+        """_clock_seq does NOT increment when clock data is identical."""
+        ingestion.record_packet(
+            "Basketball", {"game_clock": "12:00", "shot_clock": "30", "period": "1"}, "t"
+        )
+        seq1 = ingestion.get_clock_seq()
+
+        ingestion.record_packet(
+            "Basketball", {"game_clock": "12:00", "shot_clock": "30", "period": "1"}, "t"
+        )
+        seq2 = ingestion.get_clock_seq()
+        assert seq2 == seq1
+
+    def test_sse_connection_limit(self):
+        """SSE connection counter enforces max limit."""
+        for _ in range(ingestion.SSE_MAX_CONNECTIONS):
+            assert ingestion.sse_connection_acquire() is True
+        # Next one should be rejected
+        assert ingestion.sse_connection_acquire() is False
+        # Release one and try again
+        ingestion.sse_connection_release()
+        assert ingestion.sse_connection_acquire() is True
