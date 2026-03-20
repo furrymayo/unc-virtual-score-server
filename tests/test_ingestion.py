@@ -19,6 +19,7 @@ def _reset_ingestion_state():
             ingestion.parsed_data[key] = {}
         ingestion.parsed_data_by_source.clear()
         ingestion.last_seen_by_source.clear()
+        ingestion._auto_sticky_source.clear()
     ingestion.reset_baseball_state()
     with ingestion.data_sources_lock:
         ingestion.data_sources.clear()
@@ -290,6 +291,85 @@ class TestBaseballInningStateMachine:
         result = ingestion.get_sport_data("Baseball")
         assert result["half"] == "TOP"
         assert result["inning"] == 1
+
+
+class TestAutoSourceStickiness:
+    """Auto mode should stick to one source when multiple broadcast the same sport."""
+
+    def setup_method(self):
+        _reset_ingestion_state()
+
+    def test_auto_sticks_to_first_source(self):
+        """Once Auto locks onto a source, it stays there despite newer packets."""
+        ingestion.record_packet("Basketball", {"home_score": "10"}, "src:mens")
+        ingestion.record_packet("Basketball", {"home_score": "20"}, "src:womens")
+
+        # Auto should pick womens (most recent) as sticky source
+        result = ingestion.get_sport_data("Basketball")
+        locked_score = result["home_score"]
+
+        # Now the other source sends newer data
+        if locked_score == "20":
+            ingestion.record_packet("Basketball", {"home_score": "11"}, "src:mens")
+        else:
+            ingestion.record_packet("Basketball", {"home_score": "21"}, "src:womens")
+
+        # Auto should still return the sticky source's data
+        result2 = ingestion.get_sport_data("Basketball")
+        assert result2["home_score"] == locked_score
+
+    def test_auto_switches_when_sticky_stale(self):
+        """When the sticky source goes stale, Auto picks the freshest."""
+        ingestion.record_packet("Basketball", {"home_score": "10"}, "src:mens")
+
+        # Lock onto mens
+        result = ingestion.get_sport_data("Basketball")
+        assert result["home_score"] == "10"
+
+        # Make mens source stale by backdating its timestamp
+        with ingestion.parsed_data_lock:
+            ingestion.last_seen_by_source["src:mens"] = time.time() - 30
+
+        # Now womens sends data
+        ingestion.record_packet("Basketball", {"home_score": "20"}, "src:womens")
+
+        # Auto should switch to womens
+        result2 = ingestion.get_sport_data("Basketball")
+        assert result2["home_score"] == "20"
+
+    def test_explicit_source_bypasses_stickiness(self):
+        """Explicit source_id always returns that source's data."""
+        ingestion.record_packet("Basketball", {"home_score": "10"}, "src:mens")
+        ingestion.record_packet("Basketball", {"home_score": "20"}, "src:womens")
+
+        # Lock auto onto one source
+        ingestion.get_sport_data("Basketball")
+
+        # Explicit source always works regardless of stickiness
+        mens = ingestion.get_sport_data("Basketball", source_id="src:mens")
+        womens = ingestion.get_sport_data("Basketball", source_id="src:womens")
+        assert mens["home_score"] == "10"
+        assert womens["home_score"] == "20"
+
+    def test_stickiness_is_per_sport(self):
+        """Stickiness for one sport doesn't affect another."""
+        ingestion.record_packet("Basketball", {"home_score": "10"}, "src:A")
+        ingestion.record_packet("Lacrosse", {"home_score": "5"}, "src:B")
+
+        bball = ingestion.get_sport_data("Basketball")
+        lax = ingestion.get_sport_data("Lacrosse")
+        assert bball["_meta"]["source"] == "src:A"
+        assert lax["_meta"]["source"] == "src:B"
+
+    def test_single_source_no_issue(self):
+        """With only one source, stickiness is transparent."""
+        ingestion.record_packet("Basketball", {"home_score": "10"}, "src:only")
+        result = ingestion.get_sport_data("Basketball")
+        assert result["home_score"] == "10"
+
+        ingestion.record_packet("Basketball", {"home_score": "15"}, "src:only")
+        result2 = ingestion.get_sport_data("Basketball")
+        assert result2["home_score"] == "15"
 
 
 class TestOrdinal:

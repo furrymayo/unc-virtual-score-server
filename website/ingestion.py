@@ -36,6 +36,13 @@ parsed_data_by_source = {}
 last_seen_by_source = {}
 parsed_data_lock = threading.Lock()
 
+# --- Auto-mode source stickiness ---
+# When multiple sources broadcast the same sport simultaneously, "Auto (latest)"
+# mode sticks to one source instead of flipping between them every packet.
+# Key: sport name → source_id that Auto mode is currently locked onto.
+_auto_sticky_source = {}
+_AUTO_STICKY_TTL = 10  # seconds before a sticky source is considered stale
+
 SUPPORTED_SPORTS = set(parsed_data.keys())
 
 # --- Accessor functions ---
@@ -179,10 +186,46 @@ def record_packet(sport, parsed, source_id):
 
 
 def get_sport_data(sport, source_id=None):
-    """Thread-safe: retrieve latest data for a sport."""
+    """Thread-safe: retrieve latest data for a sport.
+
+    When *source_id* is ``None`` (Auto mode) and multiple sources broadcast
+    the same sport, we stick to whichever source was previously returned
+    for up to ``_AUTO_STICKY_TTL`` seconds.  This prevents rapid flipping
+    between two OES controllers (e.g. men's & women's basketball during
+    concurrent practices).
+    """
     with parsed_data_lock:
         if source_id:
             return dict(parsed_data_by_source.get(source_id, {}).get(sport, {}))
+
+        # --- Auto mode with source stickiness ---
+        now = time.time()
+        sticky_sid = _auto_sticky_source.get(sport)
+
+        # Check if the sticky source is still alive and has data for this sport
+        if sticky_sid:
+            sticky_ts = last_seen_by_source.get(sticky_sid, 0)
+            sticky_data = parsed_data_by_source.get(sticky_sid, {}).get(sport)
+            if sticky_data and (now - sticky_ts) < _AUTO_STICKY_TTL:
+                return dict(sticky_data)
+            # Sticky source went stale — release it
+            _auto_sticky_source.pop(sport, None)
+
+        # No sticky source (or it expired). Pick the freshest source for
+        # this sport and lock onto it.
+        best_sid = None
+        best_ts = 0
+        for sid, src_data in parsed_data_by_source.items():
+            if sport in src_data:
+                ts = last_seen_by_source.get(sid, 0)
+                if ts > best_ts:
+                    best_ts = ts
+                    best_sid = sid
+
+        if best_sid:
+            _auto_sticky_source[sport] = best_sid
+            return dict(parsed_data_by_source[best_sid][sport])
+
         return dict(parsed_data.get(sport, {}))
 
 
