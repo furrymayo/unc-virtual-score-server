@@ -1,3 +1,5 @@
+import base64
+
 from flask import Flask
 
 from .config import CONFIG
@@ -14,5 +16,14 @@ def create_app():
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(sports, url_prefix="/")
     app.register_blueprint(api, url_prefix="/")
+
+    # Make API auth token available to all templates for JS config fetches
+    _token = base64.b64encode(
+        f"{CONFIG.admin_user}:{CONFIG.admin_pass}".encode()
+    ).decode()
+
+    @app.context_processor
+    def inject_api_auth():
+        return {"api_auth_token": _token}
 
     return app

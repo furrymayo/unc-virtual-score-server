@@ -59,8 +59,8 @@ class TestGetEndpoints:
 
 
 class TestDataSourcesCRUD:
-    def test_add_and_list(self, client):
-        resp = client.post(
+    def test_add_and_list(self, auth_client):
+        resp = auth_client.post(
             "/data_sources",
             data=json.dumps(
                 {
@@ -78,55 +78,55 @@ class TestDataSourcesCRUD:
         source_id = body["source"]["id"]
         assert body["source"]["sport_overrides"] == {"Lacrosse": "Gymnastics"}
 
-        resp = client.get("/data_sources")
+        resp = auth_client.get("/data_sources")
         sources = resp.get_json()["sources"]
         assert len(sources) == 1
         assert sources[0]["id"] == source_id
         assert sources[0]["sport_overrides"] == {"Lacrosse": "Gymnastics"}
 
-    def test_add_duplicate_gets_unique_id(self, client):
+    def test_add_duplicate_gets_unique_id(self, auth_client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999})
-        resp1 = client.post("/data_sources", data=payload, content_type="application/json")
+        resp1 = auth_client.post("/data_sources", data=payload, content_type="application/json")
         assert resp1.status_code == 200
         id1 = resp1.get_json()["source"]["id"]
         assert id1 == "tcp:127.0.0.1:9999"
 
-        resp2 = client.post("/data_sources", data=payload, content_type="application/json")
+        resp2 = auth_client.post("/data_sources", data=payload, content_type="application/json")
         assert resp2.status_code == 200
         id2 = resp2.get_json()["source"]["id"]
         assert id2 == "tcp:127.0.0.1:9999:2"
 
-        resp3 = client.post("/data_sources", data=payload, content_type="application/json")
+        resp3 = auth_client.post("/data_sources", data=payload, content_type="application/json")
         assert resp3.status_code == 200
         id3 = resp3.get_json()["source"]["id"]
         assert id3 == "tcp:127.0.0.1:9999:3"
 
-        resp = client.get("/data_sources")
+        resp = auth_client.get("/data_sources")
         sources = resp.get_json()["sources"]
         assert len(sources) == 3
 
-    def test_delete(self, client):
+    def test_delete(self, auth_client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999})
-        resp = client.post(
+        resp = auth_client.post(
             "/data_sources", data=payload, content_type="application/json"
         )
         source_id = resp.get_json()["source"]["id"]
 
-        resp = client.delete(f"/data_sources/{source_id}")
+        resp = auth_client.delete(f"/data_sources/{source_id}")
         assert resp.status_code == 200
         assert resp.get_json()["status"] == "deleted"
 
-        resp = client.get("/data_sources")
+        resp = auth_client.get("/data_sources")
         assert len(resp.get_json()["sources"]) == 0
 
-    def test_patch(self, client):
+    def test_patch(self, auth_client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999, "name": "Old"})
-        resp = client.post(
+        resp = auth_client.post(
             "/data_sources", data=payload, content_type="application/json"
         )
         source_id = resp.get_json()["source"]["id"]
 
-        resp = client.patch(
+        resp = auth_client.patch(
             f"/data_sources/{source_id}",
             data=json.dumps(
                 {
@@ -142,18 +142,18 @@ class TestDataSourcesCRUD:
             "Lacrosse": "Gymnastics"
         }
 
-    def test_delete_not_found(self, client):
-        resp = client.delete("/data_sources/nonexistent")
+    def test_delete_not_found(self, auth_client):
+        resp = auth_client.delete("/data_sources/nonexistent")
         assert resp.status_code == 404
 
-    def test_patch_host_port(self, client):
+    def test_patch_host_port(self, auth_client):
         payload = json.dumps({"host": "127.0.0.1", "port": 9999, "name": "Original"})
-        resp = client.post(
+        resp = auth_client.post(
             "/data_sources", data=payload, content_type="application/json"
         )
         old_id = resp.get_json()["source"]["id"]
 
-        resp = client.patch(
+        resp = auth_client.patch(
             f"/data_sources/{old_id}",
             data=json.dumps({"host": "10.0.0.5", "port": 8888}),
             content_type="application/json",
@@ -166,29 +166,29 @@ class TestDataSourcesCRUD:
         assert updated["name"] == "Original"
 
         # Old id should no longer exist
-        resp = client.get("/data_sources")
+        resp = auth_client.get("/data_sources")
         sources = resp.get_json()["sources"]
         ids = [s["id"] for s in sources]
         assert old_id not in ids
         assert "tcp:10.0.0.5:8888" in ids
 
-    def test_patch_host_port_conflict(self, client):
+    def test_patch_host_port_conflict(self, auth_client):
         p1 = json.dumps({"host": "127.0.0.1", "port": 9999})
         p2 = json.dumps({"host": "10.0.0.5", "port": 8888})
-        client.post("/data_sources", data=p1, content_type="application/json")
-        resp2 = client.post("/data_sources", data=p2, content_type="application/json")
+        auth_client.post("/data_sources", data=p1, content_type="application/json")
+        resp2 = auth_client.post("/data_sources", data=p2, content_type="application/json")
         source2_id = resp2.get_json()["source"]["id"]
 
         # Try to change source2 to the same host:port as source1
-        resp = client.patch(
+        resp = auth_client.patch(
             f"/data_sources/{source2_id}",
             data=json.dumps({"host": "127.0.0.1", "port": 9999}),
             content_type="application/json",
         )
         assert resp.status_code == 409
 
-    def test_add_missing_fields(self, client):
-        resp = client.post(
+    def test_add_missing_fields(self, auth_client):
+        resp = auth_client.post(
             "/data_sources",
             data=json.dumps({"host": "127.0.0.1"}),
             content_type="application/json",

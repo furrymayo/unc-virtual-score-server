@@ -278,7 +278,7 @@
     function fetchTrackmanData() {
         var sport = document.getElementById('trackman-sport-select').value;
         Promise.all([
-            fetch('/trackman_config/' + sport).then(function(r) { return r.json(); }),
+            authFetch('/trackman_config/' + sport).then(function(r) { return r.json(); }),
             fetch('/get_trackman_debug/' + sport).then(function(r) { return r.json(); })
         ]).then(function(results) {
             var config = results[0];

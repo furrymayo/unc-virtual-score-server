@@ -1103,7 +1103,7 @@
     }
 
     function loadVirtiusConfig() {
-        fetch('/virtius_config/Gymnastics')
+        authFetch('/virtius_config/Gymnastics')
             .then(function(response) { return response.json(); })
             .then(function(data) { renderVirtiusConfig(data || {}); })
             .catch(function() { renderVirtiusConfig({ enabled: false }); });
@@ -1123,7 +1123,7 @@
             payload.poll_interval = intervalValue;
         }
 
-        fetch('/virtius_config/Gymnastics', {
+        authFetch('/virtius_config/Gymnastics', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

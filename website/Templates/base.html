@@ -1076,6 +1076,15 @@
     <script>
         var selectedSourceId = null;
 
+        // Authenticated fetch for config endpoints that require Basic Auth
+        var _apiAuthToken = "{{ api_auth_token }}";
+        function authFetch(url, options) {
+            options = options || {};
+            options.headers = options.headers || {};
+            options.headers['Authorization'] = 'Basic ' + _apiAuthToken;
+            return fetch(url, options);
+        }
+
         function fetchData(sport) {
             var url = `/get_raw_data/${sport}`;
             if (selectedSourceId) url += `?source=${encodeURIComponent(selectedSourceId)}`;
@@ -1299,7 +1308,7 @@
 
         // StatCrew config helpers
         function loadStatcrewConfig(sport, prefix) {
-            fetch(`/statcrew_config/${sport}`)
+            authFetch(`/statcrew_config/${sport}`)
                 .then(response => response.json())
                 .then(data => renderStatcrewConfig(prefix, data || {}))
                 .catch(() => renderStatcrewConfig(prefix, { enabled: false }));
@@ -1309,7 +1318,7 @@
             event.preventDefault();
             const filePath = document.getElementById(`${prefix}-statcrew-path`).value;
             const enabled = document.getElementById(`${prefix}-statcrew-enabled`).value === 'true';
-            fetch(`/statcrew_config/${sport}`, {
+            authFetch(`/statcrew_config/${sport}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ file_path: filePath, enabled: enabled })

@@ -665,7 +665,7 @@
     }
 
     function loadTrackmanBaseballConfig() {
-        fetch('/trackman_config/Baseball')
+        authFetch('/trackman_config/Baseball')
             .then(response => response.json())
             .then(data => renderTrackmanConfigBaseball(data || {}))
             .catch(() => renderTrackmanConfigBaseball({ enabled: false }));
@@ -688,7 +688,7 @@
         const port = parseInt(document.getElementById('bs-trackman-port').value, 10);
         const feedType = document.getElementById('bs-trackman-feed-type').value;
         const enabled = document.getElementById('bs-trackman-enabled').value === 'true';
-        fetch('/trackman_config/Baseball', {
+        authFetch('/trackman_config/Baseball', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ port: port, feed_type: feedType, enabled: enabled })

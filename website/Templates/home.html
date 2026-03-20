@@ -388,7 +388,7 @@
 
     function loadSources() {
         Promise.all([
-            fetch('/data_sources').then(function(r) { return r.json(); }),
+            authFetch('/data_sources').then(function(r) { return r.json(); }),
             fetch('/get_sources').then(function(r) { return r.json(); })
         ]).then(function(results) {
             var configured = results[0];
@@ -422,7 +422,7 @@
         if (!host || !port) return;
 
         if (editingSourceId) {
-            fetch('/data_sources/' + editingSourceId, {
+            authFetch('/data_sources/' + editingSourceId, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: name, host: host, port: port, sport_overrides: sportOverrides })
@@ -432,7 +432,7 @@
                 loadSources();
             });
         } else {
-            fetch('/data_sources', {
+            authFetch('/data_sources', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: name, host: host, port: port, sport_overrides: sportOverrides })
@@ -444,7 +444,7 @@
     }
 
     function removeSource(sourceId) {
-        fetch('/data_sources/' + sourceId, { method: 'DELETE' })
+        authFetch('/data_sources/' + sourceId, { method: 'DELETE' })
             .then(function() { loadSources(); });
     }
 
