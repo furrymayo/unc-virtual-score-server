@@ -15,4 +15,5 @@ if __name__ == "__main__":
         host=CONFIG.flask_host,
         port=CONFIG.flask_port,
         debug=CONFIG.flask_debug,
+        threaded=True,
     )
