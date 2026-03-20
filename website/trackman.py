@@ -18,7 +18,7 @@ trackman_debug = {
 }
 
 trackman_config = {
-    "Baseball": {"enabled": False, "port": 20998, "feed_type": "broadcast"},
+    "Baseball": {"enabled": True, "port": 20998, "feed_type": "broadcast"},
     "Softball": {"enabled": False, "port": 20998, "feed_type": "broadcast"},
 }
 
