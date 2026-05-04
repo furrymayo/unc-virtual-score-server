@@ -1,9 +1,10 @@
 # Flask Virtual Scoreboard
 
-**Last Updated**: 2026-02-28
-**Status**: Active
+**Last Updated**: 2026-05-04
+**Status**: Active (production stable on `main`); external-access initiative in progress on `external-access` branch
 **Primary OS**: Both (Windows + Linux)
 **Repo**: https://github.com/furrymayo/unc-virtual-score-server
+**Companion repo (AWS edge)**: https://github.com/furrymayo/unc-virtual-score-edge — see `docs/external-access.md`
 
 ## Overview
 Flask web application that displays real-time sports scoreboards by reading data from OES serial controllers over TCP, UDP, or serial COM ports. Supports 10 sports with dedicated display templates. Optional TrackMan UDP integration for Baseball/Softball pitch/hit tracking. StatCrew XML integration for enhanced stats display.
@@ -151,6 +152,7 @@ All sport templates follow a consistent clock-dominant design. Row 1 is always t
 | Home | — | Sports grid (10+debug) | Data source manager | — | — |
 
 ## Recent Activity
+- 2026-05-04: External access initiative kickoff (Milestone 0) — New branch `external-access` (this branch) on this repo, plus new private companion repo `unc-virtual-score-edge` for the AWS-side service. No production changes; `main` untouched. Plan: outbound-only WSS from a future `website/cloud_relay.py` (off by default, env-flag gated) to an AWS Flask edge that mirrors live state and serves authenticated viewers with per-sport ACLs. Read-only externally — no config plane, no `/browse_files`, no `/mnt/stats`. ~100 users target, EC2 `t4g.small` (~$14/mo). HTTPS posture deferred (plain HTTP for dev/staging; revisit before go-live). Full plan: `docs/external-access.md` and edge repo's `docs/plan.md`. Next: Milestone 1 — edge skeleton (Flask app, login, user CLI, SQLite) in the companion repo.
 - 2026-02-28: OES data source selector — Dropdown in each sport page's "Additional Data Sources" panel lets operators pick which OES source to display when multiple venues broadcast the same sport. Backend: `get_sources_snapshot()` includes friendly `name` from configured `data_sources` (safe lock ordering: `data_sources_lock` → `parsed_data_lock`). Frontend: shared `initSourceSelector()` in base.html fetches `/get_sources`, filters by sport, populates `<select>`, refreshes every 10s, passes `?source=` to `fetchData()` and `fetchGymnasticsData()`. Wrestling gets a new Additional Data Sources panel. Default "Auto (latest)" preserves existing behavior. 3 new tests. 179 total tests.
 - 2026-02-22: Codebase audit fix (Tiers 1-3) — Security: FLASK_DEBUG default 0, secrets.token_hex secret key, BROWSE_ROOTS path traversal guard on browse_files. Bugs: TCP listener in start_network_listeners, per-source baseball inning state, tcp_clients_lock thread safety, stop_event.wait responsive shutdown. Quality: trackman port conflict race fix, NCAA color O(1) lookup index, removed unused CDN scripts (jQuery/Popper/Bootstrap JS/Font Awesome), .gitignore runtime configs, deleted copyPasta.html. 176 total tests.
 - 2026-02-21: Gymnastics multi-team meets — 3/4 team support (tri-meets, quad-meets). API returns `team_colors` dict for per-team NCAA color lookup. Frontend dual/multi branching: dual meets pixel-identical to previous, multi meets get N-column team cards sorted by rank (leader left), clock moves to rotation bar, per-team inline colors on score cards/lineup cards/AA leaders. Flicker prevention via `lastTeamCount` tracking. New CSS grid classes (`gym-grid-3/4`, `gym-lineup-3/4`). 5 new API tests. 173 total tests.
