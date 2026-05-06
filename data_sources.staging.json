@@ -1,0 +1,11 @@
+[
+  {"id": "tcp:127.0.0.1:6001", "name": "sim-basketball", "host": "127.0.0.1", "port": 6001, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6002", "name": "sim-football",   "host": "127.0.0.1", "port": 6002, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6003", "name": "sim-volleyball", "host": "127.0.0.1", "port": 6003, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6004", "name": "sim-soccer",     "host": "127.0.0.1", "port": 6004, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6005", "name": "sim-lacrosse",   "host": "127.0.0.1", "port": 6005, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6006", "name": "sim-hockey",     "host": "127.0.0.1", "port": 6006, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6007", "name": "sim-wrestling",  "host": "127.0.0.1", "port": 6007, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6008", "name": "sim-baseball",   "host": "127.0.0.1", "port": 6008, "enabled": true, "sport_overrides": {}},
+  {"id": "tcp:127.0.0.1:6009", "name": "sim-softball",   "host": "127.0.0.1", "port": 6009, "enabled": true, "sport_overrides": {}}
+]

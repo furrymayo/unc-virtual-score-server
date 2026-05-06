@@ -34,6 +34,13 @@ def _split_roots(value):
     return [segment for segment in raw.split(os.pathsep) if segment]
 
 
+def _to_float(value, default):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
 @dataclass(frozen=True)
 class AppConfig:
     flask_host: str
@@ -46,6 +53,14 @@ class AppConfig:
     browse_roots: list[str]
     admin_user: str
     admin_pass: str
+    cloud_relay_enabled: bool
+    cloud_relay_url: str
+    cloud_relay_token: str
+    cloud_relay_publisher_name: str
+    cloud_relay_poll_interval: float
+    cloud_relay_queue_size: int
+    cloud_relay_reconnect_min: float
+    cloud_relay_reconnect_max: float
 
 
 def load_config():
@@ -70,6 +85,15 @@ def load_config():
     admin_user = os.environ.get("ADMIN_USER", "admin")
     admin_pass = os.environ.get("ADMIN_PASS", "admin")
 
+    cloud_relay_enabled = _to_bool(os.environ.get("CLOUD_RELAY_ENABLED"), default=False)
+    cloud_relay_url = os.environ.get("CLOUD_RELAY_URL", "").strip()
+    cloud_relay_token = os.environ.get("CLOUD_RELAY_TOKEN", "")
+    cloud_relay_publisher_name = os.environ.get("CLOUD_RELAY_PUBLISHER_NAME", "onprem").strip() or "onprem"
+    cloud_relay_poll_interval = _to_float(os.environ.get("CLOUD_RELAY_POLL_INTERVAL", "0.5"), 0.5)
+    cloud_relay_queue_size = _to_int(os.environ.get("CLOUD_RELAY_QUEUE_SIZE", "256"), 256)
+    cloud_relay_reconnect_min = _to_float(os.environ.get("CLOUD_RELAY_RECONNECT_MIN", "1.0"), 1.0)
+    cloud_relay_reconnect_max = _to_float(os.environ.get("CLOUD_RELAY_RECONNECT_MAX", "30.0"), 30.0)
+
     return AppConfig(
         flask_host=host,
         flask_port=port,
@@ -81,6 +105,14 @@ def load_config():
         browse_roots=browse_roots,
         admin_user=admin_user,
         admin_pass=admin_pass,
+        cloud_relay_enabled=cloud_relay_enabled,
+        cloud_relay_url=cloud_relay_url,
+        cloud_relay_token=cloud_relay_token,
+        cloud_relay_publisher_name=cloud_relay_publisher_name,
+        cloud_relay_poll_interval=cloud_relay_poll_interval,
+        cloud_relay_queue_size=cloud_relay_queue_size,
+        cloud_relay_reconnect_min=cloud_relay_reconnect_min,
+        cloud_relay_reconnect_max=cloud_relay_reconnect_max,
     )
 
 
