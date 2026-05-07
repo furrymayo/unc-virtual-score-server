@@ -119,6 +119,7 @@ class CloudRelay:
         ws = self._ws_factory(
             self._config.cloud_relay_url,
             self._config.cloud_relay_token,
+            self._config.cloud_relay_publisher_name,
         )
         with self._ws_lock:
             self._ws = ws
@@ -211,12 +212,18 @@ def _json_default(value):
     raise TypeError(f"unserializable: {type(value).__name__}")
 
 
-def _default_ws_factory(url: str, token: str):
+def _default_ws_factory(url: str, token: str, publisher_name: str = ""):
     from websocket import create_connection
+
+    headers = [f"X-Publisher-Auth: {token}"]
+    if publisher_name:
+        # The edge logs the publisher identity from this header, not the
+        # hello frame. Without it auth.log entries arrive blank.
+        headers.append(f"X-Publisher-Name: {publisher_name}")
 
     return create_connection(
         url,
-        header=[f"X-Publisher-Auth: {token}"],
+        header=headers,
         timeout=10,
     )
 

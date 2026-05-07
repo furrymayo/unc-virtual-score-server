@@ -38,10 +38,10 @@ def _make_factory(*sockets: FakeWS):
     """Return a factory that yields the given fake sockets in order, recording
     auth headers."""
     sockets_iter = iter(sockets)
-    calls: list[tuple[str, str]] = []
+    calls: list[tuple[str, str, str]] = []
 
-    def factory(url: str, token: str) -> FakeWS:
-        calls.append((url, token))
+    def factory(url: str, token: str, publisher_name: str = "") -> FakeWS:
+        calls.append((url, token, publisher_name))
         try:
             return next(sockets_iter)
         except StopIteration:
